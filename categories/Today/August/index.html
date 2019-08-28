@@ -168,7 +168,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 147 words)
+                    3 minutes read (About 387 words)
                 </span>
                 
                 
@@ -189,13 +189,32 @@
 <li>Study LightGBM with the video presented by Mateusz Susik from McKinsey - <a href="https://www.youtube.com/watch?v=5CWwwtEM2TA&list=LLxvCXZGQQpgJjfgFOiTqLSA&index=2&t=226s" target="_blank" rel="noopener">link</a></li>
 </ol>
 <p>XGBoost by Tianqi Chen- <a href="https://xgboost.readthedocs.io/en/latest/tutorials/model.html" target="_blank" rel="noopener">link</a></p>
-<p>오늘 할일</p>
+<p>오늘 할 일</p>
 <ol>
 <li>Convex Optimization 수업 - Duality; weak and strong duality</li>
 <li>IEEE 카글 대회 - 데이터 정리; 데이터 Description에 따라 변수들 변환 - <a href="https://www.kaggle.com/c/ieee-fraud-detection/discussion/101203" target="_blank" rel="noopener">link</a></li>
 <li>LightGBM 원리 공부 - 프레젠테이션 Mateusz Susik from McKinsey - <a href="https://www.youtube.com/watch?v=5CWwwtEM2TA&list=LLxvCXZGQQpgJjfgFOiTqLSA&index=2&t=226s" target="_blank" rel="noopener">link</a></li>
 </ol>
 <p>XGBoost -&gt; LightGBM</p>
+<p>Update:</p>
+<p>Duality - </p>
+<ol>
+<li><p>Form Lagrange</p>
+<p> $\mathcal{L}(x,\lambda,\nu)$ = $f_0 (x) + \sum_{i=1}^{m} \lambda_i f_i(x) + \sum_{i=1}^{p} \nu_i h_i (x)$</p>
+</li>
+<li><p>Set gradient for $x$ equal to zero to minimize $\mathcal{L}$</p>
+<p> $\nabla_x \mathcal{L}$ = 0</p>
+</li>
+<li><p>Plug it in $\mathcal{L}$ to get the Lagrangian dual function;</p>
+<p> $g(\lambda, \nu)$ = $\inf_{x\in D} \mathcal{L}(x, \lambda, \nu)$</p>
+<p> which is a concave function, can be $-\infty$ for some $\lambda, \nu$</p>
+<p> Lagrangian dual function is a concave function, since the Lagrangian form is affine function, and infimum of any family of affine is concave.</p>
+</li>
+</ol>
+<p>LightGBM - XGBoost (either histogram implementation available)</p>
+<p>One of the method used in LightGBM is ‘Graident-based one-side sampling’ that is the biggest benefit of LightGBM. This method is to concentrate on data points with large gradients and ignore data points with small graidents (close to local minima). </p>
+<p>LightGBM - XGBoost(둘 다 histogram implementation 가능) </p>
+<p>가장 큰 장점은 Gradient-based one-side sampling 이라는 방법으로, gradient가 큰 데이터 포인트들을 집중하며, small gradients (Gradients가 작다는 것은 local minima에 가깝다는것이고, 그 말은 즉 Residual 혹은 loss 가 적다는것) 들은 무시하기에 training 속도가 굉장히 빠르다는 것.</p>
 
         </div>
         
