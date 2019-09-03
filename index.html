@@ -145,13 +145,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-29T08:04:52.000Z">2019-08-29</time>
+                <time class="level-item has-text-grey" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 554 words)
+                    4 minutes read (About 530 words)
                 </span>
                 
                 
@@ -160,37 +160,64 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/08/29/Gradients/">Differentiation (Derivative) vs Gradient</a>
+                <a class="has-link-black-ter" href="/2019/09/03/Matrix Basic/">Matrix Basic</a>
             
         </h1>
         <div class="content">
-            <p>Derivative is an fundamental and an essential tool in mathematics. </p>
-<p>Gradient Descent method is an optimization method that is predominantly used especially in machine learning. </p>
-<p>I was getting the conceptual idea of the GDM, but I was confusing why the derivative of a function gives us the slope of the tangent line and why the graident of a function gives us a vector that is perpendicular to the tangent vector, and how the vector gives direction of the function. Eventually, why we subtract the gradient in the gradient descent. </p>
-<p>The full understanding of gradient was also needed to understand the optimization, since I am taking convex optimization course now. </p>
-<p>Let’s dig into the gradient world!  </p>
-<ol>
-<li>Derivative vs Gradient</li>
+            <ol>
+<li>Schur Complement</li>
 </ol>
-<pre><code>Derivative</code></pre><p>By definition in Wikipedia, </p>
-<p>Derivative Definition: “The derivative of a function of a real variable measures the sensitivity to change of the function value (output value) with respect to a change in its argument (input value).” </p>
-<p>Let $f$ be a real-valued function defined in an open neighborhood of a real number a. </p>
-<p>The tangent line to a plane, a curve, or a graph at a given point, a, is the straight line that “just touches” the curve at that point. Technically, it doesn’t meet the graph as a parameter goes $\infty$. </p>
-<p>Then, the derivative of $y$ with respect to x at a is the slope of the tangent line to the graph of $f$ at $(a,f(a))$. </p>
-<p>Since the derivative is a measure of the change rate at which the value $y$ of the function changes with respect to the change of the $x$, we define the value $h$ close to zero to get a good approximation to the slope of the tangent line. </p>
-<p>The slope of the tangent line will be defined as</p>
-<p>$$\frac{f(a+h)-f(a)}{(a+h)-(a)} = \frac{f(a+h)-f(a)}{h}$$</p>
-<p>We set the $h$ close to zero, and we make $h$ goes to $\infty$ if it exists,</p>
-<p>$$f’(a) = \lim_{h \to 0} \frac{f(a+h)-f(a)}{h}$$</p>
-<p>The $f’(a)$ is the derivative of the function $f$ at $a$. </p>
-<p>Now, we know the rigorous definition of the tangent line and derivative. </p>
-<p>Let’s see the tangent vector and gradient. </p>
-<pre><code>Gradient</code></pre><p>Gradient Definition: “The gradient is a multi-variable generalization of the derivative. Whereas the ordinary derivative of a function of a single variable is a <em>scalar-valued function</em>, the gradient of a function of several variables is a <em>vector-valued function</em>.” </p>
-<p>It is also described as,</p>
-<p>“Much as the derivative of a function of a single variable represents the slope of the tangent to the graph of the function, if at a point $mathcal{P}$, the gradient of a function of several variables is not the zero vector, it has the direction of greatest increase of the function at $\mathcal{P}$, and its magnitude is the rate of increase in that direction.”</p>
-<p>By the definition, the difference between derivative and gradient is simply depends on the type of function, whether the function is scalar-valued or vector-valued.<br>And, the derivative gives the sloep of the tangent to the graph at a given point, and the gradient gives the direction of the function at a given point. </p>
-<p>Let’s see tangent vector and gradient. </p>
-<p>The gradient is defined as,</p>
+<p>Brief Introduction to Positive Semi-definite with Schur Complement </p>
+<p>Schur Complement is popularly used in matrix analysis. </p>
+<p>Definition: </p>
+<p>The Schur Complement of a black matrix is defined as;</p>
+<p>Let $M$ be $n \times n$ matrix</p>
+<p>$$M =  \begin{bmatrix} A &amp; B \\ C &amp; D \end{bmatrix}$$</p>
+<p>Then, the Schur Complement of the block $D$ of the matrix $M$ is </p>
+<p>$$M/D := A - BD^{-1}C$$</p>
+<p>if $D$ is invertible. </p>
+<p>The Schur Complement of the block $A$ of the matrix $M$ is then,</p>
+<p>$$M/A := D - CA^{-1}B$$</p>
+<p>if $A$ is invertible. </p>
+<pre><code>Properties</code></pre><ul>
+<li>Linear system</li>
+</ul>
+<p>Let<br>$A$ is a $p \times p$ matrix,<br>$D$ is a $q \times q$ matrix, with $n = p + q$<br>So, $B$ is a $p \times q$ matrix. </p>
+<p>Let $M$ be defined as,</p>
+<p>$$M = \begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix}$$</p>
+<p>Suppose we have a linear system as,</p>
+<p>$$Ax + By = c$$<br>$$B^{T}x + Dy = d$$</p>
+<p>Then, </p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} c \\ d \end{bmatrix}$$</p>
+<p>Assuming $D$ is invertible, </p>
+<p>then we have y as</p>
+<p>$$y = D^{-1}(d - B^{T}x)$$ </p>
+<p>Then, from the equation, </p>
+<p>$$Ax + By = c$$<br>$$Ax + B(D^{-1}(d - B^{T}x)) = c$$</p>
+<p>Then, we see that is,</p>
+<p>$$(A - BD^{-1}B^{T})x = c - BD^{-1}d$$</p>
+<p>Here, the $A - BD^{-1}B^{T}$ is the Schur Complement of a block $D$ of matrix $M$. </p>
+<p>It follows, </p>
+<p>$$x = (A-BD^{-1}B^{T})^{-1}(c-BD^{-1}d) \\ y = D^{-1}(d-B^{T}(A-BD^{-1}B^{T})^{-1}(c-BD^{-1}d))$$</p>
+<p>And, </p>
+<p>$$x = (A-BD^{-1}B^{T})^{-1}c - (A-BD^{-1}B^{T})^{-1}BD^{-1}d \\ y = -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}c + (D^{-1}+D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}BD^{-1})d$$</p>
+<p>The $x$ and $y$ are formed as affine functions with $c$ and $d$, </p>
+<p>and it can be a formula for an inverse of $M$ in terms of the Schur Complement of $D$ in $M$.</p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; -(A-BD^{-1}B^{T})^{-1}BD^{-1} \\ -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1} &amp; D^{-1}+D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}BD^{-1}  \end{bmatrix}$$</p>
+<p>This can be written as,</p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; 0 \\ -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1} &amp; D^{-1} \end{bmatrix} \begin{bmatrix} I &amp; -BD^{-1} \\ 0 &amp; I \end{bmatrix}$$</p>
+<p>Eventually, </p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} I &amp; 0 \\ -D^{-1}B^{T} &amp; I \end{bmatrix} \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; 0 \\ 0 &amp; D^{-1} \end{bmatrix} \begin{bmatrix} I &amp; -BD^{-1} \\ 0 &amp; I \end{bmatrix}$$</p>
+<p>If we take inverse on both sides,</p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} = \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; 0 \\ D^{-1}B^{T} &amp; I \end{bmatrix}$$</p>
+<p>$$= \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} ^{T}$$</p>
+<p>This is done by an assumption with $D$ is invertible. </p>
+<p>Then, we can get another factorization of $M$ if A is invertible. </p>
+<ul>
+<li>Positive Semi-definite</li>
+</ul>
+<p><em>For any symmetric matrix,</em> $M$,</p>
+<p>if D is invertible, then</p>
 
         </div>
         
@@ -247,7 +274,7 @@
 <p>Logit (log odds) = $log(\frac{p}{1-p})$. </p>
 <p>Let logit be defined as $\theta$, then</p>
 <p>$$\theta = log(\frac{p}{1-p})$$</p>
-<p>We can express this in terms of p as the following,</p>
+<p>We can express this in terms of $p$ as the following,</p>
 <p>$$e^{\theta} = \frac{p}{1-p}$$<br>$$(1-p)e^{\theta} = p$$<br>$$e^{\theta} = p + p e^{\theta}$$<br>$$e^{\theta} = p(1+e^{\theta})$$<br>$$\therefore p = \frac{e^{\theta}}{(1+e^{\theta})} = \frac{1}{1+e^{-\theta}}$$</p>
 <p>This is the logistic function, which is the special case of sigmoid function that is widely used for classification, such as logistic regression, tree-based algorithm for classification, or deep learning.<br>The logistic function is the CDF of the logistic distribution. </p>
 <ol start="2">
@@ -372,9 +399,9 @@
 <p>Hence, the exponential distribution will be shaped by the $\lambda$. </p>
 <p>Therefore, we want to find the maximum likelihood of $\lambda$ for given data. </p>
 <p>$$\mathcal{L}(\lambda | x_1, x_2, … , x_n) =  \mathcal{L}(\lambda | x_1)\mathcal{L}(\lambda | x_2)…\mathcal{L}(\lambda | x_n)    $$</p>
-<p>$$= \lambda e ^ {- \lambda x_1}\lambda e ^ {- \lambda x_2}…\lambda e ^ {- \lambda x_n}$$<br>$$= \lambda^{n}* (e ^ {-\lambda * (x_1 + x_2 + … + x_n)})$$</p>
+<p>$$= \lambda e ^ {- \lambda x_1}\lambda e ^ {- \lambda x_2}…\lambda e ^ {- \lambda x_n}$$<br>$$= \lambda^{n}(e ^ {-\lambda  (x_1 + x_2 + … + x_n)})$$</p>
 <p>Now, take a derivative for the likelihood function to find maximum likelihood estimator of $\lambda$.</p>
-<p>$$ \frac{d}{d\lambda} \mathcal{L}(\lambda | x_1, x_2, … , x_n) = \frac{d}{d\lambda} \lambda^{n}* (e ^ {-\lambda * (x_1 + x_2 + … + x_n)})$$</p>
+<p>$$ \frac{d}{d\lambda} \mathcal{L}(\lambda | x_1, x_2, … , x_n) = \frac{d}{d\lambda} \lambda^{n} (e ^ {-\lambda * (x_1 + x_2 + … + x_n)})$$</p>
 <p>Before derivitaves, there is more easier way to differentiate this function, which is to take a lograithm on the function.<br>Take a logarithm on the likelihood function, then this becomes the log likelihood function. </p>
 <p>$$log (\mathcal{L}(\lambda | x_1, x_2, … , x_n)) =  log(\mathcal{L}(\lambda | x_1)\mathcal{L}(\lambda | x_2)…\mathcal{L}(\lambda | x_n))<br>$$</p>
 <p>Which makes easier differentiate the function. </p>
@@ -416,97 +443,6 @@
 <p>This also connects to the maximum entropy probability distribution as the following; </p>
 <p>The normal distribution has maximum entropy among all real-valued distribution supported on $(-\infty, \infty)$ with a specified variance $\sigma^2$.</p>
 <p>Reference:<br><a href="https://en.wikipedia.org/wiki/Likelihood_function" target="_blank" rel="noopener">Likelihood(wiki)</a><br><a href="https://en.wikipedia.org/wiki/Maximum_entropy_probability_distribution" target="_blank" rel="noopener">Maximum Entropy Probability Distribution(wiki)</a><br><a href="https://www.youtube.com/watch?v=pYxNSUDSFH4" target="_blank" rel="noopener">Related to Likelihood for distributions (StatQuest with Josh Starmer)</a></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-29T01:51:42.000Z">2019-08-29</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 193 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/08/29/190829/">190829</a>
-            
-        </h1>
-        <div class="content">
-            <p>August 29th, 2019</p>
-<p>Today’s work</p>
-<ol>
-<li><p>Convex Optimization Course - Continue Duality course</p>
-<p> Thinking about making some posts for Duality</p>
-<ol>
-<li>About deriviatives (gradient or differentiation)</li>
-<li>Lagrangian Multiplier</li>
-<li>Duality problem</li>
-</ol>
-</li>
-<li><p>IEEE Kaggle Competition - study for timedelta variables </p>
-</li>
-<li><p>Reconstruct blog - creating menu to make it categorized</p>
-<ul>
-<li>Home</li>
-<li>Today’s Work</li>
-<li>Machine Learning</li>
-<li>Music</li>
-<li>Categories</li>
-</ul>
-</li>
-<li><p>Maximuum Likelihood.. </p>
-<ul>
-<li>From pdf of Exponential, -&gt; has maximum entropy distribution among all continuous distribution supported in [0,infty] that have a specified mean 1/lambda</li>
-<li>from pdf of Normal -&gt; has maximum entropy distribution among all real-valued distribution supported in (-infty, infty) with a specified variance</li>
-</ul>
-</li>
-</ol>
-<p>오늘 할 일</p>
-<ol>
-<li><p>Convex Optimization Course - Duality 코스 계속</p>
-<p> 현재 Duality 에 대해서 몇가지 포스팅을 할까 생각중</p>
-<ol>
-<li>미분에 대해서</li>
-<li>Lagrangian Multiplier</li>
-<li>Duality 문제</li>
-</ol>
-</li>
-<li><p>IEEE Kaggle Comeptition - timedelta 변수에 대해 좀 더 공부해야 할 필요성</p>
-</li>
-<li><p>블로그 재구성 - 블로그 메뉴를 더 만들어 좀더 보기 쉽게 카테고리화 시키기</p>
-<ul>
-<li>Home</li>
-<li>Today’s Work</li>
-<li>Machine Learning</li>
-<li>Music</li>
-<li>Categories</li>
-</ul>
-</li>
-</ol>
 
         </div>
         
@@ -586,65 +522,6 @@
 <p>One of the method used in LightGBM is ‘Graident-based one-side sampling’ that is the biggest benefit of LightGBM. This method is to concentrate on data points with large gradients and ignore data points with small graidents (close to local minima). </p>
 <p>LightGBM - XGBoost(둘 다 histogram implementation 가능) </p>
 <p>가장 큰 장점은 Gradient-based one-side sampling 이라는 방법으로, gradient가 큰 데이터 포인트들을 집중하며, small gradients (Gradients가 작다는 것은 local minima에 가깝다는것이고, 그 말은 즉 Residual 혹은 loss 가 적다는것) 들은 무시하기에 training 속도가 굉장히 빠르다는 것.</p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-27T05:57:21.000Z">2019-08-27</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Today/">Today</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Today/August/">August</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a few seconds read (About 86 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/08/27/190827/">190827</a>
-            
-        </h1>
-        <div class="content">
-            <p>August 27th, 2019</p>
-<p>Today’s work</p>
-<ol>
-<li>Finalize creating blog</li>
-<li>Density plot -&gt; Kernel Density Plot</li>
-<li>Join Kaggle Competition - IEEE Fraud Detection, and skim the Datasets </li>
-<li>Resume Convex Optimization Course - review convex optimization problem, start Duality</li>
-</ol>
-<p>오늘 할일</p>
-<ol>
-<li>블로그 개설</li>
-<li>Density Plot 에 대해 공부 -&gt; Kernel Density Plot(커널 밀도 함수)</li>
-<li>Join Kaggle Competition - IEEE Fraud Detection, 데이터셋 훑어보기</li>
-<li>Convex 수업, 이전 내용 복습, Duality 강의 시작</li>
-</ol>
 
         </div>
         
@@ -754,7 +631,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        7
+                        5
                     </p>
                 </div>
             </div>
@@ -834,7 +711,7 @@
                 <span class="level-item">Today</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">1</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Today/August/">
@@ -842,7 +719,7 @@
                 <span class="level-item">August</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li>
             </ul>
@@ -856,7 +733,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Likelihood/" style="font-size: 20px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Today/" style="font-size: 20px;">Today</a>
+        <a href="/tags/Likelihood/" style="font-size: 20px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a>
     </div>
 </div>
 
@@ -870,16 +747,16 @@
         
         <article class="media">
             
-            <a href="/2019/08/29/Gradients/" class="media-left">
+            <a href="/2019/09/03/Matrix Basic/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Differentiation (Derivative) vs Gradient">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Matrix Basic">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-29T08:04:52.000Z">2019-08-29</time></div>
-                    <a href="/2019/08/29/Gradients/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Differentiation (Derivative) vs Gradient</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time></div>
+                    <a href="/2019/09/03/Matrix Basic/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Matrix Basic</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -927,25 +804,6 @@
         
         <article class="media">
             
-            <a href="/2019/08/29/190829/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="190829">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-29T01:51:42.000Z">2019-08-29</time></div>
-                    <a href="/2019/08/29/190829/" class="title has-link-black-ter is-size-6 has-text-weight-normal">190829</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/08/28/190828/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="190828">
@@ -958,6 +816,25 @@
                     <a href="/2019/08/28/190828/" class="title has-link-black-ter is-size-6 has-text-weight-normal">190828</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Today/">Today</a> / <a class="has-link-grey -link" href="/categories/Today/August/">August</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/27/Starting-blog/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Starting Blog">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-27T05:14:44.000Z">2019-08-27</time></div>
+                    <a href="/2019/08/27/Starting-blog/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Starting Blog</a>
+                    <p class="is-size-7 is-uppercase">
+                        
                     </p>
                 </div>
             </div>
@@ -976,12 +853,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/08/">
                 <span class="level-start">
                     <span class="level-item">August 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1037,7 +925,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Today/">
                         <span class="tag">Today</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 

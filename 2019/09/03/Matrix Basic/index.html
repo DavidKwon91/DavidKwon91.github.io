@@ -7,17 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Category: Today - David Kwon</title>
+<title>Matrix Basic - David Kwon</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="David Kwon">
-<meta property="og:url" content="http://yoursite.com/categories/Today/index.html">
+    <meta name="description" content="Schur Complement  Brief Introduction to Positive Semi-definite with Schur Complement  Schur Complement is popularly used in matrix analysis.  Definition:  The Schur Complement of a black matrix is de">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matrix Basic">
+<meta property="og:url" content="http://yoursite.com/2019/09/03/Matrix Basic/index.html">
 <meta property="og:site_name" content="David Kwon">
+<meta property="og:description" content="Schur Complement  Brief Introduction to Positive Semi-definite with Schur Complement  Schur Complement is popularly used in matrix analysis.  Definition:  The Schur Complement of a black matrix is de">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2019-09-03T04:21:50.282Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="David Kwon">
+<meta name="twitter:title" content="Matrix Basic">
+<meta name="twitter:description" content="Schur Complement  Brief Introduction to Positive Semi-definite with Schur Complement  Schur Complement is popularly used in matrix analysis.  Definition:  The Schur Complement of a black matrix is de">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -88,7 +92,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="David Kwon" height="28">
+                <img src="/images/logo.svg" alt="Matrix Basic" height="28">
             
             </a>
         </div>
@@ -139,34 +143,18 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/categories">Categories</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">Today</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-28T01:48:30.000Z">2019-08-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Today/">Today</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Today/August/">August</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 408 words)
+                    4 minutes read (About 530 words)
                 </span>
                 
                 
@@ -175,45 +163,64 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/08/28/190828/">190828</a>
+                Matrix Basic
             
         </h1>
         <div class="content">
-            <p>August 28th, 2019</p>
-<p>Today’s work</p>
-<ol>
-<li>Convex Optimization Course - Duality;<br> weak and strong duality</li>
-<li>IEEE Kaggle - Data Organization;<br>  convert data by Data Description - <a href="https://www.kaggle.com/c/ieee-fraud-detection/discussion/101203" target="_blank" rel="noopener">link</a></li>
-<li>Study LightGBM with the video presented by Mateusz Susik from McKinsey - <a href="https://www.youtube.com/watch?v=5CWwwtEM2TA&list=LLxvCXZGQQpgJjfgFOiTqLSA&index=2&t=226s" target="_blank" rel="noopener">link</a></li>
+            <ol>
+<li>Schur Complement</li>
 </ol>
-<p>XGBoost by Tianqi Chen- <a href="https://xgboost.readthedocs.io/en/latest/tutorials/model.html" target="_blank" rel="noopener">link</a></p>
-<p>오늘 할 일</p>
-<ol>
-<li>Convex Optimization 수업 - Duality; weak and strong duality</li>
-<li>IEEE 카글 대회 - 데이터 정리; 데이터 Description에 따라 변수들 변환 - <a href="https://www.kaggle.com/c/ieee-fraud-detection/discussion/101203" target="_blank" rel="noopener">link</a></li>
-<li>LightGBM 원리 공부 - 프레젠테이션 Mateusz Susik from McKinsey - <a href="https://www.youtube.com/watch?v=5CWwwtEM2TA&list=LLxvCXZGQQpgJjfgFOiTqLSA&index=2&t=226s" target="_blank" rel="noopener">link</a></li>
-</ol>
-<p>XGBoost -&gt; LightGBM</p>
-<p>Update:</p>
-<p>Duality - </p>
-<ol>
-<li><p>Form Lagrange</p>
-<p> $\mathcal{L}(x,\lambda,\nu)$ = $f_0 (x) + \sum_{i=1}^{m} \lambda_i f_i(x) + \sum_{i=1}^{p} \nu_i h_i (x)$</p>
-</li>
-<li><p>Set gradient for $x$ equal to zero to minimize $\mathcal{L}$</p>
-<p> $\nabla_x \mathcal{L}$ = 0</p>
-</li>
-<li><p>Plug it in $\mathcal{L}$ to get the Lagrangian dual function;</p>
-<p> $g(\lambda, \nu)$ = $\inf_{x\in D} \mathcal{L}(x, \lambda, \nu)$</p>
-<p> which is a concave function, can be $-\infty$ for some $\lambda, \nu$</p>
-<p> Lagrangian dual function is a concave function, since the Lagrangian form is affine function, and infimum of any family of affine is concave.</p>
-<p> We want to maximize lower bound (concave) to get the best optimal points, and maximizing lower bound is convex optimization problem. </p>
-</li>
-</ol>
-<p>LightGBM - XGBoost (either histogram implementation available)</p>
-<p>One of the method used in LightGBM is ‘Graident-based one-side sampling’ that is the biggest benefit of LightGBM. This method is to concentrate on data points with large gradients and ignore data points with small graidents (close to local minima). </p>
-<p>LightGBM - XGBoost(둘 다 histogram implementation 가능) </p>
-<p>가장 큰 장점은 Gradient-based one-side sampling 이라는 방법으로, gradient가 큰 데이터 포인트들을 집중하며, small gradients (Gradients가 작다는 것은 local minima에 가깝다는것이고, 그 말은 즉 Residual 혹은 loss 가 적다는것) 들은 무시하기에 training 속도가 굉장히 빠르다는 것.</p>
+<p>Brief Introduction to Positive Semi-definite with Schur Complement </p>
+<p>Schur Complement is popularly used in matrix analysis. </p>
+<p>Definition: </p>
+<p>The Schur Complement of a black matrix is defined as;</p>
+<p>Let $M$ be $n \times n$ matrix</p>
+<p>$$M =  \begin{bmatrix} A &amp; B \\ C &amp; D \end{bmatrix}$$</p>
+<p>Then, the Schur Complement of the block $D$ of the matrix $M$ is </p>
+<p>$$M/D := A - BD^{-1}C$$</p>
+<p>if $D$ is invertible. </p>
+<p>The Schur Complement of the block $A$ of the matrix $M$ is then,</p>
+<p>$$M/A := D - CA^{-1}B$$</p>
+<p>if $A$ is invertible. </p>
+<pre><code>Properties</code></pre><ul>
+<li>Linear system</li>
+</ul>
+<p>Let<br>$A$ is a $p \times p$ matrix,<br>$D$ is a $q \times q$ matrix, with $n = p + q$<br>So, $B$ is a $p \times q$ matrix. </p>
+<p>Let $M$ be defined as,</p>
+<p>$$M = \begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix}$$</p>
+<p>Suppose we have a linear system as,</p>
+<p>$$Ax + By = c$$<br>$$B^{T}x + Dy = d$$</p>
+<p>Then, </p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} c \\ d \end{bmatrix}$$</p>
+<p>Assuming $D$ is invertible, </p>
+<p>then we have y as</p>
+<p>$$y = D^{-1}(d - B^{T}x)$$ </p>
+<p>Then, from the equation, </p>
+<p>$$Ax + By = c$$<br>$$Ax + B(D^{-1}(d - B^{T}x)) = c$$</p>
+<p>Then, we see that is,</p>
+<p>$$(A - BD^{-1}B^{T})x = c - BD^{-1}d$$</p>
+<p>Here, the $A - BD^{-1}B^{T}$ is the Schur Complement of a block $D$ of matrix $M$. </p>
+<p>It follows, </p>
+<p>$$x = (A-BD^{-1}B^{T})^{-1}(c-BD^{-1}d) \\ y = D^{-1}(d-B^{T}(A-BD^{-1}B^{T})^{-1}(c-BD^{-1}d))$$</p>
+<p>And, </p>
+<p>$$x = (A-BD^{-1}B^{T})^{-1}c - (A-BD^{-1}B^{T})^{-1}BD^{-1}d \\ y = -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}c + (D^{-1}+D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}BD^{-1})d$$</p>
+<p>The $x$ and $y$ are formed as affine functions with $c$ and $d$, </p>
+<p>and it can be a formula for an inverse of $M$ in terms of the Schur Complement of $D$ in $M$.</p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; -(A-BD^{-1}B^{T})^{-1}BD^{-1} \\ -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1} &amp; D^{-1}+D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}BD^{-1}  \end{bmatrix}$$</p>
+<p>This can be written as,</p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; 0 \\ -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1} &amp; D^{-1} \end{bmatrix} \begin{bmatrix} I &amp; -BD^{-1} \\ 0 &amp; I \end{bmatrix}$$</p>
+<p>Eventually, </p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} I &amp; 0 \\ -D^{-1}B^{T} &amp; I \end{bmatrix} \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; 0 \\ 0 &amp; D^{-1} \end{bmatrix} \begin{bmatrix} I &amp; -BD^{-1} \\ 0 &amp; I \end{bmatrix}$$</p>
+<p>If we take inverse on both sides,</p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} = \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; 0 \\ D^{-1}B^{T} &amp; I \end{bmatrix}$$</p>
+<p>$$= \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} ^{T}$$</p>
+<p>This is done by an assumption with $D$ is invertible. </p>
+<p>Then, we can get another factorization of $M$ if A is invertible. </p>
+<ul>
+<li>Positive Semi-definite</li>
+</ul>
+<p><em>For any symmetric matrix,</em> $M$,</p>
+<p>if D is invertible, then</p>
 
         </div>
         
@@ -226,10 +233,23 @@
 
 
 
-
-
-
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/29/logit/">
+                <span class="level-item">Logit - Logistic Regression</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
 </div>
+
+
+
+{% include mathjax.html %}</div>
                 
 
 
@@ -592,7 +612,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="David Kwon" height="28">
+                    <img src="/images/logo.svg" alt="Matrix Basic" height="28">
                 
                 </a>
                 <p class="is-size-7">
