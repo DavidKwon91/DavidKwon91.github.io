@@ -7,22 +7,17 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Likelihood vs Probability - David Kwon</title>
+<title>Tag: Matrix - David Kwon</title>
 
 
-    <meta name="description" content="Likelihood vs Probability Likelihood Definition (Wikipedia) : In statistics, the likelihood function expresses how probable a given set of observations is for different values of statistical parameter">
-<meta name="keywords" content="Likelihood,ML">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Likelihood vs Probability">
-<meta property="og:url" content="http://yoursite.com/2019/08/29/Likelihood/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="David Kwon">
+<meta property="og:url" content="http://yoursite.com/tags/Matrix/index.html">
 <meta property="og:site_name" content="David Kwon">
-<meta property="og:description" content="Likelihood vs Probability Likelihood Definition (Wikipedia) : In statistics, the likelihood function expresses how probable a given set of observations is for different values of statistical parameter">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-09-06T11:20:49.221Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Likelihood vs Probability">
-<meta name="twitter:description" content="Likelihood vs Probability Likelihood Definition (Wikipedia) : In statistics, the likelihood function expresses how probable a given set of observations is for different values of statistical parameter">
+<meta name="twitter:title" content="David Kwon">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -93,7 +88,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Likelihood vs Probability" height="28">
+                <img src="/images/logo.svg" alt="David Kwon" height="28">
             
             </a>
         </div>
@@ -144,22 +139,33 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">Tags</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Matrix</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-29T03:50:08.000Z">2019-08-29</time>
+                <time class="level-item has-text-grey" datetime="2019-09-06T10:18:13.000Z">2019-09-06</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/ML/">ML</a>
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1026 words)
+                    3 minutes read (About 416 words)
                 </span>
                 
                 
@@ -168,91 +174,151 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Likelihood vs Probability
+                <a class="has-link-black-ter" href="/2019/09/06/Cholesky/">Cholesky Decomposition</a>
             
         </h1>
         <div class="content">
-            <p>Likelihood vs Probability</p>
-<p>Likelihood Definition (Wikipedia) : In statistics, the likelihood function expresses how probable a given set of observations is for different values of statistical parameters. It is equal to the joint probability distribution of the random sample evaluated at the given observations, and it is, thus, solely a functoin of paramters that index the family of those probability distributions. </p>
+            <p>Introduction to the Cholesky Decomposition. </p>
+<p>Cholesky Decomposition is used for its superior efficiency in linear calculation, such as affine function, $Ax = b$. Among many applications of Cholesky Decomposition, I will discuss about how the multivariate normal random numbers are generated with Cholesky Decomposition. </p>
+<p>$\large{Definition}$:</p>
+<p>Every positive definite matrix $A \in \mathcal{R}^{n \times n}$, </p>
+<p>The Cholesky Decomposition is a form of </p>
+<p>$$A = LL^{T}$$</p>
+<p>where $L$ is the lower triangular matrix with real and positive diagonal elements. $L$ is called Cholesky factor of $A$ and it can be interpreted as the square root of a positive definite matrix. </p>
+<p>$\large{Algorithm}$:</p>
+<p>This algorithm is used in this <a href="https://aaronschlegel.me/cholesky-decomposition-r-example.html" target="_blank" rel="noopener">link</a>, and there are many apporaches to decompose a matrix with Cholesky Decomposition. </p>
 <ol>
-<li>What is Likelihood? </li>
+<li>Compute $L_{1} = \sqrt{a_{11}}$</li>
+<li>For $k = 2, … ,n$, find $L_{k-1}l_{k} = a_{k} for l_{k}$</li>
+<li>$l_{kk} = \sqrt{a_{kk}-l_{k}^{T}l_{k}}$</li>
+<li>$L_{k} = \begin{bmatrix} L_{k-1} &amp; 0 \\ l_{k}^{T} &amp; l_{kk} \end{bmatrix}$</li>
 </ol>
-<p>Likelihoods are the y-axis values for fixed data points with distribution that can be moved, as the following; </p>
-<p>$$\mathcal{L}(\theta | x) = \mathcal{L}(distribution | data)$$</p>
-<p>Whereas, Probabilities are the areas under a fixed distribution.</p>
-<p>$$P(data | distribution)$$</p>
-<p>If we find the maximum y-axis value for fixed data points by moving the distribution, we find the optimal distribution for the fixed data.<br>Therefore, we can use the likelihood function to fit a optimal distribution on the fixed data by finding maximum likelihood estimator. </p>
-<ol start="2">
-<li>Maximum Likelihood? </li>
-</ol>
-<p>To find the maximum likelihood estimator, we might find a function for likelihoods given fixed data points, and take a derivative for the function, and set the derivatives as 0. </p>
+<p>then $L_{k}$ is the lower triangular matrix of Cholesky Decomposition. </p>
+<p>Other approaches; </p>
 <ul>
-<li>Example 1: Exponential distribution</li>
+<li><a href="https://en.wikipedia.org/wiki/Cholesky_decomposition#Proof_for_positive_semi-definite_matrices" target="_blank" rel="noopener">Cholesky Decomposition</a></li>
+<li><a href="http://www.seas.ucla.edu/~vandenbe/133A/lectures/chol.pdf" target="_blank" rel="noopener">link</a></li>
 </ul>
-<p>The Probability Density Function of Exponential Distribution is defined as the following;</p>
-<p>$$f(x; \lambda) = \lambda e ^ {- \lambda x} \qquad if  \qquad x \geq 0$$</p>
-<p>Otherwise, </p>
-<p>$$f(x; \lambda) = 0$$</p>
-<p>for $\lambda &gt;0$, which is rate parameter of the distribution. </p>
-<p>Hence, the exponential distribution will be shaped by the $\lambda$. </p>
-<p>Therefore, we want to find the maximum likelihood of $\lambda$ for given data. </p>
-<p>$$\mathcal{L}(\lambda | x_1, x_2, … , x_n) =  \mathcal{L}(\lambda | x_1)\mathcal{L}(\lambda | x_2)…\mathcal{L}(\lambda | x_n)    $$</p>
-<p>$$= \lambda e ^ {- \lambda x_1}\lambda e ^ {- \lambda x_2}…\lambda e ^ {- \lambda x_n} \\ = \lambda^{n}(e ^ {-\lambda  (x_1 + x_2 + … + x_n)})$$</p>
-<p>Now, take a derivative for the likelihood function to find maximum likelihood estimator of $\lambda$.</p>
-<p>$$ \frac{d}{d\lambda} \mathcal{L}(\lambda | x_1, x_2, … , x_n) = \frac{d}{d\lambda} \lambda^{n} (e ^ {-\lambda * (x_1 + x_2 + … + x_n)})$$</p>
-<p>Before derivitaves, there is more easier way to differentiate this function, which is to take a lograithm on the function.<br>Take a logarithm on the likelihood function, then this becomes the log likelihood function. </p>
-<p>$$log (\mathcal{L}(\lambda | x_1, x_2, … , x_n)) =  log(\mathcal{L}(\lambda | x_1)\mathcal{L}(\lambda | x_2)…\mathcal{L}(\lambda | x_n))<br>$$</p>
-<p>Which makes easier differentiate the function. </p>
-<p>$$ \frac{d}{d\lambda} log(\mathcal{L}(\lambda | x_1, x_2, … , x_n)) = \frac{d}{d\lambda} log(\lambda^{n}(e ^ {-\lambda * (x_1 + x_2 + … + x_n)}))$$</p>
-<p>$$= \frac{d}{d\lambda} (log(\lambda ^ {n}) + log(\lambda^{n}(e ^ {-\lambda * (x_1 + x_2 + … + x_n)}))) \\ = \frac{d}{d\lambda} (n log(\lambda) - \lambda (x_1 + x_2 + … + x_n)) \\ = n \frac{1}{\lambda} - (x_1 + x_2 + … + x_n)$$</p>
-<p>Set this as zero, </p>
-<p>$$n \frac{1}{\lambda} - (x_1 + x_2 + … + x_n) = 0$$</p>
-<p>Which gives you, </p>
-<p>$$ \frac{(x_1 + x_2 + … + x_n)}{n} = \mu = \frac{1}{\lambda}$$</p>
-<p>Therefore, the maximum likelihood estimator of $\lambda$ is</p>
-<p>$$\lambda = \frac{1}{\mu}$$.</p>
-<p>And, this connects to the concept of the maximum entropy probability distribution.</p>
-<p>“The exponential distribution is the maximum entropy distribution among all continuous distribution supported in $[0, \infty]$ that have a specified mean of $\frac{1}{\lambda}$”</p>
-<pre><code>- Example 2: Normal Distribution</code></pre><p>In normal distribution (often called Gaussian distribution), the mean $\mu$ and the variance $\sigma^2$ will be the parameter that the determines how the normal distribution looks like. With $\mu$ and $\sigma^2$, we will find the maximum likelihood estimator for the normal distribution given fixed data. </p>
-<p>The PDF of normal distribution is defined as,</p>
-<p>$$f(x|\mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</p>
-<p>The Likelihood of $\mu$ and $\sigma$ for normal distribution will be, </p>
-<p>$$\mathcal{L}(\mu, \sigma|x_1, x_2, … , x_n) = \mathcal{L}(\mu, \sigma^2|x_1)\mathcal{L}(\mu, \sigma^2|x_2)…\mathcal{L}(\mu, \sigma^2|x_n)$$</p>
-<p>$$= \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_1-\mu)^2}{2\sigma^2}}\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_2-\mu)^2}{2\sigma^2}}…\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_n-\mu)^2}{2\sigma^2}}$$</p>
-<p>Before take a derivatives, we take a log on the function as done in exponential. </p>
-<p>$$log(\mathcal{L}(\mu, \sigma|x_1, x_2, … , x_n))= log(\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_1-\mu)^2}{2\sigma^2}}\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_2-\mu)^2}{2\sigma^2}}…\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_n-\mu)^2}{2\sigma^2}})$$</p>
-<p>By simplifying the log likelihood function with the properties of logarithm,</p>
-<p>$$= \sum_{i=1}^{n}(log(\frac{1}{\sqrt{2\pi\sigma^2}}) -\frac{(x_i-\mu)^2}{2\sigma^2}) \\ = -\frac{n}{2}log(2\pi) - nlog(\sigma) - \sum_{i=1}^{n}\frac{(x_i-\mu)^2}{2\sigma^2}$$</p>
-<p>Now, take the derivative with respect to the $\mu$,</p>
-<p>$$\frac{\partial}{\partial \mu} log(\mathcal{L}(\mu, \sigma|x_1, x_2, … , x_n)) \\ = 0 - 0 + \sum_{i=1}^{n} \frac{(x_i-\mu)}{\sigma^2} \\ = \sum_{i=1}^{n} \frac{x_i}{\sigma^2} - n\mu$$</p>
-<p>Set this as 0, </p>
-<p>$$\sum_{i=1}^{n} \frac{x_i}{\sigma^2} - n\mu = 0$$</p>
-<p>Since $\sigma^2$ is constant here, </p>
-<p>$$ \sum_{i=1}^{n} x_i = n\mu$$</p>
-<p>Hence,</p>
-<p>$$\mu = \sum_{i=1}^{n} x_i / n$$<br>which is the mean of the measurements. </p>
-<p>Taking derivative with respect to the $\sigma$, </p>
-<p>$$\frac{\partial}{\partial \sigma} log(\mathcal{L}(\mu, \sigma|x_1, x_2, … , x_n)) = \frac{\partial}{\partial \sigma} (-\frac{n}{2}log(2\pi) - nlog(\sigma) - \sum_{i=1}^{n}\frac{(x_i-\mu)^2}{2\sigma^2}) \\ = 0 - \frac{n}{\sigma} + \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{\sigma^3}$$</p>
-<p>Set this as 0,</p>
-<p>$$0 - \frac{n}{\sigma} + \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{\sigma^3} = 0 \\ n = \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{\sigma^2} \\ \sigma^2 = \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{n} \\ \sigma = \sum_{i=1}^{n} \sqrt{\frac{(x_i - \mu)^2}{n}}$$<br>which is the standard deviation of the measurements. </p>
-<p>In conclusion, </p>
-<p>the mean of the data is the maximum likelihood estimate for where the center of the distribution should be, </p>
-<p>the standard deviation of the data is the maximum likelihood estimate for how wide the curve of the distribution should be. </p>
-<p>This also connects to the maximum entropy probability distribution as the following; </p>
-<p>The normal distribution has maximum entropy among all real-valued distribution supported on $(-\infty, \infty)$ with a specified variance $\sigma^2$.</p>
-<p>Reference:<br><a href="https://en.wikipedia.org/wiki/Likelihood_function" target="_blank" rel="noopener">Likelihood(wiki)</a><br><a href="https://en.wikipedia.org/wiki/Maximum_entropy_probability_distribution" target="_blank" rel="noopener">Maximum Entropy Probability Distribution(wiki)</a><br><a href="https://www.youtube.com/watch?v=pYxNSUDSFH4" target="_blank" rel="noopener">Related to Likelihood for distributions (StatQuest with Josh Starmer)</a></p>
+<p>$\large{Generating}$ $\large{Multivariate}$ $\large{Normal}$ $\large{Random}$ $\large{Number}$ $\large{with}$ $\large{Cholesky}$ $\large{Decomposition}$</p>
+<p>If we have $X$ that follows Normal Distribution, </p>
+<p>then</p>
+<p>$$X \sim \mathcal{N}(\mu, \Sigma)$$</p>
+<p>Let $Z$ follows standard normal distribution with mean 0 and variance 1.</p>
+<p>Then,</p>
+<p>$$Z \sim \mathcal{N}(0,I)$$</p>
+<p>Then, we can express the $X$ with $Z$ as the following; </p>
+<p>$$X = A+BZ$$</p>
+<p>then $X$ will follow normal distribution as the following; </p>
+<p>$$X \sim \mathcal{N}(A,BB’)$$</p>
+<p>Here, $\mu$ is the $A$, and $\Sigma$ is the $BB’$. The $B$ is the lower triangular matrix of the decomposed $X$, which is the Cholesky factor. </p>
+<p>Therefore, If we have a Cholesky factor, $B$, of covariance matrix of $X$, then the product of $B$ and standard normal random number matrix will generate the multivariate normal random number associated with the mean $\mu$ and covariance $\Sigma$ of $X$. </p>
+<p>Reference:</p>
+<p><a href="https://en.wikipedia.org/wiki/Cholesky_decomposition#Proof_for_positive_semi-definite_matrices" target="_blank" rel="noopener">Cholesky Decomposition</a><br><a href="http://www.seas.ucla.edu/~vandenbe/133A/lectures/chol.pdf" target="_blank" rel="noopener">Cholesky Factorization</a><br><a href="https://aaronschlegel.me/cholesky-decomposition-r-example.html" target="_blank" rel="noopener">Cholesky Decomposition with R example</a><br><a href="http://rinterested.github.io/statistics/multivariate_normal_draws.html" target="_blank" rel="noopener">link</a><br><a href="https://www2.stat.duke.edu/courses/Spring12/sta104.1/Lectures/Lec22.pdf" target="_blank" rel="noopener">Bivariate Normal Distribution</a></p>
 
         </div>
         
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time>
+                
                 <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Likelihood/">Likelihood</a>, <a class="has-link-grey -link" href="/tags/ML/">ML</a>
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>
                 </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 650 words)
+                </span>
+                
+                
             </div>
         </div>
         
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/03/Matrix Basic/">Schur Complement</a>
+            
+        </h1>
+        <div class="content">
+            <p>Brief introduction to Schur Complement. </p>
+<p>This is just a brief introduction of the properties of Schur Complement. Schur Complement has many applications in numerical analysis, such as optimization, machine learning algorithms, or probability and matrix theories. </p>
+<p>Let’s begin with the definition of the Schur Complement. </p>
+<p>$\large{Definition}$: </p>
+<p>The Schur Complement of a black matrix is defined as;</p>
+<p>Let $M$ be $n \times n$ matrix</p>
+<p>$$M =  \begin{bmatrix} A &amp; B \\ C &amp; D \end{bmatrix}$$</p>
+<p>Then, the Schur Complement of the block $D$ of the matrix $M$ is </p>
+<p>$$M/D := A - BD^{-1}C$$</p>
+<p>if $D$ is invertible. </p>
+<p>The Schur Complement of the block $A$ of the matrix $M$ is then,</p>
+<p>$$M/A := D - CA^{-1}B$$</p>
+<p>if $A$ is invertible. </p>
+<p>$$\large{Properties}$$</p>
+<ul>
+<li>Linear system</li>
+</ul>
+<p>Let<br>$A$ is a $p \times p$ matrix,<br>$D$ is a $q \times q$ matrix, with $n = p + q$<br>So, $B$ is a $p \times q$ matrix. </p>
+<p>Let $M$ be defined as,</p>
+<p>$$M = \begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix}$$</p>
+<p>Suppose we have a linear system as,</p>
+<p>$$Ax + By = c \\ B^{T}x + Dy = d$$</p>
+<p>Then, </p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} c \\ d \end{bmatrix}$$</p>
+<p>Assuming $D$ is invertible, </p>
+<p>then we have $y$ as</p>
+<p>$$y = D^{-1}(d - B^{T}x)$$ </p>
+<p>Then, from the equation, </p>
+<p>$$Ax + By = c \\ Ax + B(D^{-1}(d - B^{T}x)) = c$$</p>
+<p>Then, we see that is,</p>
+<p>$$(A - BD^{-1}B^{T})x = c - BD^{-1}d$$</p>
+<p>Here, the $A - BD^{-1}B^{T}$ is the Schur Complement of a block $D$ of matrix $M$. </p>
+<p>It follows, </p>
+<p>$$x = (A-BD^{-1}B^{T})^{-1}(c-BD^{-1}d) \\ y = D^{-1}(d-B^{T}(A-BD^{-1}B^{T})^{-1}(c-BD^{-1}d))$$</p>
+<p>And, </p>
+<p>$$x = (A-BD^{-1}B^{T})^{-1}c - (A-BD^{-1}B^{T})^{-1}BD^{-1}d \\ y = -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}c + (D^{-1}+D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}BD^{-1})d$$</p>
+<p>The $x$ and $y$ are formed as affine functions with $c$ and $d$, </p>
+<p>and it can be a formula for an inverse of $M$ in terms of the Schur Complement of $D$ in $M$.</p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; -(A-BD^{-1}B^{T})^{-1}BD^{-1} \\ -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1} &amp; D^{-1}+D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}BD^{-1}  \end{bmatrix}$$</p>
+<p>This can be written as,</p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; 0 \\ -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1} &amp; D^{-1} \end{bmatrix} \begin{bmatrix} I &amp; -BD^{-1} \\ 0 &amp; I \end{bmatrix}$$</p>
+<p>Eventually, </p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} I &amp; 0 \\ -D^{-1}B^{T} &amp; I \end{bmatrix} \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; 0 \\ 0 &amp; D^{-1} \end{bmatrix} \begin{bmatrix} I &amp; -BD^{-1} \\ 0 &amp; I \end{bmatrix}$$</p>
+<p>If we take inverse on both sides,</p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} = \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; 0 \\ D^{-1}B^{T} &amp; I \end{bmatrix}$$</p>
+<p>$$= \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} ^{T}$$</p>
+<p>This is done by an assumption with $D$ is invertible, and this decomposition is called Block LDU Decomposition. </p>
+<p>Then, we can get another factorization of $M$ if A is invertible. </p>
+<ul>
+<li>Positive Semi-definite</li>
+</ul>
+<p><em>For any symmetric matrix,</em> $M$,</p>
+<p>if D is invertible, then</p>
+<p>1) $M \succ 0$   $iff$   $D \succ 0$ <em>and</em>  $A-BC^{-1}B^{T} \succ 0$ </p>
+<p>2) <em>If</em> $C \succ 0$, <em>then</em> $M \succeq 0$  $iff$  $A-BC^{-1}B^{T} \succeq 0$</p>
+<p>We can easily get the matrix $M$ in the linear combination and the inverse of the $M$ with Schur Complement.<br>We also can check if the $M$ is positive semi-definite.</p>
+<p>Reference:</p>
+<p><a href="https://en.wikipedia.org/wiki/Schur_complement" target="_blank" rel="noopener">Schur Complement</a><br><a href="http://www.cis.upenn.edu/~jean/schur-comp.pdf" target="_blank" rel="noopener">The Schur Complement and Symmetric Positive Semidefinite (and Definite) Matrices</a></p>
+
+        </div>
+        
         
         
     </div>
@@ -262,30 +328,10 @@
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/29/logit/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Logit - Logistic Regression</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/28/190828/">
-                <span class="level-item">190828</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
+
+
+
 </div>
-
-
-
-{% include mathjax.html %}</div>
                 
 
 
@@ -685,7 +731,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Likelihood vs Probability" height="28">
+                    <img src="/images/logo.svg" alt="David Kwon" height="28">
                 
                 </a>
                 <p class="is-size-7">

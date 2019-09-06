@@ -145,13 +145,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time>
+                <time class="level-item has-text-grey" datetime="2019-09-06T12:19:33.000Z">2019-09-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Today/">Today</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Today/September/">September</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 530 words)
+                    3 minutes read (About 437 words)
                 </span>
                 
                 
@@ -160,16 +164,176 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/03/Matrix Basic/">Matrix Basic</a>
+                <a class="has-link-black-ter" href="/2019/09/06/190906/">190906</a>
             
         </h1>
         <div class="content">
-            <ol>
-<li>Schur Complement</li>
+            <p>September 06th, 2019</p>
+<p>Today’s work</p>
+<ol>
+<li>Self-study for Gaussian Process <ul>
+<li>Multivariate Normal Distribution</li>
+<li>Cholesky Decomposition - Generating Multivariate Normal Random Number</li>
+<li>Bayesian Optimization (Fully understanding this is final goal)</li>
+</ul>
+</li>
 </ol>
-<p>Brief Introduction to Positive Semi-definite with Schur Complement </p>
-<p>Schur Complement is popularly used in matrix analysis. </p>
-<p>Definition: </p>
+<p>Since I am going to tune hyperparameter of GBM like LightGBM or Catboost for the Kaggle Competition that I am now in, I’d like to fully understand how the Bayesian Optimization. While studying these, I have been learning more detail of matrix decomposition and Gaussian Distrubiton. I’ve also been realizing that how important they are in machine learning. </p>
+<ol start="2">
+<li>New Posts<ul>
+<li>Schur Complement</li>
+<li>Cholesky Decomposition</li>
+</ul>
+</li>
+</ol>
+<p>A hard one in these posts is that I wasn’t sure how deeply I should study for them. Both of Schur Complement and Cholesky Decomposition is widely and significantly used in statistics. They will arise in my future study since they are essential in many machine learning or statistics analysis, I will then study them much deeply. </p>
+<p>2019년 9월 6일</p>
+<p>오늘 할 일</p>
+<ol>
+<li>Gaussian Process 셀프 스터디<ul>
+<li>Multivariate Normal Distribution</li>
+<li>Cholesky Decomposition - Generating Multivariate Normal Random Number</li>
+<li>Bayesian Optimization (Fully understanding this is final goal)</li>
+</ul>
+</li>
+</ol>
+<p>Gaussian Process 를 공부하게 된 계기는 현재 참여하고 있는 Kaggle 대회에서 LightGBM 이나 Catboost 알고리즘을 사용하려 하는데, 여기서 Hyperparameter tuning을 Random Search 나 Grid Search 가 아닌 Bayesian Optimization을 사용하기에 공부하기 시작했다.<br>공부하다보니 가장 기본이 되는 Matrix Decomposition, Gaussian Distribution등에 대해 더 자세히 배우고 있으며, 이들이 머신러닝에서 얼마나 많이 사용되며 중요한지 알게되며 더더욱 확실하게 이해하고 싶은 심정이다. </p>
+<ol start="2">
+<li>새로운 포스팅<ul>
+<li>Schur Complement</li>
+<li>Cholesky Decomposition</li>
+</ul>
+</li>
+</ol>
+<p>이번 포스팅중 어려웠던 점은 Schur Complement과 Cholesky Decomposition은 Matrix 를 다루는 분석 혹 연구에서 매우 중요하게, 그리고 많이 쓰이기에 그 개념들을 얼마나 깊게 공부해야 하는지였다. 결국 다른 공부를 할때에도 그 개념들은 이어질테니 그때 다시 더 깊게 공부해보고 싶다. </p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-06T10:18:13.000Z">2019-09-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 416 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/06/Cholesky/">Cholesky Decomposition</a>
+            
+        </h1>
+        <div class="content">
+            <p>Introduction to the Cholesky Decomposition. </p>
+<p>Cholesky Decomposition is used for its superior efficiency in linear calculation, such as affine function, $Ax = b$. Among many applications of Cholesky Decomposition, I will discuss about how the multivariate normal random numbers are generated with Cholesky Decomposition. </p>
+<p>$\large{Definition}$:</p>
+<p>Every positive definite matrix $A \in \mathcal{R}^{n \times n}$, </p>
+<p>The Cholesky Decomposition is a form of </p>
+<p>$$A = LL^{T}$$</p>
+<p>where $L$ is the lower triangular matrix with real and positive diagonal elements. $L$ is called Cholesky factor of $A$ and it can be interpreted as the square root of a positive definite matrix. </p>
+<p>$\large{Algorithm}$:</p>
+<p>This algorithm is used in this <a href="https://aaronschlegel.me/cholesky-decomposition-r-example.html" target="_blank" rel="noopener">link</a>, and there are many apporaches to decompose a matrix with Cholesky Decomposition. </p>
+<ol>
+<li>Compute $L_{1} = \sqrt{a_{11}}$</li>
+<li>For $k = 2, … ,n$, find $L_{k-1}l_{k} = a_{k} for l_{k}$</li>
+<li>$l_{kk} = \sqrt{a_{kk}-l_{k}^{T}l_{k}}$</li>
+<li>$L_{k} = \begin{bmatrix} L_{k-1} &amp; 0 \\ l_{k}^{T} &amp; l_{kk} \end{bmatrix}$</li>
+</ol>
+<p>then $L_{k}$ is the lower triangular matrix of Cholesky Decomposition. </p>
+<p>Other approaches; </p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Cholesky_decomposition#Proof_for_positive_semi-definite_matrices" target="_blank" rel="noopener">Cholesky Decomposition</a></li>
+<li><a href="http://www.seas.ucla.edu/~vandenbe/133A/lectures/chol.pdf" target="_blank" rel="noopener">link</a></li>
+</ul>
+<p>$\large{Generating}$ $\large{Multivariate}$ $\large{Normal}$ $\large{Random}$ $\large{Number}$ $\large{with}$ $\large{Cholesky}$ $\large{Decomposition}$</p>
+<p>If we have $X$ that follows Normal Distribution, </p>
+<p>then</p>
+<p>$$X \sim \mathcal{N}(\mu, \Sigma)$$</p>
+<p>Let $Z$ follows standard normal distribution with mean 0 and variance 1.</p>
+<p>Then,</p>
+<p>$$Z \sim \mathcal{N}(0,I)$$</p>
+<p>Then, we can express the $X$ with $Z$ as the following; </p>
+<p>$$X = A+BZ$$</p>
+<p>then $X$ will follow normal distribution as the following; </p>
+<p>$$X \sim \mathcal{N}(A,BB’)$$</p>
+<p>Here, $\mu$ is the $A$, and $\Sigma$ is the $BB’$. The $B$ is the lower triangular matrix of the decomposed $X$, which is the Cholesky factor. </p>
+<p>Therefore, If we have a Cholesky factor, $B$, of covariance matrix of $X$, then the product of $B$ and standard normal random number matrix will generate the multivariate normal random number associated with the mean $\mu$ and covariance $\Sigma$ of $X$. </p>
+<p>Reference:</p>
+<p><a href="https://en.wikipedia.org/wiki/Cholesky_decomposition#Proof_for_positive_semi-definite_matrices" target="_blank" rel="noopener">Cholesky Decomposition</a><br><a href="http://www.seas.ucla.edu/~vandenbe/133A/lectures/chol.pdf" target="_blank" rel="noopener">Cholesky Factorization</a><br><a href="https://aaronschlegel.me/cholesky-decomposition-r-example.html" target="_blank" rel="noopener">Cholesky Decomposition with R example</a><br><a href="http://rinterested.github.io/statistics/multivariate_normal_draws.html" target="_blank" rel="noopener">link</a><br><a href="https://www2.stat.duke.edu/courses/Spring12/sta104.1/Lectures/Lec22.pdf" target="_blank" rel="noopener">Bivariate Normal Distribution</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 650 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/03/Matrix Basic/">Schur Complement</a>
+            
+        </h1>
+        <div class="content">
+            <p>Brief introduction to Schur Complement. </p>
+<p>This is just a brief introduction of the properties of Schur Complement. Schur Complement has many applications in numerical analysis, such as optimization, machine learning algorithms, or probability and matrix theories. </p>
+<p>Let’s begin with the definition of the Schur Complement. </p>
+<p>$\large{Definition}$: </p>
 <p>The Schur Complement of a black matrix is defined as;</p>
 <p>Let $M$ be $n \times n$ matrix</p>
 <p>$$M =  \begin{bmatrix} A &amp; B \\ C &amp; D \end{bmatrix}$$</p>
@@ -179,21 +343,22 @@
 <p>The Schur Complement of the block $A$ of the matrix $M$ is then,</p>
 <p>$$M/A := D - CA^{-1}B$$</p>
 <p>if $A$ is invertible. </p>
-<pre><code>Properties</code></pre><ul>
+<p>$$\large{Properties}$$</p>
+<ul>
 <li>Linear system</li>
 </ul>
 <p>Let<br>$A$ is a $p \times p$ matrix,<br>$D$ is a $q \times q$ matrix, with $n = p + q$<br>So, $B$ is a $p \times q$ matrix. </p>
 <p>Let $M$ be defined as,</p>
 <p>$$M = \begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix}$$</p>
 <p>Suppose we have a linear system as,</p>
-<p>$$Ax + By = c$$<br>$$B^{T}x + Dy = d$$</p>
+<p>$$Ax + By = c \\ B^{T}x + Dy = d$$</p>
 <p>Then, </p>
 <p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} c \\ d \end{bmatrix}$$</p>
 <p>Assuming $D$ is invertible, </p>
-<p>then we have y as</p>
+<p>then we have $y$ as</p>
 <p>$$y = D^{-1}(d - B^{T}x)$$ </p>
 <p>Then, from the equation, </p>
-<p>$$Ax + By = c$$<br>$$Ax + B(D^{-1}(d - B^{T}x)) = c$$</p>
+<p>$$Ax + By = c \\ Ax + B(D^{-1}(d - B^{T}x)) = c$$</p>
 <p>Then, we see that is,</p>
 <p>$$(A - BD^{-1}B^{T})x = c - BD^{-1}d$$</p>
 <p>Here, the $A - BD^{-1}B^{T}$ is the Schur Complement of a block $D$ of matrix $M$. </p>
@@ -211,13 +376,18 @@
 <p>If we take inverse on both sides,</p>
 <p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} = \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; 0 \\ D^{-1}B^{T} &amp; I \end{bmatrix}$$</p>
 <p>$$= \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} ^{T}$$</p>
-<p>This is done by an assumption with $D$ is invertible. </p>
+<p>This is done by an assumption with $D$ is invertible, and this decomposition is called Block LDU Decomposition. </p>
 <p>Then, we can get another factorization of $M$ if A is invertible. </p>
 <ul>
 <li>Positive Semi-definite</li>
 </ul>
 <p><em>For any symmetric matrix,</em> $M$,</p>
 <p>if D is invertible, then</p>
+<p>1) $M \succ 0$   $iff$   $D \succ 0$ <em>and</em>  $A-BC^{-1}B^{T} \succ 0$ </p>
+<p>2) <em>If</em> $C \succ 0$, <em>then</em> $M \succeq 0$  $iff$  $A-BC^{-1}B^{T} \succeq 0$</p>
+<p>We can easily get the matrix $M$ in the linear combination and the inverse of the $M$ with Schur Complement.<br>We also can check if the $M$ is positive semi-definite.</p>
+<p>Reference:</p>
+<p><a href="https://en.wikipedia.org/wiki/Schur_complement" target="_blank" rel="noopener">Schur Complement</a><br><a href="http://www.cis.upenn.edu/~jean/schur-comp.pdf" target="_blank" rel="noopener">The Schur Complement and Symmetric Positive Semidefinite (and Definite) Matrices</a></p>
 
         </div>
         
@@ -249,7 +419,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 902 words)
+                    6 minutes read (About 904 words)
                 </span>
                 
                 
@@ -268,14 +438,13 @@
 </ol>
 <p>To discuss logit, we need to know what the odds is. </p>
 <p>Simply say, Odds is $\frac{p}{1-p}$, where $p$ is the probability of a binary outcome. </p>
-<p>Since it is different with the probability, it enables us to make new functions or new graphs. </p>
-<p>With the properties of odds, logarithm of odds is popularly used in machine learning industry. </p>
-<p>Logit is the logarithm of odds. </p>
-<p>Logit (log odds) = $log(\frac{p}{1-p})$. </p>
-<p>Let logit be defined as $\theta$, then</p>
+<p>Since the odds has different properties than probability, it enables us to make new functions or new graphs. </p>
+<p>With the properties of odds, logarithm of odds is popularly used in machine learning industry, which is called logit. </p>
+<p>Logit (also log odds) = $log(\frac{p}{1-p})$. </p>
+<p>Let logit be defined as $\theta$, then </p>
 <p>$$\theta = log(\frac{p}{1-p})$$</p>
 <p>We can express this in terms of $p$ as the following,</p>
-<p>$$e^{\theta} = \frac{p}{1-p}$$<br>$$(1-p)e^{\theta} = p$$<br>$$e^{\theta} = p + p e^{\theta}$$<br>$$e^{\theta} = p(1+e^{\theta})$$<br>$$\therefore p = \frac{e^{\theta}}{(1+e^{\theta})} = \frac{1}{1+e^{-\theta}}$$</p>
+<p>$$e^{\theta} = \frac{p}{1-p} \\ (1-p)e^{\theta} = p \\ e^{\theta} = p + p e^{\theta} \\ e^{\theta} = p(1+e^{\theta}) \\ \therefore p = \frac{e^{\theta}}{(1+e^{\theta})} = \frac{1}{1+e^{-\theta}}$$</p>
 <p>This is the logistic function, which is the special case of sigmoid function that is widely used for classification, such as logistic regression, tree-based algorithm for classification, or deep learning.<br>The logistic function is the CDF of the logistic distribution. </p>
 <ol start="2">
 <li>Logistic Distribution</li>
@@ -287,7 +456,7 @@
 <p>$$F(x; \mu, s) = \frac{1}{1+e^{-\frac{x-\mu}{s}}}$$</p>
 <p>Some simulations are performed in <a href="https://core.ac.uk/download/pdf/41787448.pdf" target="_blank" rel="noopener">this paper</a>, and the simulation was to measure the absolute deviation between the cumulative standard normal distribution and the cumulative logistic distribution with mean zero and variance one. </p>
 <p>By <a href="https://core.ac.uk/download/pdf/41787448.pdf" target="_blank" rel="noopener">the paper</a>, “the cumulative logistic distribution with mean zero and variance one is known as $(1+e^{-\nu x})^{-1}$ “<br>And, the paper also states that the kurtosis of the logistic distribution is effected by the parameter coefficient, $\nu$.<br>With the $\nu = 1.702$, the deviation is 0.0095. </p>
-<p>As a summary, the logistic distribution almost resembles with the normal distribution with the variance $\sigma^2$, and we could use the property of the normal distribution as the following; </p>
+<p>As a summary, the logistic distribution approximately follows the normal distribution with the variance $\sigma^2$, and we could use the property of the normal distribution as the following; </p>
 <p>By <a href="https://en.wikipedia.org/wiki/Standard_deviation#targetText=If%20a%20data%20distribution%20is,deviations%20(%CE%BC%20%C2%B1%203%CF%83)." target="_blank" rel="noopener">wikipedia</a>, </p>
 <p>“If a data distribution is approximately normal, then about 68 percent of the data values are within one standard deviation of the mean (mathematically, $\mu \pm \sigma$, where $\mu$ is the arithmetic mean), about 95 percent are within two standard deviations ($\mu \pm 2\sigma$), and about 99.7 percent lie within three standard deviations ($\mu \pm 3\sigma$).”</p>
 <ol start="3">
@@ -300,13 +469,13 @@
 <p>By the definition of binomial distribution,</p>
 <p>$$P(Y_i = y_i | x_i) = \binom{m_i}{y_i}\theta(x_i)^{y_i}(1-\theta(x_i))^{m_i-y_i}$$</p>
 <p>Then, the loglikelihood function for Logistic Regression will be </p>
-<p>$$\mathcal{L} = \prod_{i=1}^{n} P(Y_i = y_i | x_i)$$<br>$$= \prod_{i=1}^{n}\binom{m_i}{y_i}\theta(x_i)^{y_i}(1-\theta(x_i))^{m_i-y_i}$$</p>
+<p>$$\mathcal{L} = \prod_{i=1}^{n} P(Y_i = y_i | x_i) \\ = \prod_{i=1}^{n}\binom{m_i}{y_i}\theta(x_i)^{y_i}(1-\theta(x_i))^{m_i-y_i}$$</p>
 <p>Here, the $\theta(x_i)$ is defined as</p>
 <p>$$\theta(x_i) = \frac{1}{1+e^{-(\beta_0 + \beta_1 x_i)}}$$</p>
 <p>And, </p>
 <p>$$log(\frac{\theta(x_i)}{1-\theta(x_i)}) = \beta_0 + \beta_1 x_i$$</p>
 <p>Just taking the derivative on the log-likelihood function and setting this as zero is hard to solve the problem, so the parameter $\beta_0$ and $\beta_1$ can be estimated by some other optimization method, such as Newton’s method. </p>
-<ol start="3">
+<ol start="4">
 <li>Wald Test in Logistic Regression</li>
 </ol>
 <p>Wald Test uses the property of the logistic distribution. </p>
@@ -316,7 +485,7 @@
 <p>in Logistic regression. </p>
 <p>The Wald test statistic is defined as</p>
 <p>$$Z = \frac{\hat{\beta_1} - \beta_1}{estimated \qquad se(\hat{\beta_1})}$$</p>
-<p>The $\beta_1 = 0$ in the test and this follows standard normal distribution. </p>
+<p>In the test, $\beta_1 = 0$ as the null hypothesis, and this follows standard normal distribution. </p>
 <p>Hence, </p>
 <p>$$Z = \frac{\hat{\beta_1}}{\hat{se}(\hat{\beta_1})} \sim \mathcal{N}(0,1)$$</p>
 <p>As mentioned above, the logistic distribution is approximately following the normal distribution with variance, $\sigma^2$.<br>Hence, dividing by the standard error for the estimated paramter gives you standard normal distribution, $\mathcal{N}(0,1)$.</p>
@@ -364,7 +533,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1031 words)
+                    7 minutes read (About 1026 words)
                 </span>
                 
                 
@@ -391,7 +560,10 @@
 <li>Maximum Likelihood? </li>
 </ol>
 <p>To find the maximum likelihood estimator, we might find a function for likelihoods given fixed data points, and take a derivative for the function, and set the derivatives as 0. </p>
-<pre><code>- Example 1: Exponential distribution</code></pre><p>The Probability Density Function of Exponential Distribution is defined as the following;</p>
+<ul>
+<li>Example 1: Exponential distribution</li>
+</ul>
+<p>The Probability Density Function of Exponential Distribution is defined as the following;</p>
 <p>$$f(x; \lambda) = \lambda e ^ {- \lambda x} \qquad if  \qquad x \geq 0$$</p>
 <p>Otherwise, </p>
 <p>$$f(x; \lambda) = 0$$</p>
@@ -399,21 +571,21 @@
 <p>Hence, the exponential distribution will be shaped by the $\lambda$. </p>
 <p>Therefore, we want to find the maximum likelihood of $\lambda$ for given data. </p>
 <p>$$\mathcal{L}(\lambda | x_1, x_2, … , x_n) =  \mathcal{L}(\lambda | x_1)\mathcal{L}(\lambda | x_2)…\mathcal{L}(\lambda | x_n)    $$</p>
-<p>$$= \lambda e ^ {- \lambda x_1}\lambda e ^ {- \lambda x_2}…\lambda e ^ {- \lambda x_n}$$<br>$$= \lambda^{n}(e ^ {-\lambda  (x_1 + x_2 + … + x_n)})$$</p>
+<p>$$= \lambda e ^ {- \lambda x_1}\lambda e ^ {- \lambda x_2}…\lambda e ^ {- \lambda x_n} \\ = \lambda^{n}(e ^ {-\lambda  (x_1 + x_2 + … + x_n)})$$</p>
 <p>Now, take a derivative for the likelihood function to find maximum likelihood estimator of $\lambda$.</p>
 <p>$$ \frac{d}{d\lambda} \mathcal{L}(\lambda | x_1, x_2, … , x_n) = \frac{d}{d\lambda} \lambda^{n} (e ^ {-\lambda * (x_1 + x_2 + … + x_n)})$$</p>
 <p>Before derivitaves, there is more easier way to differentiate this function, which is to take a lograithm on the function.<br>Take a logarithm on the likelihood function, then this becomes the log likelihood function. </p>
 <p>$$log (\mathcal{L}(\lambda | x_1, x_2, … , x_n)) =  log(\mathcal{L}(\lambda | x_1)\mathcal{L}(\lambda | x_2)…\mathcal{L}(\lambda | x_n))<br>$$</p>
 <p>Which makes easier differentiate the function. </p>
 <p>$$ \frac{d}{d\lambda} log(\mathcal{L}(\lambda | x_1, x_2, … , x_n)) = \frac{d}{d\lambda} log(\lambda^{n}(e ^ {-\lambda * (x_1 + x_2 + … + x_n)}))$$</p>
-<p>$$= \frac{d}{d\lambda} (log(\lambda ^ {n}) + log(\lambda^{n}(e ^ {-\lambda * (x_1 + x_2 + … + x_n)})))$$<br>$$= \frac{d}{d\lambda} (n log(\lambda) - \lambda (x_1 + x_2 + … + x_n))$$<br>$$= n \frac{1}{\lambda} - (x_1 + x_2 + … + x_n)$$</p>
+<p>$$= \frac{d}{d\lambda} (log(\lambda ^ {n}) + log(\lambda^{n}(e ^ {-\lambda * (x_1 + x_2 + … + x_n)}))) \\ = \frac{d}{d\lambda} (n log(\lambda) - \lambda (x_1 + x_2 + … + x_n)) \\ = n \frac{1}{\lambda} - (x_1 + x_2 + … + x_n)$$</p>
 <p>Set this as zero, </p>
 <p>$$n \frac{1}{\lambda} - (x_1 + x_2 + … + x_n) = 0$$</p>
 <p>Which gives you, </p>
 <p>$$ \frac{(x_1 + x_2 + … + x_n)}{n} = \mu = \frac{1}{\lambda}$$</p>
 <p>Therefore, the maximum likelihood estimator of $\lambda$ is</p>
 <p>$$\lambda = \frac{1}{\mu}$$.</p>
-<p>And, this connects to the concept of the maximum entropy probability distribution, which I will discuss later. </p>
+<p>And, this connects to the concept of the maximum entropy probability distribution.</p>
 <p>“The exponential distribution is the maximum entropy distribution among all continuous distribution supported in $[0, \infty]$ that have a specified mean of $\frac{1}{\lambda}$”</p>
 <pre><code>- Example 2: Normal Distribution</code></pre><p>In normal distribution (often called Gaussian distribution), the mean $\mu$ and the variance $\sigma^2$ will be the parameter that the determines how the normal distribution looks like. With $\mu$ and $\sigma^2$, we will find the maximum likelihood estimator for the normal distribution given fixed data. </p>
 <p>The PDF of normal distribution is defined as,</p>
@@ -424,9 +596,9 @@
 <p>Before take a derivatives, we take a log on the function as done in exponential. </p>
 <p>$$log(\mathcal{L}(\mu, \sigma|x_1, x_2, … , x_n))= log(\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_1-\mu)^2}{2\sigma^2}}\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_2-\mu)^2}{2\sigma^2}}…\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_n-\mu)^2}{2\sigma^2}})$$</p>
 <p>By simplifying the log likelihood function with the properties of logarithm,</p>
-<p>$$= \sum_{i=1}^{n}(log(\frac{1}{\sqrt{2\pi\sigma^2}}) -\frac{(x_i-\mu)^2}{2\sigma^2})$$<br>$$= -\frac{n}{2}log(2\pi) - nlog(\sigma) - \sum_{i=1}^{n}\frac{(x_i-\mu)^2}{2\sigma^2}$$</p>
+<p>$$= \sum_{i=1}^{n}(log(\frac{1}{\sqrt{2\pi\sigma^2}}) -\frac{(x_i-\mu)^2}{2\sigma^2}) \\ = -\frac{n}{2}log(2\pi) - nlog(\sigma) - \sum_{i=1}^{n}\frac{(x_i-\mu)^2}{2\sigma^2}$$</p>
 <p>Now, take the derivative with respect to the $\mu$,</p>
-<p>$$\frac{\partial}{\partial \mu} log(\mathcal{L}(\mu, \sigma|x_1, x_2, … , x_n))$$<br>$$= 0 - 0 + \sum_{i=1}^{n} \frac{(x_i-\mu)}{\sigma^2}$$<br>$$= \sum_{i=1}^{n} \frac{x_i}{\sigma^2} - n\mu$$</p>
+<p>$$\frac{\partial}{\partial \mu} log(\mathcal{L}(\mu, \sigma|x_1, x_2, … , x_n)) \\ = 0 - 0 + \sum_{i=1}^{n} \frac{(x_i-\mu)}{\sigma^2} \\ = \sum_{i=1}^{n} \frac{x_i}{\sigma^2} - n\mu$$</p>
 <p>Set this as 0, </p>
 <p>$$\sum_{i=1}^{n} \frac{x_i}{\sigma^2} - n\mu = 0$$</p>
 <p>Since $\sigma^2$ is constant here, </p>
@@ -434,9 +606,9 @@
 <p>Hence,</p>
 <p>$$\mu = \sum_{i=1}^{n} x_i / n$$<br>which is the mean of the measurements. </p>
 <p>Taking derivative with respect to the $\sigma$, </p>
-<p>$$\frac{\partial}{\partial \sigma} log(\mathcal{L}(\mu, \sigma|x_1, x_2, … , x_n)) = \frac{\partial}{\partial \sigma} (-\frac{n}{2}log(2\pi) - nlog(\sigma) - \sum_{i=1}^{n}\frac{(x_i-\mu)^2}{2\sigma^2})$$<br>$$= 0 - \frac{n}{\sigma} + \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{\sigma^3}$$</p>
+<p>$$\frac{\partial}{\partial \sigma} log(\mathcal{L}(\mu, \sigma|x_1, x_2, … , x_n)) = \frac{\partial}{\partial \sigma} (-\frac{n}{2}log(2\pi) - nlog(\sigma) - \sum_{i=1}^{n}\frac{(x_i-\mu)^2}{2\sigma^2}) \\ = 0 - \frac{n}{\sigma} + \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{\sigma^3}$$</p>
 <p>Set this as 0,</p>
-<p>$$0 - \frac{n}{\sigma} + \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{\sigma^3} = 0$$<br>$$n = \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{\sigma^2}$$<br>$$\sigma^2 = \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{n}$$<br>$$\sigma = \sum_{i=1}^{n} \sqrt{\frac{(x_i - \mu)^2}{n}}$$<br>which is the standard deviation of the measurements. </p>
+<p>$$0 - \frac{n}{\sigma} + \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{\sigma^3} = 0 \\ n = \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{\sigma^2} \\ \sigma^2 = \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{n} \\ \sigma = \sum_{i=1}^{n} \sqrt{\frac{(x_i - \mu)^2}{n}}$$<br>which is the standard deviation of the measurements. </p>
 <p>In conclusion, </p>
 <p>the mean of the data is the maximum likelihood estimate for where the center of the distribution should be, </p>
 <p>the standard deviation of the data is the maximum likelihood estimate for how wide the curve of the distribution should be. </p>
@@ -631,7 +803,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        5
+                        7
                     </p>
                 </div>
             </div>
@@ -641,7 +813,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        3
+                        5
                     </p>
                 </div>
             </div>
@@ -651,7 +823,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        6
+                        9
                     </p>
                 </div>
             </div>
@@ -706,17 +878,33 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/">
+            <span class="level-start">
+                <span class="level-item">Math</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Today/">
             <span class="level-start">
                 <span class="level-item">Today</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Today/August/">
             <span class="level-start">
                 <span class="level-item">August</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Today/September/">
+            <span class="level-start">
+                <span class="level-item">September</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -733,7 +921,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Likelihood/" style="font-size: 20px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a>
+        <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
     </div>
 </div>
 
@@ -747,18 +935,56 @@
         
         <article class="media">
             
+            <a href="/2019/09/06/190906/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="190906">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-06T12:19:33.000Z">2019-09-06</time></div>
+                    <a href="/2019/09/06/190906/" class="title has-link-black-ter is-size-6 has-text-weight-normal">190906</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Today/">Today</a> / <a class="has-link-grey -link" href="/categories/Today/September/">September</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/06/Cholesky/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Cholesky Decomposition">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-06T10:18:13.000Z">2019-09-06</time></div>
+                    <a href="/2019/09/06/Cholesky/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Cholesky Decomposition</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/03/Matrix Basic/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Matrix Basic">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Schur Complement">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time></div>
-                    <a href="/2019/09/03/Matrix Basic/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Matrix Basic</a>
+                    <a href="/2019/09/03/Matrix Basic/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Schur Complement</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Math/">Math</a>
                     </p>
                 </div>
             </div>
@@ -802,44 +1028,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/28/190828/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="190828">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T01:48:30.000Z">2019-08-28</time></div>
-                    <a href="/2019/08/28/190828/" class="title has-link-black-ter is-size-6 has-text-weight-normal">190828</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Today/">Today</a> / <a class="has-link-grey -link" href="/categories/Today/August/">August</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/08/27/Starting-blog/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Starting Blog">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-27T05:14:44.000Z">2019-08-27</time></div>
-                    <a href="/2019/08/27/Starting-blog/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Starting Blog</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -858,7 +1046,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -888,6 +1076,13 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/CholeskyDecomposition/">
+                        <span class="tag">CholeskyDecomposition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Likelihood/">
                         <span class="tag">Likelihood</span>
                         <span class="tag is-grey">2</span>
@@ -911,6 +1106,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ML/">
                         <span class="tag">ML</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Matrix/">
+                        <span class="tag">Matrix</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>
@@ -923,9 +1125,16 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/SchurComplement/">
+                        <span class="tag">SchurComplement</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Today/">
                         <span class="tag">Today</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 

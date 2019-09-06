@@ -7,21 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Matrix Basic - David Kwon</title>
+<title>Schur Complement - David Kwon</title>
 
 
-    <meta name="description" content="Schur Complement  Brief Introduction to Positive Semi-definite with Schur Complement  Schur Complement is popularly used in matrix analysis.  Definition:  The Schur Complement of a black matrix is de">
+    <meta name="description" content="Brief introduction to Schur Complement.  This is just a brief introduction of the properties of Schur Complement. Schur Complement has many applications in numerical analysis, such as optimization, ma">
+<meta name="keywords" content="ML,Matrix,SchurComplement">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Matrix Basic">
+<meta property="og:title" content="Schur Complement">
 <meta property="og:url" content="http://yoursite.com/2019/09/03/Matrix Basic/index.html">
 <meta property="og:site_name" content="David Kwon">
-<meta property="og:description" content="Schur Complement  Brief Introduction to Positive Semi-definite with Schur Complement  Schur Complement is popularly used in matrix analysis.  Definition:  The Schur Complement of a black matrix is de">
+<meta property="og:description" content="Brief introduction to Schur Complement.  This is just a brief introduction of the properties of Schur Complement. Schur Complement has many applications in numerical analysis, such as optimization, ma">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-09-03T04:21:50.282Z">
+<meta property="og:updated_time" content="2019-09-06T11:14:13.603Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Matrix Basic">
-<meta name="twitter:description" content="Schur Complement  Brief Introduction to Positive Semi-definite with Schur Complement  Schur Complement is popularly used in matrix analysis.  Definition:  The Schur Complement of a black matrix is de">
+<meta name="twitter:title" content="Schur Complement">
+<meta name="twitter:description" content="Brief introduction to Schur Complement.  This is just a brief introduction of the properties of Schur Complement. Schur Complement has many applications in numerical analysis, such as optimization, ma">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -92,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Matrix Basic" height="28">
+                <img src="/images/logo.svg" alt="Schur Complement" height="28">
             
             </a>
         </div>
@@ -150,11 +151,15 @@
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time>
                 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                </div>
+                
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 530 words)
+                    4 minutes read (About 650 words)
                 </span>
                 
                 
@@ -163,16 +168,14 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Matrix Basic
+                Schur Complement
             
         </h1>
         <div class="content">
-            <ol>
-<li>Schur Complement</li>
-</ol>
-<p>Brief Introduction to Positive Semi-definite with Schur Complement </p>
-<p>Schur Complement is popularly used in matrix analysis. </p>
-<p>Definition: </p>
+            <p>Brief introduction to Schur Complement. </p>
+<p>This is just a brief introduction of the properties of Schur Complement. Schur Complement has many applications in numerical analysis, such as optimization, machine learning algorithms, or probability and matrix theories. </p>
+<p>Let’s begin with the definition of the Schur Complement. </p>
+<p>$\large{Definition}$: </p>
 <p>The Schur Complement of a black matrix is defined as;</p>
 <p>Let $M$ be $n \times n$ matrix</p>
 <p>$$M =  \begin{bmatrix} A &amp; B \\ C &amp; D \end{bmatrix}$$</p>
@@ -182,21 +185,22 @@
 <p>The Schur Complement of the block $A$ of the matrix $M$ is then,</p>
 <p>$$M/A := D - CA^{-1}B$$</p>
 <p>if $A$ is invertible. </p>
-<pre><code>Properties</code></pre><ul>
+<p>$$\large{Properties}$$</p>
+<ul>
 <li>Linear system</li>
 </ul>
 <p>Let<br>$A$ is a $p \times p$ matrix,<br>$D$ is a $q \times q$ matrix, with $n = p + q$<br>So, $B$ is a $p \times q$ matrix. </p>
 <p>Let $M$ be defined as,</p>
 <p>$$M = \begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix}$$</p>
 <p>Suppose we have a linear system as,</p>
-<p>$$Ax + By = c$$<br>$$B^{T}x + Dy = d$$</p>
+<p>$$Ax + By = c \\ B^{T}x + Dy = d$$</p>
 <p>Then, </p>
 <p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} c \\ d \end{bmatrix}$$</p>
 <p>Assuming $D$ is invertible, </p>
-<p>then we have y as</p>
+<p>then we have $y$ as</p>
 <p>$$y = D^{-1}(d - B^{T}x)$$ </p>
 <p>Then, from the equation, </p>
-<p>$$Ax + By = c$$<br>$$Ax + B(D^{-1}(d - B^{T}x)) = c$$</p>
+<p>$$Ax + By = c \\ Ax + B(D^{-1}(d - B^{T}x)) = c$$</p>
 <p>Then, we see that is,</p>
 <p>$$(A - BD^{-1}B^{T})x = c - BD^{-1}d$$</p>
 <p>Here, the $A - BD^{-1}B^{T}$ is the Schur Complement of a block $D$ of matrix $M$. </p>
@@ -214,14 +218,28 @@
 <p>If we take inverse on both sides,</p>
 <p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} = \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; 0 \\ D^{-1}B^{T} &amp; I \end{bmatrix}$$</p>
 <p>$$= \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} ^{T}$$</p>
-<p>This is done by an assumption with $D$ is invertible. </p>
+<p>This is done by an assumption with $D$ is invertible, and this decomposition is called Block LDU Decomposition. </p>
 <p>Then, we can get another factorization of $M$ if A is invertible. </p>
 <ul>
 <li>Positive Semi-definite</li>
 </ul>
 <p><em>For any symmetric matrix,</em> $M$,</p>
 <p>if D is invertible, then</p>
+<p>1) $M \succ 0$   $iff$   $D \succ 0$ <em>and</em>  $A-BC^{-1}B^{T} \succ 0$ </p>
+<p>2) <em>If</em> $C \succ 0$, <em>then</em> $M \succeq 0$  $iff$  $A-BC^{-1}B^{T} \succeq 0$</p>
+<p>We can easily get the matrix $M$ in the linear combination and the inverse of the $M$ with Schur Complement.<br>We also can check if the $M$ is positive semi-definite.</p>
+<p>Reference:</p>
+<p><a href="https://en.wikipedia.org/wiki/Schur_complement" target="_blank" rel="noopener">Schur Complement</a><br><a href="http://www.cis.upenn.edu/~jean/schur-comp.pdf" target="_blank" rel="noopener">The Schur Complement and Symmetric Positive Semidefinite (and Definite) Matrices</a></p>
 
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/ML/">ML</a>, <a class="has-link-grey -link" href="/tags/Matrix/">Matrix</a>, <a class="has-link-grey -link" href="/tags/SchurComplement/">SchurComplement</a>
+                </div>
+            </div>
         </div>
         
         
@@ -235,6 +253,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/09/06/Cholesky/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Cholesky Decomposition</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -292,7 +317,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        5
+                        7
                     </p>
                 </div>
             </div>
@@ -302,7 +327,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        3
+                        5
                     </p>
                 </div>
             </div>
@@ -312,7 +337,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        6
+                        9
                     </p>
                 </div>
             </div>
@@ -367,17 +392,33 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/">
+            <span class="level-start">
+                <span class="level-item">Math</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Today/">
             <span class="level-start">
                 <span class="level-item">Today</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Today/August/">
             <span class="level-start">
                 <span class="level-item">August</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Today/September/">
+            <span class="level-start">
+                <span class="level-item">September</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -394,7 +435,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Likelihood/" style="font-size: 20px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a>
+        <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
     </div>
 </div>
 
@@ -408,18 +449,56 @@
         
         <article class="media">
             
+            <a href="/2019/09/06/190906/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="190906">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-06T12:19:33.000Z">2019-09-06</time></div>
+                    <a href="/2019/09/06/190906/" class="title has-link-black-ter is-size-6 has-text-weight-normal">190906</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Today/">Today</a> / <a class="has-link-grey -link" href="/categories/Today/September/">September</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/06/Cholesky/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Cholesky Decomposition">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-06T10:18:13.000Z">2019-09-06</time></div>
+                    <a href="/2019/09/06/Cholesky/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Cholesky Decomposition</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/03/Matrix Basic/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Matrix Basic">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Schur Complement">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time></div>
-                    <a href="/2019/09/03/Matrix Basic/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Matrix Basic</a>
+                    <a href="/2019/09/03/Matrix Basic/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Schur Complement</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Math/">Math</a>
                     </p>
                 </div>
             </div>
@@ -463,44 +542,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/28/190828/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="190828">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T01:48:30.000Z">2019-08-28</time></div>
-                    <a href="/2019/08/28/190828/" class="title has-link-black-ter is-size-6 has-text-weight-normal">190828</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Today/">Today</a> / <a class="has-link-grey -link" href="/categories/Today/August/">August</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/08/27/Starting-blog/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Starting Blog">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-27T05:14:44.000Z">2019-08-27</time></div>
-                    <a href="/2019/08/27/Starting-blog/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Starting Blog</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -519,7 +560,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -549,6 +590,13 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/CholeskyDecomposition/">
+                        <span class="tag">CholeskyDecomposition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Likelihood/">
                         <span class="tag">Likelihood</span>
                         <span class="tag is-grey">2</span>
@@ -572,6 +620,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ML/">
                         <span class="tag">ML</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Matrix/">
+                        <span class="tag">Matrix</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>
@@ -584,9 +639,16 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/SchurComplement/">
+                        <span class="tag">SchurComplement</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Today/">
                         <span class="tag">Today</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -612,7 +674,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Matrix Basic" height="28">
+                    <img src="/images/logo.svg" alt="Schur Complement" height="28">
                 
                 </a>
                 <p class="is-size-7">

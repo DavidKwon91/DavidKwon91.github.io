@@ -165,7 +165,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 902 words)
+                    6 minutes read (About 904 words)
                 </span>
                 
                 
@@ -184,14 +184,13 @@
 </ol>
 <p>To discuss logit, we need to know what the odds is. </p>
 <p>Simply say, Odds is $\frac{p}{1-p}$, where $p$ is the probability of a binary outcome. </p>
-<p>Since it is different with the probability, it enables us to make new functions or new graphs. </p>
-<p>With the properties of odds, logarithm of odds is popularly used in machine learning industry. </p>
-<p>Logit is the logarithm of odds. </p>
-<p>Logit (log odds) = $log(\frac{p}{1-p})$. </p>
-<p>Let logit be defined as $\theta$, then</p>
+<p>Since the odds has different properties than probability, it enables us to make new functions or new graphs. </p>
+<p>With the properties of odds, logarithm of odds is popularly used in machine learning industry, which is called logit. </p>
+<p>Logit (also log odds) = $log(\frac{p}{1-p})$. </p>
+<p>Let logit be defined as $\theta$, then </p>
 <p>$$\theta = log(\frac{p}{1-p})$$</p>
 <p>We can express this in terms of $p$ as the following,</p>
-<p>$$e^{\theta} = \frac{p}{1-p}$$<br>$$(1-p)e^{\theta} = p$$<br>$$e^{\theta} = p + p e^{\theta}$$<br>$$e^{\theta} = p(1+e^{\theta})$$<br>$$\therefore p = \frac{e^{\theta}}{(1+e^{\theta})} = \frac{1}{1+e^{-\theta}}$$</p>
+<p>$$e^{\theta} = \frac{p}{1-p} \\ (1-p)e^{\theta} = p \\ e^{\theta} = p + p e^{\theta} \\ e^{\theta} = p(1+e^{\theta}) \\ \therefore p = \frac{e^{\theta}}{(1+e^{\theta})} = \frac{1}{1+e^{-\theta}}$$</p>
 <p>This is the logistic function, which is the special case of sigmoid function that is widely used for classification, such as logistic regression, tree-based algorithm for classification, or deep learning.<br>The logistic function is the CDF of the logistic distribution. </p>
 <ol start="2">
 <li>Logistic Distribution</li>
@@ -203,7 +202,7 @@
 <p>$$F(x; \mu, s) = \frac{1}{1+e^{-\frac{x-\mu}{s}}}$$</p>
 <p>Some simulations are performed in <a href="https://core.ac.uk/download/pdf/41787448.pdf" target="_blank" rel="noopener">this paper</a>, and the simulation was to measure the absolute deviation between the cumulative standard normal distribution and the cumulative logistic distribution with mean zero and variance one. </p>
 <p>By <a href="https://core.ac.uk/download/pdf/41787448.pdf" target="_blank" rel="noopener">the paper</a>, “the cumulative logistic distribution with mean zero and variance one is known as $(1+e^{-\nu x})^{-1}$ “<br>And, the paper also states that the kurtosis of the logistic distribution is effected by the parameter coefficient, $\nu$.<br>With the $\nu = 1.702$, the deviation is 0.0095. </p>
-<p>As a summary, the logistic distribution almost resembles with the normal distribution with the variance $\sigma^2$, and we could use the property of the normal distribution as the following; </p>
+<p>As a summary, the logistic distribution approximately follows the normal distribution with the variance $\sigma^2$, and we could use the property of the normal distribution as the following; </p>
 <p>By <a href="https://en.wikipedia.org/wiki/Standard_deviation#targetText=If%20a%20data%20distribution%20is,deviations%20(%CE%BC%20%C2%B1%203%CF%83)." target="_blank" rel="noopener">wikipedia</a>, </p>
 <p>“If a data distribution is approximately normal, then about 68 percent of the data values are within one standard deviation of the mean (mathematically, $\mu \pm \sigma$, where $\mu$ is the arithmetic mean), about 95 percent are within two standard deviations ($\mu \pm 2\sigma$), and about 99.7 percent lie within three standard deviations ($\mu \pm 3\sigma$).”</p>
 <ol start="3">
@@ -216,13 +215,13 @@
 <p>By the definition of binomial distribution,</p>
 <p>$$P(Y_i = y_i | x_i) = \binom{m_i}{y_i}\theta(x_i)^{y_i}(1-\theta(x_i))^{m_i-y_i}$$</p>
 <p>Then, the loglikelihood function for Logistic Regression will be </p>
-<p>$$\mathcal{L} = \prod_{i=1}^{n} P(Y_i = y_i | x_i)$$<br>$$= \prod_{i=1}^{n}\binom{m_i}{y_i}\theta(x_i)^{y_i}(1-\theta(x_i))^{m_i-y_i}$$</p>
+<p>$$\mathcal{L} = \prod_{i=1}^{n} P(Y_i = y_i | x_i) \\ = \prod_{i=1}^{n}\binom{m_i}{y_i}\theta(x_i)^{y_i}(1-\theta(x_i))^{m_i-y_i}$$</p>
 <p>Here, the $\theta(x_i)$ is defined as</p>
 <p>$$\theta(x_i) = \frac{1}{1+e^{-(\beta_0 + \beta_1 x_i)}}$$</p>
 <p>And, </p>
 <p>$$log(\frac{\theta(x_i)}{1-\theta(x_i)}) = \beta_0 + \beta_1 x_i$$</p>
 <p>Just taking the derivative on the log-likelihood function and setting this as zero is hard to solve the problem, so the parameter $\beta_0$ and $\beta_1$ can be estimated by some other optimization method, such as Newton’s method. </p>
-<ol start="3">
+<ol start="4">
 <li>Wald Test in Logistic Regression</li>
 </ol>
 <p>Wald Test uses the property of the logistic distribution. </p>
@@ -232,7 +231,7 @@
 <p>in Logistic regression. </p>
 <p>The Wald test statistic is defined as</p>
 <p>$$Z = \frac{\hat{\beta_1} - \beta_1}{estimated \qquad se(\hat{\beta_1})}$$</p>
-<p>The $\beta_1 = 0$ in the test and this follows standard normal distribution. </p>
+<p>In the test, $\beta_1 = 0$ as the null hypothesis, and this follows standard normal distribution. </p>
 <p>Hence, </p>
 <p>$$Z = \frac{\hat{\beta_1}}{\hat{se}(\hat{\beta_1})} \sim \mathcal{N}(0,1)$$</p>
 <p>As mentioned above, the logistic distribution is approximately following the normal distribution with variance, $\sigma^2$.<br>Hence, dividing by the standard error for the estimated paramter gives you standard normal distribution, $\mathcal{N}(0,1)$.</p>
@@ -307,7 +306,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        5
+                        7
                     </p>
                 </div>
             </div>
@@ -317,7 +316,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        3
+                        5
                     </p>
                 </div>
             </div>
@@ -327,7 +326,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        6
+                        9
                     </p>
                 </div>
             </div>
@@ -382,17 +381,33 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/">
+            <span class="level-start">
+                <span class="level-item">Math</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Today/">
             <span class="level-start">
                 <span class="level-item">Today</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Today/August/">
             <span class="level-start">
                 <span class="level-item">August</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Today/September/">
+            <span class="level-start">
+                <span class="level-item">September</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -409,7 +424,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/Likelihood/" style="font-size: 20px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Today/" style="font-size: 10px;">Today</a>
+        <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
     </div>
 </div>
 
@@ -423,18 +438,56 @@
         
         <article class="media">
             
+            <a href="/2019/09/06/190906/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="190906">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-06T12:19:33.000Z">2019-09-06</time></div>
+                    <a href="/2019/09/06/190906/" class="title has-link-black-ter is-size-6 has-text-weight-normal">190906</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Today/">Today</a> / <a class="has-link-grey -link" href="/categories/Today/September/">September</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/06/Cholesky/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Cholesky Decomposition">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-06T10:18:13.000Z">2019-09-06</time></div>
+                    <a href="/2019/09/06/Cholesky/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Cholesky Decomposition</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/03/Matrix Basic/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Matrix Basic">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Schur Complement">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time></div>
-                    <a href="/2019/09/03/Matrix Basic/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Matrix Basic</a>
+                    <a href="/2019/09/03/Matrix Basic/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Schur Complement</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Math/">Math</a>
                     </p>
                 </div>
             </div>
@@ -478,44 +531,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/28/190828/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="190828">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T01:48:30.000Z">2019-08-28</time></div>
-                    <a href="/2019/08/28/190828/" class="title has-link-black-ter is-size-6 has-text-weight-normal">190828</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Today/">Today</a> / <a class="has-link-grey -link" href="/categories/Today/August/">August</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/08/27/Starting-blog/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Starting Blog">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-27T05:14:44.000Z">2019-08-27</time></div>
-                    <a href="/2019/08/27/Starting-blog/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Starting Blog</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -534,7 +549,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -564,6 +579,13 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/CholeskyDecomposition/">
+                        <span class="tag">CholeskyDecomposition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Likelihood/">
                         <span class="tag">Likelihood</span>
                         <span class="tag is-grey">2</span>
@@ -587,6 +609,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ML/">
                         <span class="tag">ML</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Matrix/">
+                        <span class="tag">Matrix</span>
                         <span class="tag is-grey">2</span>
                     </a>
                 </div>
@@ -599,9 +628,16 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/SchurComplement/">
+                        <span class="tag">SchurComplement</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Today/">
                         <span class="tag">Today</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
