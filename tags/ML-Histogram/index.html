@@ -165,7 +165,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 324 words)
+                    2 minutes read (About 331 words)
                 </span>
                 
                 
@@ -188,6 +188,7 @@
 <p>Min-max transformation is the following formula;</p>
 <p>$$z = \frac{x-min(x)}{max(x)-min(x)}$$</p>
 <p>The below codes are the implementation of creating histogram plot in R. I used the values from CLT posts. </p>
+<p><a href="https://davidkwon91.github.io/2019/09/09/CLT/" target="_blank" rel="noopener">CLT link</a></p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Hist &lt;- function(vec,bin)&#123;</span><br><span class="line">  vec.minmax &lt;- (vec - min(vec))/(max(vec)-min(vec)) #min-max transformation of the vector or the values</span><br><span class="line">  </span><br><span class="line">  vec.bins &lt;- rep(0,bin)</span><br><span class="line">  for(i in 1:bin)&#123;</span><br><span class="line">  	#find the values that is the closest to the value of each boundary of the bins</span><br><span class="line">    vec.bins[i] &lt;- vec[which(abs(vec.minmax - i/bin) == min(abs(vec.minmax - i/bin)))]</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  dat &lt;- data.frame(x=vec.bins, freq=0)</span><br><span class="line">  for(i in 1:bin)&#123;</span><br><span class="line">  	#put the values into each bins associateed</span><br><span class="line">    dat[i,2] &lt;- length(which(vec.minmax &gt; (i-1)/bin &amp; vec.minmax &lt;= i/bin))</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  #plotting</span><br><span class="line">  p &lt;- dat %&gt;% ggplot(aes(x=x, y=freq)) + geom_bar(stat=&quot;identity&quot;, position=position_dodge(width=0.5)) + theme_bw()</span><br><span class="line"></span><br><span class="line">  return(p)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hist(sampled.1000,15)</span><br></pre></td></tr></table></figure>
@@ -207,8 +208,7 @@
 
 
 
-<p>Reference: </p>
-<p>(Histogram and Kernel Density Estimation)[<a href="http://faculty.washington.edu/yenchic/18W_425/Lec6_hist_KDE.pdf]" target="_blank" rel="noopener">http://faculty.washington.edu/yenchic/18W_425/Lec6_hist_KDE.pdf]</a><br>(Histogram from Scratch)[<a href="https://medium.com/@shirleyliu/histograms-from-scratch-482dba2a4e31]" target="_blank" rel="noopener">https://medium.com/@shirleyliu/histograms-from-scratch-482dba2a4e31]</a></p>
+<p>Reference:<br><a href="http://faculty.washington.edu/yenchic/18W_425/Lec6_hist_KDE.pdf" target="_blank" rel="noopener">Histogram and Kernel Density EStimation</a><br><a href="https://medium.com/@shirleyliu/histograms-from-scratch-482dba2a4e31" target="_blank" rel="noopener">Histogram from Scratch</a></p>
 
         </div>
         
