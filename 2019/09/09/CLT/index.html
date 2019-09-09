@@ -7,22 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>190828 - David Kwon</title>
+<title>CLT - David Kwon</title>
 
 
-    <meta name="description" content="August 28th, 2019 Today’s work  Convex Optimization Course - Duality; weak and strong duality IEEE Kaggle - Data Organization;  convert data by Data Description - link Study LightGBM with the video pr">
-<meta name="keywords" content="Today">
+    <meta name="description" content="This post will discuss Central Limit Theorem.Central Limit Theorem is one of the most important topic in statistics, especially in probability theory.  $\large{Definition}$: The sample average of inde">
+<meta name="keywords" content="ML,CentralLimitTheorem">
 <meta property="og:type" content="article">
-<meta property="og:title" content="190828">
-<meta property="og:url" content="http://yoursite.com/2019/08/28/190828/index.html">
+<meta property="og:title" content="CLT">
+<meta property="og:url" content="http://yoursite.com/2019/09/09/CLT/index.html">
 <meta property="og:site_name" content="David Kwon">
-<meta property="og:description" content="August 28th, 2019 Today’s work  Convex Optimization Course - Duality; weak and strong duality IEEE Kaggle - Data Organization;  convert data by Data Description - link Study LightGBM with the video pr">
+<meta property="og:description" content="This post will discuss Central Limit Theorem.Central Limit Theorem is one of the most important topic in statistics, especially in probability theory.  $\large{Definition}$: The sample average of inde">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-08-29T23:17:41.619Z">
+<meta property="og:updated_time" content="2019-09-09T09:57:32.672Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="190828">
-<meta name="twitter:description" content="August 28th, 2019 Today’s work  Convex Optimization Course - Duality; weak and strong duality IEEE Kaggle - Data Organization;  convert data by Data Description - link Study LightGBM with the video pr">
+<meta name="twitter:title" content="CLT">
+<meta name="twitter:description" content="This post will discuss Central Limit Theorem.Central Limit Theorem is one of the most important topic in statistics, especially in probability theory.  $\large{Definition}$: The sample average of inde">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -93,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="190828" height="28">
+                <img src="/images/logo.svg" alt="CLT" height="28">
             
             </a>
         </div>
@@ -149,17 +149,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-28T01:48:30.000Z">2019-08-28</time>
+                <time class="level-item has-text-grey" datetime="2019-09-09T07:08:11.000Z">2019-09-09</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Today/">Today</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Today/August/">August</a>
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 408 words)
+                    4 minutes read (About 591 words)
                 </span>
                 
                 
@@ -168,45 +168,81 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                190828
+                CLT
             
         </h1>
         <div class="content">
-            <p>August 28th, 2019</p>
-<p>Today’s work</p>
-<ol>
-<li>Convex Optimization Course - Duality;<br> weak and strong duality</li>
-<li>IEEE Kaggle - Data Organization;<br>  convert data by Data Description - <a href="https://www.kaggle.com/c/ieee-fraud-detection/discussion/101203" target="_blank" rel="noopener">link</a></li>
-<li>Study LightGBM with the video presented by Mateusz Susik from McKinsey - <a href="https://www.youtube.com/watch?v=5CWwwtEM2TA&list=LLxvCXZGQQpgJjfgFOiTqLSA&index=2&t=226s" target="_blank" rel="noopener">link</a></li>
-</ol>
-<p>XGBoost by Tianqi Chen- <a href="https://xgboost.readthedocs.io/en/latest/tutorials/model.html" target="_blank" rel="noopener">link</a></p>
-<p>오늘 할 일</p>
-<ol>
-<li>Convex Optimization 수업 - Duality; weak and strong duality</li>
-<li>IEEE 카글 대회 - 데이터 정리; 데이터 Description에 따라 변수들 변환 - <a href="https://www.kaggle.com/c/ieee-fraud-detection/discussion/101203" target="_blank" rel="noopener">link</a></li>
-<li>LightGBM 원리 공부 - 프레젠테이션 Mateusz Susik from McKinsey - <a href="https://www.youtube.com/watch?v=5CWwwtEM2TA&list=LLxvCXZGQQpgJjfgFOiTqLSA&index=2&t=226s" target="_blank" rel="noopener">link</a></li>
-</ol>
-<p>XGBoost -&gt; LightGBM</p>
-<p>Update:</p>
-<p>Duality - </p>
-<ol>
-<li><p>Form Lagrange</p>
-<p> $\mathcal{L}(x,\lambda,\nu)$ = $f_0 (x) + \sum_{i=1}^{m} \lambda_i f_i(x) + \sum_{i=1}^{p} \nu_i h_i (x)$</p>
-</li>
-<li><p>Set gradient for $x$ equal to zero to minimize $\mathcal{L}$</p>
-<p> $\nabla_x \mathcal{L}$ = 0</p>
-</li>
-<li><p>Plug it in $\mathcal{L}$ to get the Lagrangian dual function;</p>
-<p> $g(\lambda, \nu)$ = $\inf_{x\in D} \mathcal{L}(x, \lambda, \nu)$</p>
-<p> which is a concave function, can be $-\infty$ for some $\lambda, \nu$</p>
-<p> Lagrangian dual function is a concave function, since the Lagrangian form is affine function, and infimum of any family of affine is concave.</p>
-<p> We want to maximize lower bound (concave) to get the best optimal points, and maximizing lower bound is convex optimization problem. </p>
-</li>
-</ol>
-<p>LightGBM - XGBoost (either histogram implementation available)</p>
-<p>One of the method used in LightGBM is ‘Graident-based one-side sampling’ that is the biggest benefit of LightGBM. This method is to concentrate on data points with large gradients and ignore data points with small graidents (close to local minima). </p>
-<p>LightGBM - XGBoost(둘 다 histogram implementation 가능) </p>
-<p>가장 큰 장점은 Gradient-based one-side sampling 이라는 방법으로, gradient가 큰 데이터 포인트들을 집중하며, small gradients (Gradients가 작다는 것은 local minima에 가깝다는것이고, 그 말은 즉 Residual 혹은 loss 가 적다는것) 들은 무시하기에 training 속도가 굉장히 빠르다는 것.</p>
+            <p>This post will discuss Central Limit Theorem.<br>Central Limit Theorem is one of the most important topic in statistics, especially in probability theory. </p>
+<p>$\large{Definition}$:</p>
+<p>The sample average of independent and identically distributed random variables drawn from an unknown distribution with mean $\mu$ and variance $\sigma$ is approximately normal distributed when $n$ gets larger. That is, by the law of large numbers, the sample mean converges in probability and almost surely to the expected value $\mu$ as $n \to \infty$.</p>
+<p>Formally, let ${X_1,X_2,…X_n}$ be random samples of size $n$. Then, the sample average is defined as</p>
+<p>$$S_n = \frac{X_1 + X_2 + … + X_n}{n}$$ with mean $\mu$ and variance $\sigma^2$</p>
+<p>Then,<br>$$\sqrt{n}(S_n-\mu) \sim \mathcal{N}(0,\sigma^2)$$</p>
+<p>The normalized random mean variable will be</p>
+<p>$$Z_n = \frac{S_n-\mu}{\frac{\sigma}{\sqrt{n}}} \sim \mathcal{N}(0,1)$$</p>
+<p>The below part will be implementation of CLT in R. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set.seed(1004)</span><br><span class="line">x1 &lt;- runif(10000, min=0,max=1000) #Generating random variables drawn from unifrom distribution with (0,1000)</span><br><span class="line"></span><br><span class="line">hist(x1) #Histogram</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-1.png" title="[hist]">
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sampled.5 &lt;- rep(0, length(x1))</span><br><span class="line"></span><br><span class="line">for(i in 1:length(x1))&#123;</span><br><span class="line">  sampled.5[i] &lt;- mean(sample(x1, 5, replace=TRUE)) #sample average with size 5</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hist(sampled.5)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-3.png" title="[hist]">
+
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">plot(density(sampled.5)) #density plot of sample average variables</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-4.png" title="[hist]">
+
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sampled.30 &lt;- rep(0, length(x1))</span><br><span class="line">sampled.1000 &lt;- rep(0,length(x1))</span><br><span class="line">sampled.10000 &lt;- rep(0,length(x1))</span><br><span class="line"></span><br><span class="line">for(i in 1:length(x1))&#123;</span><br><span class="line">  sampled.30[i] &lt;- mean(sample(x1, 30, replace=TRUE)) #sample average of size 30</span><br><span class="line">  sampled.1000[i] &lt;- mean(sample(x1, 1000, replace=TRUE)) #sample average of size 1000</span><br><span class="line">  sampled.10000[i] &lt;- mean(sample(x1,10000,replace=TRUE)) #sample average of size 10000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>$$\sqrt{n}(S_n-\mu) \sim \mathcal{N}(0,\sigma^2)$$</p>
+<p>The following code is the above formula. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(sampled.30))*(mean(sampled.30)-mean(x1))</span><br><span class="line"></span><br><span class="line">## [1] -39.36105</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(sampled.1000))*(mean(sampled.1000)-mean(x1))</span><br><span class="line"></span><br><span class="line">## [1] 0.1330039</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(sampled.10000))*(mean(sampled.10000)-mean(x1))</span><br><span class="line"></span><br><span class="line">## [1] 0.003917203</span><br></pre></td></tr></table></figure>
+
+<p>It shows the $\sqrt{n}(S_n-\mu)$ tends to go to zero as the size of the sample increases, which means that the expected value of the sample average variables gets closer to the expected value of the random variables when $n$ gets larger. </p>
+<p>Let’s see other example for random sample average drawn from Binomial distribution. </p>
+<p>Suppose we have 10000 random Binomial variables with $p = 0.5$. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#Binomial</span><br><span class="line">n &lt;- 10000</span><br><span class="line">p &lt;- 1/2</span><br><span class="line">B &lt;- rbinom(n,1,p)</span><br></pre></td></tr></table></figure>
+
+<p>The mean of Binomial distribution is $p$, that is $E(X) = p$.<br>The variance of Binomial distribution is $p(1-p)$, that is $Var(X) = p(1-p)$</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p</span><br><span class="line"></span><br><span class="line">## [1] 0.5</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p*(1-p)</span><br><span class="line"></span><br><span class="line">## [1] 0.25</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mean(B)</span><br><span class="line"></span><br><span class="line">## [1] 0.4991</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var(B)</span><br><span class="line"></span><br><span class="line">## [1] 0.2500242</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#creating random sample average from Binomial random variables</span><br><span class="line">bin.sampled.30 &lt;- rep(0, length(B))</span><br><span class="line">bin.sampled.1000 &lt;- rep(0,length(B))</span><br><span class="line">bin.sampled.10000 &lt;- rep(0,length(B))</span><br><span class="line"></span><br><span class="line">for(i in 1:length(x1))&#123;</span><br><span class="line">  bin.sampled.30[i] &lt;- mean(sample(B, 30, replace=TRUE))</span><br><span class="line">  bin.sampled.1000[i] &lt;- mean(sample(B, 1000, replace=TRUE))</span><br><span class="line">  bin.sampled.10000[i] &lt;- mean(sample(B,10000,replace=TRUE))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(density(bin.sampled.30))</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-14.png" title="[hist]">
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(density(bin.sampled.1000))</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-15.png" title="[hist]">
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(density(bin.sampled.10000))</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-16.png" title="[hist]">
+
+
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(bin.sampled.30))*(mean(bin.sampled.30)-mean(B))</span><br><span class="line"></span><br><span class="line">## [1] 0.009333333</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(bin.sampled.1000))*(mean(bin.sampled.1000)-mean(B))</span><br><span class="line"></span><br><span class="line">## [1] 0.01169</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(bin.sampled.10000))*(mean(bin.sampled.10000)-mean(B))</span><br><span class="line"></span><br><span class="line">## [1] -0.000371</span><br></pre></td></tr></table></figure>
+
+<p>These results shows that no matter what the distribution of the population is, the sample average drawn from the distribution will be approximately normal distribution as $n$ gets large with mean $\mu$.</p>
+<p>Reference:<br>(Central Limit Theorem)[<a href="https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php]" target="_blank" rel="noopener">https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php]</a><br>(Central Limit Theorem (wiki))[<a href="https://en.wikipedia.org/wiki/Central_limit_theorem]" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Central_limit_theorem]</a></p>
 
         </div>
         
@@ -214,7 +250,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Today/">Today</a>
+                    <a class="has-link-grey -link" href="/tags/CentralLimitTheorem/">CentralLimitTheorem</a>, <a class="has-link-grey -link" href="/tags/ML/">ML</a>
                 </div>
             </div>
         </div>
@@ -232,16 +268,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/29/Likelihood/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/09/09/hist/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Likelihood vs Probability</span>
+                <span class="level-item">Histogram</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/27/Starting-blog/">
-                <span class="level-item">Starting Blog</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/06/190906/">
+                <span class="level-item">190906</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -665,7 +701,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="190828" height="28">
+                    <img src="/images/logo.svg" alt="CLT" height="28">
                 
                 </a>
                 <p class="is-size-7">

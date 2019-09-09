@@ -155,6 +155,121 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-09T07:08:11.000Z">2019-09-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 591 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/09/CLT/">CLT</a>
+            
+        </h1>
+        <div class="content">
+            <p>This post will discuss Central Limit Theorem.<br>Central Limit Theorem is one of the most important topic in statistics, especially in probability theory. </p>
+<p>$\large{Definition}$:</p>
+<p>The sample average of independent and identically distributed random variables drawn from an unknown distribution with mean $\mu$ and variance $\sigma$ is approximately normal distributed when $n$ gets larger. That is, by the law of large numbers, the sample mean converges in probability and almost surely to the expected value $\mu$ as $n \to \infty$.</p>
+<p>Formally, let ${X_1,X_2,…X_n}$ be random samples of size $n$. Then, the sample average is defined as</p>
+<p>$$S_n = \frac{X_1 + X_2 + … + X_n}{n}$$ with mean $\mu$ and variance $\sigma^2$</p>
+<p>Then,<br>$$\sqrt{n}(S_n-\mu) \sim \mathcal{N}(0,\sigma^2)$$</p>
+<p>The normalized random mean variable will be</p>
+<p>$$Z_n = \frac{S_n-\mu}{\frac{\sigma}{\sqrt{n}}} \sim \mathcal{N}(0,1)$$</p>
+<p>The below part will be implementation of CLT in R. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set.seed(1004)</span><br><span class="line">x1 &lt;- runif(10000, min=0,max=1000) #Generating random variables drawn from unifrom distribution with (0,1000)</span><br><span class="line"></span><br><span class="line">hist(x1) #Histogram</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-1.png" title="[hist]">
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sampled.5 &lt;- rep(0, length(x1))</span><br><span class="line"></span><br><span class="line">for(i in 1:length(x1))&#123;</span><br><span class="line">  sampled.5[i] &lt;- mean(sample(x1, 5, replace=TRUE)) #sample average with size 5</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hist(sampled.5)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-3.png" title="[hist]">
+
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">plot(density(sampled.5)) #density plot of sample average variables</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-4.png" title="[hist]">
+
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sampled.30 &lt;- rep(0, length(x1))</span><br><span class="line">sampled.1000 &lt;- rep(0,length(x1))</span><br><span class="line">sampled.10000 &lt;- rep(0,length(x1))</span><br><span class="line"></span><br><span class="line">for(i in 1:length(x1))&#123;</span><br><span class="line">  sampled.30[i] &lt;- mean(sample(x1, 30, replace=TRUE)) #sample average of size 30</span><br><span class="line">  sampled.1000[i] &lt;- mean(sample(x1, 1000, replace=TRUE)) #sample average of size 1000</span><br><span class="line">  sampled.10000[i] &lt;- mean(sample(x1,10000,replace=TRUE)) #sample average of size 10000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>$$\sqrt{n}(S_n-\mu) \sim \mathcal{N}(0,\sigma^2)$$</p>
+<p>The following code is the above formula. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(sampled.30))*(mean(sampled.30)-mean(x1))</span><br><span class="line"></span><br><span class="line">## [1] -39.36105</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(sampled.1000))*(mean(sampled.1000)-mean(x1))</span><br><span class="line"></span><br><span class="line">## [1] 0.1330039</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(sampled.10000))*(mean(sampled.10000)-mean(x1))</span><br><span class="line"></span><br><span class="line">## [1] 0.003917203</span><br></pre></td></tr></table></figure>
+
+<p>It shows the $\sqrt{n}(S_n-\mu)$ tends to go to zero as the size of the sample increases, which means that the expected value of the sample average variables gets closer to the expected value of the random variables when $n$ gets larger. </p>
+<p>Let’s see other example for random sample average drawn from Binomial distribution. </p>
+<p>Suppose we have 10000 random Binomial variables with $p = 0.5$. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#Binomial</span><br><span class="line">n &lt;- 10000</span><br><span class="line">p &lt;- 1/2</span><br><span class="line">B &lt;- rbinom(n,1,p)</span><br></pre></td></tr></table></figure>
+
+<p>The mean of Binomial distribution is $p$, that is $E(X) = p$.<br>The variance of Binomial distribution is $p(1-p)$, that is $Var(X) = p(1-p)$</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p</span><br><span class="line"></span><br><span class="line">## [1] 0.5</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p*(1-p)</span><br><span class="line"></span><br><span class="line">## [1] 0.25</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mean(B)</span><br><span class="line"></span><br><span class="line">## [1] 0.4991</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var(B)</span><br><span class="line"></span><br><span class="line">## [1] 0.2500242</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#creating random sample average from Binomial random variables</span><br><span class="line">bin.sampled.30 &lt;- rep(0, length(B))</span><br><span class="line">bin.sampled.1000 &lt;- rep(0,length(B))</span><br><span class="line">bin.sampled.10000 &lt;- rep(0,length(B))</span><br><span class="line"></span><br><span class="line">for(i in 1:length(x1))&#123;</span><br><span class="line">  bin.sampled.30[i] &lt;- mean(sample(B, 30, replace=TRUE))</span><br><span class="line">  bin.sampled.1000[i] &lt;- mean(sample(B, 1000, replace=TRUE))</span><br><span class="line">  bin.sampled.10000[i] &lt;- mean(sample(B,10000,replace=TRUE))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(density(bin.sampled.30))</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-14.png" title="[hist]">
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(density(bin.sampled.1000))</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-15.png" title="[hist]">
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(density(bin.sampled.10000))</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-16.png" title="[hist]">
+
+
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(bin.sampled.30))*(mean(bin.sampled.30)-mean(B))</span><br><span class="line"></span><br><span class="line">## [1] 0.009333333</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(bin.sampled.1000))*(mean(bin.sampled.1000)-mean(B))</span><br><span class="line"></span><br><span class="line">## [1] 0.01169</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(bin.sampled.10000))*(mean(bin.sampled.10000)-mean(B))</span><br><span class="line"></span><br><span class="line">## [1] -0.000371</span><br></pre></td></tr></table></figure>
+
+<p>These results shows that no matter what the distribution of the population is, the sample average drawn from the distribution will be approximately normal distribution as $n$ gets large with mean $\mu$.</p>
+<p>Reference:<br>(Central Limit Theorem)[<a href="https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php]" target="_blank" rel="noopener">https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php]</a><br>(Central Limit Theorem (wiki))[<a href="https://en.wikipedia.org/wiki/Central_limit_theorem]" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Central_limit_theorem]</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-09-06T10:18:13.000Z">2019-09-06</time>
                 
                 <div class="level-item">
@@ -245,7 +360,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 650 words)
+                    4 minutes read (About 651 words)
                 </span>
                 
                 
@@ -294,7 +409,7 @@
 <p>$$x = (A-BD^{-1}B^{T})^{-1}(c-BD^{-1}d) \\ y = D^{-1}(d-B^{T}(A-BD^{-1}B^{T})^{-1}(c-BD^{-1}d))$$</p>
 <p>And, </p>
 <p>$$x = (A-BD^{-1}B^{T})^{-1}c - (A-BD^{-1}B^{T})^{-1}BD^{-1}d \\ y = -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}c + (D^{-1}+D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}BD^{-1})d$$</p>
-<p>The $x$ and $y$ are formed as affine functions with $c$ and $d$, </p>
+<p>The $x$ and $y$ are formed as linear functions associated with $c$ and $d$, </p>
 <p>and it can be a formula for an inverse of $M$ in terms of the Schur Complement of $D$ in $M$.</p>
 <p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; -(A-BD^{-1}B^{T})^{-1}BD^{-1} \\ -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1} &amp; D^{-1}+D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}BD^{-1}  \end{bmatrix}$$</p>
 <p>This can be written as,</p>
@@ -601,7 +716,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        7
+                        9
                     </p>
                 </div>
             </div>
@@ -621,7 +736,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        9
+                        11
                     </p>
                 </div>
             </div>
@@ -681,7 +796,7 @@
                 <span class="level-item">Math</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Today/">
@@ -719,7 +834,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
+        <a href="/tags/ML-Histogram/" style="font-size: 10px;">-ML -Histogram</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
     </div>
 </div>
 
@@ -730,6 +845,44 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/09/hist/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Histogram">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-09T09:49:56.000Z">2019-09-09</time></div>
+                    <a href="/2019/09/09/hist/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Histogram</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/09/CLT/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CLT">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-09T07:08:11.000Z">2019-09-09</time></div>
+                    <a href="/2019/09/09/CLT/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CLT</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -788,44 +941,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/29/logit/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Logit - Logistic Regression">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-29T05:48:09.000Z">2019-08-29</time></div>
-                    <a href="/2019/08/29/logit/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Logit - Logistic Regression</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ML/">ML</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/08/29/Likelihood/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Likelihood vs Probability">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-29T03:50:08.000Z">2019-08-29</time></div>
-                    <a href="/2019/08/29/Likelihood/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Likelihood vs Probability</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ML/">ML</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -844,7 +959,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -872,6 +987,20 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ML-Histogram/">
+                        <span class="tag">-ML -Histogram</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CentralLimitTheorem/">
+                        <span class="tag">CentralLimitTheorem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/CholeskyDecomposition/">
@@ -904,7 +1033,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ML/">
                         <span class="tag">ML</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
