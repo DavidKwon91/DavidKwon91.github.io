@@ -145,6 +145,173 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-10T07:25:49.000Z">2019-09-10</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Gaussian-Process/">Gaussian Process</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    12 minutes read (About 1823 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/10/GP/">Gaussian Process</a>
+            
+        </h1>
+        <div class="content">
+            <p>Introduction to Gaussian Process</p>
+<p>In this post, I will discuss about Gaussian Process, which employs Gaussian distribution (also often called normal distribution that play an important role in statistics. The previous posts, such as CLT, Cholesky Decomposition, and Schur Complement, are posted because they are needed to understand the Gaussian Process. </p>
+<p>Before I start with Gaussian Process, some important properties of Gaussian Distribution will be addressed. </p>
+<p>$\large{Gaussian}$ $\large{ Distribution}$</p>
+<p>If we have random vector $X$ following Gaussian Distribution, then we have </p>
+<p>$$X = \begin{bmatrix} X_1 \\ X_2 \\ … \\ X_n \end{bmatrix} \sim \mathcal{N}(\mu, \Sigma)$$</p>
+<p>where $\Sigma = Cov(X_i, X_j) = E[(X_i - \mu_i)(X_j - \mu_j)^{T}]$</p>
+<p>Now, Suppose we have two vector, $X$ and $Y$ that are subsets of a random variable, Z, with the following; </p>
+<p>$$P_Z = P_{X,Y} = \begin{bmatrix} X \\ Y \end{bmatrix} \sim \mathcal{N}(\mu, \Sigma) = \mathcal{N}(\begin{bmatrix} \mu_X \\ \mu_Y \end{bmatrix}, \begin{bmatrix} \Sigma_{XX} &amp; \Sigma_{XY} \\ \Sigma_{YX} &amp; \Sigma_{YY} \end{bmatrix})$$</p>
+<p>Then, the following properties holds; </p>
+<ol>
+<li>Normalization </li>
+</ol>
+<p>The density function will be </p>
+<p>$$\int_{Z} p(Z;\mu,\Sigma) dz = 1$$</p>
+<p>where $Z = \begin{bmatrix} X \\ Y \end{bmatrix}$</p>
+<ol start="2">
+<li>Marginalization</li>
+</ol>
+<p>The maginal densities will be</p>
+<p>$$p(X) = \int_{Y} p(X,Y; \mu, \Sigma) dy \\ p(Y) = \int_{X} p(X,Y; \mu, \Sigma) dx$$</p>
+<p>are Gaussian, therefore</p>
+<p>$$X \sim \mathcal{N}(\mu_X, \Sigma_{XX}) \\ Y \sim \mathcal{N}(\mu_Y, \Sigma_{YY})$$</p>
+<ol start="3">
+<li>Conditioning</li>
+</ol>
+<p>The conditional densities will also be Gaussian, and the conditional expected value and covariance are calculated with the properties of Schur Complement as the following. </p>
+<p>Refer to the wiki, <a href="https://en.wikipedia.org/wiki/Schur_complement" target="_blank" rel="noopener">Schur Complement</a>. </p>
+<p>The conditional expectation and covariance of X given Y is the Schur Complement of C in $\Sigma$ where if $\Sigma$ is defined as </p>
+<p>$$\Sigma = \begin{bmatrix} A &amp; B \\ B^{T} &amp; C \end{bmatrix}$$ </p>
+<p>$$Cov(X|Y) = A-BC^{-1}B^{T} \\ E(X|Y) = E(X) + BC^{-1}(Y-E(Y))$$</p>
+<p>Hence, the conditional covariance of X given Y will be</p>
+<p>$$P_{X,Y} = \mathcal{N}(\begin{bmatrix} \mu_X \\ \mu_Y \end{bmatrix}, \begin{bmatrix} \Sigma_{XX} &amp; \Sigma_{XY} \\ \Sigma_{YX} &amp; \Sigma_{YY} \end{bmatrix})$$</p>
+<p>$$X | Y \sim \mathcal{N}(\mu_X + \Sigma_{XY}\Sigma_{YY}^{-1}(Y-\mu_Y), \Sigma_{XX} - \Sigma_{XY}\Sigma_{YY}^{-1}\Sigma_{YX}) \\<br>Y | X \sim \mathcal{N}(\mu_Y + \Sigma_{YX}\Sigma_{XX}^{-1}(X-\mu_X), \Sigma_{YY} - \Sigma_{YX}\Sigma_{XX}^{-1}\Sigma_{XY})$$</p>
+<ol start="4">
+<li>Summation </li>
+</ol>
+<p>The sum of independen Gaussian random variables is also Gaussian;</p>
+<p>Let $y \sim \mathcal{N}(\mu, \Sigma)$ and $z \sim \mathcal{N}(\mu’,\Sigma’)$</p>
+<p>Then, </p>
+<p>$$y + z \sim \mathcal{N}(\mu + \mu’, \Sigma+\Sigma’)$$</p>
+<p>We see some of important properties of Gaussian distribution. </p>
+<p>Now, let’s change our focus to linear regression problem. </p>
+<p>Typical linear regression equation is defined as, </p>
+<p>$$y = ax + b$$</p>
+<p>Or, </p>
+<p>$$y = \beta_0 + \beta_1X_1 + … + \beta_pX_p + \epsilon$$</p>
+<p>And, it can be expressed by</p>
+<p>$$y = f(x) + \epsilon$$</p>
+<p>where $f(x) = \beta_0 + \beta_1X_1 + … + \beta_pX_p$. </p>
+<p>Here, an important assumption of linear regression is the error term, $\epsilon$ is normally distributed with mean zero.  </p>
+<p>If we consider repeated sampling from our population, for large sample sizes, the distribution of the ordinary least squared estimates of the regression coefficients follow a normal distribution by the Central Limit Theorem. </p>
+<p>Therefore, the $\epsilon$ follows Gaussian Distribution. </p>
+<p>We might then think about what if our $f(x)$ follows Gaussian distribution. </p>
+<p>Then, in the above equation, $y = f(x) + \epsilon$ will follow Gaussian distribution by the property that the sum of two independent Gaussian distribution is Gaussian distribution. </p>
+<p>Here is the start of the Gaussian Process. </p>
+<p>$\large{Gaussian}$ $\large{ Process}$</p>
+<p>A Gaussian Process is one of stochastic process that is a collection of random variables, ${f(x) : x \in \mathcal{X}}$, indexed by elements from some set $\mathcal{X}$, known as the index set, and GP is such stochastic process that any finite subcollection of random variables has a multivariate Gaussian distribution. </p>
+<p>Here, we assume the $f(x)$ follows Gaussian distribution with some $\mu$ and $\Sigma$. </p>
+<p>The $\mu$ and $\Sigma$ are called as “mean function” and “covariance function” with the notation, </p>
+<p>$$f(.) \sim \mathcal{GP}(m(.), k(.,.))$$</p>
+<p>where $k(.,.)$ is covariance function and a kernel function. </p>
+<p>Hence, we have the equation, </p>
+<p>$$y^{i} = f(x^{i}) + \epsilon^{i}$$</p>
+<p>where the error term (“noise”), $\epsilon^{i}$ with independent $\mathcal{N}(0, \sigma^2)$ distribution. </p>
+<p>We assume the prior distribution over the function $f(.)$ with mean zero Gaussian; </p>
+<p>$$f(.) \sim \mathcal{GP}(0, k(.,.))$$</p>
+<p>for some valid kernel function $k(.,.)$. </p>
+<p>Now, we can convert the GP prior $f(.)$ into a GP posterior function after having some data to make predictions $f_p$. </p>
+<p>Then, the two functions for the training ($f(.)$) and test ($f_p(.)$), will follows</p>
+<p>$$\begin{bmatrix} f \\ f_p \end{bmatrix}|X,X_p \sim \mathcal{N}\big(0, \begin{bmatrix} K(X,X) &amp; K(X, X_p)  \\  K(X_p, X) &amp; K(X_p, X_p) \end{bmatrix}\big)$$</p>
+<p>Now, with $\epsilon$ and $\epsilon_p$, </p>
+<p>$$\begin{bmatrix} \epsilon \\ \epsilon_p\end{bmatrix} \sim \mathcal{N}(0,\begin{bmatrix} \sigma^2I &amp; 0 \\ 0^{T} &amp; \sigma^2I\end{bmatrix})$$</p>
+<p>As mentioned above, the sum of two independent Gaussian distribution is also Gaussian, then eventually we have,</p>
+<p>$$\begin{bmatrix} y \\ y_p \end{bmatrix} | X, X_p = \begin{bmatrix} f \\ f_p \end{bmatrix} + \begin{bmatrix} \epsilon \\ \epsilon_p\end{bmatrix} \sim \mathcal{N}(0, \begin{bmatrix} K(X,X) + \sigma^2I &amp; K(X,X_p) \\ K(X_p, X) &amp; K(X_p,X_p)+\sigma^2I) \end{bmatrix})$$</p>
+<p>Here, we generate the prior distributions, which are multivariate normal distributions, with standard multivariate normal distribution and the Cholesky factor as the following. </p>
+<p>Refer to my previous post for Cholesky Decomposition, <a href="https://davidkwon91.github.io/tags/CholeskyDecomposition/" target="_blank" rel="noopener">Cholesky Decomposition post</a>. </p>
+<p>1) Compute covariance function, $\Sigma$, and Cholesky Decomposition for $\Sigma = LL^{T}$</p>
+<p>2) Generate standard multivariate normal distribution, $u \sim \mathcal{N}(0,1)$</p>
+<p>3) Compute $x = \mu + Lu$, then $x$ will the prior distribution for $\mathcal{GP}$.  </p>
+<p>Back to out prediction with GP, we have </p>
+<p>$$y_p|y,X,X_p \sim \mathcal{N}(\mu_p, \Sigma_p)$$ </p>
+<p>by the rules for conditioning Gaussians as we have done above. </p>
+<p>Then, we have </p>
+<p>$$\mu_p = K(X_p, X)K((X,X)+\sigma^2I)^{-1}y \\ \Sigma_p = K(X_p, X_p) + \sigma^2I - K(X_p,X)(K(X,X)+\sigma^2I)^{-1}K(X,X_p)$$</p>
+<p>Here, the conditional mean and covariance function are calculated by the Schur Complement as shown above, and since the mean is zero vector, the mean function is defined as the above. </p>
+<p>Conditional expectation and covariance with Schur Complement again, </p>
+<p>$$\Sigma = \begin{bmatrix} A &amp; B \\ B^{T} &amp; C \end{bmatrix}$$ </p>
+<p>$$Cov(X|Y) = A-BC^{-1}B^{T} \\ E(X|Y) = E(X) + BC^{-1}(Y-E(Y))$$</p>
+<p>Here, the $E(X)$ and $E(Y) = 0$ for $\mathcal{GP}$, thus we have just $BC^{-1}Y$ term, which is $\mu_p = K(X_p, X)K((X,X)+\sigma^2I)^{-1}y$</p>
+<p>Kernel Function, $K(.,.)$?</p>
+<p>Commonly used kernel function for $\mathcal{GP}$ is <em>squared exponential kernel function</em>, which is often called Gaussian kernel. </p>
+<p>It’s defined as, </p>
+<p>$$K(X,X_p) = exp(-\frac{1}{2\nu} ||X-X_p||^2) = exp(-\frac{1}{2\nu} (X-X_p)^{T}(X-X_p))$$</p>
+<p>where the $\nu$ is the free parameter for bandwidth of the function smoothness. </p>
+<p>Here is the implementation of Gaussian Process in R. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">xcor &lt;- seq(-5,4.9,by=0.1) #index or coordinate for our data</span><br><span class="line"></span><br><span class="line">#Kernel Function (Squared exponential kernel function or Gaussian kernel function)</span><br><span class="line">GP.kernel &lt;- function(x1,x2,l)&#123;</span><br><span class="line">  mat &lt;- matrix(rep(0, length(x1)*length(x2)), nrow=length(x1))</span><br><span class="line">  for (i in 1:length(x1)) &#123;</span><br><span class="line">    for (j in 1:length(x2)) &#123;</span><br><span class="line">      mat[i,j] &lt;- (x1[i]-x2[j])^2</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  kern &lt;- exp(-(0.5*mat)/l) #l is free parameter that can be seen as bandwidth</span><br><span class="line">  return(kern)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#Zero-mean and covariance function by the squared exponential kernel function with the index to create prior distribution</span><br><span class="line">mu &lt;- rep(0,length(xcor))</span><br><span class="line">cov &lt;- GP.kernel(xcor,xcor,1) #nu is 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#3 prior distributions</span><br><span class="line">dat &lt;- data.frame(x=xcor, first=mvrnorm(1,mu,cov), sec=mvrnorm(1,mu,cov), thi=mvrnorm(1,mu,cov))</span><br><span class="line">#mvrnorm function is same with the using of Cholesky factor of the covariance function multiplied by the standard multivariate normal distribution added mu</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#graph for the 3 priors</span><br><span class="line">dat %&gt;% ggplot() + </span><br><span class="line">  geom_line(aes(x=xcor,y=first, colour=&quot;red&quot;)) + </span><br><span class="line">  geom_line(aes(x=xcor,y=sec, colour=&quot;blue&quot;)) +</span><br><span class="line">  geom_line(aes(x=xcor,y=thi, colour=&quot;green&quot;))</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/10/GP/GP-1.png" title="[GP]">
+
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#Assume we have a data</span><br><span class="line"></span><br><span class="line">#5 elements</span><br><span class="line">f &lt;- data.frame(x=c(-4,-3,-1,0,2),</span><br><span class="line">                y=c(-2,0,1,2,-1))</span><br><span class="line">x &lt;- f$x</span><br><span class="line">k.xx &lt;- GP.kernel(x,x,1)</span><br><span class="line">k.xxs &lt;- GP.kernel(x,xcor,1)</span><br><span class="line">k.xsxs &lt;- GP.kernel(xcor,xcor,1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f.star.bar &lt;- t(k.xxs)%*%solve(k.xx)%*%f$y #mean function</span><br><span class="line">cov.f.star &lt;- k.xsxs - t(k.xxs)%*%solve(k.xx)%*%k.xxs #covariance function</span><br><span class="line"></span><br><span class="line">#posterior distribution</span><br><span class="line">dat1 &lt;- data.frame(x=xcor, </span><br><span class="line">                  first=mvrnorm(1,f.star.bar,cov.f.star), </span><br><span class="line">                  sec=mvrnorm(1,f.star.bar,cov.f.star), </span><br><span class="line">                  thi=mvrnorm(1,f.star.bar,cov.f.star))</span><br><span class="line"></span><br><span class="line">#graph for 3 posterior distribution when nu is 1</span><br><span class="line">dat1 %&gt;% ggplot() + </span><br><span class="line">  geom_line(aes(x=xcor,y=first, colour=&quot;red&quot;)) + </span><br><span class="line">  geom_line(aes(x=xcor,y=sec, colour=&quot;blue&quot;)) +</span><br><span class="line">  geom_line(aes(x=xcor,y=thi, colour=&quot;green&quot;)) +</span><br><span class="line">  geom_line(aes(x=xcor,y=f.star.bar),colour=&quot;black&quot;)+</span><br><span class="line">  geom_errorbar(data=f, aes(x=x, y=NULL, ymin=y-2*0.1, ymax=y+2*0.1),width=0.2)+</span><br><span class="line">  geom_point(data=f,aes(x=x,y=y)) +</span><br><span class="line">  ggtitle(&quot;Posterior from Prior x likelihood/evidence (given x,x*,y)&quot;)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/10/GP/GP-2.png" title="[GP]">
+
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mu &lt;- rep(0,length(xcor))</span><br><span class="line">cov &lt;- GP.kernel(xcor,xcor,0.1) #nu is 0.1</span><br><span class="line"></span><br><span class="line">dat &lt;- data.frame(x=xcor, first=mvrnorm(1,mu,cov), sec=mvrnorm(1,mu,cov), thi=mvrnorm(1,mu,cov))</span><br><span class="line"></span><br><span class="line">dat %&gt;% ggplot() + </span><br><span class="line">  geom_line(aes(x=xcor,y=first, colour=&quot;red&quot;)) + </span><br><span class="line">  geom_line(aes(x=xcor,y=sec, colour=&quot;blue&quot;)) +</span><br><span class="line">  geom_line(aes(x=xcor,y=thi, colour=&quot;green&quot;)) +</span><br><span class="line">  ggtitle(&quot;When sigma is 0.1&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mu &lt;- rep(0,length(xcor))</span><br><span class="line">cov &lt;- GP.kernel(xcor,xcor,10) #nu is 10</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dat &lt;- data.frame(x=xcor, first=mvrnorm(1,mu,cov), sec=mvrnorm(1,mu,cov), thi=mvrnorm(1,mu,cov))</span><br><span class="line"></span><br><span class="line">dat %&gt;% ggplot() + </span><br><span class="line">  geom_line(aes(x=xcor,y=first, colour=&quot;red&quot;)) + </span><br><span class="line">  geom_line(aes(x=xcor,y=sec, colour=&quot;blue&quot;)) +</span><br><span class="line">  geom_line(aes(x=xcor,y=thi, colour=&quot;green&quot;)) +</span><br><span class="line">  ggtitle(&quot;When sigma is 10&quot;)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/10/GP/GP-3.png" title="[GP]">
+<img src="/2019/09/10/GP/GP-5.png" title="[GP]">
+
+
+
+
+
+
+
+
+
+<p>Reference: </p>
+<p><a href="http://krasserm.github.io/2018/03/19/gaussian-processes/" target="_blank" rel="noopener">Gaussian Process</a><br><a href="http://i-systems.github.io/HSE545/machine%20learning%20all/14%20Gaussian%20Process%20Regression/reference_files/cs229-gaussian_processes.pdf" target="_blank" rel="noopener">Gaussian Process</a><br><a href="https://distill.pub/2019/visual-exploration-gaussian-processes/#DimensionSwap" target="_blank" rel="noopener">A Visual Exploration of Gaussian Process</a><br><a href="http://www0.cs.ucl.ac.uk/staff/J.Shawe-Taylor/courses/ATML-1.pdf" target="_blank" rel="noopener">Gaussian Process: A Basic Properties and GP regression</a><br><a href="https://www.r-bloggers.com/gaussian-process-regression-with-r/" target="_blank" rel="noopener">Gaussian Process regression with R</a></p>
+<p>and my previous posts,</p>
+<p><a href="https://davidkwon91.github.io/tags/CholeskyDecomposition/" target="_blank" rel="noopener">Cholesky Decomposition</a><br><a href="https://davidkwon91.github.io/tags/CentralLimitTheorem/" target="_blank" rel="noopener">Central Limit Theorem</a><br><a href="https://davidkwon91.github.io/tags/CentralLimitTheorem/" target="_blank" rel="noopener">Schur Complement</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-09-09T09:49:56.000Z">2019-09-09</time>
                 
                 <div class="level-item">
@@ -993,7 +1160,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        9
+                        10
                     </p>
                 </div>
             </div>
@@ -1003,7 +1170,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        5
+                        6
                     </p>
                 </div>
             </div>
@@ -1013,7 +1180,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        11
+                        12
                     </p>
                 </div>
             </div>
@@ -1065,9 +1232,17 @@
                 <span class="level-item">ML</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
-        </a></li><li>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/ML/Gaussian-Process/">
+            <span class="level-start">
+                <span class="level-item">Gaussian Process</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Math/">
             <span class="level-start">
                 <span class="level-item">Math</span>
@@ -1111,7 +1286,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/ML-Histogram/" style="font-size: 10px;">-ML -Histogram</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
+        <a href="/tags/ML-Histogram/" style="font-size: 10px;">-ML -Histogram</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
     </div>
 </div>
 
@@ -1122,6 +1297,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/10/GP/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Gaussian Process">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-10T07:25:49.000Z">2019-09-10</time></div>
+                    <a href="/2019/09/10/GP/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Gaussian Process</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Gaussian-Process/">Gaussian Process</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1199,25 +1393,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/09/03/Matrix Basic/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Schur Complement">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time></div>
-                    <a href="/2019/09/03/Matrix Basic/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Schur Complement</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Math/">Math</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1236,7 +1411,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -1287,6 +1462,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/GaussianProcess/">
+                        <span class="tag">GaussianProcess</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Likelihood/">
                         <span class="tag">Likelihood</span>
                         <span class="tag is-grey">2</span>
@@ -1310,7 +1492,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ML/">
                         <span class="tag">ML</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
