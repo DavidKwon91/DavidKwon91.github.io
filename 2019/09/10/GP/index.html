@@ -19,7 +19,7 @@
 <meta property="og:description" content="Introduction to Gaussian Process In this post, I will discuss about Gaussian Process, which employs Gaussian distribution (also often called normal distribution that play an important role in statisti">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-09-10T09:53:45.768Z">
+<meta property="og:updated_time" content="2019-09-10T10:02:29.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gaussian Process">
 <meta name="twitter:description" content="Introduction to Gaussian Process In this post, I will discuss about Gaussian Process, which employs Gaussian distribution (also often called normal distribution that play an important role in statisti">
@@ -247,7 +247,7 @@
 <p>Now, with $\epsilon$ and $\epsilon_p$, </p>
 <p>$$\begin{bmatrix} \epsilon \\ \epsilon_p\end{bmatrix} \sim \mathcal{N}(0,\begin{bmatrix} \sigma^2I &amp; 0 \\ 0^{T} &amp; \sigma^2I\end{bmatrix})$$</p>
 <p>As mentioned above, the sum of two independent Gaussian distribution is also Gaussian, then eventually we have,</p>
-<p>$$\begin{bmatrix} y \\ y_p \end{bmatrix} | X, X_p = \begin{bmatrix} f \\ f_p \end{bmatrix} + \begin{bmatrix} \epsilon \\ \epsilon_p\end{bmatrix} \sim \mathcal{N}(0, \begin{bmatrix} K(X,X) + \sigma^2I &amp; K(X,X_p) \\ K(X_p, X) &amp; K(X_p,X_p)+\sigma^2I) \end{bmatrix})$$</p>
+<p>$$\begin{bmatrix} y \\ y_p \end{bmatrix} | X, X_p = \begin{bmatrix} f \\ f_p \end{bmatrix} + \begin{bmatrix} \epsilon \\ \epsilon_p\end{bmatrix} \sim \mathcal{N}(0, \begin{bmatrix} K(X,X) + \sigma^2I &amp; K(X,X_p) \\ K(X_p, X) &amp; K(X_p,X_p)+\sigma^2I \end{bmatrix})$$</p>
 <p>Here, we generate the prior distributions, which are multivariate normal distributions, with standard multivariate normal distribution and the Cholesky factor as the following. </p>
 <p>Refer to my previous post for Cholesky Decomposition, <a href="https://davidkwon91.github.io/tags/CholeskyDecomposition/" target="_blank" rel="noopener">Cholesky Decomposition post</a>. </p>
 <p>1) Compute covariance function, $\Sigma$, and Cholesky Decomposition for $\Sigma = LL^{T}$</p>
