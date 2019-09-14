@@ -262,7 +262,7 @@
 <p>1) Compute covariance function, $\Sigma$, and Cholesky Decomposition for $\Sigma = LL^{T}$</p>
 <p>2) Generate standard multivariate normal distribution, $u \sim \mathcal{N}(0,1)$</p>
 <p>3) Compute $x = \mu + Lu$, then $x$ will the prior distribution for $\mathcal{GP}$.  </p>
-<p>Back to out prediction with GP, we have </p>
+<p>Back to our prediction with GP, we have </p>
 <p>$$y_p|y,X,X_p \sim \mathcal{N}(\mu_p, \Sigma_p)$$ </p>
 <p>by the rules for conditioning Gaussians as we have done above. </p>
 <p>Then, we have </p>
@@ -280,18 +280,18 @@
 <p>Here is the implementation of Gaussian Process in R. </p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">xcor &lt;- seq(-5,4.9,by=0.1) #index or coordinate for our data</span><br><span class="line"></span><br><span class="line">#Kernel Function (Squared exponential kernel function or Gaussian kernel function)</span><br><span class="line">GP.kernel &lt;- function(x1,x2,l)&#123;</span><br><span class="line">  mat &lt;- matrix(rep(0, length(x1)*length(x2)), nrow=length(x1))</span><br><span class="line">  for (i in 1:length(x1)) &#123;</span><br><span class="line">    for (j in 1:length(x2)) &#123;</span><br><span class="line">      mat[i,j] &lt;- (x1[i]-x2[j])^2</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  kern &lt;- exp(-(0.5*mat)/l) #l is free parameter that can be seen as bandwidth</span><br><span class="line">  return(kern)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#Zero-mean and covariance function by the squared exponential kernel function with the index to create prior distribution</span><br><span class="line">mu &lt;- rep(0,length(xcor))</span><br><span class="line">cov &lt;- GP.kernel(xcor,xcor,1) #nu is 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#3 prior distributions</span><br><span class="line">dat &lt;- data.frame(x=xcor, first=mvrnorm(1,mu,cov), sec=mvrnorm(1,mu,cov), thi=mvrnorm(1,mu,cov))</span><br><span class="line">#mvrnorm function is same with the using of Cholesky factor of the covariance function multiplied by the standard multivariate normal distribution added mu</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#graph for the 3 priors</span><br><span class="line">dat %&gt;% ggplot() + </span><br><span class="line">  geom_line(aes(x=xcor,y=first, colour=&quot;red&quot;)) + </span><br><span class="line">  geom_line(aes(x=xcor,y=sec, colour=&quot;blue&quot;)) +</span><br><span class="line">  geom_line(aes(x=xcor,y=thi, colour=&quot;green&quot;))</span><br></pre></td></tr></table></figure>
 
-<img src="/2019/09/10/GP/GP-1.png" title="[GP]">
+
 
 
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#Assume we have a data</span><br><span class="line"></span><br><span class="line">#5 elements</span><br><span class="line">f &lt;- data.frame(x=c(-4,-3,-1,0,2),</span><br><span class="line">                y=c(-2,0,1,2,-1))</span><br><span class="line">x &lt;- f$x</span><br><span class="line">k.xx &lt;- GP.kernel(x,x,1)</span><br><span class="line">k.xxs &lt;- GP.kernel(x,xcor,1)</span><br><span class="line">k.xsxs &lt;- GP.kernel(xcor,xcor,1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f.star.bar &lt;- t(k.xxs)%*%solve(k.xx)%*%f$y #mean function</span><br><span class="line">cov.f.star &lt;- k.xsxs - t(k.xxs)%*%solve(k.xx)%*%k.xxs #covariance function</span><br><span class="line"></span><br><span class="line">#posterior distribution</span><br><span class="line">dat1 &lt;- data.frame(x=xcor, </span><br><span class="line">                  first=mvrnorm(1,f.star.bar,cov.f.star), </span><br><span class="line">                  sec=mvrnorm(1,f.star.bar,cov.f.star), </span><br><span class="line">                  thi=mvrnorm(1,f.star.bar,cov.f.star))</span><br><span class="line"></span><br><span class="line">#graph for 3 posterior distribution when nu is 1</span><br><span class="line">dat1 %&gt;% ggplot() + </span><br><span class="line">  geom_line(aes(x=xcor,y=first, colour=&quot;red&quot;)) + </span><br><span class="line">  geom_line(aes(x=xcor,y=sec, colour=&quot;blue&quot;)) +</span><br><span class="line">  geom_line(aes(x=xcor,y=thi, colour=&quot;green&quot;)) +</span><br><span class="line">  geom_line(aes(x=xcor,y=f.star.bar),colour=&quot;black&quot;)+</span><br><span class="line">  geom_errorbar(data=f, aes(x=x, y=NULL, ymin=y-2*0.1, ymax=y+2*0.1),width=0.2)+</span><br><span class="line">  geom_point(data=f,aes(x=x,y=y)) +</span><br><span class="line">  ggtitle(&quot;Posterior from Prior x likelihood/evidence (given x,x*,y)&quot;)</span><br></pre></td></tr></table></figure>
 
-<img src="/2019/09/10/GP/GP-2.png" title="[GP]">
+
 
 
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mu &lt;- rep(0,length(xcor))</span><br><span class="line">cov &lt;- GP.kernel(xcor,xcor,0.1) #nu is 0.1</span><br><span class="line"></span><br><span class="line">dat &lt;- data.frame(x=xcor, first=mvrnorm(1,mu,cov), sec=mvrnorm(1,mu,cov), thi=mvrnorm(1,mu,cov))</span><br><span class="line"></span><br><span class="line">dat %&gt;% ggplot() + </span><br><span class="line">  geom_line(aes(x=xcor,y=first, colour=&quot;red&quot;)) + </span><br><span class="line">  geom_line(aes(x=xcor,y=sec, colour=&quot;blue&quot;)) +</span><br><span class="line">  geom_line(aes(x=xcor,y=thi, colour=&quot;green&quot;)) +</span><br><span class="line">  ggtitle(&quot;When sigma is 0.1&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mu &lt;- rep(0,length(xcor))</span><br><span class="line">cov &lt;- GP.kernel(xcor,xcor,10) #nu is 10</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">dat &lt;- data.frame(x=xcor, first=mvrnorm(1,mu,cov), sec=mvrnorm(1,mu,cov), thi=mvrnorm(1,mu,cov))</span><br><span class="line"></span><br><span class="line">dat %&gt;% ggplot() + </span><br><span class="line">  geom_line(aes(x=xcor,y=first, colour=&quot;red&quot;)) + </span><br><span class="line">  geom_line(aes(x=xcor,y=sec, colour=&quot;blue&quot;)) +</span><br><span class="line">  geom_line(aes(x=xcor,y=thi, colour=&quot;green&quot;)) +</span><br><span class="line">  ggtitle(&quot;When sigma is 10&quot;)</span><br></pre></td></tr></table></figure>
 
-<img src="/2019/09/10/GP/GP-3.png" title="[GP]">
-<img src="/2019/09/10/GP/GP-5.png" title="[GP]">
+
+
 
 
 
@@ -363,7 +363,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        10
+                        11
                     </p>
                 </div>
             </div>
@@ -373,7 +373,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        6
+                        7
                     </p>
                 </div>
             </div>
@@ -383,7 +383,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        13
                     </p>
                 </div>
             </div>
@@ -430,6 +430,14 @@
             </h3>
             <ul class="menu-list">
             <li>
+        <a class="level is-marginless" href="/categories/Today/">
+            <span class="level-start">
+                <span class="level-item">-Today</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/ML/">
             <span class="level-start">
                 <span class="level-item">ML</span>
@@ -489,7 +497,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/ML-Histogram/" style="font-size: 10px;">-ML -Histogram</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
+        <a href="/tags/CharlesBukowski-Poem/" style="font-size: 10px;">-CharlesBukowski -Poem</a> <a href="/tags/ML-Histogram/" style="font-size: 10px;">-ML -Histogram</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
     </div>
 </div>
 
@@ -500,6 +508,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/15/No-Leaders-Please/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="No Leaders Please">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-14T21:01:18.000Z">2019-09-15</time></div>
+                    <a href="/2019/09/15/No-Leaders-Please/" class="title has-link-black-ter is-size-6 has-text-weight-normal">No Leaders Please</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Today/">-Today</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -577,25 +604,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/09/06/Cholesky/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Cholesky Decomposition">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-06T10:18:13.000Z">2019-09-06</time></div>
-                    <a href="/2019/09/06/Cholesky/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Cholesky Decomposition</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Math/">Math</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -614,7 +622,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -642,6 +650,13 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CharlesBukowski-Poem/">
+                        <span class="tag">-CharlesBukowski -Poem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ML-Histogram/">
