@@ -10,19 +10,19 @@
 <title>Logit - Logistic Regression - David Kwon</title>
 
 
-    <meta name="description" content="Logistic Regression from Logit  What is Logit?  To discuss logit, we need to know what the odds is.  Simply say, Odds is $\frac{p}{1-p}$, where $p$ is the probability of a binary outcome.  Since the o">
+    <meta name="description" content="Logistic Regression from Logit1. What is Logit?To discuss logit, we need to know what the odds is.  Simply say, Odds is $\frac{p}{1-p}$, where $p$ is the probability of a binary outcome.  Since the od">
 <meta name="keywords" content="ML,Likelihood,Odds,Logit,LogLikelihood">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Logit - Logistic Regression">
 <meta property="og:url" content="http://yoursite.com/2019/08/29/logit/index.html">
 <meta property="og:site_name" content="David Kwon">
-<meta property="og:description" content="Logistic Regression from Logit  What is Logit?  To discuss logit, we need to know what the odds is.  Simply say, Odds is $\frac{p}{1-p}$, where $p$ is the probability of a binary outcome.  Since the o">
+<meta property="og:description" content="Logistic Regression from Logit1. What is Logit?To discuss logit, we need to know what the odds is.  Simply say, Odds is $\frac{p}{1-p}$, where $p$ is the probability of a binary outcome.  Since the od">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-09-18T03:28:37.920Z">
+<meta property="og:updated_time" content="2019-09-18T04:35:01.158Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Logit - Logistic Regression">
-<meta name="twitter:description" content="Logistic Regression from Logit  What is Logit?  To discuss logit, we need to know what the odds is.  Simply say, Odds is $\frac{p}{1-p}$, where $p$ is the probability of a binary outcome.  Since the o">
+<meta name="twitter:description" content="Logistic Regression from Logit1. What is Logit?To discuss logit, we need to know what the odds is.  Simply say, Odds is $\frac{p}{1-p}$, where $p$ is the probability of a binary outcome.  Since the od">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -30,8 +30,6 @@
 
 
 
-
-<link rel="icon" href="/images/favicon.svg">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -172,11 +170,7 @@
             
         </h1>
         <div class="content">
-            <p>Logistic Regression from Logit</p>
-<ol>
-<li>What is Logit?</li>
-</ol>
-<p>To discuss logit, we need to know what the odds is. </p>
+            <h2 id="Logistic-Regression-from-Logit"><a href="#Logistic-Regression-from-Logit" class="headerlink" title="Logistic Regression from Logit"></a>Logistic Regression from Logit</h2><h3 id="1-What-is-Logit"><a href="#1-What-is-Logit" class="headerlink" title="1. What is Logit?"></a>1. What is Logit?</h3><p>To discuss logit, we need to know what the odds is. </p>
 <p>Simply say, Odds is $\frac{p}{1-p}$, where $p$ is the probability of a binary outcome. </p>
 <p>Since the odds has different properties than probability, it enables us to make new functions or new graphs. </p>
 <p>With the properties of odds, logarithm of odds is popularly used in machine learning industry, which is called logit. </p>
@@ -186,10 +180,7 @@
 <p>We can express this in terms of $p$ as the following,</p>
 <p>$$e^{\theta} = \frac{p}{1-p} \\ (1-p)e^{\theta} = p \\ e^{\theta} = p + p e^{\theta} \\ e^{\theta} = p(1+e^{\theta}) \\ \therefore p = \frac{e^{\theta}}{(1+e^{\theta})} = \frac{1}{1+e^{-\theta}}$$</p>
 <p>This is the logistic function, which is the special case of sigmoid function that is widely used for classification, such as logistic regression, tree-based algorithm for classification, or deep learning.<br>The logistic function is the CDF of the logistic distribution. </p>
-<ol start="2">
-<li>Logistic Distribution</li>
-</ol>
-<p>A property of the logistic distribution is that the logistic distribution is very similar with the normal distribution except for the kurtosis. </p>
+<h3 id="2-Logistic-Distribution"><a href="#2-Logistic-Distribution" class="headerlink" title="2. Logistic Distribution"></a>2. Logistic Distribution</h3><p>A property of the logistic distribution is that the logistic distribution is very similar with the normal distribution except for the kurtosis. </p>
 <p>The PDF of the logistic distribution is defined as, </p>
 <p>$$f(x; \mu, s) =  \frac{e^{-\frac{(x-\mu)}{s}}}{s(1+e^{-\frac{x-\mu}{s}})^2}$$</p>
 <p>The CDF of the logistic distribution is defined as,</p>
@@ -199,10 +190,7 @@
 <p>As a summary, the logistic distribution approximately follows the normal distribution with the variance $\sigma^2$, and we could use the property of the normal distribution as the following; </p>
 <p>By <a href="https://en.wikipedia.org/wiki/Standard_deviation#targetText=If%20a%20data%20distribution%20is,deviations%20(%CE%BC%20%C2%B1%203%CF%83)." target="_blank" rel="noopener">wikipedia</a>, </p>
 <p>“If a data distribution is approximately normal, then about 68 percent of the data values are within one standard deviation of the mean (mathematically, $\mu \pm \sigma$, where $\mu$ is the arithmetic mean), about 95 percent are within two standard deviations ($\mu \pm 2\sigma$), and about 99.7 percent lie within three standard deviations ($\mu \pm 3\sigma$).”</p>
-<ol start="3">
-<li>Logistic Regression</li>
-</ol>
-<p>In a binary logistic regression, the outcome is binary, which can be said that it follows binomial distribution.</p>
+<h3 id="3-Logistic-Regression"><a href="#3-Logistic-Regression" class="headerlink" title="3. Logistic Regression"></a>3. Logistic Regression</h3><p>In a binary logistic regression, the outcome is binary, which can be said that it follows binomial distribution.</p>
 <p>Let $y_i$ = number of successes in $m_i$ trials of a binomial process where $i = 1,…,n$, and we have a single predictor, $x_i$.</p>
 <p>Then, </p>
 <p>$$y_i | x_i \sim Bin(m_i, \theta(x_i))$$</p>
@@ -215,10 +203,7 @@
 <p>And, </p>
 <p>$$log(\frac{\theta(x_i)}{1-\theta(x_i)}) = \beta_0 + \beta_1 x_i$$</p>
 <p>Just taking the derivative on the log-likelihood function and setting this as zero is hard to solve the problem, so the parameter $\beta_0$ and $\beta_1$ can be estimated by some other optimization method, such as Newton’s method. </p>
-<ol start="4">
-<li>Wald Test in Logistic Regression</li>
-</ol>
-<p>Wald Test uses the property of the logistic distribution. </p>
+<h3 id="4-Wald-Test-in-Logistic-Regression"><a href="#4-Wald-Test-in-Logistic-Regression" class="headerlink" title="4. Wald Test in Logistic Regression"></a>4. Wald Test in Logistic Regression</h3><p>Wald Test uses the property of the logistic distribution. </p>
 <p>As mentioned above, the logistic distribution is almost approximately standard normal distribution. </p>
 <p>Hence, the Wald test statistic is used to test </p>
 <p>$$H_0 : \beta_1 = 0$$ </p>
@@ -230,10 +215,7 @@
 <p>$$Z = \frac{\hat{\beta_1}}{\hat{se}(\hat{\beta_1})} \sim \mathcal{N}(0,1)$$</p>
 <p>As mentioned above, the logistic distribution is approximately following the normal distribution with variance, $\sigma^2$.<br>Hence, dividing by the standard error for the estimated paramter gives you standard normal distribution, $\mathcal{N}(0,1)$.</p>
 <p>We can determine the coefficient significant with the Wald Test for the Logistic Regression. </p>
-<ol start="4">
-<li>Interpretation for coefficients of Logistic Regression. </li>
-</ol>
-<p>Unlike Linear Regression, the linear combination of coefficients of Logistic regression is logit. </p>
+<h3 id="4-Interpretation-for-coefficients-of-Logistic-Regression"><a href="#4-Interpretation-for-coefficients-of-Logistic-Regression" class="headerlink" title="4. Interpretation for coefficients of Logistic Regression."></a>4. Interpretation for coefficients of Logistic Regression.</h3><p>Unlike Linear Regression, the linear combination of coefficients of Logistic regression is logit. </p>
 <p>Hence, we can interpret the coefficient in different way. </p>
 <p>For example, with the single predictor as used above, the logit is</p>
 <p>$$log(\frac{p}{1-p}) = \beta_0 + \beta_1 x_i$$</p>
@@ -276,7 +258,7 @@
         
         <div class="level-end">
             <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/29/Likelihood/">
-                <span class="level-item">Likelihood vs Probability</span>
+                <span class="level-item">Likelihood</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>

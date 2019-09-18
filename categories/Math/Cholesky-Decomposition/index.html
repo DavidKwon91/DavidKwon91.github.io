@@ -26,8 +26,6 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
-
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
@@ -181,15 +179,12 @@
             
         </h1>
         <div class="content">
-            <p>Introduction to the Cholesky Decomposition. </p>
-<p>Cholesky Decomposition is used for its superior efficiency in linear calculation, such as affine function, $Ax = b$. Among many applications of Cholesky Decomposition, I will discuss about how the multivariate normal random numbers are generated with Cholesky Decomposition. </p>
-<p>$\large{Definition}$:</p>
-<p>Every positive definite matrix $A \in \mathcal{R}^{n \times n}$, </p>
+            <h1 id="Introduction-to-the-Cholesky-Decomposition"><a href="#Introduction-to-the-Cholesky-Decomposition" class="headerlink" title="Introduction to the Cholesky Decomposition."></a>Introduction to the Cholesky Decomposition.</h1><p>Cholesky Decomposition is used for its superior efficiency in linear calculation, such as affine function, $Ax = b$. Among many applications of Cholesky Decomposition, I will discuss about how the multivariate normal random numbers are generated with Cholesky Decomposition. </p>
+<h2 id="large-Definition"><a href="#large-Definition" class="headerlink" title="$\large{Definition}$:"></a>$\large{Definition}$:</h2><p>Every positive definite matrix $A \in \mathcal{R}^{n \times n}$, </p>
 <p>The Cholesky Decomposition is a form of </p>
 <p>$$A = LL^{T}$$</p>
 <p>where $L$ is the lower triangular matrix with real and positive diagonal elements. $L$ is called Cholesky factor of $A$ and it can be interpreted as the square root of a positive definite matrix. </p>
-<p>$\large{Algorithm}$:</p>
-<p>This algorithm is used in this <a href="https://aaronschlegel.me/cholesky-decomposition-r-example.html" target="_blank" rel="noopener">link</a>, and there are many apporaches to decompose a matrix with Cholesky Decomposition. </p>
+<h2 id="large-Algorithm"><a href="#large-Algorithm" class="headerlink" title="$\large{Algorithm}$:"></a>$\large{Algorithm}$:</h2><p>This algorithm is used in this <a href="https://aaronschlegel.me/cholesky-decomposition-r-example.html" target="_blank" rel="noopener">link</a>, and there are many apporaches to decompose a matrix with Cholesky Decomposition. </p>
 <ol>
 <li>Compute $L_{1} = \sqrt{a_{11}}$</li>
 <li>For $k = 2, … ,n$, find $L_{k-1}l_{k} = a_{k} for l_{k}$</li>

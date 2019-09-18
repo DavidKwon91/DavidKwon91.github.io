@@ -26,8 +26,6 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
-
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
@@ -179,8 +177,7 @@
             
         </h1>
         <div class="content">
-            <p>Creating Histogram function using Min-max transformation. </p>
-<p>The histogram plot of a vector or a data feature is to create bins, which is to create a series of interval, for the range of data values, and to count how many data values fall into each bins. </p>
+            <h2 id="Creating-Histogram-function-using-Min-max-transformation"><a href="#Creating-Histogram-function-using-Min-max-transformation" class="headerlink" title="Creating Histogram function using Min-max transformation."></a>Creating Histogram function using Min-max transformation.</h2><p>The histogram plot of a vector or a data feature is to create bins, which is to create a series of interval, for the range of data values, and to count how many data values fall into each bins. </p>
 <p>I create bins as the following;</p>
 <p>Suppose we have $M$ bins, then</p>
 <p>$$B_1 = [0,\frac{1}{M}), B_2 = [\frac{1}{M}, \frac{2}{M}), …, B_{M-1} = [\frac{M-2}{M}, \frac{M-1}{M}), B_{M} = [\frac{M-1}{M}, 1)$$</p>
@@ -255,8 +252,7 @@
         </h1>
         <div class="content">
             <p>This post will discuss Central Limit Theorem.<br>Central Limit Theorem is one of the most important topic in statistics, especially in probability theory. </p>
-<p>$\large{Definition}$:</p>
-<p>The sample average of independent and identically distributed random variables drawn from an unknown distribution with mean $\mu$ and variance $\sigma$ is approximately normal distributed when $n$ gets larger. That is, by the law of large numbers, the sample mean converges in probability and almost surely to the expected value $\mu$ as $n \to \infty$.</p>
+<h3 id="large-Definition"><a href="#large-Definition" class="headerlink" title="$\large{Definition}$:"></a>$\large{Definition}$:</h3><p>The sample average of independent and identically distributed random variables drawn from an unknown distribution with mean $\mu$ and variance $\sigma$ is approximately normal distributed when $n$ gets larger. That is, by the law of large numbers, the sample mean converges in probability and almost surely to the expected value $\mu$ as $n \to \infty$.</p>
 <p>Formally, let ${X_1,X_2,…X_n}$ be random samples of size $n$. Then, the sample average is defined as</p>
 <p>$$S_n = \frac{X_1 + X_2 + … + X_n}{n}$$ with mean $\mu$ and variance $\sigma^2$</p>
 <p>Then,<br>$$\sqrt{n}(S_n-\mu) \sim \mathcal{N}(0,\sigma^2)$$</p>
@@ -369,15 +365,12 @@
             
         </h1>
         <div class="content">
-            <p>Introduction to the Cholesky Decomposition. </p>
-<p>Cholesky Decomposition is used for its superior efficiency in linear calculation, such as affine function, $Ax = b$. Among many applications of Cholesky Decomposition, I will discuss about how the multivariate normal random numbers are generated with Cholesky Decomposition. </p>
-<p>$\large{Definition}$:</p>
-<p>Every positive definite matrix $A \in \mathcal{R}^{n \times n}$, </p>
+            <h1 id="Introduction-to-the-Cholesky-Decomposition"><a href="#Introduction-to-the-Cholesky-Decomposition" class="headerlink" title="Introduction to the Cholesky Decomposition."></a>Introduction to the Cholesky Decomposition.</h1><p>Cholesky Decomposition is used for its superior efficiency in linear calculation, such as affine function, $Ax = b$. Among many applications of Cholesky Decomposition, I will discuss about how the multivariate normal random numbers are generated with Cholesky Decomposition. </p>
+<h2 id="large-Definition"><a href="#large-Definition" class="headerlink" title="$\large{Definition}$:"></a>$\large{Definition}$:</h2><p>Every positive definite matrix $A \in \mathcal{R}^{n \times n}$, </p>
 <p>The Cholesky Decomposition is a form of </p>
 <p>$$A = LL^{T}$$</p>
 <p>where $L$ is the lower triangular matrix with real and positive diagonal elements. $L$ is called Cholesky factor of $A$ and it can be interpreted as the square root of a positive definite matrix. </p>
-<p>$\large{Algorithm}$:</p>
-<p>This algorithm is used in this <a href="https://aaronschlegel.me/cholesky-decomposition-r-example.html" target="_blank" rel="noopener">link</a>, and there are many apporaches to decompose a matrix with Cholesky Decomposition. </p>
+<h2 id="large-Algorithm"><a href="#large-Algorithm" class="headerlink" title="$\large{Algorithm}$:"></a>$\large{Algorithm}$:</h2><p>This algorithm is used in this <a href="https://aaronschlegel.me/cholesky-decomposition-r-example.html" target="_blank" rel="noopener">link</a>, and there are many apporaches to decompose a matrix with Cholesky Decomposition. </p>
 <ol>
 <li>Compute $L_{1} = \sqrt{a_{11}}$</li>
 <li>For $k = 2, … ,n$, find $L_{k-1}l_{k} = a_{k} for l_{k}$</li>

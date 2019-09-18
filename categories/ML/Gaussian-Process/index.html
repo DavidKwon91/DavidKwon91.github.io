@@ -26,8 +26,6 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
-
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
@@ -181,33 +179,22 @@
             
         </h1>
         <div class="content">
-            <p>Introduction to Gaussian Process</p>
-<p>In this post, I will discuss about Gaussian Process, which employs Gaussian distribution (also often called normal distribution that plays an important role in statistics. The previous posts, such as CLT, Cholesky Decomposition, and Schur Complement, are posted because they are needed to understand the Gaussian Process. </p>
+            <h2 id="Introduction-to-Gaussian-Process"><a href="#Introduction-to-Gaussian-Process" class="headerlink" title="Introduction to Gaussian Process"></a>Introduction to Gaussian Process</h2><p>In this post, I will discuss about Gaussian Process, which employs Gaussian distribution (also often called normal distribution that plays an important role in statistics. The previous posts, such as CLT, Cholesky Decomposition, and Schur Complement, are posted because they are needed to understand the Gaussian Process. </p>
 <p>Before I start with Gaussian Process, some important properties of Gaussian Distribution will be addressed. </p>
-<p>$\large{Gaussian}$ $\large{ Distribution}$</p>
-<p>If we have random vector $X$ following Gaussian Distribution, then we have </p>
+<h3 id="large-Gaussian-large-Distribution"><a href="#large-Gaussian-large-Distribution" class="headerlink" title="$\large{Gaussian}$ $\large{ Distribution}$"></a>$\large{Gaussian}$ $\large{ Distribution}$</h3><p>If we have random vector $X$ following Gaussian Distribution, then we have </p>
 <p>$$X = \begin{bmatrix} X_1 \\ X_2 \\ … \\ X_n \end{bmatrix} \sim \mathcal{N}(\mu, \Sigma)$$</p>
 <p>where $\Sigma = Cov(X_i, X_j) = E[(X_i - \mu_i)(X_j - \mu_j)^{T}]$</p>
 <p>Now, Suppose we have two vectors, $X$ and $Y$ that are subsets of a random variable, Z, with the following; </p>
 <p>$$P_Z = P_{X,Y} = \begin{bmatrix} X \\ Y \end{bmatrix} \sim \mathcal{N}(\mu, \Sigma) = \mathcal{N}(\begin{bmatrix} \mu_X \\ \mu_Y \end{bmatrix}, \begin{bmatrix} \Sigma_{XX} &amp; \Sigma_{XY} \\ \Sigma_{YX} &amp; \Sigma_{YY} \end{bmatrix})$$</p>
 <p>Then, the following properties holds; </p>
-<ol>
-<li>Normalization </li>
-</ol>
-<p>The density function will be </p>
+<h3 id="1-Normalization"><a href="#1-Normalization" class="headerlink" title="1. Normalization"></a>1. Normalization</h3><p>The density function will be </p>
 <p>$$\int_{Z} p(Z;\mu,\Sigma) dz = 1$$</p>
 <p>where $Z = \begin{bmatrix} X \\ Y \end{bmatrix}$</p>
-<ol start="2">
-<li>Marginalization</li>
-</ol>
-<p>The maginal densities will be</p>
+<h3 id="2-Marginalization"><a href="#2-Marginalization" class="headerlink" title="2. Marginalization"></a>2. Marginalization</h3><p>The maginal densities will be</p>
 <p>$$p(X) = \int_{Y} p(X,Y; \mu, \Sigma) dy \\ p(Y) = \int_{X} p(X,Y; \mu, \Sigma) dx$$</p>
 <p>which are Gaussian, therefore</p>
 <p>$$X \sim \mathcal{N}(\mu_X, \Sigma_{XX}) \\ Y \sim \mathcal{N}(\mu_Y, \Sigma_{YY})$$</p>
-<ol start="3">
-<li>Conditioning</li>
-</ol>
-<p>The conditional densities will also be Gaussian, and the conditional expected value and covariance are calculated with the properties of Schur Complement as the following. </p>
+<h3 id="3-Conditioning"><a href="#3-Conditioning" class="headerlink" title="3. Conditioning"></a>3. Conditioning</h3><p>The conditional densities will also be Gaussian, and the conditional expected value and covariance are calculated with the properties of Schur Complement as the following. </p>
 <p>Refer to the wiki, <a href="https://en.wikipedia.org/wiki/Schur_complement" target="_blank" rel="noopener">Schur Complement</a>. </p>
 <p>The conditional expectation and covariance of X given Y is the Schur Complement of C in $\Sigma$ where if $\Sigma$ is defined as </p>
 <p>$$\Sigma = \begin{bmatrix} A &amp; B \\ B^{T} &amp; C \end{bmatrix}$$ </p>
@@ -215,10 +202,7 @@
 <p>Hence, the conditional covariance of X given Y will be</p>
 <p>$$P_{X,Y} = \mathcal{N}(\begin{bmatrix} \mu_X \\ \mu_Y \end{bmatrix}, \begin{bmatrix} \Sigma_{XX} &amp; \Sigma_{XY} \\ \Sigma_{YX} &amp; \Sigma_{YY} \end{bmatrix})$$</p>
 <p>$$X | Y \sim \mathcal{N}(\mu_X + \Sigma_{XY}\Sigma_{YY}^{-1}(Y-\mu_Y), \Sigma_{XX} - \Sigma_{XY}\Sigma_{YY}^{-1}\Sigma_{YX}) \\<br>Y | X \sim \mathcal{N}(\mu_Y + \Sigma_{YX}\Sigma_{XX}^{-1}(X-\mu_X), \Sigma_{YY} - \Sigma_{YX}\Sigma_{XX}^{-1}\Sigma_{XY})$$</p>
-<ol start="4">
-<li>Summation </li>
-</ol>
-<p>The sum of independent Gaussian random variables is also Gaussian;</p>
+<h3 id="4-Summation"><a href="#4-Summation" class="headerlink" title="4. Summation"></a>4. Summation</h3><p>The sum of independent Gaussian random variables is also Gaussian;</p>
 <p>Let $y \sim \mathcal{N}(\mu, \Sigma)$ and $z \sim \mathcal{N}(\mu’,\Sigma’)$</p>
 <p>Then, </p>
 <p>$$y + z \sim \mathcal{N}(\mu + \mu’, \Sigma+\Sigma’)$$</p>
@@ -238,8 +222,7 @@
 <p>We might then think about what if our $f(x)$ follows Gaussian distribution. </p>
 <p>Then, in the above equation, $y = f(x) + \epsilon$ will follow Gaussian distribution by the property that the sum of two independent Gaussian distribution is Gaussian distribution. </p>
 <p>Here is the start of the Gaussian Process. </p>
-<p>$\large{Gaussian}$ $\large{ Process}$</p>
-<p>A Gaussian Process is one of stochastic process that is a collection of random variables, ${f(x) : x \in \mathcal{X}}$, indexed by elements from some set $\mathcal{X}$, known as the index set, and GP is such stochastic process that any finite subcollection of random variables has a multivariate Gaussian distribution. </p>
+<h2 id="large-Gaussian-large-Process"><a href="#large-Gaussian-large-Process" class="headerlink" title="$\large{Gaussian}$ $\large{ Process}$"></a>$\large{Gaussian}$ $\large{ Process}$</h2><p>A Gaussian Process is one of stochastic process that is a collection of random variables, ${f(x) : x \in \mathcal{X}}$, indexed by elements from some set $\mathcal{X}$, known as the index set, and GP is such stochastic process that any finite subcollection of random variables has a multivariate Gaussian distribution. </p>
 <p>Here, we assume the $f(x)$ follows Gaussian distribution with some $\mu$ and $\Sigma$. </p>
 <p>The $\mu$ and $\Sigma$ are called as “mean function” and “covariance function” with the notation, </p>
 <p>$$f(.) \sim \mathcal{GP}(m(.), k(.,.))$$</p>
@@ -272,8 +255,7 @@
 <p>$$\Sigma = \begin{bmatrix} A &amp; B \\ B^{T} &amp; C \end{bmatrix}$$ </p>
 <p>$$Cov(X|Y) = A-BC^{-1}B^{T} \\ E(X|Y) = E(X) + BC^{-1}(Y-E(Y))$$</p>
 <p>Here, the $E(X)$ and $E(Y) = 0$ for $\mathcal{GP}$, thus we have just $BC^{-1}Y$ term, which is $\mu_p = K(X_p, X)K((X,X)+\sigma^2I)^{-1}y$</p>
-<p>Kernel Function, $K(.,.)$?</p>
-<p>Commonly used kernel function for $\mathcal{GP}$ is <em>squared exponential kernel function</em>, which is often called Gaussian kernel. </p>
+<h3 id="Kernel-Function-K"><a href="#Kernel-Function-K" class="headerlink" title="Kernel Function, $K(.,.)$?"></a>Kernel Function, $K(.,.)$?</h3><p>Commonly used kernel function for $\mathcal{GP}$ is <em>squared exponential kernel function</em>, which is often called Gaussian kernel. </p>
 <p>It’s defined as, </p>
 <p>$$K(X,X_p) = exp(-\frac{1}{2\nu} ||X-X_p||^2) = exp(-\frac{1}{2\nu} (X-X_p)^{T}(X-X_p))$$</p>
 <p>where the $\nu$ is the free parameter for bandwidth of the function smoothness. </p>

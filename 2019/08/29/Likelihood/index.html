@@ -7,22 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Likelihood vs Probability - David Kwon</title>
+<title>Likelihood - David Kwon</title>
 
 
-    <meta name="description" content="Likelihood vs Probability Likelihood Definition (Wikipedia) : In statistics, the likelihood function expresses how probable a given set of observations is for different values of statistical parameter">
+    <meta name="description" content="Likelihood vs ProbabilityLikelihood Definition (Wikipedia) : In statistics, the likelihood function expresses how probable a given set of observations is for different values of statistical parameters">
 <meta name="keywords" content="ML,Likelihood">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Likelihood vs Probability">
+<meta property="og:title" content="Likelihood">
 <meta property="og:url" content="http://yoursite.com/2019/08/29/Likelihood/index.html">
 <meta property="og:site_name" content="David Kwon">
-<meta property="og:description" content="Likelihood vs Probability Likelihood Definition (Wikipedia) : In statistics, the likelihood function expresses how probable a given set of observations is for different values of statistical parameter">
+<meta property="og:description" content="Likelihood vs ProbabilityLikelihood Definition (Wikipedia) : In statistics, the likelihood function expresses how probable a given set of observations is for different values of statistical parameters">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2019-09-18T03:28:44.519Z">
+<meta property="og:updated_time" content="2019-09-18T04:36:11.030Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Likelihood vs Probability">
-<meta name="twitter:description" content="Likelihood vs Probability Likelihood Definition (Wikipedia) : In statistics, the likelihood function expresses how probable a given set of observations is for different values of statistical parameter">
+<meta name="twitter:title" content="Likelihood">
+<meta name="twitter:description" content="Likelihood vs ProbabilityLikelihood Definition (Wikipedia) : In statistics, the likelihood function expresses how probable a given set of observations is for different values of statistical parameters">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -30,8 +30,6 @@
 
 
 
-
-<link rel="icon" href="/images/favicon.svg">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -93,7 +91,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Likelihood vs Probability" height="28">
+                <img src="/images/logo.svg" alt="Likelihood" height="28">
             
             </a>
         </div>
@@ -168,28 +166,18 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Likelihood vs Probability
+                Likelihood
             
         </h1>
         <div class="content">
-            <p>Likelihood vs Probability</p>
-<p>Likelihood Definition (Wikipedia) : In statistics, the likelihood function expresses how probable a given set of observations is for different values of statistical parameters. It is equal to the joint probability distribution of the random sample evaluated at the given observations, and it is, thus, solely a functoin of paramters that index the family of those probability distributions. </p>
-<ol>
-<li>What is Likelihood? </li>
-</ol>
-<p>Likelihoods are the y-axis values for fixed data points with distribution that can be moved, as the following; </p>
+            <h2 id="Likelihood-vs-Probability"><a href="#Likelihood-vs-Probability" class="headerlink" title="Likelihood vs Probability"></a>Likelihood vs Probability</h2><p>Likelihood Definition (Wikipedia) : In statistics, the likelihood function expresses how probable a given set of observations is for different values of statistical parameters. It is equal to the joint probability distribution of the random sample evaluated at the given observations, and it is, thus, solely a functoin of paramters that index the family of those probability distributions. </p>
+<h2 id="1-What-is-Likelihood"><a href="#1-What-is-Likelihood" class="headerlink" title="1. What is Likelihood?"></a>1. What is Likelihood?</h2><p>Likelihoods are the y-axis values for fixed data points with distribution that can be moved, as the following; </p>
 <p>$$\mathcal{L}(\theta | x) = \mathcal{L}(distribution | data)$$</p>
 <p>Whereas, Probabilities are the areas under a fixed distribution.</p>
 <p>$$P(data | distribution)$$</p>
 <p>If we find the maximum y-axis value for fixed data points by moving the distribution, we find the optimal distribution for the fixed data.<br>Therefore, we can use the likelihood function to fit a optimal distribution on the fixed data by finding maximum likelihood estimator. </p>
-<ol start="2">
-<li>Maximum Likelihood? </li>
-</ol>
-<p>To find the maximum likelihood estimator, we might find a function for likelihoods given fixed data points, and take a derivative for the function, and set the derivatives as 0. </p>
-<ul>
-<li>Example 1: Exponential distribution</li>
-</ul>
-<p>The Probability Density Function of Exponential Distribution is defined as the following;</p>
+<h2 id="2-Maximum-Likelihood"><a href="#2-Maximum-Likelihood" class="headerlink" title="2. Maximum Likelihood?"></a>2. Maximum Likelihood?</h2><p>To find the maximum likelihood estimator, we might find a function for likelihoods given fixed data points, and take a derivative for the function, and set the derivatives as 0. </p>
+<h3 id="Example-1-Exponential-distribution"><a href="#Example-1-Exponential-distribution" class="headerlink" title="Example 1: Exponential distribution"></a>Example 1: Exponential distribution</h3><p>The Probability Density Function of Exponential Distribution is defined as the following;</p>
 <p>$$f(x; \lambda) = \lambda e ^ {- \lambda x} \qquad if  \qquad x \geq 0$$</p>
 <p>Otherwise, </p>
 <p>$$f(x; \lambda) = 0$$</p>
@@ -213,7 +201,7 @@
 <p>$$\lambda = \frac{1}{\mu}$$.</p>
 <p>And, this connects to the concept of the maximum entropy probability distribution.</p>
 <p>“The exponential distribution is the maximum entropy distribution among all continuous distribution supported in $[0, \infty]$ that have a specified mean of $\frac{1}{\lambda}$”</p>
-<pre><code>- Example 2: Normal Distribution</code></pre><p>In normal distribution (often called Gaussian distribution), the mean $\mu$ and the variance $\sigma^2$ will be the parameter that the determines how the normal distribution looks like. With $\mu$ and $\sigma^2$, we will find the maximum likelihood estimator for the normal distribution given fixed data. </p>
+<h3 id="Example-2-Normal-Distribution"><a href="#Example-2-Normal-Distribution" class="headerlink" title="Example 2: Normal Distribution"></a>Example 2: Normal Distribution</h3><p>In normal distribution (often called Gaussian distribution), the mean $\mu$ and the variance $\sigma^2$ will be the parameter that the determines how the normal distribution looks like. With $\mu$ and $\sigma^2$, we will find the maximum likelihood estimator for the normal distribution given fixed data. </p>
 <p>The PDF of normal distribution is defined as,</p>
 <p>$$f(x|\mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</p>
 <p>The Likelihood of $\mu$ and $\sigma$ for normal distribution will be, </p>
@@ -776,7 +764,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Likelihood vs Probability" height="28">
+                    <img src="/images/logo.svg" alt="Likelihood" height="28">
                 
                 </a>
                 <p class="is-size-7">
