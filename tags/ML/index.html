@@ -324,10 +324,85 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-09T09:49:56.000Z">2019-09-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Math/Histogram/">Histogram</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 331 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/09/hist/">Histogram</a>
+            
+        </h1>
+        <div class="content">
+            <p>Creating Histogram function using Min-max transformation. </p>
+<p>The histogram plot of a vector or a data feature is to create bins, which is to create a series of interval, for the range of data values, and to count how many data values fall into each bins. </p>
+<p>I create bins as the following;</p>
+<p>Suppose we have $M$ bins, then</p>
+<p>$$B_1 = [0,\frac{1}{M}), B_2 = [\frac{1}{M}, \frac{2}{M}), …, B_{M-1} = [\frac{M-2}{M}, \frac{M-1}{M}), B_{M} = [\frac{M-1}{M}, 1)$$</p>
+<p>To create histogram function with the bins, I wanted to transform the data elements in interval $(0,1)$, so I can put them into each bins. </p>
+<p>That’s why I used Min-max transformation, which makes the data reducing to a scale between 0 and 1. </p>
+<p>Min-max transformation is the following formula;</p>
+<p>$$z = \frac{x-min(x)}{max(x)-min(x)}$$</p>
+<p>The below codes are the implementation of creating histogram plot in R. I used the values from CLT posts. </p>
+<p><a href="https://davidkwon91.github.io/2019/09/09/CLT/" target="_blank" rel="noopener">CLT link</a></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Hist &lt;- function(vec,bin)&#123;</span><br><span class="line">  vec.minmax &lt;- (vec - min(vec))/(max(vec)-min(vec)) #min-max transformation of the vector or the values</span><br><span class="line">  </span><br><span class="line">  vec.bins &lt;- rep(0,bin)</span><br><span class="line">  for(i in 1:bin)&#123;</span><br><span class="line">  	#find the values that is the closest to the value of each boundary of the bins</span><br><span class="line">    vec.bins[i] &lt;- vec[which(abs(vec.minmax - i/bin) == min(abs(vec.minmax - i/bin)))]</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  dat &lt;- data.frame(x=vec.bins, freq=0)</span><br><span class="line">  for(i in 1:bin)&#123;</span><br><span class="line">  	#put the values into each bins associateed</span><br><span class="line">    dat[i,2] &lt;- length(which(vec.minmax &gt; (i-1)/bin &amp; vec.minmax &lt;= i/bin))</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  #plotting</span><br><span class="line">  p &lt;- dat %&gt;% ggplot(aes(x=x, y=freq)) + geom_bar(stat=&quot;identity&quot;, position=position_dodge(width=0.5)) + theme_bw()</span><br><span class="line"></span><br><span class="line">  return(p)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hist(sampled.1000,15)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/hist/histrogram-1.png" title="[hist]">
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hist(sampled.10000,15)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/hist/histrogram-2.png" title="[hist]">
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hist(bin.sampled.10000,15)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/hist/histrogram-3.png" title="[hist]">
+
+
+
+
+
+
+<p>Reference:<br><a href="http://faculty.washington.edu/yenchic/18W_425/Lec6_hist_KDE.pdf" target="_blank" rel="noopener">Histogram and Kernel Density EStimation</a><br><a href="https://medium.com/@shirleyliu/histograms-from-scratch-482dba2a4e31" target="_blank" rel="noopener">Histogram from Scratch</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-09-09T07:08:11.000Z">2019-09-09</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Math/CLT/">CLT</a>
                 </div>
                 
                 
@@ -442,7 +517,7 @@
                 <time class="level-item has-text-grey" datetime="2019-09-06T10:18:13.000Z">2019-09-06</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Math/Cholesky-Decomposition/">Cholesky Decomposition</a>
                 </div>
                 
                 
@@ -522,7 +597,7 @@
                 <time class="level-item has-text-grey" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Math/Schur-Complement/">Schur Complement</a>
                 </div>
                 
                 
@@ -624,7 +699,7 @@
                 <time class="level-item has-text-grey" datetime="2019-08-29T05:48:09.000Z">2019-08-29</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/ML/">ML</a>
+                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Logistic-Regression/">Logistic Regression</a>
                 </div>
                 
                 
@@ -738,7 +813,7 @@
                 <time class="level-item has-text-grey" datetime="2019-08-29T03:50:08.000Z">2019-08-29</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/ML/">ML</a>
+                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Likelihood/">Likelihood</a>
                 </div>
                 
                 
@@ -895,7 +970,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        7
+                        12
                     </p>
                 </div>
             </div>
@@ -905,7 +980,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        13
+                        14
                     </p>
                 </div>
             </div>
@@ -952,14 +1027,6 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Today/">
-            <span class="level-start">
-                <span class="level-item">-Today</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
         <a class="level is-marginless" href="/categories/ML/">
             <span class="level-start">
                 <span class="level-item">ML</span>
@@ -975,6 +1042,22 @@
             <span class="level-end">
                 <span class="level-item tag">1</span>
             </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Likelihood/">
+            <span class="level-start">
+                <span class="level-item">Likelihood</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Logistic-Regression/">
+            <span class="level-start">
+                <span class="level-item">Logistic Regression</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Math/">
             <span class="level-start">
@@ -983,13 +1066,45 @@
             <span class="level-end">
                 <span class="level-item tag">4</span>
             </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Math/CLT/">
+            <span class="level-start">
+                <span class="level-item">CLT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/Cholesky-Decomposition/">
+            <span class="level-start">
+                <span class="level-item">Cholesky Decomposition</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/Histogram/">
+            <span class="level-start">
+                <span class="level-item">Histogram</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/Schur-Complement/">
+            <span class="level-start">
+                <span class="level-item">Schur Complement</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Today/">
             <span class="level-start">
                 <span class="level-item">Today</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Today/August/">
@@ -1005,7 +1120,7 @@
                 <span class="level-item">September</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li></ul></li>
             </ul>
@@ -1019,7 +1134,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CharlesBukowski-Poem/" style="font-size: 10px;">-CharlesBukowski -Poem</a> <a href="/tags/ML-Histogram/" style="font-size: 10px;">-ML -Histogram</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
+        <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
     </div>
 </div>
 
@@ -1063,7 +1178,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-14T21:01:18.000Z">2019-09-15</time></div>
                     <a href="/2019/09/15/No-Leaders-Please/" class="title has-link-black-ter is-size-6 has-text-weight-normal">No Leaders Please</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Today/">-Today</a>
+                        <a class="has-link-grey -link" href="/categories/Today/">Today</a> / <a class="has-link-grey -link" href="/categories/Today/September/">September</a>
                     </p>
                 </div>
             </div>
@@ -1082,7 +1197,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-09T09:49:56.000Z">2019-09-09</time></div>
                     <a href="/2019/09/09/hist/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Histogram</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                        <a class="has-link-grey -link" href="/categories/Math/">Math</a> / <a class="has-link-grey -link" href="/categories/Math/Histogram/">Histogram</a>
                     </p>
                 </div>
             </div>
@@ -1101,7 +1216,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-09T07:08:11.000Z">2019-09-09</time></div>
                     <a href="/2019/09/09/CLT/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CLT</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Math/">Math</a>
+                        <a class="has-link-grey -link" href="/categories/Math/">Math</a> / <a class="has-link-grey -link" href="/categories/Math/CLT/">CLT</a>
                     </p>
                 </div>
             </div>
@@ -1174,22 +1289,15 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/CharlesBukowski-Poem/">
-                        <span class="tag">-CharlesBukowski -Poem</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ML-Histogram/">
-                        <span class="tag">-ML -Histogram</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
                     <a class="tags has-addons" href="/tags/CentralLimitTheorem/">
                         <span class="tag">CentralLimitTheorem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CharlesBukowski/">
+                        <span class="tag">CharlesBukowski</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1204,6 +1312,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/GaussianProcess/">
                         <span class="tag">GaussianProcess</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Histogram/">
+                        <span class="tag">Histogram</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1232,7 +1347,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ML/">
                         <span class="tag">ML</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -1246,6 +1361,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Odds/">
                         <span class="tag">Odds</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Poem/">
+                        <span class="tag">Poem</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

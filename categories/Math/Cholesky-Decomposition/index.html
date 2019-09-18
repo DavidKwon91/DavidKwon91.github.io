@@ -7,12 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>David Kwon</title>
+<title>Category: Cholesky Decomposition - David Kwon</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="David Kwon">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/categories/Math/Cholesky-Decomposition/index.html">
 <meta property="og:site_name" content="David Kwon">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
@@ -138,20 +138,37 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
+                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">Categories</a></li>
+            
+            <li><a href="/categories/Math/">Math</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">Cholesky Decomposition</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
     <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-27T05:14:44.000Z">2019-08-27</time>
+                <time class="level-item has-text-grey" datetime="2019-09-06T10:18:13.000Z">2019-09-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Math/Cholesky-Decomposition/">Cholesky Decomposition</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 235 words)
+                    3 minutes read (About 416 words)
                 </span>
                 
                 
@@ -160,21 +177,46 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/08/27/Starting-blog/">Starting Blog</a>
+                <a class="has-link-black-ter" href="/2019/09/06/Cholesky/">Cholesky Decomposition</a>
             
         </h1>
         <div class="content">
-            <p>Welcome to David’s blog!<br>I am excited to start my first blog. </p>
-<p>This is Yongbock (David) Kwon who likes studying statistics, especially machine learning. </p>
-<p>I love to listen to musics! </p>
-<p>I started this blog to record what I study, what I listen to, and what I think in my daily life, because I have a bad memory. </p>
-<p>And, the record is the one that is able to get over against the river of time as a human. </p>
-<p>Hence, this blog will be my study notes, my diary, and the representation of myself. </p>
-<p>Let’s begin! </p>
-<p>제 블로그에 오신걸 환영합니다!<br>첫 블로그인지라 많이 긴장되네요!</p>
-<p>현재 머신러닝을 공부중에 있으며, 음악듣는걸 좋아합니다.</p>
-<p>기억력이 좋지 않은 편이라, 무엇을 공부했고, 무슨 음악을 들으며, 일상중에 무슨 생각을 하는지에 대해 기록해보고자 블로그를 만들었습니다. </p>
-<p>즉, 제 공부 노트이자, 일기장이자, 권용복이 누구인지 보여주는 블로그입니다! </p>
+            <p>Introduction to the Cholesky Decomposition. </p>
+<p>Cholesky Decomposition is used for its superior efficiency in linear calculation, such as affine function, $Ax = b$. Among many applications of Cholesky Decomposition, I will discuss about how the multivariate normal random numbers are generated with Cholesky Decomposition. </p>
+<p>$\large{Definition}$:</p>
+<p>Every positive definite matrix $A \in \mathcal{R}^{n \times n}$, </p>
+<p>The Cholesky Decomposition is a form of </p>
+<p>$$A = LL^{T}$$</p>
+<p>where $L$ is the lower triangular matrix with real and positive diagonal elements. $L$ is called Cholesky factor of $A$ and it can be interpreted as the square root of a positive definite matrix. </p>
+<p>$\large{Algorithm}$:</p>
+<p>This algorithm is used in this <a href="https://aaronschlegel.me/cholesky-decomposition-r-example.html" target="_blank" rel="noopener">link</a>, and there are many apporaches to decompose a matrix with Cholesky Decomposition. </p>
+<ol>
+<li>Compute $L_{1} = \sqrt{a_{11}}$</li>
+<li>For $k = 2, … ,n$, find $L_{k-1}l_{k} = a_{k} for l_{k}$</li>
+<li>$l_{kk} = \sqrt{a_{kk}-l_{k}^{T}l_{k}}$</li>
+<li>$L_{k} = \begin{bmatrix} L_{k-1} &amp; 0 \\ l_{k}^{T} &amp; l_{kk} \end{bmatrix}$</li>
+</ol>
+<p>then $L_{k}$ is the lower triangular matrix of Cholesky Decomposition. </p>
+<p>Other approaches; </p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Cholesky_decomposition#Proof_for_positive_semi-definite_matrices" target="_blank" rel="noopener">Cholesky Decomposition</a></li>
+<li><a href="http://www.seas.ucla.edu/~vandenbe/133A/lectures/chol.pdf" target="_blank" rel="noopener">link</a></li>
+</ul>
+<p>$\large{Generating}$ $\large{Multivariate}$ $\large{Normal}$ $\large{Random}$ $\large{Number}$ $\large{with}$ $\large{Cholesky}$ $\large{Decomposition}$</p>
+<p>If we have $X$ that follows Normal Distribution, </p>
+<p>then</p>
+<p>$$X \sim \mathcal{N}(\mu, \Sigma)$$</p>
+<p>Let $Z$ follows standard normal distribution with mean 0 and variance 1.</p>
+<p>Then,</p>
+<p>$$Z \sim \mathcal{N}(0,I)$$</p>
+<p>Then, we can express the $X$ with $Z$ as the following; </p>
+<p>$$X = A+BZ$$</p>
+<p>then $X$ will follow normal distribution as the following; </p>
+<p>$$X \sim \mathcal{N}(A,BB’)$$</p>
+<p>Here, $\mu$ is the $A$, and $\Sigma$ is the $BB’$. The $B$ is the lower triangular matrix of the decomposed $X$, which is the Cholesky factor. </p>
+<p>Therefore, If we have a Cholesky factor, $B$, of covariance matrix of $X$, then the product of $B$ and standard normal random number matrix will generate the multivariate normal random number associated with the mean $\mu$ and covariance $\Sigma$ of $X$. </p>
+<p>Reference:</p>
+<p><a href="https://en.wikipedia.org/wiki/Cholesky_decomposition#Proof_for_positive_semi-definite_matrices" target="_blank" rel="noopener">Cholesky Decomposition</a><br><a href="http://www.seas.ucla.edu/~vandenbe/133A/lectures/chol.pdf" target="_blank" rel="noopener">Cholesky Factorization</a><br><a href="https://aaronschlegel.me/cholesky-decomposition-r-example.html" target="_blank" rel="noopener">Cholesky Decomposition with R example</a><br><a href="http://rinterested.github.io/statistics/multivariate_normal_draws.html" target="_blank" rel="noopener">link</a><br><a href="https://www2.stat.duke.edu/courses/Spring12/sta104.1/Lectures/Lec22.pdf" target="_blank" rel="noopener">Bivariate Normal Distribution</a></p>
 
         </div>
         
@@ -190,25 +232,6 @@
 
 
 
-
-    
-<div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous">
-            <a class="is-flex-grow has-text-black-ter" href="/">Previous</a>
-        </div>
-        <div class="pagination-next is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/page/3/">Next</a>
-        </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
-            
-            <li><a class="pagination-link is-current" href="/page/2/">2</a></li>
-            
-        </ul>
-    </nav>
-</div>
 </div>
                 
 

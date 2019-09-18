@@ -7,12 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>David Kwon</title>
+<title>Category: CLT - David Kwon</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="David Kwon">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:url" content="http://yoursite.com/categories/Math/CLT/index.html">
 <meta property="og:site_name" content="David Kwon">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
@@ -138,20 +138,37 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
+                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">Categories</a></li>
+            
+            <li><a href="/categories/Math/">Math</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">CLT</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
     <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-27T05:14:44.000Z">2019-08-27</time>
+                <time class="level-item has-text-grey" datetime="2019-09-09T07:08:11.000Z">2019-09-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Math/CLT/">CLT</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 235 words)
+                    4 minutes read (About 591 words)
                 </span>
                 
                 
@@ -160,21 +177,81 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/08/27/Starting-blog/">Starting Blog</a>
+                <a class="has-link-black-ter" href="/2019/09/09/CLT/">CLT</a>
             
         </h1>
         <div class="content">
-            <p>Welcome to David’s blog!<br>I am excited to start my first blog. </p>
-<p>This is Yongbock (David) Kwon who likes studying statistics, especially machine learning. </p>
-<p>I love to listen to musics! </p>
-<p>I started this blog to record what I study, what I listen to, and what I think in my daily life, because I have a bad memory. </p>
-<p>And, the record is the one that is able to get over against the river of time as a human. </p>
-<p>Hence, this blog will be my study notes, my diary, and the representation of myself. </p>
-<p>Let’s begin! </p>
-<p>제 블로그에 오신걸 환영합니다!<br>첫 블로그인지라 많이 긴장되네요!</p>
-<p>현재 머신러닝을 공부중에 있으며, 음악듣는걸 좋아합니다.</p>
-<p>기억력이 좋지 않은 편이라, 무엇을 공부했고, 무슨 음악을 들으며, 일상중에 무슨 생각을 하는지에 대해 기록해보고자 블로그를 만들었습니다. </p>
-<p>즉, 제 공부 노트이자, 일기장이자, 권용복이 누구인지 보여주는 블로그입니다! </p>
+            <p>This post will discuss Central Limit Theorem.<br>Central Limit Theorem is one of the most important topic in statistics, especially in probability theory. </p>
+<p>$\large{Definition}$:</p>
+<p>The sample average of independent and identically distributed random variables drawn from an unknown distribution with mean $\mu$ and variance $\sigma$ is approximately normal distributed when $n$ gets larger. That is, by the law of large numbers, the sample mean converges in probability and almost surely to the expected value $\mu$ as $n \to \infty$.</p>
+<p>Formally, let ${X_1,X_2,…X_n}$ be random samples of size $n$. Then, the sample average is defined as</p>
+<p>$$S_n = \frac{X_1 + X_2 + … + X_n}{n}$$ with mean $\mu$ and variance $\sigma^2$</p>
+<p>Then,<br>$$\sqrt{n}(S_n-\mu) \sim \mathcal{N}(0,\sigma^2)$$</p>
+<p>The normalized random mean variable will be</p>
+<p>$$Z_n = \frac{S_n-\mu}{\frac{\sigma}{\sqrt{n}}} \sim \mathcal{N}(0,1)$$</p>
+<p>The below part will be implementation of CLT in R. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set.seed(1004)</span><br><span class="line">x1 &lt;- runif(10000, min=0,max=1000) #Generating random variables drawn from unifrom distribution with (0,1000)</span><br><span class="line"></span><br><span class="line">hist(x1) #Histogram</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-1.png" title="[hist]">
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sampled.5 &lt;- rep(0, length(x1))</span><br><span class="line"></span><br><span class="line">for(i in 1:length(x1))&#123;</span><br><span class="line">  sampled.5[i] &lt;- mean(sample(x1, 5, replace=TRUE)) #sample average with size 5</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hist(sampled.5)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-3.png" title="[hist]">
+
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">plot(density(sampled.5)) #density plot of sample average variables</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-4.png" title="[hist]">
+
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sampled.30 &lt;- rep(0, length(x1))</span><br><span class="line">sampled.1000 &lt;- rep(0,length(x1))</span><br><span class="line">sampled.10000 &lt;- rep(0,length(x1))</span><br><span class="line"></span><br><span class="line">for(i in 1:length(x1))&#123;</span><br><span class="line">  sampled.30[i] &lt;- mean(sample(x1, 30, replace=TRUE)) #sample average of size 30</span><br><span class="line">  sampled.1000[i] &lt;- mean(sample(x1, 1000, replace=TRUE)) #sample average of size 1000</span><br><span class="line">  sampled.10000[i] &lt;- mean(sample(x1,10000,replace=TRUE)) #sample average of size 10000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>$$\sqrt{n}(S_n-\mu) \sim \mathcal{N}(0,\sigma^2)$$</p>
+<p>The following code is the above formula. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(sampled.30))*(mean(sampled.30)-mean(x1))</span><br><span class="line"></span><br><span class="line">## [1] -39.36105</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(sampled.1000))*(mean(sampled.1000)-mean(x1))</span><br><span class="line"></span><br><span class="line">## [1] 0.1330039</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(sampled.10000))*(mean(sampled.10000)-mean(x1))</span><br><span class="line"></span><br><span class="line">## [1] 0.003917203</span><br></pre></td></tr></table></figure>
+
+<p>It shows the $\sqrt{n}(S_n-\mu)$ tends to go to zero as the size of the sample increases, which means that the expected value of the sample average variables gets closer to the expected value of the random variables when $n$ gets larger. </p>
+<p>Let’s see other example for random sample average drawn from Binomial distribution. </p>
+<p>Suppose we have 10000 random Binomial variables with $p = 0.5$. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#Binomial</span><br><span class="line">n &lt;- 10000</span><br><span class="line">p &lt;- 1/2</span><br><span class="line">B &lt;- rbinom(n,1,p)</span><br></pre></td></tr></table></figure>
+
+<p>The mean of Binomial distribution is $p$, that is $E(X) = p$.<br>The variance of Binomial distribution is $p(1-p)$, that is $Var(X) = p(1-p)$</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p</span><br><span class="line"></span><br><span class="line">## [1] 0.5</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p*(1-p)</span><br><span class="line"></span><br><span class="line">## [1] 0.25</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mean(B)</span><br><span class="line"></span><br><span class="line">## [1] 0.4991</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var(B)</span><br><span class="line"></span><br><span class="line">## [1] 0.2500242</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#creating random sample average from Binomial random variables</span><br><span class="line">bin.sampled.30 &lt;- rep(0, length(B))</span><br><span class="line">bin.sampled.1000 &lt;- rep(0,length(B))</span><br><span class="line">bin.sampled.10000 &lt;- rep(0,length(B))</span><br><span class="line"></span><br><span class="line">for(i in 1:length(x1))&#123;</span><br><span class="line">  bin.sampled.30[i] &lt;- mean(sample(B, 30, replace=TRUE))</span><br><span class="line">  bin.sampled.1000[i] &lt;- mean(sample(B, 1000, replace=TRUE))</span><br><span class="line">  bin.sampled.10000[i] &lt;- mean(sample(B,10000,replace=TRUE))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(density(bin.sampled.30))</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-14.png" title="[hist]">
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(density(bin.sampled.1000))</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-15.png" title="[hist]">
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(density(bin.sampled.10000))</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/09/CLT/CLT-16.png" title="[hist]">
+
+
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(bin.sampled.30))*(mean(bin.sampled.30)-mean(B))</span><br><span class="line"></span><br><span class="line">## [1] 0.009333333</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(bin.sampled.1000))*(mean(bin.sampled.1000)-mean(B))</span><br><span class="line"></span><br><span class="line">## [1] 0.01169</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(bin.sampled.10000))*(mean(bin.sampled.10000)-mean(B))</span><br><span class="line"></span><br><span class="line">## [1] -0.000371</span><br></pre></td></tr></table></figure>
+
+<p>These results shows that no matter what the distribution of the population is, the sample average drawn from the distribution will be approximately normal distribution as $n$ gets large with mean $\mu$.</p>
+<p>Reference:<br><a href="https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php" target="_blank" rel="noopener">Central Limit Theorem</a><br><a href="https://en.wikipedia.org/wiki/Central_limit_theorem" target="_blank" rel="noopener">Central Limit Theorem (wiki)</a></p>
 
         </div>
         
@@ -190,25 +267,6 @@
 
 
 
-
-    
-<div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous">
-            <a class="is-flex-grow has-text-black-ter" href="/">Previous</a>
-        </div>
-        <div class="pagination-next is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/page/3/">Next</a>
-        </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
-            
-            <li><a class="pagination-link is-current" href="/page/2/">2</a></li>
-            
-        </ul>
-    </nav>
-</div>
 </div>
                 
 
