@@ -143,6 +143,85 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-28T01:48:30.000Z">2019-08-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Today/">Today</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Today/August/">August</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 408 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/08/28/190828/">190828</a>
+            
+        </h1>
+        <div class="content">
+            <p>August 28th, 2019</p>
+<p>Today’s work</p>
+<ol>
+<li>Convex Optimization Course - Duality;<br> weak and strong duality</li>
+<li>IEEE Kaggle - Data Organization;<br>  convert data by Data Description - <a href="https://www.kaggle.com/c/ieee-fraud-detection/discussion/101203" target="_blank" rel="noopener">link</a></li>
+<li>Study LightGBM with the video presented by Mateusz Susik from McKinsey - <a href="https://www.youtube.com/watch?v=5CWwwtEM2TA&list=LLxvCXZGQQpgJjfgFOiTqLSA&index=2&t=226s" target="_blank" rel="noopener">link</a></li>
+</ol>
+<p>XGBoost by Tianqi Chen- <a href="https://xgboost.readthedocs.io/en/latest/tutorials/model.html" target="_blank" rel="noopener">link</a></p>
+<p>오늘 할 일</p>
+<ol>
+<li>Convex Optimization 수업 - Duality; weak and strong duality</li>
+<li>IEEE 카글 대회 - 데이터 정리; 데이터 Description에 따라 변수들 변환 - <a href="https://www.kaggle.com/c/ieee-fraud-detection/discussion/101203" target="_blank" rel="noopener">link</a></li>
+<li>LightGBM 원리 공부 - 프레젠테이션 Mateusz Susik from McKinsey - <a href="https://www.youtube.com/watch?v=5CWwwtEM2TA&list=LLxvCXZGQQpgJjfgFOiTqLSA&index=2&t=226s" target="_blank" rel="noopener">link</a></li>
+</ol>
+<p>XGBoost -&gt; LightGBM</p>
+<p>Update:</p>
+<p>Duality - </p>
+<ol>
+<li><p>Form Lagrange</p>
+<p> $\mathcal{L}(x,\lambda,\nu)$ = $f_0 (x) + \sum_{i=1}^{m} \lambda_i f_i(x) + \sum_{i=1}^{p} \nu_i h_i (x)$</p>
+</li>
+<li><p>Set gradient for $x$ equal to zero to minimize $\mathcal{L}$</p>
+<p> $\nabla_x \mathcal{L}$ = 0</p>
+</li>
+<li><p>Plug it in $\mathcal{L}$ to get the Lagrangian dual function;</p>
+<p> $g(\lambda, \nu)$ = $\inf_{x\in D} \mathcal{L}(x, \lambda, \nu)$</p>
+<p> which is a concave function, can be $-\infty$ for some $\lambda, \nu$</p>
+<p> Lagrangian dual function is a concave function, since the Lagrangian form is affine function, and infimum of any family of affine is concave.</p>
+<p> We want to maximize lower bound (concave) to get the best optimal points, and maximizing lower bound is convex optimization problem. </p>
+</li>
+</ol>
+<p>LightGBM - XGBoost (either histogram implementation available)</p>
+<p>One of the method used in LightGBM is ‘Graident-based one-side sampling’ that is the biggest benefit of LightGBM. This method is to concentrate on data points with large gradients and ignore data points with small graidents (close to local minima). </p>
+<p>LightGBM - XGBoost(둘 다 histogram implementation 가능) </p>
+<p>가장 큰 장점은 Gradient-based one-side sampling 이라는 방법으로, gradient가 큰 데이터 포인트들을 집중하며, small gradients (Gradients가 작다는 것은 local minima에 가깝다는것이고, 그 말은 즉 Residual 혹은 loss 가 적다는것) 들은 무시하기에 training 속도가 굉장히 빠르다는 것.</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-08-27T05:14:44.000Z">2019-08-27</time>
                 
                 
@@ -250,7 +329,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        11
+                        12
                     </p>
                 </div>
             </div>
@@ -260,7 +339,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        13
                     </p>
                 </div>
             </div>
@@ -270,7 +349,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        14
+                        17
                     </p>
                 </div>
             </div>
@@ -322,9 +401,17 @@
                 <span class="level-item">ML</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
+        <a class="level is-marginless" href="/categories/ML/Decision-Tree/">
+            <span class="level-start">
+                <span class="level-item">Decision Tree</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/ML/Gaussian-Process/">
             <span class="level-start">
                 <span class="level-item">Gaussian Process</span>
@@ -424,7 +511,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
+        <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
     </div>
 </div>
 
@@ -435,6 +522,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/19/DecisionTree/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="DecisionTree">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-19T08:13:52.000Z">2019-09-19</time></div>
+                    <a href="/2019/09/19/DecisionTree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">DecisionTree</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Decision-Tree/">Decision Tree</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -512,25 +618,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/09/06/190906/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="190906">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-06T12:19:33.000Z">2019-09-06</time></div>
-                    <a href="/2019/09/06/190906/" class="title has-link-black-ter is-size-6 has-text-weight-normal">190906</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Today/">Today</a> / <a class="has-link-grey -link" href="/categories/Today/September/">September</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -549,7 +636,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -600,8 +687,29 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Entropy/">
+                        <span class="tag">Entropy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/GaussianProcess/">
                         <span class="tag">GaussianProcess</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Gini-Index/">
+                        <span class="tag">Gini Index</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -637,7 +745,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ML/">
                         <span class="tag">ML</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">8</span>
                     </a>
                 </div>
                 

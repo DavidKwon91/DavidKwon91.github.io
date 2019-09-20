@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Category: Decision Tree - David Kwon</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="David Kwon">
+<meta property="og:url" content="http://yoursite.com/categories/ML/Decision-Tree/index.html">
+<meta property="og:site_name" content="David Kwon">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="David Kwon">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="David Kwon" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/DavidKwon91">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">Categories</a></li>
+            
+            <li><a href="/categories/ML/">ML</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">Decision Tree</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-19T08:13:52.000Z">2019-09-19</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Decision-Tree/">Decision Tree</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    15 minutes read (About 2226 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/19/DecisionTree/">DecisionTree</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Introduction-to-Decision-Tree"><a href="#Introduction-to-Decision-Tree" class="headerlink" title="Introduction to Decision Tree"></a>Introduction to Decision Tree</h1><p>In this post, I will discuss about Decision Tree, which is the fundamental algorithm of the well-known Tree-based algorithms. This post will also address two metrics, which is employed in Decision tree and many other machine learning algorithms, even in deep learning. </p>
+<h2 id="1-Metric"><a href="#1-Metric" class="headerlink" title="1. Metric"></a>1. Metric</h2><p>Why do we need the “Metric” in tree-based algorithm? </p>
+<p>The answer will be to find the best split in the tree. We use the metric, calculate a variable, measure the split score with the value, and choose the value for the best split at each step of the split or the predictors in the tree. Many other metrics or score functions are used to find the “best” split for different tree-based algorithms. I will deal with two popular metrics, which are Gini Impurity (or Gini Index) and Information Gain with Entropy. </p>
+<h4 id="1-1-Gini-Index"><a href="#1-1-Gini-Index" class="headerlink" title="1.1 Gini Index"></a>1.1 Gini Index</h4><p>Suppose we have a dependent categorical variable, which have $\mathcal{J}$ classes. Let $i \in \{1,2,…,\mathcal{J}\}$ and $p_i$ is the probability given each factor levels of dependent variable.d</p>
+<p>Then, the Gini Index, or Gini Impurity is defined as below, </p>
+<p>$$I_{\mathcal{G}}(p) = \sum_{i=1}^{J}p_i \sum_{k \neq i}p_k = \sum_{i=1}^{J}p_i(1-p_i) = \sum_{i=1}^{J}(p_i-p_i^2) = \sum_{i=1}^{J}p_i - \sum_{i=1}^{J}p_i^2 \\ = 1-\sum_{i=1}^{J}p_i^2$$</p>
+<p>For example, </p>
+<p>suppose we have a binary variable that follows below. </p>
+<p>$X = [FALSE,FALSE,TRUE,TRUE,….,TRUE,FALSE]$</p>
+<img src="/2019/09/19/DecisionTree/image1.png" title="[table]">
+
+<p>Then, the Gini Impurity will be the followng by the definition,</p>
+<p>$$1 - (\frac{8}{20})^2 - (\frac{12}{20})^2 = 0.48$$</p>
+<p>What about the Gini Impurity for this binary variable?</p>
+<img src="/2019/09/19/DecisionTree/image2.png" title="[table]">
+
+<p>Then, the Gini Impurity will be</p>
+<p>$$1 - (\frac{1}{20})^2 - (\frac{19}{20})^2 = 0.095$$</p>
+<p>Now, we see that the smaller Gini Impurity is, we find the better split point.</p>
+<p>Therefore, we want to find the smaller Gini Impurity score as possible as we can at each step to find best split in the tree. </p>
+<p>Now, let we have two binary variables and make table for each factors like the below, </p>
+<p>$$Y = [FALSE, FALSE, … ,  TRUE] \\ X = [YES, YES, … , NO]$$</p>
+<p>And, we want to predict $Y$ with $X$. </p>
+<img src="/2019/09/19/DecisionTree/image3.png" title="[table]">
+
+<p>We will have only one stump in a Decision Tree for this table. The root node, which is the very top of the tree, will be the predictor, $X = [YES, YES, … , NO]$</p>
+<p>The tree is something like..</p>
+<img src="/2019/09/19/DecisionTree/Tree1.png" title="[table]">
+
+<p>The typical tree in real world is much more complicated with more nodes and splits, since they have many predictors.<br>This tree that has only one split is sometimes called a stump, which is often called a weak learner in Adaboost.<br>But, I will just call this as a tree for this example.  </p>
+<p>Then, the process of finding Gini Impurity is the below;</p>
+<p>1) Find Conditional probability</p>
+<p>For example, the Conditional probability given $X$ is</p>
+<p>$$P(Y = FALSE |X = YES) = \frac{5}{7} \\ P(Y = TRUE | X = YES) = \frac{2}{7} \\ P(Y = FALSE | X = NO) = \frac{3}{13} \\ P(Y = TRUE | X = NO) = \frac{10}{13}$$</p>
+<p>2) Find each Gini Index for the conditional probability</p>
+<p>$$I_{Gini}(Y|X=YES) = 1 - (\frac{5}{7})^2 - (\frac{2}{7})^2  =  0.4081633 \\ I_{Gini}(Y|X=NO) = 1 - (\frac{3}{13})^2 - (\frac{10}{13})^2 = 0.3550296 $$</p>
+<p>Then, we find a Gini Impurity score for a leaf node in this tree, which is the very bottom of the tree or the final classification. </p>
+<img src="/2019/09/19/DecisionTree/Tree2.png" title="[table]">
+
+
+
+<p>3) Find Marginal probability</p>
+<p>The margianl probabilty given $X$ is</p>
+<p>$$P_X(X=YES) = \frac{7}{20} \\ P_X(X=NO) = \frac{13}{20}$$</p>
+<p>Since the tree is splitted by $X$, we find the Gini Impurity of the total tree. </p>
+<p>4) Multiply and add the Gini Index and marginal probability associated with the given probability respectively. Finally, we have Gini Impurity Score for a split. </p>
+<p>Then, the <em>Total Gini Impurity Score</em> for this tree is, </p>
+<p>$$I_{Gini}(Y|X=YES) \times P_X(X=YES) + I_{Gini}(Y|X=NO) \times P_X(X=NO) = \\ 0.4081633 \times \frac{7}{20} + 0.3550296 \times \frac{13}{20} = 0.3736264$$</p>
+<p>Then, we eventually find the total Gini Impurity score for a tree. </p>
+<img src="/2019/09/19/DecisionTree/Tree3.png" title="[table]">
+
+<p>In real world problem, we have many predictors and so many nodes, possibly many trees such in Random Forest. </p>
+<p>With this process of finding Gini Impurity, we compare the Gini score and find the best split point of the best predictor with best splits. </p>
+<h4 id="1-2-Entropy"><a href="#1-2-Entropy" class="headerlink" title="1.2 Entropy"></a>1.2 Entropy</h4><p>Entropy is defined as below; </p>
+<p>$$H(T) = -\sum_{i=1}^{J}p_ilog_2(p_i)$$</p>
+<p>And the process of finding best split in a tree is to find the Information Gain. </p>
+<p>The Information Gain is often called <em>Kullback-Leiber divergence</em> and defined as below;</p>
+<p>$$IG(T,a) = H(T) - H(T|a)$$</p>
+<p>where $IG(Y,X)$ is the Information Gain of Y given X, $H(Y)$ is the parent Entropy of Y, and $H(Y|X)$ is the children Entropy of Y given X, and the $H(Y|X)$ is often called <em>cross-entropy</em>.</p>
+<p>The process of finding Information Gain is very similar to the Gini Score, but here we find the bigger value of IG. </p>
+<p>I will use the same example problem as above. </p>
+<p>For the above example, </p>
+<p>$$Y = [FALSE, FALSE, … ,  TRUE] \\ X = [YES, YES, … , NO]$$</p>
+<img src="/2019/09/19/DecisionTree/image3.png" title="[table]">
+
+<p>Then, as I have shown, find the conditional probability. </p>
+<p>1) Find the conditional probability given $X$</p>
+<p>$$P(Y = FALSE |X = YES) = \frac{5}{7} \\ P(Y = TRUE | X = YES) = \frac{2}{7} \\ P(Y = FALSE | X = NO) = \frac{3}{13} \\ P(Y = TRUE | X = NO) = \frac{10}{13}$$</p>
+<p>2) Find the entropy given $X$</p>
+<p>$$I_{Entropy}(Y|X=YES) = -\frac{5}{7}log_2(\frac{5}{7}) - \frac{2}{7}log_2(\frac{2}{7}) = 0.8631206\\ I_{Entropy}(Y|X=NO) = -\frac{3}{13}log_2(\frac{3}{13}) - \frac{10}{13}log_2(\frac{10}{13})  =  0.7793498 $$</p>
+<p>3) Find the marginal probability</p>
+<p>The margianl probabilty given $X$ is</p>
+<p>$$P_X(X=YES) = \frac{7}{20} \\ P_X(X=NO) = \frac{13}{20}$$</p>
+<p>4) Calculate the Total Entropy and Cross-Entropy</p>
+<p>Total Entropy for a tree divided by $X$ is</p>
+<p>$$-P_X(X=YES) \times log_2(P_X(X=YES))-P_X(X=NO) \times log_2(P_X(X=NO)) \\ = -\frac{7}{20}log_2(\frac{7}{20}) - \frac{13}{20}log_2(\frac{13}{20}) \\ = 0.9340681$$</p>
+<p>Cross Entropy for a leaf node is</p>
+<p>$$I_{Entropy}(Y|X=YES) \times  P_X(X=YES) + I_{Entropy}(Y|X=NO) \times P_X(X=NO) \\ = 0.8631206 \times \frac{7}{20} + 0.7793498 \times \frac{13}{20} \\ = 0.8086696$$</p>
+<p>5) Find Information Gain with Total Entropy and Cross Entropy</p>
+<p>Information Gain = Total Entropy - Cross Entropy</p>
+<p>$$= 0.9340681 - 0.8086696 = 0.1253985$$ </p>
+<p>For another example that shows why bigger Information Gain is better, </p>
+<p>suppose we have the dataset following; </p>
+<img src="/2019/09/19/DecisionTree/table.png" title="[table]">
+
+<p>It’s obviously better to split for Y given X than the above example, since this has only one mistake. </p>
+<p>If we find the Information Gain of this data,</p>
+<p>The Total Entropy for a tree divided by $X$ is 1, since this splits exactly the same number of target observations with 10 and 10. </p>
+<p>$$-P_X(X=YES) \times log_2(P_X(X=YES))-P_X(X=NO) \times log_2(P_X(X=NO)) = \\ -\frac{10}{20}log_2(\frac{10}{20}) - \frac{10}{20}log_2(\frac{10}{20}) \\ = 0.5 + 0.5 = 1$$</p>
+<p>The cross entropy for a leaf node is</p>
+<p>$$I_{Entropy}(Y|X=YES) \times  P_X(X=YES) + I_{Entropy}(Y|X=NO) \times P_X(X=NO) \\ = 0.234478$$</p>
+<p>calculated by the same process of the above.</p>
+<p>Then, the Information Gain is</p>
+<p>$$1 - 0.234478 = 0.7655022$$</p>
+<p>Therefore, we find the bigger Information Gain as possible as we can. </p>
+<p>As a summary, Decision Tree Algorithm is..</p>
+<p>1) Find the best split with the metric score for each splits and each predictors. </p>
+<p>2) Compare the metric score with every splits and other predictors and find the best split and best predictors. </p>
+<p>3) The best predictors that has the best metric score will be the roof node, and keep building a tree with the metric scores. </p>
+<p>4) The very bottom of the tree, which is the leaf node, will be our final classification. </p>
+<p>If we have continuous predictors, there is no split point like “YES” or “NO”. Therefore, </p>
+<p>1) we sort the data associated with the numerical predictors, </p>
+<p>2) calculate the average for all adjacent indexes of the numerical predictor, </p>
+<p>find the Gini Impurity for all the adjacent average value, </p>
+<p>and compare the Gini Impurity to find the best split point of adjacent average of the numerical predictors. </p>
+<p>Below is the Implementation in R. I used iris dataset, and a dataset that I created.<br>Some of codes are skipped, and you can refer to my Gibhub website to see full algorithm. </p>
+<p><a href="https://github.com/DavidKwon91/MathematicsBehindAlgorithms" target="_blank" rel="noopener">DavidGithub</a></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#removing one of the classes of the target variable, virginica in Iris Dataset. </span><br><span class="line">#to make target as a binary variable</span><br><span class="line">iris1 &lt;- iris[which(iris$Species != &quot;virginica&quot;),]</span><br><span class="line"></span><br><span class="line">#removing the factor level that we don&apos;t have any more</span><br><span class="line">iris1$Species &lt;- as.factor(as.character(iris1$Species))</span><br><span class="line"></span><br><span class="line">#quick decision tree built in R, rpart</span><br><span class="line">tr &lt;- rpart(Species~., training)</span><br><span class="line">rpart.plot(tr)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/19/DecisionTree/IntroductionDecisionTree-1.png" title="[tree1]">
+
+
+<p>This is the prediction by Decision Tree built in R. </p>
+<img src="/2019/09/19/DecisionTree/IntroductionDecisionTree-2.png" title="[tree1]">
+
+
+<p>Here is the Decision Tree algorithm with the introduced two metrics that I built. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br></pre></td><td class="code"><pre><span class="line">#average function to create adjacent average between predictor indexes</span><br><span class="line">avg &lt;- function(x1,x2)&#123;sum(x1,x2)/2&#125;</span><br><span class="line"></span><br><span class="line">#gini function for a leaf</span><br><span class="line">gini &lt;- function(x)&#123;</span><br><span class="line">  </span><br><span class="line">  if(dim(x)[1]==1)&#123;</span><br><span class="line">    return(1)</span><br><span class="line">  &#125;</span><br><span class="line">  else&#123;</span><br><span class="line">    #conditional probability given predictor (row : target, column : predictor)</span><br><span class="line">    p11&lt;-x[1,1]/sum(x[,1])</span><br><span class="line">    p21&lt;-x[2,1]/sum(x[,1])</span><br><span class="line">    p12&lt;-x[1,2]/sum(x[,2])</span><br><span class="line">    p22&lt;-x[2,2]/sum(x[,2])</span><br><span class="line">    </span><br><span class="line">    a.false.gini &lt;- 1-p11^2-p21^2</span><br><span class="line">    a.true.gini &lt;- 1-p12^2-p22^2</span><br><span class="line">    </span><br><span class="line">    #marginal probability</span><br><span class="line">    a.false.prob &lt;- (x[1,1]+x[1,2]) / sum(x)</span><br><span class="line">    a.true.prob &lt;- (x[2,1]+x[2,2]) / sum(x)</span><br><span class="line">    </span><br><span class="line">    gini.imp &lt;- a.false.prob * a.false.gini + a.true.prob * a.true.gini</span><br><span class="line">    return(gini.imp)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#log function with base 2 for entropy</span><br><span class="line">log2 &lt;- function(x)&#123;</span><br><span class="line">  if(x!=0)&#123;</span><br><span class="line">    return(log(x,base=2))</span><br><span class="line">  &#125;</span><br><span class="line">  if(x==0)&#123;</span><br><span class="line">    return(0)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#entropy function for a leaf</span><br><span class="line">entropy &lt;- function(x)&#123;</span><br><span class="line">  </span><br><span class="line">  if(dim(x)[1]==1)&#123;</span><br><span class="line">    return(0)</span><br><span class="line">  &#125;</span><br><span class="line">  else&#123;</span><br><span class="line">  	#conditional probability given predictor (row : target, column : predictor)</span><br><span class="line">    p11&lt;-x[1,1]/sum(x[,1])</span><br><span class="line">    p21&lt;-x[2,1]/sum(x[,1])</span><br><span class="line">    p12&lt;-x[1,2]/sum(x[,2])</span><br><span class="line">    p22&lt;-x[2,2]/sum(x[,2])</span><br><span class="line">    </span><br><span class="line">    #Calculating weights, which is the bottom of the tree</span><br><span class="line">    a.false.entropy &lt;- -(p11*log2(p11)+p21*log2(p21))</span><br><span class="line">    a.true.entropy &lt;- -(p12*log2(p12)+p22*log2(p22))</span><br><span class="line">    </span><br><span class="line">    #marginal probability</span><br><span class="line">    a.false.prob &lt;- (x[1,1]+x[2,1]) / sum(x)</span><br><span class="line">    a.true.prob &lt;- (x[1,2]+x[2,2]) / sum(x)</span><br><span class="line">    </span><br><span class="line">    #cross entropy</span><br><span class="line">    weighted.entropy &lt;- a.true.prob*a.true.entropy + a.false.prob*a.false.entropy</span><br><span class="line">    </span><br><span class="line">    #total entropy</span><br><span class="line">    total.entropy &lt;- -(a.false.prob*log2(a.false.prob) + a.true.prob*log2(a.true.prob))</span><br><span class="line">    </span><br><span class="line">    #Information Gain, which is the tree score to find best split</span><br><span class="line">    #If the bigger this value is, we find the better split</span><br><span class="line">    #maximum value is 1</span><br><span class="line">    IG &lt;- total.entropy - weighted.entropy</span><br><span class="line">    </span><br><span class="line">    return(IG) </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#Calculating impurity to find which predictor is the best to split, which will be the top of the tree or first split in the tree</span><br><span class="line">var.impurity &lt;- function(x, dat, fun)&#123;</span><br><span class="line">  imp.dat &lt;- data.frame(matrix(0, nrow=nrow(dat)-1, ncol=3))</span><br><span class="line">  colnames(imp.dat) &lt;- c(&quot;index&quot;, &quot;impurity&quot;, &quot;adj.avg&quot;)</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  for(i in 1:(nrow(dat)-1))&#123;</span><br><span class="line">    imp.dat[i,1] &lt;- paste0(&quot;between &quot;, i, &quot; and &quot;, i+1)</span><br><span class="line">    #average value of the adjacent values</span><br><span class="line">    a &lt;- avg(x[i], x[i+1])</span><br><span class="line">    </span><br><span class="line">    predictor.name &lt;- colnames(dat)[which(sapply(dat, function(x,want) isTRUE(all.equal(x,want)),x)==TRUE)]</span><br><span class="line">    </span><br><span class="line">    #Sorting the data by the predictor</span><br><span class="line">    dat1 &lt;- dat[order(x,decreasing=FALSE),]</span><br><span class="line">    mat &lt;- as.matrix(table(dat1[,predictor.name] &lt; a, dat1[,target] ))</span><br><span class="line">    </span><br><span class="line">    #apply the metric, Gini or Entropy</span><br><span class="line">    imp.dat[i,2] &lt;- fun(mat)</span><br><span class="line">    imp.dat[i,3] &lt;- a</span><br><span class="line">    &#125;</span><br><span class="line">  return(imp.dat)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#this function will give you the best split score for each predictors</span><br><span class="line">impurity.fun &lt;- function(dat, fun)&#123;</span><br><span class="line">  predictors &lt;- colnames(dat)[!colnames(dat) %in% target]</span><br><span class="line">  var.impur.dat &lt;- data.frame(matrix(0, nrow=length(predictors),ncol=2))</span><br><span class="line">  colnames(var.impur.dat) &lt;- c(&quot;var&quot;, &quot;impurity&quot;)</span><br><span class="line">  </span><br><span class="line">  for(i in 1:(ncol(dat)-1))&#123;</span><br><span class="line">    var.impur.dat[i,1] &lt;- predictors[i]</span><br><span class="line">    if(fun == &quot;gini&quot;)&#123;</span><br><span class="line">      #the least score of gini is the best split </span><br><span class="line">      var.impur.dat[i,2] &lt;- min(var.impurity(dat[,i], dat, gini)$impurity)</span><br><span class="line">    &#125;</span><br><span class="line">    if(fun == &quot;entropy&quot;)&#123;</span><br><span class="line">      #the greates score of entropy is the best split</span><br><span class="line">      var.impur.dat[i,2] &lt;- max(var.impurity(dat[,i], dat, entropy)$impurity)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return(var.impur.dat)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#give you the best predictor to split or the top of the tree</span><br><span class="line">topTree.predictor &lt;- function(x,fun)&#123;</span><br><span class="line">  if(fun == &quot;entropy&quot;)&#123;</span><br><span class="line">    return(which.max(impurity.fun(x, &quot;entropy&quot;)[,2]))</span><br><span class="line">  &#125;</span><br><span class="line">  if(fun == &quot;gini&quot;)&#123;</span><br><span class="line">    return(which.min(impurity.fun(x, &quot;gini&quot;)[,2]))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#The best split point associated with the best predictor</span><br><span class="line">impurityOfbest &lt;- function(dat, best.pred, fun)&#123;</span><br><span class="line">  if(fun == &quot;entropy&quot;)&#123;</span><br><span class="line">    impurity.pred &lt;- var.impurity(dat[,best.pred], dat, entropy)$adj.avg[which.max(var.impurity(dat[,best.pred], dat, entropy)$impurity)]</span><br><span class="line">  &#125;</span><br><span class="line">  if(fun == &quot;gini&quot;)&#123;</span><br><span class="line">    impurity.pred &lt;- var.impurity(dat[,best.pred], dat, gini)$adj.avg[which.min(var.impurity(dat[,best.pred], dat, gini)$impurity)]</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  print(paste0(&quot;Best predictor, which is top tree node is &quot;, colnames(dat)[best.pred], &quot; with best split is  &quot;, impurity.pred, &quot; by the metric, &quot;, fun))</span><br><span class="line">  return(impurity.pred)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#by Entropy metric, we want to find the maximum entropy score</span><br><span class="line">fun &lt;- &quot;entropy&quot;</span><br><span class="line">target &lt;- &quot;Species&quot;</span><br><span class="line"></span><br><span class="line">imp.pred &lt;- topTree.predictor(iris1, fun) #This is the best predictor that splits our target the best. </span><br><span class="line">best.impur &lt;- impurityOfbest(iris1, imp.pred, fun) #This is the best split point for the best predictor. </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#Let&apos;s see how well this value calculated by the function predicts</span><br><span class="line">table(iris1[,imp.pred] &lt; best.impur, iris1$Species)</span><br><span class="line">#perfectly predicted in training set</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pred.by&lt;- as.factor(ifelse(iris1[,imp.pred] &lt; best.impur, &quot;setosa&quot;,&quot;versiclor&quot;))</span><br><span class="line"></span><br><span class="line">t1 &lt;- iris1 %&gt;% </span><br><span class="line">  ggplot(aes(x=Petal.Width, y=Petal.Length ,col=Species)) + </span><br><span class="line">  geom_jitter() +</span><br><span class="line">  ggtitle(&quot;Actual&quot;)</span><br><span class="line">t2 &lt;- iris1 %&gt;% </span><br><span class="line">  ggplot(aes(x=Petal.Width, y=Petal.Length ,col=pred.by)) + </span><br><span class="line">  geom_jitter() +</span><br><span class="line">  geom_vline(xintercept =  best.impur, colour=&quot;blue&quot;, linetype=&quot;dashed&quot;) + </span><br><span class="line">  annotate(geom=&quot;text&quot;, label=best.impur, x=best.impur, y=0, vjust=-1) +</span><br><span class="line">  ggtitle(&quot;Predicted&quot;)</span><br><span class="line"></span><br><span class="line">grid.arrange(t1,t2)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/19/DecisionTree/Prediction-1.png" title="[tree1]">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/David.png" alt="Yongbock (David) Kwon">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Yongbock (David) Kwon
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        The trick in life isn&#39;t getting what you want, it&#39;s wanting it after you get it
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Seoul, Korea</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        12
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        17
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/DavidKwon91" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/DavidKwon91">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Linkedin" href="https://www.linkedin.com/in/yongbock-david-kwon-7a195994/">
+                
+                <i class="fab fa-linkedin"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/ML/">
+            <span class="level-start">
+                <span class="level-item">ML</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/ML/Decision-Tree/">
+            <span class="level-start">
+                <span class="level-item">Decision Tree</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Gaussian-Process/">
+            <span class="level-start">
+                <span class="level-item">Gaussian Process</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Likelihood/">
+            <span class="level-start">
+                <span class="level-item">Likelihood</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Logistic-Regression/">
+            <span class="level-start">
+                <span class="level-item">Logistic Regression</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Math/">
+            <span class="level-start">
+                <span class="level-item">Math</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Math/CLT/">
+            <span class="level-start">
+                <span class="level-item">CLT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/Cholesky-Decomposition/">
+            <span class="level-start">
+                <span class="level-item">Cholesky Decomposition</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/Histogram/">
+            <span class="level-start">
+                <span class="level-item">Histogram</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/Schur-Complement/">
+            <span class="level-start">
+                <span class="level-item">Schur Complement</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Today/">
+            <span class="level-start">
+                <span class="level-item">Today</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Today/August/">
+            <span class="level-start">
+                <span class="level-item">August</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Today/September/">
+            <span class="level-start">
+                <span class="level-item">September</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/19/DecisionTree/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="DecisionTree">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-19T08:13:52.000Z">2019-09-19</time></div>
+                    <a href="/2019/09/19/DecisionTree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">DecisionTree</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Decision-Tree/">Decision Tree</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/15/GaussianProcess/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="GaussianProcess">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-15T09:07:27.000Z">2019-09-15</time></div>
+                    <a href="/2019/09/15/GaussianProcess/" class="title has-link-black-ter is-size-6 has-text-weight-normal">GaussianProcess</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Gaussian-Process/">Gaussian Process</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/15/No-Leaders-Please/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="No Leaders Please">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-14T21:01:18.000Z">2019-09-15</time></div>
+                    <a href="/2019/09/15/No-Leaders-Please/" class="title has-link-black-ter is-size-6 has-text-weight-normal">No Leaders Please</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Today/">Today</a> / <a class="has-link-grey -link" href="/categories/Today/September/">September</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/09/hist/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Histogram">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-09T09:49:56.000Z">2019-09-09</time></div>
+                    <a href="/2019/09/09/hist/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Histogram</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Math/">Math</a> / <a class="has-link-grey -link" href="/categories/Math/Histogram/">Histogram</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/09/CLT/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CLT">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-09T07:08:11.000Z">2019-09-09</time></div>
+                    <a href="/2019/09/09/CLT/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CLT</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Math/">Math</a> / <a class="has-link-grey -link" href="/categories/Math/CLT/">CLT</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CentralLimitTheorem/">
+                        <span class="tag">CentralLimitTheorem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CharlesBukowski/">
+                        <span class="tag">CharlesBukowski</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CholeskyDecomposition/">
+                        <span class="tag">CholeskyDecomposition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Entropy/">
+                        <span class="tag">Entropy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GaussianProcess/">
+                        <span class="tag">GaussianProcess</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Gini-Index/">
+                        <span class="tag">Gini Index</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Histogram/">
+                        <span class="tag">Histogram</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Likelihood/">
+                        <span class="tag">Likelihood</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LogLikelihood/">
+                        <span class="tag">LogLikelihood</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logit/">
+                        <span class="tag">Logit</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ML/">
+                        <span class="tag">ML</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Matrix/">
+                        <span class="tag">Matrix</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Odds/">
+                        <span class="tag">Odds</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Poem/">
+                        <span class="tag">Poem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SchurComplement/">
+                        <span class="tag">SchurComplement</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Today/">
+                        <span class="tag">Today</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="David Kwon" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 David Kwon&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
