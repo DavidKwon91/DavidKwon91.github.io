@@ -152,6 +152,12 @@
 
     <div class="card">
     
+    <div class="card-image">
+        <a href="/2019/09/19/DecisionTree/" class="image is-7by1">
+            <img class="thumbnail" src="/images/treeimage.jpg" alt="DecisionTree">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
@@ -166,7 +172,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    15 minutes read (About 2226 words)
+                    15 minutes read (About 2225 words)
                 </span>
                 
                 
@@ -179,9 +185,9 @@
             
         </h1>
         <div class="content">
-            <h1 id="Introduction-to-Decision-Tree"><a href="#Introduction-to-Decision-Tree" class="headerlink" title="Introduction to Decision Tree"></a>Introduction to Decision Tree</h1><p>In this post, I will discuss about Decision Tree, which is the fundamental algorithm of the well-known Tree-based algorithms. This post will also address two metrics, which is employed in Decision tree and many other machine learning algorithms, even in deep learning. </p>
+            <h1 id="Introduction-to-Decision-Tree"><a href="#Introduction-to-Decision-Tree" class="headerlink" title="Introduction to Decision Tree"></a>Introduction to Decision Tree</h1><p>In this post, I will discuss about Decision Tree, which is the fundamental algorithm of the well-known Tree-based algorithms. This post will also address two metrics that are employed in Decision tree and many other machine learning algorithms, even in deep learning. </p>
 <h2 id="1-Metric"><a href="#1-Metric" class="headerlink" title="1. Metric"></a>1. Metric</h2><p>Why do we need the “Metric” in tree-based algorithm? </p>
-<p>The answer will be to find the best split in the tree. We use the metric, calculate a variable, measure the split score with the value, and choose the value for the best split at each step of the split or the predictors in the tree. Many other metrics or score functions are used to find the “best” split for different tree-based algorithms. I will deal with two popular metrics, which are Gini Impurity (or Gini Index) and Information Gain with Entropy. </p>
+<p>The answer will be to find the best splits in the tree. We use the metric, calculate a variable, measure the split score with the value, and choose the value for the best split at each step of finding the split or the predictors in the tree. Many other metrics or score functions are used to find the “best” split for different tree-based algorithms. Two metrics will be discussed, which are Gini Impurity (or Gini Index) and Information Gain with Entropy. </p>
 <h4 id="1-1-Gini-Index"><a href="#1-1-Gini-Index" class="headerlink" title="1.1 Gini Index"></a>1.1 Gini Index</h4><p>Suppose we have a dependent categorical variable, which have $\mathcal{J}$ classes. Let $i \in \{1,2,…,\mathcal{J}\}$ and $p_i$ is the probability given each factor levels of dependent variable.d</p>
 <p>Then, the Gini Index, or Gini Impurity is defined as below, </p>
 <p>$$I_{\mathcal{G}}(p) = \sum_{i=1}^{J}p_i \sum_{k \neq i}p_k = \sum_{i=1}^{J}p_i(1-p_i) = \sum_{i=1}^{J}(p_i-p_i^2) = \sum_{i=1}^{J}p_i - \sum_{i=1}^{J}p_i^2 \\ = 1-\sum_{i=1}^{J}p_i^2$$</p>
@@ -573,7 +579,7 @@
             
             <a href="/2019/09/19/DecisionTree/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="DecisionTree">
+                    <img class="thumbnail" src="/images/treeimage.jpg" alt="DecisionTree">
                 </p>
             </a>
             
@@ -592,7 +598,7 @@
             
             <a href="/2019/09/15/GaussianProcess/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="GaussianProcess">
+                    <img class="thumbnail" src="/images/GP image.gif" alt="GaussianProcess">
                 </p>
             </a>
             
@@ -611,7 +617,7 @@
             
             <a href="/2019/09/15/No-Leaders-Please/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="No Leaders Please">
+                    <img class="thumbnail" src="/images/CharlesBukowski.jpeg" alt="No Leaders Please">
                 </p>
             </a>
             
@@ -630,7 +636,7 @@
             
             <a href="/2019/09/09/hist/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Histogram">
+                    <img class="thumbnail" src="/images/Histogram.png" alt="Histogram">
                 </p>
             </a>
             
@@ -649,7 +655,7 @@
             
             <a href="/2019/09/09/CLT/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="CLT">
+                    <img class="thumbnail" src="/images/CLT.png" alt="CLT">
                 </p>
             </a>
             
