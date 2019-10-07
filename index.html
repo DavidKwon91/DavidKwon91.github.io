@@ -140,6 +140,191 @@
     <div class="card">
     
     <div class="card-image">
+        <a href="/2019/10/07/Reticulate/" class="image is-7by1">
+            <img class="thumbnail" src="/images/montyhall.png" alt="Reticulate">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-07T03:00:23.000Z">2019-10-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Language/">Language</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Language/Python-in-R/">Python in R</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 559 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/10/07/Reticulate/">Reticulate</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="R-Python"><a href="#R-Python" class="headerlink" title="R? Python?"></a>R? Python?</h2><p>My main language for data analysis is R, but sometimes Python is used for its convenience. I wanted to find a way of using both language interactively in R, and this article is the introduction of a R package, “Reticulate,” which can use both language in R. </p>
+<h3 id="Reticulate"><a href="#Reticulate" class="headerlink" title="Reticulate"></a>Reticulate</h3><p>The R package, “Reticulate,” is quite recent package published in July 2019. It is still being updated for some issues, but it’s useful if you want use Python modules in R. You can see and download a cheat sheet published in R website, <a href="https://resources.rstudio.com/rstudio-developed/reticulate" target="_blank" rel="noopener">Here</a>. </p>
+<p>I performed simple decision tree and XGBoost with Bayesian Optimization with both languages, R and Python, through “Reticulate” package in R, and it works successfully. </p>
+<p>For the preparateion to use Reticulate, you have to install or update your R, Rstudio, pip, conda, and Python as the recent version. </p>
+<p>You start with installing “reticulate” package in R by </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages(&quot;reticulate&quot;)</span><br><span class="line">library(reticulate)</span><br></pre></td></tr></table></figure>
+
+<p>And, you can create your virtual environment locally, and make sure you have installed all modules of Python you will use in the environment. </p>
+<p>Creation your Python virtual environment with</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtualenv_create(envname = &quot;yourname&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>Or, you can just use the environment that is already set up in local. Once you have create the environment, then you can see the list of environments with</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtualenv_list()</span><br></pre></td></tr></table></figure>
+
+<p>And, you install the python modules into the virtual environment from your local conda or python environment. When you install those Python modules in virtual environment, you have to restart R and make sure the modules that you are going to use has been installed in your virtual environment by</p>
+<figure class="highlight plain hljs"><figcaption><span>createPythonEnv&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;bayesian-optimization&quot;)</span><br><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;pandas&quot;)</span><br><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;seaborn&quot;)</span><br><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;sklearn&quot;)</span><br><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;xgboost&quot;)</span><br><span class="line">use_virtualenv(&quot;r-reticulate&quot;)</span><br><span class="line"></span><br><span class="line">py_module_available(&quot;seaborn&quot;)</span><br><span class="line">py_module_available(&quot;sklearn&quot;)</span><br><span class="line">py_module_available(&quot;pandas&quot;)</span><br><span class="line">py_module_available(&quot;bayes_opt&quot;)</span><br><span class="line">py_module_available(&quot;xgboost&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>Below is the implementation for simple decision tree in R. </p>
+<img src="/2019/10/07/Reticulate/dt1.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/dt2.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/dt3.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/dt4.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/dt5.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/dt6.png" title="[Reticulate]">
+
+
+<p>Here is the implementation for simple decision tree with Python Virtual Envrionment in R.</p>
+<p>You have to declare that you will be using Python environment by</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repl_python()</span><br></pre></td></tr></table></figure>
+
+<p>Or, if you are using rMarkdown, then you make chunk with</p>
+<img src="/2019/10/07/Reticulate/pythonDec.png" title="[Reticulate]">
+
+<p>Performing simple decision tree with Python virtual environment. </p>
+<img src="/2019/10/07/Reticulate/pydt1.png" title="[Reticulate]">
+
+<p>You can bring the R objects into Python environment by </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.yourobjects</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/10/07/Reticulate/pydt2.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt3.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt4.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt5.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt6.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt7.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt8.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt9.png" title="[Reticulate]">
+
+
+<p>After you are done with Python environment, you call the following codes in your console</p>
+<img src="/2019/10/07/Reticulate/pythonDec2.png" title="[Reticulate]">
+
+
+<p>You can also bring the Python objects into R environment by</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">py$yourobjects</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/10/07/Reticulate/pytoR.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/fromPythontoR-1.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pytoR2.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/fromPythontoR-2.png" title="[Reticulate]">
+
+
+
+
+<p><a href="https://github.com/DavidKwon91/MathematicsBehindAlgorithms/blob/master/Reticulate/PythonInR.md" target="_blank" rel="noopener">Here</a> is the full implemented codes for the “reticulate” package. </p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/2019/10/05/Monty-Hall/" class="image is-7by1">
+            <img class="thumbnail" src="/images/montyhall.png" alt="Monty Hall">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-05T09:53:20.000Z">2019-10-05</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Bayes-Theorem/">Bayes Theorem</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 516 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/10/05/Monty-Hall/">Monty Hall</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Monty-Hall-Problem-with-Bayes’-Theorem"><a href="#Monty-Hall-Problem-with-Bayes’-Theorem" class="headerlink" title="Monty Hall Problem with Bayes’ Theorem"></a>Monty Hall Problem with Bayes’ Theorem</h2><p>Monty Hall Problem is a famous probability problem based on the TV show, “Let’s make a Deal.” </p>
+<p>Suppose that you are a contestant and are asked to choose a door among 3 doors, which contains 1 car and 2 goats. If you choose a door that is car behind the door, then you win the prize. </p>
+<p>Let C = car behind the door $i$, and D = open door $j$. </p>
+<p>Here, we can formulate the probability for the car behind the door as the following:</p>
+<p>$$P(C=1) = 1/3 \qquad P(C = 2) = 1/3 \qquad P(C = 3) = 1/3$$</p>
+<p>Let’s say you pick the door 1, and host pick one of door 2 or 3, which goat behind the door. You now have a choice whether you stick with the originally choosed door and you switch. </p>
+<p>Suppose the host choose the door 3, given that a goat is behind the door 3. </p>
+<p>The trick of the probablity here is that the host knows which door has a car behind it and will never open the door. Then, there’s 50-50 chances that one of the two doors, which is not the door that host opens, has a car behind it. </p>
+<p>The probability of the door that is chosen by the host, given that the car behind the door, is zero, since the host never pick the door that has a car,<br>the probability of the door that is chosen by the contestant, given that the car behind the door, is a half, since it is the half probability,<br>and the probability of the door that is not chosen by the host, given that the car behind the door, is one, because the host never pick the door that has a car and the door that the contestant chose, there’s only one door left. </p>
+<p>Then, the likelihood will be </p>
+<p>$$P(D = 3 | C = 1) = 1/2 \qquad P(D = 3 | C = 2) = 1 \qquad P(D = 3 | C = 1) = 0 $$</p>
+<p>Now, the formula of Bayes Theorem is the following:</p>
+<p>$$P(C = i | D = 3) = \frac{P(D = 3 | C = i)P(C = i)}{P(D = 3)}$$</p>
+<p>It is easy to answer that the probability for $P(D = 3)$ is $\frac{1}{2}$, because you already choose door 1, and the host will choose one of the rest 2 doors. However, we can calculate the marginal probability for $P(D = 3)$ as the following. </p>
+<p>$$P(D = 3) = \sum_{i=1}^{3} P(C = i, D = 3) = \sum_{i=1}^{3} P(D = 3 | C = i)P(C = i) = \\ P(D = 3 | C = 1)P(C = 1) + P(D = 3 | C = 2)P(C = 2) + P(D = 3 | C = 3)P(C = 3) = \\ \frac{1}{3} \times \frac{1}{2} + \frac{1}{3} \times 1 + \frac{1}{3} \times 0 = \frac{1}{2}$$</p>
+<p>Now, let’s calculate the posterior probability in the Bayes Theorem, which is the probability of the door has a car behind it, given the door 3 has opened. </p>
+<p>$$P(C = 1 | D = 3) = \frac{P(D = 3 |C = 1)P(C = 1)}{P(D = 3)} =  \frac{\frac{1}{2} \times \frac{1}{3}}{\frac{1}{2}} = \frac{1}{3}$$</p>
+<p>$$P(C = 2 | D = 3) = \frac{P(D = 3 |C = 2)P(C = 2)}{P(D = 3)} =  \frac{1 \times \frac{1}{3}}{\frac{1}{2}} = \frac{2}{3}$$</p>
+<p>$$P(C = 3 | D = 3) = \frac{P(D = 3 |C = 3)P(C = 3)}{P(D = 3)} =  \frac{0 \times \frac{1}{3}}{\frac{1}{2}} = 0$$</p>
+<p>Therefore, as a contestant, you have to switch your choice to door 2 that has more probability than the door you chose at the first time. </p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
         <a href="/2019/09/19/DecisionTree/" class="image is-7by1">
             <img class="thumbnail" src="/images/treeimage.jpg" alt="DecisionTree">
         </a>
@@ -1020,219 +1205,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/08/29/logit/" class="image is-7by1">
-            <img class="thumbnail" src="/images/logisticRegression.png" alt="Logit - Logistic Regression">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-29T05:48:09.000Z">2019-08-29</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Logistic-Regression/">Logistic Regression</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 minutes read (About 904 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/08/29/logit/">Logit - Logistic Regression</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="Logistic-Regression-from-Logit"><a href="#Logistic-Regression-from-Logit" class="headerlink" title="Logistic Regression from Logit"></a>Logistic Regression from Logit</h2><h3 id="1-What-is-Logit"><a href="#1-What-is-Logit" class="headerlink" title="1. What is Logit?"></a>1. What is Logit?</h3><p>To discuss logit, we need to know what the odds is. </p>
-<p>Simply say, Odds is $\frac{p}{1-p}$, where $p$ is the probability of a binary outcome. </p>
-<p>Since the odds has different properties than probability, it enables us to make new functions or new graphs. </p>
-<p>With the properties of odds, logarithm of odds is popularly used in machine learning industry, which is called logit. </p>
-<p>Logit (also log odds) = $log(\frac{p}{1-p})$. </p>
-<p>Let logit be defined as $\theta$, then </p>
-<p>$$\theta = log(\frac{p}{1-p})$$</p>
-<p>We can express this in terms of $p$ as the following,</p>
-<p>$$e^{\theta} = \frac{p}{1-p} \\ (1-p)e^{\theta} = p \\ e^{\theta} = p + p e^{\theta} \\ e^{\theta} = p(1+e^{\theta}) \\ \therefore p = \frac{e^{\theta}}{(1+e^{\theta})} = \frac{1}{1+e^{-\theta}}$$</p>
-<p>This is the logistic function, which is the special case of sigmoid function that is widely used for classification, such as logistic regression, tree-based algorithm for classification, or deep learning.<br>The logistic function is the CDF of the logistic distribution. </p>
-<h3 id="2-Logistic-Distribution"><a href="#2-Logistic-Distribution" class="headerlink" title="2. Logistic Distribution"></a>2. Logistic Distribution</h3><p>A property of the logistic distribution is that the logistic distribution is very similar with the normal distribution except for the kurtosis. </p>
-<p>The PDF of the logistic distribution is defined as, </p>
-<p>$$f(x; \mu, s) =  \frac{e^{-\frac{(x-\mu)}{s}}}{s(1+e^{-\frac{x-\mu}{s}})^2}$$</p>
-<p>The CDF of the logistic distribution is defined as,</p>
-<p>$$F(x; \mu, s) = \frac{1}{1+e^{-\frac{x-\mu}{s}}}$$</p>
-<p>Some simulations are performed in <a href="https://core.ac.uk/download/pdf/41787448.pdf" target="_blank" rel="noopener">this paper</a>, and the simulation was to measure the absolute deviation between the cumulative standard normal distribution and the cumulative logistic distribution with mean zero and variance one. </p>
-<p>By <a href="https://core.ac.uk/download/pdf/41787448.pdf" target="_blank" rel="noopener">the paper</a>, “the cumulative logistic distribution with mean zero and variance one is known as $(1+e^{-\nu x})^{-1}$ “<br>And, the paper also states that the kurtosis of the logistic distribution is effected by the parameter coefficient, $\nu$.<br>With the $\nu = 1.702$, the deviation is 0.0095. </p>
-<p>As a summary, the logistic distribution approximately follows the normal distribution with the variance $\sigma^2$, and we could use the property of the normal distribution as the following; </p>
-<p>By <a href="https://en.wikipedia.org/wiki/Standard_deviation#targetText=If%20a%20data%20distribution%20is,deviations%20(%CE%BC%20%C2%B1%203%CF%83)." target="_blank" rel="noopener">wikipedia</a>, </p>
-<p>“If a data distribution is approximately normal, then about 68 percent of the data values are within one standard deviation of the mean (mathematically, $\mu \pm \sigma$, where $\mu$ is the arithmetic mean), about 95 percent are within two standard deviations ($\mu \pm 2\sigma$), and about 99.7 percent lie within three standard deviations ($\mu \pm 3\sigma$).”</p>
-<h3 id="3-Logistic-Regression"><a href="#3-Logistic-Regression" class="headerlink" title="3. Logistic Regression"></a>3. Logistic Regression</h3><p>In a binary logistic regression, the outcome is binary, which can be said that it follows binomial distribution.</p>
-<p>Let $y_i$ = number of successes in $m_i$ trials of a binomial process where $i = 1,…,n$, and we have a single predictor, $x_i$.</p>
-<p>Then, </p>
-<p>$$y_i | x_i \sim Bin(m_i, \theta(x_i))$$</p>
-<p>By the definition of binomial distribution,</p>
-<p>$$P(Y_i = y_i | x_i) = \binom{m_i}{y_i}\theta(x_i)^{y_i}(1-\theta(x_i))^{m_i-y_i}$$</p>
-<p>Then, the loglikelihood function for Logistic Regression will be </p>
-<p>$$\mathcal{L} = \prod_{i=1}^{n} P(Y_i = y_i | x_i) \\ = \prod_{i=1}^{n}\binom{m_i}{y_i}\theta(x_i)^{y_i}(1-\theta(x_i))^{m_i-y_i}$$</p>
-<p>Here, the $\theta(x_i)$ is defined as</p>
-<p>$$\theta(x_i) = \frac{1}{1+e^{-(\beta_0 + \beta_1 x_i)}}$$</p>
-<p>And, </p>
-<p>$$log(\frac{\theta(x_i)}{1-\theta(x_i)}) = \beta_0 + \beta_1 x_i$$</p>
-<p>Just taking the derivative on the log-likelihood function and setting this as zero is hard to solve the problem, so the parameter $\beta_0$ and $\beta_1$ can be estimated by some other optimization method, such as Newton’s method. </p>
-<h3 id="4-Wald-Test-in-Logistic-Regression"><a href="#4-Wald-Test-in-Logistic-Regression" class="headerlink" title="4. Wald Test in Logistic Regression"></a>4. Wald Test in Logistic Regression</h3><p>Wald Test uses the property of the logistic distribution. </p>
-<p>As mentioned above, the logistic distribution is almost approximately standard normal distribution. </p>
-<p>Hence, the Wald test statistic is used to test </p>
-<p>$$H_0 : \beta_1 = 0$$ </p>
-<p>in Logistic regression. </p>
-<p>The Wald test statistic is defined as</p>
-<p>$$Z = \frac{\hat{\beta_1} - \beta_1}{estimated \qquad se(\hat{\beta_1})}$$</p>
-<p>In the test, $\beta_1 = 0$ as the null hypothesis, and this follows standard normal distribution. </p>
-<p>Hence, </p>
-<p>$$Z = \frac{\hat{\beta_1}}{\hat{se}(\hat{\beta_1})} \sim \mathcal{N}(0,1)$$</p>
-<p>As mentioned above, the logistic distribution is approximately following the normal distribution with variance, $\sigma^2$.<br>Hence, dividing by the standard error for the estimated paramter gives you standard normal distribution, $\mathcal{N}(0,1)$.</p>
-<p>We can determine the coefficient significant with the Wald Test for the Logistic Regression. </p>
-<h3 id="4-Interpretation-for-coefficients-of-Logistic-Regression"><a href="#4-Interpretation-for-coefficients-of-Logistic-Regression" class="headerlink" title="4. Interpretation for coefficients of Logistic Regression."></a>4. Interpretation for coefficients of Logistic Regression.</h3><p>Unlike Linear Regression, the linear combination of coefficients of Logistic regression is logit. </p>
-<p>Hence, we can interpret the coefficient in different way. </p>
-<p>For example, with the single predictor as used above, the logit is</p>
-<p>$$log(\frac{p}{1-p}) = \beta_0 + \beta_1 x_i$$</p>
-<p>If we take exponential both sides, </p>
-<p>$$\frac{p}{1-p} = e^{(\beta_0 + \beta_1 x_i)}$$</p>
-<p>Then, we can say as following,</p>
-<p>“For one-unit in $x_i$ increase, it is expected to see ..% increase in odds of success, $p$”.</p>
-<p>Reference:<br><em>A Modern Approach to Regression With R by Simon J. Sheater, Springer</em><br><a href="https://core.ac.uk/download/pdf/41787448.pdf" target="_blank" rel="noopener">A logistic approximation to the cumulative normal distribution</a><br><a href="https://en.wikipedia.org/wiki/Standard_deviation#targetText=If%20a%20data%20distribution%20is,deviations%20(%CE%BC%20%C2%B1%203%CF%83)." target="_blank" rel="noopener">Standard Deviation</a><br><a href="https://en.wikipedia.org/wiki/Logistic_distribution" target="_blank" rel="noopener">Logistic Distribution</a></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/08/29/Likelihood/" class="image is-7by1">
-            <img class="thumbnail" src="/images/likelihood.png" alt="Likelihood">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-29T03:50:08.000Z">2019-08-29</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Likelihood/">Likelihood</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 minutes read (About 1026 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/08/29/Likelihood/">Likelihood</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="Likelihood-vs-Probability"><a href="#Likelihood-vs-Probability" class="headerlink" title="Likelihood vs Probability"></a>Likelihood vs Probability</h2><p>Likelihood Definition (Wikipedia) : In statistics, the likelihood function expresses how probable a given set of observations is for different values of statistical parameters. It is equal to the joint probability distribution of the random sample evaluated at the given observations, and it is, thus, solely a functoin of paramters that index the family of those probability distributions. </p>
-<h2 id="1-What-is-Likelihood"><a href="#1-What-is-Likelihood" class="headerlink" title="1. What is Likelihood?"></a>1. What is Likelihood?</h2><p>Likelihoods are the y-axis values for fixed data points with distribution that can be moved, as the following; </p>
-<p>$$\mathcal{L}(\theta | x) = \mathcal{L}(distribution | data)$$</p>
-<p>Whereas, Probabilities are the areas under a fixed distribution.</p>
-<p>$$P(data | distribution)$$</p>
-<p>If we find the maximum y-axis value for fixed data points by moving the distribution, we find the optimal distribution for the fixed data.<br>Therefore, we can use the likelihood function to fit a optimal distribution on the fixed data by finding maximum likelihood estimator. </p>
-<h2 id="2-Maximum-Likelihood"><a href="#2-Maximum-Likelihood" class="headerlink" title="2. Maximum Likelihood?"></a>2. Maximum Likelihood?</h2><p>To find the maximum likelihood estimator, we might find a function for likelihoods given fixed data points, and take a derivative for the function, and set the derivatives as 0. </p>
-<h3 id="Example-1-Exponential-distribution"><a href="#Example-1-Exponential-distribution" class="headerlink" title="Example 1: Exponential distribution"></a>Example 1: Exponential distribution</h3><p>The Probability Density Function of Exponential Distribution is defined as the following;</p>
-<p>$$f(x; \lambda) = \lambda e ^ {- \lambda x} \qquad if  \qquad x \geq 0$$</p>
-<p>Otherwise, </p>
-<p>$$f(x; \lambda) = 0$$</p>
-<p>for $\lambda &gt;0$, which is rate parameter of the distribution. </p>
-<p>Hence, the exponential distribution will be shaped by the $\lambda$. </p>
-<p>Therefore, we want to find the maximum likelihood of $\lambda$ for given data. </p>
-<p>$$\mathcal{L}(\lambda | x_1, x_2, … , x_n) =  \mathcal{L}(\lambda | x_1)\mathcal{L}(\lambda | x_2)…\mathcal{L}(\lambda | x_n)    $$</p>
-<p>$$= \lambda e ^ {- \lambda x_1}\lambda e ^ {- \lambda x_2}…\lambda e ^ {- \lambda x_n} \\ = \lambda^{n}(e ^ {-\lambda  (x_1 + x_2 + … + x_n)})$$</p>
-<p>Now, take a derivative for the likelihood function to find maximum likelihood estimator of $\lambda$.</p>
-<p>$$ \frac{d}{d\lambda} \mathcal{L}(\lambda | x_1, x_2, … , x_n) = \frac{d}{d\lambda} \lambda^{n} (e ^ {-\lambda * (x_1 + x_2 + … + x_n)})$$</p>
-<p>Before derivitaves, there is more easier way to differentiate this function, which is to take a lograithm on the function.<br>Take a logarithm on the likelihood function, then this becomes the log likelihood function. </p>
-<p>$$log (\mathcal{L}(\lambda | x_1, x_2, … , x_n)) =  log(\mathcal{L}(\lambda | x_1)\mathcal{L}(\lambda | x_2)…\mathcal{L}(\lambda | x_n))<br>$$</p>
-<p>Which makes easier differentiate the function. </p>
-<p>$$ \frac{d}{d\lambda} log(\mathcal{L}(\lambda | x_1, x_2, … , x_n)) = \frac{d}{d\lambda} log(\lambda^{n}(e ^ {-\lambda * (x_1 + x_2 + … + x_n)}))$$</p>
-<p>$$= \frac{d}{d\lambda} (log(\lambda ^ {n}) + log(\lambda^{n}(e ^ {-\lambda * (x_1 + x_2 + … + x_n)}))) \\ = \frac{d}{d\lambda} (n log(\lambda) - \lambda (x_1 + x_2 + … + x_n)) \\ = n \frac{1}{\lambda} - (x_1 + x_2 + … + x_n)$$</p>
-<p>Set this as zero, </p>
-<p>$$n \frac{1}{\lambda} - (x_1 + x_2 + … + x_n) = 0$$</p>
-<p>Which gives you, </p>
-<p>$$ \frac{(x_1 + x_2 + … + x_n)}{n} = \mu = \frac{1}{\lambda}$$</p>
-<p>Therefore, the maximum likelihood estimator of $\lambda$ is</p>
-<p>$$\lambda = \frac{1}{\mu}$$.</p>
-<p>And, this connects to the concept of the maximum entropy probability distribution.</p>
-<p>“The exponential distribution is the maximum entropy distribution among all continuous distribution supported in $[0, \infty]$ that have a specified mean of $\frac{1}{\lambda}$”</p>
-<h3 id="Example-2-Normal-Distribution"><a href="#Example-2-Normal-Distribution" class="headerlink" title="Example 2: Normal Distribution"></a>Example 2: Normal Distribution</h3><p>In normal distribution (often called Gaussian distribution), the mean $\mu$ and the variance $\sigma^2$ will be the parameter that the determines how the normal distribution looks like. With $\mu$ and $\sigma^2$, we will find the maximum likelihood estimator for the normal distribution given fixed data. </p>
-<p>The PDF of normal distribution is defined as,</p>
-<p>$$f(x|\mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</p>
-<p>The Likelihood of $\mu$ and $\sigma$ for normal distribution will be, </p>
-<p>$$\mathcal{L}(\mu, \sigma|x_1, x_2, … , x_n) = \mathcal{L}(\mu, \sigma^2|x_1)\mathcal{L}(\mu, \sigma^2|x_2)…\mathcal{L}(\mu, \sigma^2|x_n)$$</p>
-<p>$$= \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_1-\mu)^2}{2\sigma^2}}\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_2-\mu)^2}{2\sigma^2}}…\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_n-\mu)^2}{2\sigma^2}}$$</p>
-<p>Before take a derivatives, we take a log on the function as done in exponential. </p>
-<p>$$log(\mathcal{L}(\mu, \sigma|x_1, x_2, … , x_n))= log(\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_1-\mu)^2}{2\sigma^2}}\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_2-\mu)^2}{2\sigma^2}}…\frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x_n-\mu)^2}{2\sigma^2}})$$</p>
-<p>By simplifying the log likelihood function with the properties of logarithm,</p>
-<p>$$= \sum_{i=1}^{n}(log(\frac{1}{\sqrt{2\pi\sigma^2}}) -\frac{(x_i-\mu)^2}{2\sigma^2}) \\ = -\frac{n}{2}log(2\pi) - nlog(\sigma) - \sum_{i=1}^{n}\frac{(x_i-\mu)^2}{2\sigma^2}$$</p>
-<p>Now, take the derivative with respect to the $\mu$,</p>
-<p>$$\frac{\partial}{\partial \mu} log(\mathcal{L}(\mu, \sigma|x_1, x_2, … , x_n)) \\ = 0 - 0 + \sum_{i=1}^{n} \frac{(x_i-\mu)}{\sigma^2} \\ = \sum_{i=1}^{n} \frac{x_i}{\sigma^2} - n\mu$$</p>
-<p>Set this as 0, </p>
-<p>$$\sum_{i=1}^{n} \frac{x_i}{\sigma^2} - n\mu = 0$$</p>
-<p>Since $\sigma^2$ is constant here, </p>
-<p>$$ \sum_{i=1}^{n} x_i = n\mu$$</p>
-<p>Hence,</p>
-<p>$$\mu = \sum_{i=1}^{n} x_i / n$$<br>which is the mean of the measurements. </p>
-<p>Taking derivative with respect to the $\sigma$, </p>
-<p>$$\frac{\partial}{\partial \sigma} log(\mathcal{L}(\mu, \sigma|x_1, x_2, … , x_n)) = \frac{\partial}{\partial \sigma} (-\frac{n}{2}log(2\pi) - nlog(\sigma) - \sum_{i=1}^{n}\frac{(x_i-\mu)^2}{2\sigma^2}) \\ = 0 - \frac{n}{\sigma} + \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{\sigma^3}$$</p>
-<p>Set this as 0,</p>
-<p>$$0 - \frac{n}{\sigma} + \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{\sigma^3} = 0 \\ n = \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{\sigma^2} \\ \sigma^2 = \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{n} \\ \sigma = \sum_{i=1}^{n} \sqrt{\frac{(x_i - \mu)^2}{n}}$$<br>which is the standard deviation of the measurements. </p>
-<p>In conclusion, </p>
-<p>the mean of the data is the maximum likelihood estimate for where the center of the distribution should be, </p>
-<p>the standard deviation of the data is the maximum likelihood estimate for how wide the curve of the distribution should be. </p>
-<p>This also connects to the maximum entropy probability distribution as the following; </p>
-<p>The normal distribution has maximum entropy among all real-valued distribution supported on $(-\infty, \infty)$ with a specified variance $\sigma^2$.</p>
-<p>Reference:<br><a href="https://en.wikipedia.org/wiki/Likelihood_function" target="_blank" rel="noopener">Likelihood(wiki)</a><br><a href="https://en.wikipedia.org/wiki/Maximum_entropy_probability_distribution" target="_blank" rel="noopener">Maximum Entropy Probability Distribution(wiki)</a><br><a href="https://www.youtube.com/watch?v=pYxNSUDSFH4" target="_blank" rel="noopener">Related to Likelihood for distributions (StatQuest with Josh Starmer)</a></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -1295,7 +1267,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        14
                     </p>
                 </div>
             </div>
@@ -1305,7 +1277,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        13
+                        16
                     </p>
                 </div>
             </div>
@@ -1315,7 +1287,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        20
                     </p>
                 </div>
             </div>
@@ -1362,14 +1334,38 @@
             </h3>
             <ul class="menu-list">
             <li>
+        <a class="level is-marginless" href="/categories/Language/">
+            <span class="level-start">
+                <span class="level-item">Language</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Language/Python-in-R/">
+            <span class="level-start">
+                <span class="level-item">Python in R</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/ML/">
             <span class="level-start">
                 <span class="level-item">ML</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a><ul><li>
+        <a class="level is-marginless" href="/categories/ML/Bayes-Theorem/">
+            <span class="level-start">
+                <span class="level-item">Bayes Theorem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/ML/Decision-Tree/">
             <span class="level-start">
                 <span class="level-item">Decision Tree</span>
@@ -1477,7 +1473,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
+        <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
     </div>
 </div>
 
@@ -1488,6 +1484,44 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/10/07/Reticulate/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/montyhall.png" alt="Reticulate">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-07T03:00:23.000Z">2019-10-07</time></div>
+                    <a href="/2019/10/07/Reticulate/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Reticulate</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Language/">Language</a> / <a class="has-link-grey -link" href="/categories/Language/Python-in-R/">Python in R</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/05/Monty-Hall/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/montyhall.png" alt="Monty Hall">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-05T09:53:20.000Z">2019-10-05</time></div>
+                    <a href="/2019/10/05/Monty-Hall/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Monty Hall</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Bayes-Theorem/">Bayes Theorem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1546,44 +1580,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/09/09/hist/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/Histogram.png" alt="Histogram">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-09T09:49:56.000Z">2019-09-09</time></div>
-                    <a href="/2019/09/09/hist/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Histogram</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Math/">Math</a> / <a class="has-link-grey -link" href="/categories/Math/Histogram/">Histogram</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/09/09/CLT/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/CLT.png" alt="CLT">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-09T07:08:11.000Z">2019-09-09</time></div>
-                    <a href="/2019/09/09/CLT/" class="title has-link-black-ter is-size-6 has-text-weight-normal">CLT</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Math/">Math</a> / <a class="has-link-grey -link" href="/categories/Math/CLT/">CLT</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1595,6 +1591,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/09/">
@@ -1711,7 +1718,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ML/">
                         <span class="tag">ML</span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">10</span>
                     </a>
                 </div>
                 
@@ -1732,6 +1739,27 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Poem/">
                         <span class="tag">Poem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Probability/">
+                        <span class="tag">Probability</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/R/">
+                        <span class="tag">R</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

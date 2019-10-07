@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Reticulate - David Kwon</title>
+
+
+    <meta name="description" content="R? Python?My main language for data analysis is R, but sometimes Python is used for its convenience. I wanted to find a way of using both language interactively in R, and this article is the introduct">
+<meta name="keywords" content="ML,R,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reticulate">
+<meta property="og:url" content="http://yoursite.com/2019/10/07/Reticulate/index.html">
+<meta property="og:site_name" content="David Kwon">
+<meta property="og:description" content="R? Python?My main language for data analysis is R, but sometimes Python is used for its convenience. I wanted to find a way of using both language interactively in R, and this article is the introduct">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/montyhall.png">
+<meta property="og:updated_time" content="2019-10-07T03:41:33.894Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Reticulate">
+<meta name="twitter:description" content="R? Python?My main language for data analysis is R, but sometimes Python is used for its convenience. I wanted to find a way of using both language interactively in R, and this article is the introduct">
+<meta name="twitter:image" content="http://yoursite.com/images/montyhall.png">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Reticulate" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/DavidKwon91">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/images/montyhall.png" alt="Reticulate">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-07T03:00:23.000Z">2019-10-07</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Language/">Language</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Language/Python-in-R/">Python in R</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 559 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Reticulate
+            
+        </h1>
+        <div class="content">
+            <h2 id="R-Python"><a href="#R-Python" class="headerlink" title="R? Python?"></a>R? Python?</h2><p>My main language for data analysis is R, but sometimes Python is used for its convenience. I wanted to find a way of using both language interactively in R, and this article is the introduction of a R package, “Reticulate,” which can use both language in R. </p>
+<h3 id="Reticulate"><a href="#Reticulate" class="headerlink" title="Reticulate"></a>Reticulate</h3><p>The R package, “Reticulate,” is quite recent package published in July 2019. It is still being updated for some issues, but it’s useful if you want use Python modules in R. You can see and download a cheat sheet published in R website, <a href="https://resources.rstudio.com/rstudio-developed/reticulate" target="_blank" rel="noopener">Here</a>. </p>
+<p>I performed simple decision tree and XGBoost with Bayesian Optimization with both languages, R and Python, through “Reticulate” package in R, and it works successfully. </p>
+<p>For the preparateion to use Reticulate, you have to install or update your R, Rstudio, pip, conda, and Python as the recent version. </p>
+<p>You start with installing “reticulate” package in R by </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages(&quot;reticulate&quot;)</span><br><span class="line">library(reticulate)</span><br></pre></td></tr></table></figure>
+
+<p>And, you can create your virtual environment locally, and make sure you have installed all modules of Python you will use in the environment. </p>
+<p>Creation your Python virtual environment with</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtualenv_create(envname = &quot;yourname&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>Or, you can just use the environment that is already set up in local. Once you have create the environment, then you can see the list of environments with</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtualenv_list()</span><br></pre></td></tr></table></figure>
+
+<p>And, you install the python modules into the virtual environment from your local conda or python environment. When you install those Python modules in virtual environment, you have to restart R and make sure the modules that you are going to use has been installed in your virtual environment by</p>
+<figure class="highlight plain hljs"><figcaption><span>createPythonEnv&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;bayesian-optimization&quot;)</span><br><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;pandas&quot;)</span><br><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;seaborn&quot;)</span><br><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;sklearn&quot;)</span><br><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;xgboost&quot;)</span><br><span class="line">use_virtualenv(&quot;r-reticulate&quot;)</span><br><span class="line"></span><br><span class="line">py_module_available(&quot;seaborn&quot;)</span><br><span class="line">py_module_available(&quot;sklearn&quot;)</span><br><span class="line">py_module_available(&quot;pandas&quot;)</span><br><span class="line">py_module_available(&quot;bayes_opt&quot;)</span><br><span class="line">py_module_available(&quot;xgboost&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>Below is the implementation for simple decision tree in R. </p>
+<img src="/2019/10/07/Reticulate/dt1.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/dt2.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/dt3.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/dt4.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/dt5.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/dt6.png" title="[Reticulate]">
+
+
+<p>Here is the implementation for simple decision tree with Python Virtual Envrionment in R.</p>
+<p>You have to declare that you will be using Python environment by</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repl_python()</span><br></pre></td></tr></table></figure>
+
+<p>Or, if you are using rMarkdown, then you make chunk with</p>
+<img src="/2019/10/07/Reticulate/pythonDec.png" title="[Reticulate]">
+
+<p>Performing simple decision tree with Python virtual environment. </p>
+<img src="/2019/10/07/Reticulate/pydt1.png" title="[Reticulate]">
+
+<p>You can bring the R objects into Python environment by </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.yourobjects</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/10/07/Reticulate/pydt2.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt3.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt4.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt5.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt6.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt7.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt8.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pydt9.png" title="[Reticulate]">
+
+
+<p>After you are done with Python environment, you call the following codes in your console</p>
+<img src="/2019/10/07/Reticulate/pythonDec2.png" title="[Reticulate]">
+
+
+<p>You can also bring the Python objects into R environment by</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">py$yourobjects</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/10/07/Reticulate/pytoR.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/fromPythontoR-1.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/pytoR2.png" title="[Reticulate]">
+<img src="/2019/10/07/Reticulate/fromPythontoR-2.png" title="[Reticulate]">
+
+
+
+
+<p><a href="https://github.com/DavidKwon91/MathematicsBehindAlgorithms/blob/master/Reticulate/PythonInR.md" target="_blank" rel="noopener">Here</a> is the full implemented codes for the “reticulate” package. </p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/ML/">ML</a>, <a class="has-link-grey -link" href="/tags/Python/">Python</a>, <a class="has-link-grey -link" href="/tags/R/">R</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/05/Monty-Hall/">
+                <span class="level-item">Monty Hall</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+{% include mathjax.html %}</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/David.png" alt="Yongbock (David) Kwon">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Yongbock (David) Kwon
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        The trick in life isn&#39;t getting what you want, it&#39;s wanting it after you get it
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Seoul, Korea</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        14
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        16
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        20
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/DavidKwon91" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/DavidKwon91">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Linkedin" href="https://www.linkedin.com/in/yongbock-david-kwon-7a195994/">
+                
+                <i class="fab fa-linkedin"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Language/">
+            <span class="level-start">
+                <span class="level-item">Language</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Language/Python-in-R/">
+            <span class="level-start">
+                <span class="level-item">Python in R</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/ML/">
+            <span class="level-start">
+                <span class="level-item">ML</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/ML/Bayes-Theorem/">
+            <span class="level-start">
+                <span class="level-item">Bayes Theorem</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Decision-Tree/">
+            <span class="level-start">
+                <span class="level-item">Decision Tree</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Gaussian-Process/">
+            <span class="level-start">
+                <span class="level-item">Gaussian Process</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Likelihood/">
+            <span class="level-start">
+                <span class="level-item">Likelihood</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Logistic-Regression/">
+            <span class="level-start">
+                <span class="level-item">Logistic Regression</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Math/">
+            <span class="level-start">
+                <span class="level-item">Math</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Math/CLT/">
+            <span class="level-start">
+                <span class="level-item">CLT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/Cholesky-Decomposition/">
+            <span class="level-start">
+                <span class="level-item">Cholesky Decomposition</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/Histogram/">
+            <span class="level-start">
+                <span class="level-item">Histogram</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/Schur-Complement/">
+            <span class="level-start">
+                <span class="level-item">Schur Complement</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Today/">
+            <span class="level-start">
+                <span class="level-item">Today</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Today/August/">
+            <span class="level-start">
+                <span class="level-item">August</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Today/September/">
+            <span class="level-start">
+                <span class="level-item">September</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/10/07/Reticulate/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/montyhall.png" alt="Reticulate">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-07T03:00:23.000Z">2019-10-07</time></div>
+                    <a href="/2019/10/07/Reticulate/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Reticulate</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Language/">Language</a> / <a class="has-link-grey -link" href="/categories/Language/Python-in-R/">Python in R</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/05/Monty-Hall/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/montyhall.png" alt="Monty Hall">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-05T09:53:20.000Z">2019-10-05</time></div>
+                    <a href="/2019/10/05/Monty-Hall/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Monty Hall</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Bayes-Theorem/">Bayes Theorem</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/19/DecisionTree/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/treeimage.jpg" alt="DecisionTree">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-19T08:13:52.000Z">2019-09-19</time></div>
+                    <a href="/2019/09/19/DecisionTree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">DecisionTree</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Decision-Tree/">Decision Tree</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/15/GaussianProcess/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/GP image.gif" alt="GaussianProcess">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-15T09:07:27.000Z">2019-09-15</time></div>
+                    <a href="/2019/09/15/GaussianProcess/" class="title has-link-black-ter is-size-6 has-text-weight-normal">GaussianProcess</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Gaussian-Process/">Gaussian Process</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/15/No-Leaders-Please/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/CharlesBukowski.jpeg" alt="No Leaders Please">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-14T21:01:18.000Z">2019-09-15</time></div>
+                    <a href="/2019/09/15/No-Leaders-Please/" class="title has-link-black-ter is-size-6 has-text-weight-normal">No Leaders Please</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Today/">Today</a> / <a class="has-link-grey -link" href="/categories/Today/September/">September</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CentralLimitTheorem/">
+                        <span class="tag">CentralLimitTheorem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CharlesBukowski/">
+                        <span class="tag">CharlesBukowski</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CholeskyDecomposition/">
+                        <span class="tag">CholeskyDecomposition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Entropy/">
+                        <span class="tag">Entropy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GaussianProcess/">
+                        <span class="tag">GaussianProcess</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Gini-Index/">
+                        <span class="tag">Gini Index</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Histogram/">
+                        <span class="tag">Histogram</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Likelihood/">
+                        <span class="tag">Likelihood</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LogLikelihood/">
+                        <span class="tag">LogLikelihood</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logit/">
+                        <span class="tag">Logit</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ML/">
+                        <span class="tag">ML</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Matrix/">
+                        <span class="tag">Matrix</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Odds/">
+                        <span class="tag">Odds</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Poem/">
+                        <span class="tag">Poem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Probability/">
+                        <span class="tag">Probability</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/R/">
+                        <span class="tag">R</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SchurComplement/">
+                        <span class="tag">SchurComplement</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Today/">
+                        <span class="tag">Today</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Reticulate" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 David Kwon&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
