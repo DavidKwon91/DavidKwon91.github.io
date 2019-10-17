@@ -140,6 +140,167 @@
     <div class="card">
     
     <div class="card-image">
+        <a href="/2019/10/16/AUROC/" class="image is-7by1">
+            <img class="thumbnail" src="/images/auroc.png" alt="AUROC">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-16T04:04:57.000Z">2019-10-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/AUROC/">AUROC</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    13 minutes read (About 1960 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/10/16/AUROC/">AUROC</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Introduction-to-Classification-Metrics"><a href="#Introduction-to-Classification-Metrics" class="headerlink" title="Introduction to Classification Metrics"></a>Introduction to Classification Metrics</h2><p>This paper will discuss on binary classification metrics, Sensitivity vs Specificity, Precision vs Recall, and AUROC. </p>
+<h3 id="1-Confusion-Matrix"><a href="#1-Confusion-Matrix" class="headerlink" title="1. Confusion Matrix"></a>1. Confusion Matrix</h3><img src="/2019/10/16/AUROC/confusion.png" title="[table]">
+
+<p>True Positive (TP) - Predicts a value as positive when the value is actually positive.<br>False Positive (FP) - Predicts a value as positive when the value is actually negative.<br>True Negative (TN) - Predicts a value as negative when the value is actually negative.<br>False Negative (FN) - Predicts a value as negative when the value is actually positive. </p>
+<p>In Hypothesis test, we used to set up the null hypothesis is the against value. </p>
+<p>What this means is that we want to set up the null hypothesis as the value such as a case that a person doesn’t get a disease or a case that a transaction is not a fraud, and the alternative hypothesis as opposite. </p>
+<p>For example, we want to test if a patient in a group gets a disease.<br>Then, null hypothesis, $H_0$, is the patient doesn’t get a disease. With some test, if a p-value, which is the probability that happens an event in the probability distribution of null hypothesis, is less than a value like 0.05, then we reject the null hypothesis and accept the alternative hypothesis, which is to conclude that the patient gets a disease. </p>
+<p>Actual Positive ($H_0$ is false) : The patient gets a disease.<br>Actual Negative ($H_0$ is true) : The patient doesn’t get a disease. </p>
+<p>Predicted Positive (Accepting $H_1$: reject $H_0$) : The patient gets a disease<br>Predicted Negative (not Accepting $H_1$: fail to reject $H_0$) : The patient doesn’t get a disease. </p>
+<p>Type 1 Error (False Positive) : When $H_0$ is false, which is that the patient actually gets a disease, but we reject $H_0$ by a classifier, which is that we predict patient doesn’t get a disease. </p>
+<p>Type 2 Error (False Negative) : When $H_0$ is true, which is that the patient actually doesn’t get a disease, but we fail to reject $H_0$ by a classifier, which is that we predict patient gets a disease. </p>
+<h3 id="2-Metrics"><a href="#2-Metrics" class="headerlink" title="2. Metrics"></a>2. Metrics</h3><p>Sensitivity, Recall, or True Positive Rate (TPR) : $\frac{TP}{TP + FN}$</p>
+<p>Specificity, True Negative Rate (TNR), 1 - FPR: $\frac{TN}{TN + FP}$</p>
+<p>Notice that the denominator for both is the total number of actual value. The denominator of sensitivity is the total number of actual positive value, and the denominator of specificity is the total number of actual negative value. </p>
+<p>That means, sensitivity is the probability of correctly predicting positive values among actual positive values. Specificity is the probability of correctly predicting negative values among actual negative values. Therefore, with this metrics, we can see how a model correctly predicts overall actual values for both positive and negative values. </p>
+<p>Precision, Positive Predicted Value : $\frac{TP}{TP + FP}$</p>
+<p>Recall, Sensitivity, or True Positive Rate (TPR) : $\frac{TP}{TP + FN}$</p>
+<p>Here, we can see that the denominator of precision is the total number of predicted value as positive. However, the denominator of recall is the total number of actual positive value. </p>
+<p>That means, precision is the probability of correctly predicting positive values among predicted values as positve. This will show how useful the model is, or the quality of the model. Recall is the probability of correctly predicting positive values among actual positive values. This will show how complete the results are, or the quantity of the results. </p>
+<p>Therefore, with this metrics, we can see how a model correctly predicts positive values among predicted values and actual values. </p>
+<p>In above example of predicting diseased patients, we might want to predict the diseased patients more; therefore, we want to focus on increasing the TRUE POSITIVE values and not focus on predicting TRUE NEGATIVE, but not losing too much predicting accuracy, which is to focus on increasing Precision and Recall. </p>
+<p>As a result, sensitivity and specificity is generally used for overall balanced binary target variable or a case that we don’t have to focus on positive or negative values like if it is a dog or a cat in an image classification, but precision and recall should be used to predict an imbalanced binary target variable. </p>
+<h3 id="3-Trade-off"><a href="#3-Trade-off" class="headerlink" title="3. Trade-off"></a>3. Trade-off</h3><p>It will be the best scenario if we have high performance of sensitivity and specicity or precision and recall. However, in many cases, it is hard to see such cases since there is a trade-off. </p>
+<p>For Precision and Recall, the only difference between them is the denominator. The denominator of precision has Type 1 Error (FP), and the denominator of recall has Type 2 Error (FN). </p>
+<p>Precision, Positive Predicted Value : $\frac{TP}{TP + FP}$</p>
+<p>Recall, Sensitivity, or True Positive Rate (TPR) : $\frac{TP}{TP + FN}$</p>
+<p>Precision and Recall shares same parameter, which is TP; therefore, by shifting the threshold of probability that classifies the values, FP and FN values can be varied. </p>
+<p>Example codes below with Pima Indians Diabetes</p>
+<p>This dataset has imbalanced binary target variable, “diabetes” as below. </p>
+<img src="/2019/10/16/AUROC/target.png" title="[table]">
+
+
+<p>I splitted the dataset by training and test set, and performed logistic regression to predict the “diabetes” variable in the test set. </p>
+<p>glm.pred1 is the predicted probability values that the patients is diabetes, which is “pos”. </p>
+<p>When the threshold is 0.1, which is to classify the predicted value as “pos” if the probability is greater than 0.1. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pred1 &lt;- as.factor(ifelse(glm.pred1 &gt;= 0.1, &quot;pos&quot;,&quot;neg&quot;))</span><br><span class="line">confusionMatrix(pred1, as.factor(test$diabetes), positive=&quot;pos&quot;)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/10/16/AUROC/pred1CM.png" title="[table]">
+
+
+<p>When the threshold is 0.3.</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pred3 &lt;- as.factor(ifelse(glm.pred1 &gt;= 0.3, &quot;pos&quot;,&quot;neg&quot;))</span><br><span class="line">confusionMatrix(pred3, as.factor(test$diabetes), positive=&quot;pos&quot;)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/10/16/AUROC/pred3CM.png" title="[table]">
+
+<p>When the threshold is 0.5.</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pred5 &lt;- as.factor(ifelse(glm.pred1 &gt;= 0.5, &quot;pos&quot;, &quot;neg&quot;))</span><br><span class="line">confusionMatrix(pred5, as.factor(test$diabetes), positive=&quot;pos&quot;)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/10/16/AUROC/pred5CM.png" title="[table]">
+
+<p>When the threshold is 0.7.</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pred7 &lt;- as.factor(ifelse(glm.pred1 &gt;= 0.7, &quot;pos&quot;, &quot;neg&quot;))</span><br><span class="line">confusionMatrix(pred7, as.factor(test$diabetes), positive=&quot;pos&quot;)</span><br></pre></td></tr></table></figure>
+
+<img src="/2019/10/16/AUROC/pred7CM.png" title="[table]">
+
+<p>As you can see above, by increasing the threshold value, Recall is decreasing, and Precision is increasing by trade-off because the FN is increasing and FP is decreasing. Therefore, we have to find the optimal threshold. </p>
+<p>When the threshold is 0.5, we have the best Accuracy with 77.83%.<br>However, when the threshold is 0.3, it seems to have optimal values for Precision and Recall with.. </p>
+<p>Precision : 0.6100<br>Recall : 0.7625</p>
+<p>As I told above, when we predict imbalanced binary dataset and we want to focus on predicting the positive values like finding diabetes patients, then we want to increase the Precision and Recall values, even if the Accuracy is not the best value. </p>
+<p>In this case, we would select the threshold as 0.3. Or, if the threshold is already set up, then we might have to change our model to improve the Precision and Recall. </p>
+<p>The trade-off between Sensitivity and Specificity will be discussed below section, AUROC (Area Under ROC curve)</p>
+<h3 id="4-AUROC"><a href="#4-AUROC" class="headerlink" title="4. AUROC"></a>4. AUROC</h3><p>ROC (Receiver Operating Characteristic) is a plot used to see the quality of the model in many cases of classification problem. The X-axis of ROC curve is False Positive Rate, and the Y-axis of the curve is True Positive Rate. It is created by various thresholds. </p>
+<p>False Positive Rate: $\frac{FP}{FP + TN} = 1 - TNR = 1 - Specificity$</p>
+<p>True Positive Rate, also Recall, and Sensitivity: $\frac{TP}{TP + FN}$</p>
+<p>Therefore, sensitivty and specificity or ROC curve deal with the each two columns of confusion matrix. We can see the overall accuracy by various thresholds with the metrics for both positive and negative values. </p>
+<p>The trade-off between Sensitivity and Specificty or ROC curve is quite similar with the trade-off between Precision and Recall as above example shows. </p>
+<p>When threshold is 0.1, the Sensitivity is 0.95, and the Specificity is 0.3467, then the FPR will be $1-0.3467 = 0.6533$. </p>
+<p>Threshold is 0.1 :</p>
+<ul>
+<li>Sensitivity = 0.95</li>
+<li>Specificity = 0.3467</li>
+<li>FPR = $1-0.3467 = 0.6533$</li>
+</ul>
+<p>Threshold is 0.3 : </p>
+<ul>
+<li>Sensitivity = 0.7625</li>
+<li>Specificity = 0.7400</li>
+<li>FPR = $1-0.7400 = 0.26$</li>
+</ul>
+<p>Threshold is 0.5 :</p>
+<ul>
+<li>Sensitivity = 0.6125</li>
+<li>Specificity = 0.8667</li>
+<li>FPR = $1-0.8667 = 0.1333$</li>
+</ul>
+<p>Threshold is 0.7 :</p>
+<ul>
+<li>Sensitivity = 0.4</li>
+<li>Specificity = 0.9533</li>
+<li>FPR = $1-0.9533 = 0.0467$</li>
+</ul>
+<p>In this scenario, we also would think that when the threshold is 0.3 is the optimal cutoff because they seem the optimal values for both. However, we can see the overall quality of the classifier with the AUC values. </p>
+<p>AUC (Area Under Curve) is the area under the ROC curve. The greater the AUC value is, the better classifier we get. </p>
+<p>Below is the implementation of my own functions for developing all of the above metrics, such as Precision and Recall, Sensitivity and Specificity, ROC curves, and AUC values. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">#This function creates a dataframe that has TP, TN, FP, and FN values</span><br><span class="line">#This function should have same levels for the both target and pred variable</span><br><span class="line">tptnfpfn &lt;- function(x,y)&#123;</span><br><span class="line">  tap &lt;- tapply(x,x,length)</span><br><span class="line">  f.names &lt;- tap[1] %&gt;% names</span><br><span class="line">  </span><br><span class="line">  if(tap[1] &gt; tap[2])&#123;</span><br><span class="line">    target &lt;- ifelse(x == f.names, 0, 1)</span><br><span class="line">    pred &lt;- ifelse(y == f.names, 0, 1)</span><br><span class="line">  &#125;</span><br><span class="line">  if(tap[2] &gt; tap[1])&#123;</span><br><span class="line">    target &lt;- ifelse(x == f.names, 1, 0)</span><br><span class="line">    pred &lt;- ifelse(y == f.names, 1, 0)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  #target &lt;- x</span><br><span class="line">  #pred &lt;- y</span><br><span class="line">  </span><br><span class="line">  dat &lt;- data.frame(target, pred)</span><br><span class="line">  </span><br><span class="line">  TP &lt;- length(which(dat$target == 1 &amp; dat$pred == 1))</span><br><span class="line">  FP &lt;- length(which(dat$target == 0 &amp; dat$pred == 1))</span><br><span class="line">  TN &lt;- length(which(dat$target == 0 &amp; dat$pred == 0))</span><br><span class="line">  FN &lt;- length(which(dat$target == 1 &amp; dat$pred == 0))</span><br><span class="line">  </span><br><span class="line">  new.dat &lt;- data.frame(TP,FP,TN,FN)</span><br><span class="line">  return(new.dat)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#Precision = TP / (TP + FP) &lt;- the denominator is total predicted positive values</span><br><span class="line">precision &lt;- function(tp.dat)&#123;</span><br><span class="line">  precision &lt;- tp.dat$TP / (tp.dat$TP + tp.dat$FP)</span><br><span class="line">  return(precision)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#Recall = sensitivity = TP / (TP + FN) &lt;- the denominator is total actual positive values </span><br><span class="line"></span><br><span class="line">recall &lt;- function(tp.dat)&#123;</span><br><span class="line">  recall &lt;- tp.dat$TP / (tp.dat$TP + tp.dat$FN)</span><br><span class="line">  return(recall)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#Sensitivity = Recall</span><br><span class="line"></span><br><span class="line">#Specificity = TN / (TN + FP) &lt;- the denominator is total actual negative values</span><br><span class="line">spec &lt;- function(tp.dat)&#123;</span><br><span class="line">  specificity &lt;- tp.dat$TN / (tp.dat$TN + tp.dat$FP)</span><br><span class="line">  return(specificity)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#ROC = TPR vs FPR = Recall vs 1-TNR = TP/(TP+FN) vs FP/(FP+TN)</span><br><span class="line">roc.func &lt;- function(target,pred)&#123;</span><br><span class="line">  dummy &lt;- data.frame(TPR = rep(0, length(target)), </span><br><span class="line">                      FPR = rep(0, length(target)), </span><br><span class="line">                      Spec = rep(0,length(target)),</span><br><span class="line">                      Precision = rep(0, length(target)),</span><br><span class="line">                      f1score = rep(0, length(target)))</span><br><span class="line">  </span><br><span class="line">  tap &lt;- tapply(target,target,length)</span><br><span class="line">  if(tap[1] &gt; tap[2])&#123;</span><br><span class="line">    f.name &lt;- levels(as.factor(target))[2]</span><br><span class="line">    s.name &lt;- levels(as.factor(target))[1]</span><br><span class="line">  &#125;</span><br><span class="line">  if(tap[2] &gt; tap[1])&#123;</span><br><span class="line">    f.name &lt;- levels(as.factor(target))[1]</span><br><span class="line">    s.name &lt;- levels(as.factor(target))[2]</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  for(i in 1:length(target))&#123;</span><br><span class="line">    #splitting the probabilities by cutoff with same levels</span><br><span class="line">    pred.cutoff &lt;- ifelse(pred &gt;= sort(pred)[i], f.name, s.name)</span><br><span class="line">    </span><br><span class="line">    tptn &lt;- tptnfpfn(target,pred.cutoff)</span><br><span class="line">    </span><br><span class="line">    dummy$cutoff[i] &lt;- sort(pred)[i]</span><br><span class="line">    dummy$TPR[i] &lt;- recall(tptn)</span><br><span class="line">    dummy$FPR[i] &lt;- tptn$FP / (tptn$FP + tptn$TN)</span><br><span class="line">    dummy$Spec[i] &lt;- spec(tptn)</span><br><span class="line">    dummy$Precision[i] &lt;- precision(tptn)</span><br><span class="line">    dummy$f1score[i] &lt;- f1.score(tptn)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  #dummy$TPR &lt;- ifelse(dummy$TPR == &quot;NaN&quot;, 0, dummy$TPR)</span><br><span class="line">  #dummy$FPR &lt;- ifelse(dummy$FPR == &quot;NaN&quot;, 0, dummy$FPR)</span><br><span class="line">  return(dummy)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#This auc function is from below link. </span><br><span class="line">#Refer to </span><br><span class="line">#https://mbq.me/blog/augh-roc/</span><br><span class="line">#a little changes is applied into the codes from above link</span><br><span class="line">#This is using the test statistic from &quot;Mann-Whitney-Wilcoxon test&quot;</span><br><span class="line">#Further link:</span><br><span class="line">#https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test#Area-under-curve_(AUC)_statistic_for_ROC_curves</span><br><span class="line">auc.func &lt;- function(target, pred)&#123;</span><br><span class="line">  tap &lt;- tapply(target, target, length)</span><br><span class="line">  f.name &lt;- tap[1] %&gt;% names</span><br><span class="line">  </span><br><span class="line">  if(tap[1] &gt; tap[2])&#123;</span><br><span class="line">    target1 &lt;- ifelse(target == f.name, TRUE, FALSE)</span><br><span class="line">  &#125;</span><br><span class="line">  if(tap[2] &gt; tap[1])&#123;</span><br><span class="line">    target1 &lt;- ifelse(target == f.name, TRUE, FALSE)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  n1 &lt;- sum(!target1)</span><br><span class="line">  n2 &lt;- sum(target1)</span><br><span class="line">  U &lt;- sum(rank(pred)[!target1]) - n1 * (n1 + 1) / 2</span><br><span class="line">  </span><br><span class="line">  return(1 - U / (n1*n2))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Below is the results by built-in syntax in R with “ROCR” package</p>
+<img src="/2019/10/16/AUROC/1.png" title="[table]">
+<img src="/2019/10/16/AUROC/2.png" title="[table]">
+<img src="/2019/10/16/AUROC/8.png" title="[table]">
+
+<p>Below is the results by the created functions as above. </p>
+<img src="/2019/10/16/AUROC/3.png" title="[table]">
+<img src="/2019/10/16/AUROC/4.png" title="[table]">
+<img src="/2019/10/16/AUROC/5.png" title="[table]">
+<img src="/2019/10/16/AUROC/6.png" title="[table]">
+<img src="/2019/10/16/AUROC/7.png" title="[table]">
+
+
+<p>Full implementation will be <a href="https://github.com/DavidKwon91/MathematicsBehindAlgorithms/blob/master/AUROC/AUROC.md" target="_blank" rel="noopener">here</a></p>
+<p>Reference:<br><a href="https://en.wikipedia.org/wiki/Precision_and_recall" target="_blank" rel="noopener">Precision and Recall</a><br><a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic" target="_blank" rel="noopener">Receiver Operating Characteristic</a><br><a href="https://en.wikipedia.org/wiki/Type_I_and_type_II_errors" target="_blank" rel="noopener">Type 1 and Type 2 Error</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
         <a href="/2019/10/07/Reticulate/" class="image is-7by1">
             <img class="thumbnail" src="/images/RorPython.jpeg" alt="Reticulate">
         </a>
@@ -159,7 +320,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 559 words)
+                    4 minutes read (About 561 words)
                 </span>
                 
                 
@@ -172,7 +333,7 @@
             
         </h1>
         <div class="content">
-            <h2 id="R-Python"><a href="#R-Python" class="headerlink" title="R? Python?"></a>R? Python?</h2><p>My main language for data analysis is R, but sometimes Python is used for its convenience. I wanted to find a way of using both language interactively in R, and this article is the introduction of a R package, “Reticulate,” which can use both language in R. </p>
+            <h2 id="R-Python"><a href="#R-Python" class="headerlink" title="R? Python?"></a>R? Python?</h2><p>My main language for data analysis is R, but sometimes Python is used for its convenience. I wanted to find a way of using both language interactively in R, and this article is the introduction of a R package, “Reticulate,” which allows us to use both language in R. </p>
 <h3 id="Reticulate"><a href="#Reticulate" class="headerlink" title="Reticulate"></a>Reticulate</h3><p>The R package, “Reticulate,” is quite recent package published in July 2019. It is still being updated for some issues, but it’s useful if you want use Python modules in R. You can see and download a cheat sheet published in R website, <a href="https://resources.rstudio.com/rstudio-developed/reticulate" target="_blank" rel="noopener">Here</a>. </p>
 <p>I performed simple decision tree and XGBoost with Bayesian Optimization with both languages, R and Python, through “Reticulate” package in R, and it works successfully. </p>
 <p>For the preparateion to use Reticulate, you have to install or update your R, Rstudio, pip, conda, and Python as the recent version. </p>
@@ -267,7 +428,7 @@
                 <time class="level-item has-text-grey" datetime="2019-10-05T09:53:20.000Z">2019-10-05</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Bayes-Theorem/">Bayes Theorem</a>
+                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Monty-Hall/">Monty Hall</a>
                 </div>
                 
                 
@@ -1097,114 +1258,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/09/03/Matrix Basic/" class="image is-7by1">
-            <img class="thumbnail" src="/images/SchurComplement.png" alt="Schur Complement">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Math/">Math</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Math/Schur-Complement/">Schur Complement</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 651 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/03/Matrix Basic/">Schur Complement</a>
-            
-        </h1>
-        <div class="content">
-            <p>Brief introduction to Schur Complement. </p>
-<p>This is just a brief introduction of the properties of Schur Complement. Schur Complement has many applications in numerical analysis, such as optimization, machine learning algorithms, or probability and matrix theories. </p>
-<p>Let’s begin with the definition of the Schur Complement. </p>
-<p>$\large{Definition}$: </p>
-<p>The Schur Complement of a black matrix is defined as;</p>
-<p>Let $M$ be $n \times n$ matrix</p>
-<p>$$M =  \begin{bmatrix} A &amp; B \\ C &amp; D \end{bmatrix}$$</p>
-<p>Then, the Schur Complement of the block $D$ of the matrix $M$ is </p>
-<p>$$M/D := A - BD^{-1}C$$</p>
-<p>if $D$ is invertible. </p>
-<p>The Schur Complement of the block $A$ of the matrix $M$ is then,</p>
-<p>$$M/A := D - CA^{-1}B$$</p>
-<p>if $A$ is invertible. </p>
-<p>$$\large{Properties}$$</p>
-<ul>
-<li>Linear system</li>
-</ul>
-<p>Let<br>$A$ is a $p \times p$ matrix,<br>$D$ is a $q \times q$ matrix, with $n = p + q$<br>So, $B$ is a $p \times q$ matrix. </p>
-<p>Let $M$ be defined as,</p>
-<p>$$M = \begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix}$$</p>
-<p>Suppose we have a linear system as,</p>
-<p>$$Ax + By = c \\ B^{T}x + Dy = d$$</p>
-<p>Then, </p>
-<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} c \\ d \end{bmatrix}$$</p>
-<p>Assuming $D$ is invertible, </p>
-<p>then we have $y$ as</p>
-<p>$$y = D^{-1}(d - B^{T}x)$$ </p>
-<p>Then, from the equation, </p>
-<p>$$Ax + By = c \\ Ax + B(D^{-1}(d - B^{T}x)) = c$$</p>
-<p>Then, we see that is,</p>
-<p>$$(A - BD^{-1}B^{T})x = c - BD^{-1}d$$</p>
-<p>Here, the $A - BD^{-1}B^{T}$ is the Schur Complement of a block $D$ of matrix $M$. </p>
-<p>It follows, </p>
-<p>$$x = (A-BD^{-1}B^{T})^{-1}(c-BD^{-1}d) \\ y = D^{-1}(d-B^{T}(A-BD^{-1}B^{T})^{-1}(c-BD^{-1}d))$$</p>
-<p>And, </p>
-<p>$$x = (A-BD^{-1}B^{T})^{-1}c - (A-BD^{-1}B^{T})^{-1}BD^{-1}d \\ y = -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}c + (D^{-1}+D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}BD^{-1})d$$</p>
-<p>The $x$ and $y$ are formed as linear functions associated with $c$ and $d$, </p>
-<p>and it can be a formula for an inverse of $M$ in terms of the Schur Complement of $D$ in $M$.</p>
-<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; -(A-BD^{-1}B^{T})^{-1}BD^{-1} \\ -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1} &amp; D^{-1}+D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}BD^{-1}  \end{bmatrix}$$</p>
-<p>This can be written as,</p>
-<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; 0 \\ -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1} &amp; D^{-1} \end{bmatrix} \begin{bmatrix} I &amp; -BD^{-1} \\ 0 &amp; I \end{bmatrix}$$</p>
-<p>Eventually, </p>
-<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} I &amp; 0 \\ -D^{-1}B^{T} &amp; I \end{bmatrix} \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; 0 \\ 0 &amp; D^{-1} \end{bmatrix} \begin{bmatrix} I &amp; -BD^{-1} \\ 0 &amp; I \end{bmatrix}$$</p>
-<p>If we take inverse on both sides,</p>
-<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} = \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; 0 \\ D^{-1}B^{T} &amp; I \end{bmatrix}$$</p>
-<p>$$= \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} ^{T}$$</p>
-<p>This is done by an assumption with $D$ is invertible, and this decomposition is called Block LDU Decomposition. </p>
-<p>Then, we can get another factorization of $M$ if A is invertible. </p>
-<ul>
-<li>Positive Semi-definite</li>
-</ul>
-<p><em>For any symmetric matrix,</em> $M$,</p>
-<p>if D is invertible, then</p>
-<p>1) $M \succ 0$   $iff$   $D \succ 0$ <em>and</em>  $A-BC^{-1}B^{T} \succ 0$ </p>
-<p>2) <em>If</em> $C \succ 0$, <em>then</em> $M \succeq 0$  $iff$  $A-BC^{-1}B^{T} \succeq 0$</p>
-<p>We can easily get the matrix $M$ in the linear combination and the inverse of the $M$ with Schur Complement.<br>We also can check if the $M$ is positive semi-definite.</p>
-<p>Reference:</p>
-<p><a href="https://en.wikipedia.org/wiki/Schur_complement" target="_blank" rel="noopener">Schur Complement</a><br><a href="http://www.cis.upenn.edu/~jean/schur-comp.pdf" target="_blank" rel="noopener">The Schur Complement and Symmetric Positive Semidefinite (and Definite) Matrices</a></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -1267,7 +1320,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        14
+                        15
                     </p>
                 </div>
             </div>
@@ -1277,7 +1330,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        16
+                        17
                     </p>
                 </div>
             </div>
@@ -1287,7 +1340,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        20
+                        26
                     </p>
                 </div>
             </div>
@@ -1355,12 +1408,12 @@
                 <span class="level-item">ML</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">6</span>
             </span>
         </a><ul><li>
-        <a class="level is-marginless" href="/categories/ML/Bayes-Theorem/">
+        <a class="level is-marginless" href="/categories/ML/AUROC/">
             <span class="level-start">
-                <span class="level-item">Bayes Theorem</span>
+                <span class="level-item">AUROC</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -1393,6 +1446,14 @@
         <a class="level is-marginless" href="/categories/ML/Logistic-Regression/">
             <span class="level-start">
                 <span class="level-item">Logistic Regression</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Monty-Hall/">
+            <span class="level-start">
+                <span class="level-item">Monty Hall</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -1473,7 +1534,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
+        <a href="/tags/AUC/" style="font-size: 10px;">AUC</a> <a href="/tags/Bayes-Theorem/" style="font-size: 10px;">Bayes Theorem</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Classification/" style="font-size: 10px;">Classification</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 15px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 15px;">Matrix</a> <a href="/tags/Metric/" style="font-size: 10px;">Metric</a> <a href="/tags/Month-Hall-Problem/" style="font-size: 10px;">Month Hall Problem</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/ROC/" style="font-size: 10px;">ROC</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 15px;">Today</a>
     </div>
 </div>
 
@@ -1484,6 +1545,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/10/16/AUROC/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/auroc.png" alt="AUROC">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-16T04:04:57.000Z">2019-10-16</time></div>
+                    <a href="/2019/10/16/AUROC/" class="title has-link-black-ter is-size-6 has-text-weight-normal">AUROC</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/AUROC/">AUROC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1517,7 +1597,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-05T09:53:20.000Z">2019-10-05</time></div>
                     <a href="/2019/10/05/Monty-Hall/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Monty Hall</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Bayes-Theorem/">Bayes Theorem</a>
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Monty-Hall/">Monty Hall</a>
                     </p>
                 </div>
             </div>
@@ -1561,25 +1641,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/09/15/No-Leaders-Please/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/CharlesBukowski.jpeg" alt="No Leaders Please">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-14T21:01:18.000Z">2019-09-15</time></div>
-                    <a href="/2019/09/15/No-Leaders-Please/" class="title has-link-black-ter is-size-6 has-text-weight-normal">No Leaders Please</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Today/">Today</a> / <a class="has-link-grey -link" href="/categories/Today/September/">September</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1598,7 +1659,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1639,6 +1700,20 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/AUC/">
+                        <span class="tag">AUC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Bayes-Theorem/">
+                        <span class="tag">Bayes Theorem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/CentralLimitTheorem/">
                         <span class="tag">CentralLimitTheorem</span>
                         <span class="tag is-grey">1</span>
@@ -1655,6 +1730,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/CholeskyDecomposition/">
                         <span class="tag">CholeskyDecomposition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Classification/">
+                        <span class="tag">Classification</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1718,7 +1800,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ML/">
                         <span class="tag">ML</span>
-                        <span class="tag is-grey">10</span>
+                        <span class="tag is-grey">11</span>
                     </a>
                 </div>
                 
@@ -1726,6 +1808,20 @@
                     <a class="tags has-addons" href="/tags/Matrix/">
                         <span class="tag">Matrix</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Metric/">
+                        <span class="tag">Metric</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Month-Hall-Problem/">
+                        <span class="tag">Month Hall Problem</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1760,6 +1856,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/R/">
                         <span class="tag">R</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ROC/">
+                        <span class="tag">ROC</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
