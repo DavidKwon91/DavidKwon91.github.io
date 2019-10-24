@@ -185,7 +185,7 @@
         <div class="content">
             <h2 id="Introduction-to-Principal-Components-Analysis"><a href="#Introduction-to-Principal-Components-Analysis" class="headerlink" title="Introduction to Principal Components Analysis"></a>Introduction to Principal Components Analysis</h2><p>PCA (Principal Components Analysis) is a popular statistical method to reduce dimensions when the dimension of a dataset is huge, especially, when $n \geq m$ in $m \times n$ matrix or dataset.</p>
 <p>Before digging into PCA, I start with some basic of linear algebra. </p>
-<h4 id="1-Numerator-and-Denominator-Layout-in-Matrix-Differentiation"><a href="#1-Numerator-and-Denominator-Layout-in-Matrix-Differentiation" class="headerlink" title="1. Numerator and Denominator Layout in Matrix Differentiation"></a>1. Numerator and Denominator Layout in Matrix Differentiation</h4><p>In matrix differentiation, there are two notational convention to express the derivative of a vector with respect to a vector, that is $\frac{\partial y}{\partial x}$, which are “Numerator Layout” and “Denominator Layout”.</p>
+<h3 id="1-Numerator-and-Denominator-Layout-in-Matrix-Differentiation"><a href="#1-Numerator-and-Denominator-Layout-in-Matrix-Differentiation" class="headerlink" title="1. Numerator and Denominator Layout in Matrix Differentiation"></a>1. Numerator and Denominator Layout in Matrix Differentiation</h3><p>In matrix differentiation, there are two notational convention to express the derivative of a vector with respect to a vector, that is $\frac{\partial y}{\partial x}$, which are “Numerator Layout” and “Denominator Layout”.</p>
 <p>It doesn’t matter which way you would like to use, but make sure you stick with a notational convention if you start with a particular convention. </p>
 <p>Let $x$ be a $n \times 1$ vector, $y$ be a $m \times 1$ vector. </p>
 <p>Then, for $\frac{\partial y}{\partial x}$,</p>
@@ -197,7 +197,7 @@
 
 <p>The different kinds of two notational convention can be found from <a href="https://en.wikipedia.org/wiki/Matrix_calculus#Vector-by-vector_identities" target="_blank" rel="noopener">Wiki</a></p>
 <p>Most of books or papers don’t state which convention they use, but the Denominator Layout is mostly used in many papers or software. This article is going to use Denominator Layout in this article. </p>
-<h4 id="2-Variance-Covariance-Matrix"><a href="#2-Variance-Covariance-Matrix" class="headerlink" title="2. Variance-Covariance Matrix"></a>2. Variance-Covariance Matrix</h4><p>Variance-Covariance Matrix, called just Covariance Matrix, of a matrix $X$ can be expressed in two ways as following;</p>
+<h3 id="2-Variance-Covariance-Matrix"><a href="#2-Variance-Covariance-Matrix" class="headerlink" title="2. Variance-Covariance Matrix"></a>2. Variance-Covariance Matrix</h3><p>Variance-Covariance Matrix, called just Covariance Matrix, of a matrix $X$ can be expressed in two ways as following;</p>
 <p>$$S = \frac{1}{n-1} XX^T \tag{1}$$</p>
 <p>or</p>
 <p>$$S = \frac{1}{n-1} X^{T}X \tag{2}$$</p>
@@ -222,7 +222,7 @@
 <p>Then, the covariance matrix will be </p>
 <p>$$S_{2 \times 2} = \frac{1}{n-1} X_{2 \times 1}^{T} X_{1 \times 2}$$</p>
 <p>In this paper, we will need the (2) covariance matrix since mostly columns are the predictors, and covariance matrix is calculated by the columns. </p>
-<h4 id="3-Intuition-on-Eigenvalues-and-Eigenvectors"><a href="#3-Intuition-on-Eigenvalues-and-Eigenvectors" class="headerlink" title="3. Intuition on Eigenvalues and Eigenvectors"></a>3. Intuition on Eigenvalues and Eigenvectors</h4><p>Formal Definition of Eigenvalues and Eigenvectors:</p>
+<h3 id="3-Intuition-on-Eigenvalues-and-Eigenvectors"><a href="#3-Intuition-on-Eigenvalues-and-Eigenvectors" class="headerlink" title="3. Intuition on Eigenvalues and Eigenvectors"></a>3. Intuition on Eigenvalues and Eigenvectors</h3><p>Formal Definition of Eigenvalues and Eigenvectors:</p>
 <p>Let A be $n \times n$ a sqaure matrix, then $v$ and $\lambda$ is the Eigenvector and the Eigenvalue of $A$, respectively, if</p>
 <p>$$Av = \lambda v \tag{5}$$</p>
 <p>where $v$ is a non-zero vector and $\lambda$ can be any scalar. </p>
@@ -234,13 +234,13 @@
 <p>where $I$ is the $n \times n$ identity matrix, and $0$ is the zero vector. </p>
 <p>Also, if the $(A - \lambda I)$ is invertible, then $v$ can be zero-vector; therefore, in order to have a non-zero vector, $v$, the $(A - \lambda I)$ must be not invertible. It leads the determinant of $(A - \lambda I)$ must be zero as the following; </p>
 <p>$$det(A - \lambda I) = 0$$</p>
-<h4 id="4-Eigendecomposition-or-Spectral-Decomposition"><a href="#4-Eigendecomposition-or-Spectral-Decomposition" class="headerlink" title="4. Eigendecomposition or Spectral Decomposition"></a>4. Eigendecomposition or Spectral Decomposition</h4><p>Let $A$ be $n \times n$ a sqaure matrix with its rank is $n$, $rank(A) = n$, which is equivalent to have the number of linearly independent of columns or rows. </p>
+<h3 id="4-Eigendecomposition-or-Spectral-Decomposition"><a href="#4-Eigendecomposition-or-Spectral-Decomposition" class="headerlink" title="4. Eigendecomposition or Spectral Decomposition"></a>4. Eigendecomposition or Spectral Decomposition</h3><p>Let $A$ be $n \times n$ a sqaure matrix with its rank is $n$, $rank(A) = n$, which is equivalent to have the number of linearly independent of columns or rows. </p>
 <p>Then, $A$ can be factorized as</p>
 <p>$$A_{n \times n} = Q_{n \times n} \Lambda_{n \times n} Q_{n \times n}^{-1}$$</p>
 <p>where $Q$ is the $n \times n$ square matrix that the $i$th column is the eigenvector of A, and the $\Lambda$ is the diagonal matrix that the diagonal elements are the eigenvalues of A, $\Lambda_{ii} = \lambda_i$.</p>
 <p>If the $Q$ is orthogonal matrix, then $A$ is equivalent to the following;</p>
 <p>$$A = Q \Lambda Q^{-1} = Q \Lambda Q^T \tag{6}$$</p>
-<h4 id="5-SVD-Singular-Value-Decomposition"><a href="#5-SVD-Singular-Value-Decomposition" class="headerlink" title="5. SVD (Singular Value Decomposition)"></a>5. SVD (Singular Value Decomposition)</h4><p>Let $A$ be $m \times n$ a rectangular matrix, then $A$ can be factorized as,</p>
+<h3 id="5-SVD-Singular-Value-Decomposition"><a href="#5-SVD-Singular-Value-Decomposition" class="headerlink" title="5. SVD (Singular Value Decomposition)"></a>5. SVD (Singular Value Decomposition)</h3><p>Let $A$ be $m \times n$ a rectangular matrix, then $A$ can be factorized as,</p>
 <p>$$A_{m \times n} = U_{m \times m} \Sigma_{m \times n} V_{n \times n}^{T}$$</p>
 <p>where $U$ and $V$ is orthonormal square matrix, which means $U^{T}U = V^{T}V = I$, and $\Sigma$ is the diagonal matrix. </p>
 <p>Then, the square matrix, </p>
@@ -249,7 +249,7 @@
 <p>$$A_{n \times m}^{T}A_{m \times n} = (U \Sigma V^T)^{T} (U \Sigma V^T) \\ = (V \Sigma^{T} U^{T}) (U \Sigma V^T) \\ = V (\Sigma^{T} \Sigma) V^{T} \tag{8}$$</p>
 <p>which gives us $V$ is the eigenvector of $A^{T}A$ by the definition of Eigendecomposition and the fact that we assume that $V$ is the orthonormal matrix, and $V$ is called right-singular vector. </p>
 <p>Also, $\Sigma \Sigma^{T} = \Sigma^{T} \Sigma$ is the diagonal matrix that the diagonal elements are the eigenvalues. </p>
-<h4 id="6-PCA-Principal-Components"><a href="#6-PCA-Principal-Components" class="headerlink" title="6. PCA (Principal Components)"></a>6. PCA (Principal Components)</h4><p>The goal of the PCA is to identify the most meaningful basis to re-express a dataset. </p>
+<h3 id="6-PCA-Principal-Components"><a href="#6-PCA-Principal-Components" class="headerlink" title="6. PCA (Principal Components)"></a>6. PCA (Principal Components)</h3><p>The goal of the PCA is to identify the most meaningful basis to re-express a dataset. </p>
 <p>Let $X$ be $m \times n$ matrix, $Y$ be another $m \times n$ matrix related by a linear transformation $P_{n \times n}$. </p>
 <p>Then,</p>
 <p>$$Y = XP \\ = \begin{bmatrix} x_{11} &amp; \dots &amp; x_{1n}  \\ \vdots &amp; \ddots \\ x_{m1} &amp; \dots &amp; x_{mn} \end{bmatrix}  \begin{bmatrix} p_{11} &amp; \dots &amp; p_{1n}  \\ \vdots &amp; \ddots \\ p_{n1} &amp; \dots &amp; p_{nn} \end{bmatrix}$$</p>
