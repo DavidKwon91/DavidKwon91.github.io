@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Category: Principal Components Analysis - David Kwon</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="David Kwon">
+<meta property="og:url" content="http://yoursite.com/categories/ML/Principal-Components-Analysis/index.html">
+<meta property="og:site_name" content="David Kwon">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="David Kwon">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="David Kwon" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/DavidKwon91">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">Categories</a></li>
+            
+            <li><a href="/categories/ML/">ML</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">Principal Components Analysis</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/2019/10/24/PCA/" class="image is-7by1">
+            <img class="thumbnail" src="/images/pca.png" alt="PCA">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-24T06:08:47.000Z">2019-10-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Principal-Components-Analysis/">Principal Components Analysis</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    12 minutes read (About 1767 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/10/24/PCA/">PCA</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Introduction-to-Principal-Components-Analysis"><a href="#Introduction-to-Principal-Components-Analysis" class="headerlink" title="Introduction to Principal Components Analysis"></a>Introduction to Principal Components Analysis</h2><p>PCA (Principal Components Analysis) is a popular statistical method to reduce dimensions when the dimension of a dataset is huge, especially, when $n \geq m$ in $m \times n$ matrix or dataset.</p>
+<p>Before digging into PCA, I start with some basic of linear algebra. </p>
+<h4 id="1-Numerator-and-Denominator-Layout-in-Matrix-Differentiation"><a href="#1-Numerator-and-Denominator-Layout-in-Matrix-Differentiation" class="headerlink" title="1. Numerator and Denominator Layout in Matrix Differentiation"></a>1. Numerator and Denominator Layout in Matrix Differentiation</h4><p>In matrix differentiation, there are two notational convention to express the derivative of a vector with respect to a vector, that is $\frac{\partial y}{\partial x}$, which are “Numerator Layout” and “Denominator Layout”.</p>
+<p>It doesn’t matter which way you would like to use, but make sure you stick with a notational convention if you start with a particular convention. </p>
+<p>Let $x$ be a $n \times 1$ vector, $y$ be a $m \times 1$ vector. </p>
+<p>Then, for $\frac{\partial y}{\partial x}$,</p>
+<p>Numerator Layout: $m \times n$ matrix as following; </p>
+<img src="/2019/10/24/PCA/numlay.png" title="[table]">
+
+<p>Denominator Layout: $n \times m$ matrix as following;</p>
+<img src="/2019/10/24/PCA/denomlay.png" title="[table]">
+
+<p>The different kinds of two notational convention can be found from <a href="https://en.wikipedia.org/wiki/Matrix_calculus#Vector-by-vector_identities" target="_blank" rel="noopener">Wiki</a></p>
+<p>Most of books or papers don’t state which convention they use, but the Denominator Layout is mostly used in many papers or software. This article is going to use Denominator Layout in this article. </p>
+<h4 id="2-Variance-Covariance-Matrix"><a href="#2-Variance-Covariance-Matrix" class="headerlink" title="2. Variance-Covariance Matrix"></a>2. Variance-Covariance Matrix</h4><p>Variance-Covariance Matrix, called just Covariance Matrix, of a matrix $X$ can be expressed in two ways as following;</p>
+<p>$$S = \frac{1}{n-1} XX^T \tag{1}$$</p>
+<p>or</p>
+<p>$$S = \frac{1}{n-1} X^{T}X \tag{2}$$</p>
+<p>where $X$ is the $m \times n$ matrix. </p>
+<p>I will make the data be centered by subtracting the mean of the data for later convenience.  </p>
+<p>The (1) equation will give you the covariance matrix by row vectors as following;</p>
+<p>$$S_{n \times n} = \frac{1}{n-1} X_{n \times 1} X_{1 \times n}^T = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \mu)(x_i - \mu)^T \tag{3}$$</p>
+<p>where $\mu$ is the row mean vector and $S$ will be the $n \times n$ square matrix. </p>
+<p>The (2) equation will give you the covariance matrix by column vectors as following;</p>
+<p>$$S_{m \times m} = \frac{1}{n-1} X_{m \times 1}^{T}X_{1 \times m} = \frac{1}{n-1} \sum_{i=1}^{m} (x_i - \mu)^{T}(x_i - \mu) \tag{4}$$</p>
+<p>where $\mu$ is the column mean vector and $S$ will be the $m \times m$ square matrix.</p>
+<h6 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h6><p>Let $X$ be $2 \times 3$ matrix as the following; </p>
+<p>$$X = \begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \end{bmatrix}$$</p>
+<p>Then, for (1) equation, </p>
+<p>The row vectors will be $3 \times 1$ vector as following;</p>
+<p>$X_1 = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$ and $X_2 = \begin{bmatrix} 4 \\ 5 \\ 6 \end{bmatrix}$.</p>
+<p>Then, the covariance matrix will be</p>
+<p>$$S_{3 \times 3} = \frac{1}{n-1} X_{3 \times 1} X_{1 \times 3}^{T}$$.</p>
+<p>For (2) equation, </p>
+<p>The column vectors will be $1 \times 2$ vectors as following;</p>
+<p>$X_1 = \begin{bmatrix} 1 &amp; 4 \end{bmatrix}$, $X_2 = \begin{bmatrix} 2 &amp; 5 \end{bmatrix}$, $X_3 = \begin{bmatrix} 3 &amp; 6 \end{bmatrix}$.</p>
+<p>Then, the covariance matrix will be </p>
+<p>$$S_{2 \times 2} = \frac{1}{n-1} X_{2 \times 1}^{T} X_{1 \times 2}$$</p>
+<p>In this paper, we will need the (2) covariance matrix since mostly columns are the predictors, and covariance matrix is calculated by the columns. </p>
+<h4 id="3-Intuition-on-Eigenvalues-and-Eigenvectors"><a href="#3-Intuition-on-Eigenvalues-and-Eigenvectors" class="headerlink" title="3. Intuition on Eigenvalues and Eigenvectors"></a>3. Intuition on Eigenvalues and Eigenvectors</h4><p>Formal Definition of Eigenvalues and Eigenvectors:</p>
+<p>Let A be $n \times n$ a sqaure matrix, then $v$ and $\lambda$ is the Eigenvector and the Eigenvalue of $A$, respectively, if</p>
+<p>$$Av = \lambda v \tag{5}$$</p>
+<p>where $v$ is a non-zero vector and $\lambda$ can be any scalar. </p>
+<p>Geometrical meaning of Eigenvectors and Eigenvalues would be..</p>
+<p>From <a href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors" target="_blank" rel="noopener">Wiki</a>,</p>
+<p>Eigenvectors can be seen the scaled direction vectors in the difrection of the particular vector; therefore, the direction of the vector is preserved, but we are just scaling the lengths.<br>Eigenvalue can be seen the factor by which it is stretched. </p>
+<p>For equation (5), it is equivalent to the following;</p>
+<p>$$(A - \lambda I)v = 0$$</p>
+<p>where $I$ is the $n \times n$ identity matrix, and $0$ is the zero vector. </p>
+<p>Also, if the $(A - \lambda I)$ is invertible, then $v$ can be zero-vector; therefore, in order to have a non-zero vector, $v$, the $(A - \lambda I)$ must be not invertible. It leads the determinant of $(A - \lambda I)$ must be zero as the following; </p>
+<p>$$det(A - \lambda I) = 0$$</p>
+<h4 id="4-Eigendecomposition-or-Spectral-Decomposition"><a href="#4-Eigendecomposition-or-Spectral-Decomposition" class="headerlink" title="4. Eigendecomposition or Spectral Decomposition"></a>4. Eigendecomposition or Spectral Decomposition</h4><p>Let $A$ be $n \times n$ a sqaure matrix with its rank is $n$, $rank(A) = n$, which is equivalent to have the number of linearly independent of columns or rows. </p>
+<p>Then, $A$ can be factorized as</p>
+<p>$$A_{n \times n} = Q_{n \times n} \Lambda_{n \times n} Q_{n \times n}^{-1}$$</p>
+<p>where $Q$ is the $n \times n$ square matrix that the $i$th column is the eigenvector of A, and the $\Lambda$ is the diagonal matrix that the diagonal elements are the eigenvalues of A, $\Lambda_{ii} = \lambda_i$.</p>
+<p>If the $Q$ is orthogonal matrix, then $A$ is equivalent to the following;</p>
+<p>$$A = Q \Lambda Q^{-1} = Q \Lambda Q^T \tag{6}$$</p>
+<h4 id="5-SVD-Singular-Value-Decomposition"><a href="#5-SVD-Singular-Value-Decomposition" class="headerlink" title="5. SVD (Singular Value Decomposition)"></a>5. SVD (Singular Value Decomposition)</h4><p>Let $A$ be $m \times n$ a rectangular matrix, then $A$ can be factorized as,</p>
+<p>$$A_{m \times n} = U_{m \times m} \Sigma_{m \times n} V_{n \times n}^{T}$$</p>
+<p>where $U$ and $V$ is orthonormal square matrix, which means $U^{T}U = V^{T}V = I$, and $\Sigma$ is the diagonal matrix. </p>
+<p>Then, the square matrix, </p>
+<p>$$A_{m \times n}A_{n \times m}^{T} = (U \Sigma V^T) (U \Sigma V^T)^T \\ = (U \Sigma V^T) (V \Sigma^{T} U^{T}) \\ = U(\Sigma \Sigma^{T}) U^{T} \tag{7}$$</p>
+<p>which gives us $U$ is the eigenvector of $AA^T$ by the definition of Eigendecomposition and the fact that we assume that $U$ is the orthonormal matrix, and $U$ is called left-singular vector. </p>
+<p>$$A_{n \times m}^{T}A_{m \times n} = (U \Sigma V^T)^{T} (U \Sigma V^T) \\ = (V \Sigma^{T} U^{T}) (U \Sigma V^T) \\ = V (\Sigma^{T} \Sigma) V^{T} \tag{8}$$</p>
+<p>which gives us $V$ is the eigenvector of $A^{T}A$ by the definition of Eigendecomposition and the fact that we assume that $V$ is the orthonormal matrix, and $V$ is called right-singular vector. </p>
+<p>Also, $\Sigma \Sigma^{T} = \Sigma^{T} \Sigma$ is the diagonal matrix that the diagonal elements are the eigenvalues. </p>
+<h4 id="6-PCA-Principal-Components"><a href="#6-PCA-Principal-Components" class="headerlink" title="6. PCA (Principal Components)"></a>6. PCA (Principal Components)</h4><p>The goal of the PCA is to identify the most meaningful basis to re-express a dataset. </p>
+<p>Let $X$ be $m \times n$ matrix, $Y$ be another $m \times n$ matrix related by a linear transformation $P_{n \times n}$. </p>
+<p>Then,</p>
+<p>$$Y = XP \\ = \begin{bmatrix} x_{11} &amp; \dots &amp; x_{1n}  \\ \vdots &amp; \ddots \\ x_{m1} &amp; \dots &amp; x_{mn} \end{bmatrix}  \begin{bmatrix} p_{11} &amp; \dots &amp; p_{1n}  \\ \vdots &amp; \ddots \\ p_{n1} &amp; \dots &amp; p_{nn} \end{bmatrix}$$</p>
+<p>which gives us the dot product of $X$ and $P$. </p>
+<p>The dot product can be interpreted as a linear transformation or projecting $X$ onto another basis by $P$.</p>
+<p>In this case, let’s see the covariance matrix of $Y$. Notice that the covariance matrix of $Y$ or the covariance matrix of $X$ are centered as stated above (3) or (4). </p>
+<p>$$C_{Y} = \frac{1}{n-1} Y^{T}Y \\ = \frac{1}{n-1} (XP)^{T}(XP) \\ = \frac{1}{n-1}(P^{T}X^{T}XP) \\ = P^{T}C_{X} P$$</p>
+<p>If we prove that the matrix $P$ is orthonormal matrix, then we can see </p>
+<p>$$C_{Y} =  P^{T}C_{X} P =  P^{-1}C_{X} P$$</p>
+<p>by (6)</p>
+<p>and hence, it implies that $P$ is the eigenvector matrix of covariance matrix of $X$. </p>
+<ol>
+<li>First Approach to prove $P$ is orthonormal. </li>
+</ol>
+<p>We know that $C_{Y}$ is the symmetric matrix since it is the covariance matrix of $Y$, </p>
+<p>then, $C_{Y} = C_{Y}^{T}$ is true. </p>
+<p>$$C_{Y}^{T} = (P^{-1} C_{X} P)^{T} \\ = (C_{X})^{T} (P^{-1})^{T} = C_{Y} $$</p>
+<p>Therefore, </p>
+<p>$$P^{T} (C_{X})^{T} (P^{-1})^{T} =  P^{T}C_{X} P$$</p>
+<p>We know that $C_X = C_{X}^{T}$ since the covariance matrix of $X$ is symmetric matrix.</p>
+<p>Finally, </p>
+<p>$$P^{T} C_{X} (P^{-1})^{T} =  P^{T}C_{X} P \\ (P^{-1})^{T} = P$$</p>
+<p>Now, we can see the $P$ is orthonormal matrix. </p>
+<p>This proof implies that we can get the $P$ from SVD by calculating $V$. </p>
+<p>The covariance matrix of $X$ is.. </p>
+<p>$$C_X = \frac{1}{n-1} X^{T}X$$ </p>
+<p>By (8) in SVD, $X^{T}X$ is.. </p>
+<p>$$X^{T}X = V (\Sigma_{X}^{T} \Sigma_{X}) V^{T}$$</p>
+<p>Therefore, </p>
+<p>$$V^{T} = P$$ </p>
+<ol start="2">
+<li>Second Approach to prove $P$ is orthonormal (this proof was provided by a member of my study group)</li>
+</ol>
+<p>We have </p>
+<p>$$Y = XP$$</p>
+<p>where $Y$ is the projected values for $X$ by linear tranformation of $P$. </p>
+<p>Suppose we have $U$ as the following;</p>
+<p>$$YU = X_{recovered}$$ </p>
+<p>where $X_{recovered}$ is the re-proejcted values onto original values from the basis where the dataset are projected onto. </p>
+<p>Then, </p>
+<p>$$XPU = X_{recovered}$$</p>
+<p>Therefore, </p>
+<p>$$PU = I \tag{9}$$</p>
+<p>Let $x$ is column vectors from $X$, and $\hat{x}$ is column vectors from $Y$.</p>
+<p>$$x_{n \times 1} \in X_{m \times n}, \hat{x_{n \times 1}} \in Y_{m \times n}$$</p>
+<p>The loss function of PCA is</p>
+<p>$$\arg\min_{\hat{x}} ||x_{n \times 1} - U_{n \times n}\hat{x_{n \times 1}}||$$</p>
+<p>To optimize, we differentiate the equation with respect to $\hat{x}$. </p>
+<p>$$\frac{\partial}{\partial \hat{x}} ||x - U\hat{x}|| \\ = \frac{\partial}{\partial \hat{x}} (x-U\hat{x})^{T}(x-U\hat{x}) \\ = \frac{\partial}{\partial \hat{x}} (x^T - \hat{x}^{T}U^{T})(x-U\hat{x}) \\ = \frac{\partial}{\partial \hat{x}} (x^{T}x - \hat{x}^{T}U^{T}x - x^{T}U\hat{x} + \hat{x}^{T}\hat{x}) $$</p>
+<p>Here, $\hat{x}^{T}U^{T}x = x^{T}U\hat{x}$ since they are scalar value. </p>
+<p>$$= \frac{\partial}{\partial \hat{x}} (x^{T}x - 2x^{T}U\hat{x} + \hat{x}^{T}\hat{x}) \\ = 0 - 2U^{T}x + 2\hat{x} \tag{10}$$</p>
+<p>By denominator layout as explained above, </p>
+<p>$$\frac{\partial}{\partial \hat{x}} \hat{x}^{T}\hat{x} = 2\hat{x}$$ </p>
+<p>$$\frac{\partial}{\partial \hat{x}} x^{T}U\hat{x} = (x^{T}U)^{T} = U^{T}x$$</p>
+<p>Set the (10) equation as zero, </p>
+<p>$$  - 2U^{T}x + 2\hat{x} = 0 \\ \hat{x} = U^{T}x$$</p>
+<p>Therefore, $\hat{x} = Px$ from the first assumption, and $P = U^{T}$.</p>
+<p>From (9) equation, </p>
+<p>$$PU = PP^T = I \\ P^{-1} = P^T$$</p>
+<p>We proved that $P$ is the orthonormal matrix. </p>
+<p>As a result, </p>
+<ol>
+<li>$P$ is the Principal Components that allows us to get the most meaningful basis to re-express our dataset by linear transforming our dataset. </li>
+<li>$P$ is the eigenvector matrix of the covariance matrix of our dataset for the column vectors (predictors)</li>
+<li>$P$ is the transpose of right-singular vector, which is the $V^T$ in $U \Sigma V^T$, from Singular Value Decomposition. </li>
+</ol>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/David.png" alt="Yongbock (David) Kwon">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Yongbock (David) Kwon
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        The trick in life isn&#39;t getting what you want, it&#39;s wanting it after you get it
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Seoul, Korea</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        16
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        18
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        29
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/DavidKwon91" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/DavidKwon91">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Linkedin" href="https://www.linkedin.com/in/yongbock-david-kwon-7a195994/">
+                
+                <i class="fab fa-linkedin"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Language/">
+            <span class="level-start">
+                <span class="level-item">Language</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Language/Python-in-R/">
+            <span class="level-start">
+                <span class="level-item">Python in R</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/ML/">
+            <span class="level-start">
+                <span class="level-item">ML</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/ML/Classification/">
+            <span class="level-start">
+                <span class="level-item">Classification</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Decision-Tree/">
+            <span class="level-start">
+                <span class="level-item">Decision Tree</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Gaussian-Process/">
+            <span class="level-start">
+                <span class="level-item">Gaussian Process</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Likelihood/">
+            <span class="level-start">
+                <span class="level-item">Likelihood</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Logistic-Regression/">
+            <span class="level-start">
+                <span class="level-item">Logistic Regression</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Monty-Hall/">
+            <span class="level-start">
+                <span class="level-item">Monty Hall</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Principal-Components-Analysis/">
+            <span class="level-start">
+                <span class="level-item">Principal Components Analysis</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Math/">
+            <span class="level-start">
+                <span class="level-item">Math</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Math/CLT/">
+            <span class="level-start">
+                <span class="level-item">CLT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/Cholesky-Decomposition/">
+            <span class="level-start">
+                <span class="level-item">Cholesky Decomposition</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/Histogram/">
+            <span class="level-start">
+                <span class="level-item">Histogram</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Math/Schur-Complement/">
+            <span class="level-start">
+                <span class="level-item">Schur Complement</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Today/">
+            <span class="level-start">
+                <span class="level-item">Today</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Today/August/">
+            <span class="level-start">
+                <span class="level-item">August</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Today/September/">
+            <span class="level-start">
+                <span class="level-item">September</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/AUC/" style="font-size: 10px;">AUC</a> <a href="/tags/Bayes-Theorem/" style="font-size: 10px;">Bayes Theorem</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Classification/" style="font-size: 10px;">Classification</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 13.33px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 16.67px;">Matrix</a> <a href="/tags/Metric/" style="font-size: 10px;">Metric</a> <a href="/tags/Month-Hall-Problem/" style="font-size: 10px;">Month Hall Problem</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/PCA/" style="font-size: 10px;">PCA</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/ROC/" style="font-size: 10px;">ROC</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 13.33px;">Today</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 10px;">Unsupervised Learning</a>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/10/24/PCA/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/pca.png" alt="PCA">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-24T06:08:47.000Z">2019-10-24</time></div>
+                    <a href="/2019/10/24/PCA/" class="title has-link-black-ter is-size-6 has-text-weight-normal">PCA</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Principal-Components-Analysis/">Principal Components Analysis</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/16/AUROC/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/auroc.png" alt="Classfication">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-16T04:04:57.000Z">2019-10-16</time></div>
+                    <a href="/2019/10/16/AUROC/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Classfication</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Classification/">Classification</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/07/Reticulate/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/RorPython.jpeg" alt="Reticulate">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-07T03:00:23.000Z">2019-10-07</time></div>
+                    <a href="/2019/10/07/Reticulate/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Reticulate</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Language/">Language</a> / <a class="has-link-grey -link" href="/categories/Language/Python-in-R/">Python in R</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/10/05/Monty-Hall/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/montyhall.png" alt="Monty Hall">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-05T09:53:20.000Z">2019-10-05</time></div>
+                    <a href="/2019/10/05/Monty-Hall/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Monty Hall</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Monty-Hall/">Monty Hall</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/19/DecisionTree/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/treeimage.jpg" alt="DecisionTree">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-19T08:13:52.000Z">2019-09-19</time></div>
+                    <a href="/2019/09/19/DecisionTree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">DecisionTree</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Decision-Tree/">Decision Tree</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AUC/">
+                        <span class="tag">AUC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Bayes-Theorem/">
+                        <span class="tag">Bayes Theorem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CentralLimitTheorem/">
+                        <span class="tag">CentralLimitTheorem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CharlesBukowski/">
+                        <span class="tag">CharlesBukowski</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CholeskyDecomposition/">
+                        <span class="tag">CholeskyDecomposition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Classification/">
+                        <span class="tag">Classification</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Decision-Tree/">
+                        <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Entropy/">
+                        <span class="tag">Entropy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GaussianProcess/">
+                        <span class="tag">GaussianProcess</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Gini-Index/">
+                        <span class="tag">Gini Index</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Histogram/">
+                        <span class="tag">Histogram</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Likelihood/">
+                        <span class="tag">Likelihood</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LogLikelihood/">
+                        <span class="tag">LogLikelihood</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logit/">
+                        <span class="tag">Logit</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ML/">
+                        <span class="tag">ML</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Matrix/">
+                        <span class="tag">Matrix</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Metric/">
+                        <span class="tag">Metric</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Month-Hall-Problem/">
+                        <span class="tag">Month Hall Problem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Odds/">
+                        <span class="tag">Odds</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/PCA/">
+                        <span class="tag">PCA</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Poem/">
+                        <span class="tag">Poem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Probability/">
+                        <span class="tag">Probability</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/R/">
+                        <span class="tag">R</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ROC/">
+                        <span class="tag">ROC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SVD/">
+                        <span class="tag">SVD</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SchurComplement/">
+                        <span class="tag">SchurComplement</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Today/">
+                        <span class="tag">Today</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Unsupervised-Learning/">
+                        <span class="tag">Unsupervised Learning</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="David Kwon" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 David Kwon&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
