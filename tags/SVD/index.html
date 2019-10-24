@@ -169,7 +169,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    12 minutes read (About 1767 words)
+                    13 minutes read (About 1897 words)
                 </span>
                 
                 
@@ -265,7 +265,8 @@
 </ol>
 <p>We know that $C_{Y}$ is the symmetric matrix since it is the covariance matrix of $Y$, </p>
 <p>then, $C_{Y} = C_{Y}^{T}$ is true. </p>
-<p>$$C_{Y}^{T} = (P^{-1} C_{X} P)^{T} \\ = (C_{X})^{T} (P^{-1})^{T} = C_{Y} $$</p>
+<p>Let assume that $C_{Y} = P^{-1} C_{X} P$ by definition of Eigendecomposition. </p>
+<p>$$C_{Y}^{T} = (P^{-1} C_{X} P)^{T} = (C_{X})^{T} (P^{-1})^{T} \\ = C_{Y} $$</p>
 <p>Therefore, </p>
 <p>$$P^{T} (C_{X})^{T} (P^{-1})^{T} =  P^{T}C_{X} P$$</p>
 <p>We know that $C_X = C_{X}^{T}$ since the covariance matrix of $X$ is symmetric matrix.</p>
@@ -315,6 +316,7 @@
 <li>$P$ is the eigenvector matrix of the covariance matrix of our dataset for the column vectors (predictors)</li>
 <li>$P$ is the transpose of right-singular vector, which is the $V^T$ in $U \Sigma V^T$, from Singular Value Decomposition. </li>
 </ol>
+<p>Reference:<br><a href="https://arxiv.org/pdf/1404.1100.pdf" target="_blank" rel="noopener">A Tutorial on Principal Component Analysis</a><br><a href="https://www2.imm.dtu.dk/pubdb/views/edoc_download.php/4000/pdf/imm4000" target="_blank" rel="noopener">Singular Value Decomposition and Principal Component Analysis</a><br><a href="https://intoli.com/blog/pca-and-svd/" target="_blank" rel="noopener">HOW ARE PRINCIPAL COMPONENT ANALYSIS AND SINGULAR VALUE DECOMPOSITION RELATED?</a><br><a href="https://www.comp.nus.edu.sg/~cs5240/lecture/matrix-differentiation.pdf" target="_blank" rel="noopener">Matrix Differentiation</a><br><a href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors" target="_blank" rel="noopener">Eigenvalues and eigenvectors</a><br><a href="https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix" target="_blank" rel="noopener">Eigendecompositoin of a matrix</a><br><a href="https://en.wikipedia.org/wiki/Matrix_calculus" target="_blank" rel="noopener">Matrix Calculus</a><br><a href="https://medium.com/bluekiri/understanding-principal-component-analysis-once-and-for-all-9f75e7b33635" target="_blank" rel="noopener">Understanding Principal Component Analysis Once And For All</a></p>
 
         </div>
         
