@@ -139,17 +139,27 @@
                 <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
     <div class="card">
     
+    <div class="card-image">
+        <a href="/2020/01/02/logistic/" class="image is-7by1">
+            <img class="thumbnail" src="/images/logisticRegression.png" alt="Logistic Regression - Newton&#39;s method">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-01-02T03:20:29.000Z">2020-01-02</time>
                 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Logistic-Regression-II/">Logistic Regression II</a>
+                </div>
+                
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 0 words)
+                    3 minutes read (About 505 words)
                 </span>
                 
                 
@@ -158,11 +168,41 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/01/02/logistic/">logistic</a>
+                <a class="has-link-black-ter" href="/2020/01/02/logistic/">Logistic Regression - Newton&#39;s method</a>
             
         </h1>
         <div class="content">
-            
+            <h2 id="Logistic-Regression-Algorithm-with-Newton’s-Method"><a href="#Logistic-Regression-Algorithm-with-Newton’s-Method" class="headerlink" title="Logistic Regression Algorithm with Newton’s Method"></a>Logistic Regression Algorithm with Newton’s Method</h2><p>This post will somehow overlap the previous post, <a href="https://davidkwon91.github.io/categories/ML/Logistic-Regression/" target="_blank" rel="noopener">Logistic Regression I</a>, since I will discuss about the Logistic Regression further the post. </p>
+<p>We start with the Binomial Distribution. </p>
+<p>###Binomial Distribution</p>
+<p>Let $Y$ be the number of success in $m$ trials of a binomial process. Then Y is said to have a binomial distribution with paramters of $m$ and $\theta$. </p>
+<p>$$Y \sim Bin(m, \theta)$$</p>
+<p>The probability that $Y$ takes the integer value $j$ ($j = 0, 1, …, m$) is given by, </p>
+<p>$$P(Y = j) = \binom{m}{j} \theta^j (1-\theta)^{m-j}$$</p>
+<p>Then, let $y_i$ be the number of success in $m_i$ trials of a binomial process where $i = 1, …, n$. </p>
+<p>$$(Y = y_i|X = x_i) \sim Bin(m_i, \theta(x_i))$$</p>
+<p>###Sigmoid Function</p>
+<p>In logistic regression for binary response variable, we use sigmoid function to figure out the optimization of loss function, or cost function, of logistic regression model because the sigmoid function can be differentiated. </p>
+<p>Let we have one predictor variable, $x$, to predict binary outcome variable. </p>
+<p>Then, sigmoid function is defined as below, </p>
+<p>$$\theta(x) = \frac{e^{\beta_0 + \beta_1x}}{1 + e^{\beta_0 + \beta_1x}} = \frac{1}{1 + e^{-(\beta_0 + \beta_1x)}}$$</p>
+<p>Here, the $\theta(x)$ is the probability of success.<br>Solving the equation for $\beta_0 + \beta_1x$, </p>
+<p>$$\beta_0 + \beta_1x = log(\frac{\theta(x)}{1-\theta(x)}) $$<br>Here, the $\frac{\theta(x)}{1-\theta(x)}$ is known as odds, which can be described as “odds in favor of success”</p>
+<p>The odds can be described as, </p>
+<p>$$odds = \frac{Probability}{1-Probability}$$</p>
+<p>As the previous posts, <a href="https://davidkwon91.github.io/categories/ML/Logistic-Regression/" target="_blank" rel="noopener">Logistic Regression I</a> and <a href="https://davidkwon91.github.io/categories/ML/Likelihood/" target="_blank" rel="noopener">Likelihood</a> discussed, the likelihood and the probability in the dataset can be seen as,</p>
+<p>$$\mathcal{L}(\theta | x) = \mathcal{L}(distribution | data)$$</p>
+<p>$$P(data | distribution)$$</p>
+<p>Then, if we find the optimal distribution given by the maximum likelihood or the minimum loss function, we can find the probability of the outcome. </p>
+<p>###Likelihood </p>
+<p>Let $\theta(X) = \frac{1}{1+e^{-(X\beta)}}$, then the likelihood function is the function of the unkown probability of success $\theta(X)$ given by..</p>
+<p>$$L = \prod_{i=1}^{n} P(Y_i = y_i|X = x_i) \ = \prod_{i=1}^{n} \binom{m_i}{y_i} \theta(x_i)^{y_i} (1-\theta(x_i))^{m_i - y_i}$$</p>
+<p>To simplify the likelihood, we take the log on the equation, </p>
+<p>$$log(L) = \sum_{i=1}^{n}[log(\binom{m_i}{y_i}) + log(\theta(x_i)^{y_i}) + log((1-\theta(x_i))^{m_i - y_i})] \\ = \sum_{i=1}^{n}[y_ilog(\theta(x_i)) + (m_i-y_i)log(1-\theta(x_i)) + log(\binom{m_i}{y_i})] $$</p>
+<p>Here, the all $m_i$ is equal to 1 for the binary outcome variable. Therefore, </p>
+<p>$$log(L) = \sum_{i=1}^{n}[y_ilog(\theta(x_i)) + (1-y_i)log(1-\theta(x_i))] \tag{1}$$</p>
+<p>The constant, $log(\binom{m_i}{y_i})$ is excluded here, since it won’t affect in optimization. The equation $\tag{1}$ is the </p>
+
         </div>
         
         
@@ -1390,7 +1430,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        18
+                        19
                     </p>
                 </div>
             </div>
@@ -1400,7 +1440,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        29
+                        30
                     </p>
                 </div>
             </div>
@@ -1468,7 +1508,7 @@
                 <span class="level-item">ML</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/ML/Classification/">
@@ -1506,6 +1546,14 @@
         <a class="level is-marginless" href="/categories/ML/Logistic-Regression/">
             <span class="level-start">
                 <span class="level-item">Logistic Regression</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Logistic-Regression-II/">
+            <span class="level-start">
+                <span class="level-item">Logistic Regression II</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -1602,7 +1650,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AUC/" style="font-size: 10px;">AUC</a> <a href="/tags/Bayes-Theorem/" style="font-size: 10px;">Bayes Theorem</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Classification/" style="font-size: 10px;">Classification</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 13.33px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 16.67px;">Matrix</a> <a href="/tags/Metric/" style="font-size: 10px;">Metric</a> <a href="/tags/Month-Hall-Problem/" style="font-size: 10px;">Month Hall Problem</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/PCA/" style="font-size: 10px;">PCA</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/ROC/" style="font-size: 10px;">ROC</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 13.33px;">Today</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 10px;">Unsupervised Learning</a>
+        <a href="/tags/AUC/" style="font-size: 10px;">AUC</a> <a href="/tags/Bayes-Theorem/" style="font-size: 10px;">Bayes Theorem</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Classification/" style="font-size: 10px;">Classification</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 13.33px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logistic-Regression/" style="font-size: 10px;">Logistic Regression</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 16.67px;">Matrix</a> <a href="/tags/Metric/" style="font-size: 10px;">Metric</a> <a href="/tags/Month-Hall-Problem/" style="font-size: 10px;">Month Hall Problem</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/PCA/" style="font-size: 10px;">PCA</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/ROC/" style="font-size: 10px;">ROC</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 13.33px;">Today</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 10px;">Unsupervised Learning</a>
     </div>
 </div>
 
@@ -1618,16 +1666,16 @@
             
             <a href="/2020/01/02/logistic/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="logistic">
+                    <img class="thumbnail" src="/images/logisticRegression.png" alt="Logistic Regression - Newton&#39;s method">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-02T03:20:29.000Z">2020-01-02</time></div>
-                    <a href="/2020/01/02/logistic/" class="title has-link-black-ter is-size-6 has-text-weight-normal">logistic</a>
+                    <a href="/2020/01/02/logistic/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Logistic Regression - Newton&#39;s method</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Logistic-Regression-II/">Logistic Regression II</a>
                     </p>
                 </div>
             </div>
@@ -1870,6 +1918,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regression/">
+                        <span class="tag">Logistic Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Logit/">
                         <span class="tag">Logit</span>
                         <span class="tag is-grey">1</span>
@@ -1879,7 +1934,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ML/">
                         <span class="tag">ML</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 

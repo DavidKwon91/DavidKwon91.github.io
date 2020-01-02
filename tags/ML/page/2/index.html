@@ -150,6 +150,114 @@
     <div class="card">
     
     <div class="card-image">
+        <a href="/2019/09/03/Matrix Basic/" class="image is-7by1">
+            <img class="thumbnail" src="/images/SchurComplement.png" alt="Schur Complement">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-03T03:03:56.000Z">2019-09-03</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Math/">Math</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Math/Schur-Complement/">Schur Complement</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 651 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/03/Matrix Basic/">Schur Complement</a>
+            
+        </h1>
+        <div class="content">
+            <p>Brief introduction to Schur Complement. </p>
+<p>This is just a brief introduction of the properties of Schur Complement. Schur Complement has many applications in numerical analysis, such as optimization, machine learning algorithms, or probability and matrix theories. </p>
+<p>Let’s begin with the definition of the Schur Complement. </p>
+<p>$\large{Definition}$: </p>
+<p>The Schur Complement of a black matrix is defined as;</p>
+<p>Let $M$ be $n \times n$ matrix</p>
+<p>$$M =  \begin{bmatrix} A &amp; B \\ C &amp; D \end{bmatrix}$$</p>
+<p>Then, the Schur Complement of the block $D$ of the matrix $M$ is </p>
+<p>$$M/D := A - BD^{-1}C$$</p>
+<p>if $D$ is invertible. </p>
+<p>The Schur Complement of the block $A$ of the matrix $M$ is then,</p>
+<p>$$M/A := D - CA^{-1}B$$</p>
+<p>if $A$ is invertible. </p>
+<p>$$\large{Properties}$$</p>
+<ul>
+<li>Linear system</li>
+</ul>
+<p>Let<br>$A$ is a $p \times p$ matrix,<br>$D$ is a $q \times q$ matrix, with $n = p + q$<br>So, $B$ is a $p \times q$ matrix. </p>
+<p>Let $M$ be defined as,</p>
+<p>$$M = \begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix}$$</p>
+<p>Suppose we have a linear system as,</p>
+<p>$$Ax + By = c \\ B^{T}x + Dy = d$$</p>
+<p>Then, </p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} c \\ d \end{bmatrix}$$</p>
+<p>Assuming $D$ is invertible, </p>
+<p>then we have $y$ as</p>
+<p>$$y = D^{-1}(d - B^{T}x)$$ </p>
+<p>Then, from the equation, </p>
+<p>$$Ax + By = c \\ Ax + B(D^{-1}(d - B^{T}x)) = c$$</p>
+<p>Then, we see that is,</p>
+<p>$$(A - BD^{-1}B^{T})x = c - BD^{-1}d$$</p>
+<p>Here, the $A - BD^{-1}B^{T}$ is the Schur Complement of a block $D$ of matrix $M$. </p>
+<p>It follows, </p>
+<p>$$x = (A-BD^{-1}B^{T})^{-1}(c-BD^{-1}d) \\ y = D^{-1}(d-B^{T}(A-BD^{-1}B^{T})^{-1}(c-BD^{-1}d))$$</p>
+<p>And, </p>
+<p>$$x = (A-BD^{-1}B^{T})^{-1}c - (A-BD^{-1}B^{T})^{-1}BD^{-1}d \\ y = -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}c + (D^{-1}+D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}BD^{-1})d$$</p>
+<p>The $x$ and $y$ are formed as linear functions associated with $c$ and $d$, </p>
+<p>and it can be a formula for an inverse of $M$ in terms of the Schur Complement of $D$ in $M$.</p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; -(A-BD^{-1}B^{T})^{-1}BD^{-1} \\ -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1} &amp; D^{-1}+D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1}BD^{-1}  \end{bmatrix}$$</p>
+<p>This can be written as,</p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; 0 \\ -D^{-1}B^{T}(A-BD^{-1}B^{T})^{-1} &amp; D^{-1} \end{bmatrix} \begin{bmatrix} I &amp; -BD^{-1} \\ 0 &amp; I \end{bmatrix}$$</p>
+<p>Eventually, </p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} ^{-1} = \begin{bmatrix} I &amp; 0 \\ -D^{-1}B^{T} &amp; I \end{bmatrix} \begin{bmatrix} (A-BD^{-1}B^{T})^{-1} &amp; 0 \\ 0 &amp; D^{-1} \end{bmatrix} \begin{bmatrix} I &amp; -BD^{-1} \\ 0 &amp; I \end{bmatrix}$$</p>
+<p>If we take inverse on both sides,</p>
+<p>$$\begin{bmatrix} A &amp; B \\ B^{T} &amp; D \end{bmatrix} = \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; 0 \\ D^{-1}B^{T} &amp; I \end{bmatrix}$$</p>
+<p>$$= \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} \begin{bmatrix} A-BD^{-1}B^{T} &amp; 0 \\ 0 &amp; D \end{bmatrix} \begin{bmatrix} I &amp; BD^{-1} \\ 0 &amp; I \end{bmatrix} ^{T}$$</p>
+<p>This is done by an assumption with $D$ is invertible, and this decomposition is called Block LDU Decomposition. </p>
+<p>Then, we can get another factorization of $M$ if A is invertible. </p>
+<ul>
+<li>Positive Semi-definite</li>
+</ul>
+<p><em>For any symmetric matrix,</em> $M$,</p>
+<p>if D is invertible, then</p>
+<p>1) $M \succ 0$   $iff$   $D \succ 0$ <em>and</em>  $A-BC^{-1}B^{T} \succ 0$ </p>
+<p>2) <em>If</em> $C \succ 0$, <em>then</em> $M \succeq 0$  $iff$  $A-BC^{-1}B^{T} \succeq 0$</p>
+<p>We can easily get the matrix $M$ in the linear combination and the inverse of the $M$ with Schur Complement.<br>We also can check if the $M$ is positive semi-definite.</p>
+<p>Reference:</p>
+<p><a href="https://en.wikipedia.org/wiki/Schur_complement" target="_blank" rel="noopener">Schur Complement</a><br><a href="http://www.cis.upenn.edu/~jean/schur-comp.pdf" target="_blank" rel="noopener">The Schur Complement and Symmetric Positive Semidefinite (and Definite) Matrices</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
         <a href="/2019/08/29/logit/" class="image is-7by1">
             <img class="thumbnail" src="/images/logisticRegression.png" alt="Logit - Logistic Regression">
         </a>
@@ -439,7 +547,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        18
+                        19
                     </p>
                 </div>
             </div>
@@ -449,7 +557,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        29
+                        30
                     </p>
                 </div>
             </div>
@@ -517,7 +625,7 @@
                 <span class="level-item">ML</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/ML/Classification/">
@@ -555,6 +663,14 @@
         <a class="level is-marginless" href="/categories/ML/Logistic-Regression/">
             <span class="level-start">
                 <span class="level-item">Logistic Regression</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/Logistic-Regression-II/">
+            <span class="level-start">
+                <span class="level-item">Logistic Regression II</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -651,7 +767,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AUC/" style="font-size: 10px;">AUC</a> <a href="/tags/Bayes-Theorem/" style="font-size: 10px;">Bayes Theorem</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Classification/" style="font-size: 10px;">Classification</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 13.33px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 16.67px;">Matrix</a> <a href="/tags/Metric/" style="font-size: 10px;">Metric</a> <a href="/tags/Month-Hall-Problem/" style="font-size: 10px;">Month Hall Problem</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/PCA/" style="font-size: 10px;">PCA</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/ROC/" style="font-size: 10px;">ROC</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 13.33px;">Today</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 10px;">Unsupervised Learning</a>
+        <a href="/tags/AUC/" style="font-size: 10px;">AUC</a> <a href="/tags/Bayes-Theorem/" style="font-size: 10px;">Bayes Theorem</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Classification/" style="font-size: 10px;">Classification</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 13.33px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logistic-Regression/" style="font-size: 10px;">Logistic Regression</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 16.67px;">Matrix</a> <a href="/tags/Metric/" style="font-size: 10px;">Metric</a> <a href="/tags/Month-Hall-Problem/" style="font-size: 10px;">Month Hall Problem</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/PCA/" style="font-size: 10px;">PCA</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/ROC/" style="font-size: 10px;">ROC</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 13.33px;">Today</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 10px;">Unsupervised Learning</a>
     </div>
 </div>
 
@@ -667,16 +783,16 @@
             
             <a href="/2020/01/02/logistic/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="logistic">
+                    <img class="thumbnail" src="/images/logisticRegression.png" alt="Logistic Regression - Newton&#39;s method">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-02T03:20:29.000Z">2020-01-02</time></div>
-                    <a href="/2020/01/02/logistic/" class="title has-link-black-ter is-size-6 has-text-weight-normal">logistic</a>
+                    <a href="/2020/01/02/logistic/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Logistic Regression - Newton&#39;s method</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Logistic-Regression-II/">Logistic Regression II</a>
                     </p>
                 </div>
             </div>
@@ -919,6 +1035,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Logistic-Regression/">
+                        <span class="tag">Logistic Regression</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Logit/">
                         <span class="tag">Logit</span>
                         <span class="tag is-grey">1</span>
@@ -928,7 +1051,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ML/">
                         <span class="tag">ML</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
