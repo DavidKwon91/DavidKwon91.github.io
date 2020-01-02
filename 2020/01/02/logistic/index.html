@@ -7,17 +7,18 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Category: Language - David Kwon</title>
+<title>logistic - David Kwon</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="David Kwon">
-<meta property="og:url" content="http://yoursite.com/categories/Language/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="logistic">
+<meta property="og:url" content="http://yoursite.com/2020/01/02/logistic/index.html">
 <meta property="og:site_name" content="David Kwon">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-01-02T03:20:29.529Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="David Kwon">
+<meta name="twitter:title" content="logistic">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -86,7 +87,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="David Kwon" height="28">
+                <img src="/images/logo.svg" alt="logistic" height="28">
             
             </a>
         </div>
@@ -137,40 +138,18 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/categories">Categories</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">Language</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/10/07/Reticulate/" class="image is-7by1">
-            <img class="thumbnail" src="/images/RorPython.jpeg" alt="Reticulate">
-        </a>
-    </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-10-07T03:00:23.000Z">2019-10-07</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Language/">Language</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Language/Python-in-R/">Python in R</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2020-01-02T03:20:29.000Z">2020-01-02</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 561 words)
+                    a few seconds read (About 0 words)
                 </span>
                 
                 
@@ -179,76 +158,11 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/10/07/Reticulate/">Reticulate</a>
+                logistic
             
         </h1>
         <div class="content">
-            <h2 id="R-Python"><a href="#R-Python" class="headerlink" title="R? Python?"></a>R? Python?</h2><p>My main language for data analysis is R, but sometimes Python is used for its convenience. I wanted to find a way of using both language interactively in R, and this article is the introduction of a R package, “Reticulate,” which allows us to use both language in R. </p>
-<h3 id="Reticulate"><a href="#Reticulate" class="headerlink" title="Reticulate"></a>Reticulate</h3><p>The R package, “Reticulate,” is quite recent package published in July 2019. It is still being updated for some issues, but it’s useful if you want use Python modules in R. You can see and download a cheat sheet published in R website, <a href="https://resources.rstudio.com/rstudio-developed/reticulate" target="_blank" rel="noopener">Here</a>. </p>
-<p>I performed simple decision tree and XGBoost with Bayesian Optimization with both languages, R and Python, through “Reticulate” package in R, and it works successfully. </p>
-<p>For the preparateion to use Reticulate, you have to install or update your R, Rstudio, pip, conda, and Python as the recent version. </p>
-<p>You start with installing “reticulate” package in R by </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages(&quot;reticulate&quot;)</span><br><span class="line">library(reticulate)</span><br></pre></td></tr></table></figure>
-
-<p>And, you can create your virtual environment locally, and make sure you have installed all modules of Python you will use in the environment. </p>
-<p>Creation your Python virtual environment with</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtualenv_create(envname = &quot;yourname&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>Or, you can just use the environment that is already set up in local. Once you have create the environment, then you can see the list of environments with</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtualenv_list()</span><br></pre></td></tr></table></figure>
-
-<p>And, you install the python modules into the virtual environment from your local conda or python environment. When you install those Python modules in virtual environment, you have to restart R and make sure the modules that you are going to use has been installed in your virtual environment by</p>
-<figure class="highlight plain hljs"><figcaption><span>createPythonEnv&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;bayesian-optimization&quot;)</span><br><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;pandas&quot;)</span><br><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;seaborn&quot;)</span><br><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;sklearn&quot;)</span><br><span class="line">#virtualenv_install(&quot;r-reticulate&quot;, &quot;xgboost&quot;)</span><br><span class="line">use_virtualenv(&quot;r-reticulate&quot;)</span><br><span class="line"></span><br><span class="line">py_module_available(&quot;seaborn&quot;)</span><br><span class="line">py_module_available(&quot;sklearn&quot;)</span><br><span class="line">py_module_available(&quot;pandas&quot;)</span><br><span class="line">py_module_available(&quot;bayes_opt&quot;)</span><br><span class="line">py_module_available(&quot;xgboost&quot;)</span><br></pre></td></tr></table></figure>
-
-<p>Below is the implementation for simple decision tree in R. </p>
-<img src="/2019/10/07/Reticulate/dt1.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/dt2.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/dt3.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/dt4.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/dt5.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/dt6.png" title="[Reticulate]">
-
-
-<p>Here is the implementation for simple decision tree with Python Virtual Envrionment in R.</p>
-<p>You have to declare that you will be using Python environment by</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repl_python()</span><br></pre></td></tr></table></figure>
-
-<p>Or, if you are using rMarkdown, then you make chunk with</p>
-<img src="/2019/10/07/Reticulate/pythonDec.png" title="[Reticulate]">
-
-<p>Performing simple decision tree with Python virtual environment. </p>
-<img src="/2019/10/07/Reticulate/pydt1.png" title="[Reticulate]">
-
-<p>You can bring the R objects into Python environment by </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r.yourobjects</span><br></pre></td></tr></table></figure>
-
-<img src="/2019/10/07/Reticulate/pydt2.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/pydt3.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/pydt4.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/pydt5.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/pydt6.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/pydt7.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/pydt8.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/pydt9.png" title="[Reticulate]">
-
-
-<p>After you are done with Python environment, you call the following codes in your console</p>
-<img src="/2019/10/07/Reticulate/pythonDec2.png" title="[Reticulate]">
-
-
-<p>You can also bring the Python objects into R environment by</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">py$yourobjects</span><br></pre></td></tr></table></figure>
-
-<img src="/2019/10/07/Reticulate/pytoR.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/fromPythontoR-1.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/pytoR2.png" title="[Reticulate]">
-<img src="/2019/10/07/Reticulate/fromPythontoR-2.png" title="[Reticulate]">
-
-
-
-
-<p><a href="https://github.com/DavidKwon91/MathematicsBehindAlgorithms/blob/master/Reticulate/PythonInR.md" target="_blank" rel="noopener">Here</a> is the full implemented codes for the “reticulate” package. </p>
-
+            
         </div>
         
         
@@ -260,10 +174,23 @@
 
 
 
-
-
-
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/24/PCA/">
+                <span class="level-item">PCA</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
 </div>
+
+
+
+{% include mathjax.html %}</div>
                 
 
 
@@ -929,7 +856,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="David Kwon" height="28">
+                    <img src="/images/logo.svg" alt="logistic" height="28">
                 
                 </a>
                 <p class="is-size-7">
