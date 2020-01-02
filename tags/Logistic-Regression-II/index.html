@@ -7,12 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Category: Logistic Regression - David Kwon</title>
+<title>Tag: Logistic Regression II - David Kwon</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="David Kwon">
-<meta property="og:url" content="http://yoursite.com/categories/ML/Logistic-Regression/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/Logistic-Regression-II/index.html">
 <meta property="og:site_name" content="David Kwon">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
@@ -140,11 +140,8 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/categories">Categories</a></li>
-            
-            <li><a href="/categories/ML/">ML</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">Logistic Regression</a></li>
+            <li><a href="/tags">Tags</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Logistic Regression II</a></li>
         </ul>
         </nav>
     </div>
@@ -153,8 +150,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/2019/08/29/logit/" class="image is-7by1">
-            <img class="thumbnail" src="/images/logisticRegression.png" alt="Logit - Logistic Regression">
+        <a href="/2020/01/02/logistic/" class="image is-7by1">
+            <img class="thumbnail" src="/images/sigmoid.png" alt="Logistic Regression - Newton&#39;s method">
         </a>
     </div>
     
@@ -162,17 +159,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-29T05:48:09.000Z">2019-08-29</time>
+                <time class="level-item has-text-grey" datetime="2020-01-02T03:20:29.000Z">2020-01-02</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Logistic-Regression/">Logistic Regression</a>
+                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Logistic-Regression-II/">Logistic Regression II</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1096 words)
+                    10 minutes read (About 1489 words)
                 </span>
                 
                 
@@ -181,71 +178,92 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/08/29/logit/">Logit - Logistic Regression</a>
+                <a class="has-link-black-ter" href="/2020/01/02/logistic/">Logistic Regression - Newton&#39;s method</a>
             
         </h1>
         <div class="content">
-            <h2 id="Logistic-Regression-from-Logit"><a href="#Logistic-Regression-from-Logit" class="headerlink" title="Logistic Regression from Logit"></a>Logistic Regression from Logit</h2><h3 id="1-What-is-Logit"><a href="#1-What-is-Logit" class="headerlink" title="1. What is Logit?"></a>1. What is Logit?</h3><p>To discuss logit, we need to know what the odds is. </p>
-<p>Simply say, Odds is $\frac{p}{1-p}$, where $p$ is the probability of a binary outcome. </p>
-<p>Since the odds has different properties than probability, it allows us to make new functions or new graphs. </p>
-<p>With the properties of odds, logarithm of odds is popularly used in machine learning industry, which is called logit. </p>
-<p>Logit (also log odds) = $log(\frac{p}{1-p})$. </p>
-<p>Let logit be defined as $\theta$, then </p>
-<p>$$\theta = log(\frac{p}{1-p})$$</p>
-<p>We can express this in terms of $p$ as the following,</p>
-<p>$$e^{\theta} = \frac{p}{1-p} \\ (1-p)e^{\theta} = p \\ e^{\theta} = p + p e^{\theta} \\ e^{\theta} = p(1+e^{\theta}) \\ \therefore p = \frac{e^{\theta}}{(1+e^{\theta})} = \frac{1}{1+e^{-\theta}}$$</p>
-<p>This is the logistic function, which is the special case of sigmoid function that is widely used for classification, such as logistic regression, tree-based algorithm for classification, or deep learning.<br>The logistic function is the CDF of the logistic distribution. </p>
-<h3 id="2-Logistic-Distribution"><a href="#2-Logistic-Distribution" class="headerlink" title="2. Logistic Distribution"></a>2. Logistic Distribution</h3><p>A property of the logistic distribution is that the logistic distribution is very similar with the normal distribution except for the kurtosis. </p>
-<p>The PDF of the logistic distribution is defined as, </p>
-<p>$$f(x; \mu, s) =  \frac{e^{-\frac{(x-\mu)}{s}}}{s(1+e^{-\frac{x-\mu}{s}})^2}$$</p>
-<p>The CDF of the logistic distribution is defined as,</p>
-<p>$$F(x; \mu, s) = \frac{1}{1+e^{-\frac{x-\mu}{s}}}$$</p>
-<p>Some simulations are performed in <a href="https://core.ac.uk/download/pdf/41787448.pdf" target="_blank" rel="noopener">this paper</a>, and the simulation was to measure the absolute deviation between the cumulative standard normal distribution and the cumulative logistic distribution with mean zero and variance one. </p>
-<p>By <a href="https://core.ac.uk/download/pdf/41787448.pdf" target="_blank" rel="noopener">the paper</a>, “the cumulative logistic distribution with mean zero and variance one is known as $(1+e^{-\nu x})^{-1}$ “<br>And, the paper also states that the kurtosis of the logistic distribution is effected by the parameter coefficient, $\nu$.<br>With the $\nu = 1.702$, the deviation is 0.0095. </p>
-<p>As a summary, the logistic distribution approximately follows the normal distribution with the variance $\sigma^2$, and we could use the property of the normal distribution as the following; </p>
-<p>By <a href="https://en.wikipedia.org/wiki/Standard_deviation#targetText=If%20a%20data%20distribution%20is,deviations%20(%CE%BC%20%C2%B1%203%CF%83)." target="_blank" rel="noopener">wikipedia</a>, </p>
-<p>“If a data distribution is approximately normal, then about 68 percent of the data values are within one standard deviation of the mean (mathematically, $\mu \pm \sigma$, where $\mu$ is the arithmetic mean), about 95 percent are within two standard deviations ($\mu \pm 2\sigma$), and about 99.7 percent lie within three standard deviations ($\mu \pm 3\sigma$).”</p>
-<h3 id="3-Logistic-Regression"><a href="#3-Logistic-Regression" class="headerlink" title="3. Logistic Regression"></a>3. Logistic Regression</h3><p>In a binary logistic regression, the outcome is binary, which can be said that it follows binomial distribution.</p>
-<p>Let $y_i$ = number of successes in $m_i$ trials of a binomial process where $i = 1,…,n$, and we have a single predictor, $x_i$.</p>
-<p>Then, </p>
-<p>$$y_i | x_i \sim Bin(m_i, \theta(x_i))$$</p>
-<p>By the definition of binomial distribution,</p>
-<p>$$P(Y_i = y_i | x_i) = \binom{m_i}{y_i}\theta(x_i)^{y_i}(1-\theta(x_i))^{m_i-y_i}$$</p>
-<p>As I discussed in this <a href="https://davidkwon91.github.io/categories/ML/Likelihood/" target="_blank" rel="noopener">post, Likelihood</a>, we can find the optimal distribution for the given data. </p>
+            <h2 id="Logistic-Regression-Algorithm-with-Newton’s-Method"><a href="#Logistic-Regression-Algorithm-with-Newton’s-Method" class="headerlink" title="Logistic Regression Algorithm with Newton’s Method"></a>Logistic Regression Algorithm with Newton’s Method</h2><p>This post will somehow overlap the previous post, <a href="https://davidkwon91.github.io/categories/ML/Logistic-Regression/" target="_blank" rel="noopener">Logistic Regression I</a>, since I will discuss about the Logistic Regression further the post. </p>
+<p>We start with the Binomial Distribution. </p>
+<h3 id="Binomial-Distribution"><a href="#Binomial-Distribution" class="headerlink" title="Binomial Distribution"></a>Binomial Distribution</h3><p>Let $Y$ be the number of success in $m$ trials of a binomial process. Then Y is said to have a binomial distribution with paramters of $m$ and $\theta$. </p>
+<p>$$Y \sim Bin(m, \theta)$$</p>
+<p>The probability that $Y$ takes the integer value $j$ ($j = 0, 1, …, m$) is given by, </p>
+<p>$$P(Y = j) = \binom{m}{j} \theta^j (1-\theta)^{m-j}$$</p>
+<p>Then, let $y_i$ be the number of success in $m_i$ trials of a binomial process where $i = 1, …, n$. </p>
+<p>$$(Y = y_i|X = x_i) \sim Bin(m_i, \theta(x_i))$$</p>
+<h3 id="Sigmoid-Function"><a href="#Sigmoid-Function" class="headerlink" title="Sigmoid Function"></a>Sigmoid Function</h3><p>In logistic regression for binary response variable, we use sigmoid function to figure out the optimization of loss function, or cost function, of logistic regression model because the sigmoid function can be differentiated. </p>
+<p>Let we have one predictor variable, $x$, to predict binary outcome variable. </p>
+<p>Then, sigmoid function is defined as below, </p>
+<p>$$\theta(x) = \frac{e^{\beta_0 + \beta_1x}}{1 + e^{\beta_0 + \beta_1x}} = \frac{1}{1 + e^{-(\beta_0 + \beta_1x)}}$$</p>
+<p>Here, the $\theta(x)$ is the probability of success.<br>Solving the equation for $\beta_0 + \beta_1x$, </p>
+<p>$$\beta_0 + \beta_1x = log(\frac{\theta(x)}{1-\theta(x)}) $$<br>Here, the $\frac{\theta(x)}{1-\theta(x)}$ is known as odds, which can be described as “odds in favor of success”</p>
+<p>The odds can be described as, </p>
+<p>$$odds = \frac{Probability}{1-Probability}$$</p>
+<p>As the previous posts, <a href="https://davidkwon91.github.io/categories/ML/Logistic-Regression/" target="_blank" rel="noopener">Logistic Regression I</a> and <a href="https://davidkwon91.github.io/categories/ML/Likelihood/" target="_blank" rel="noopener">Likelihood</a> discussed, the likelihood and the probability in the dataset can be seen as,</p>
 <p>$$\mathcal{L}(\theta | x) = \mathcal{L}(distribution | data)$$</p>
-<p>And with the optimal distribution given by the maximum likelihood, we can predict the probability.</p>
 <p>$$P(data | distribution)$$</p>
-<p>Then, the likelihood function for Logistic Regression will be </p>
-<p>$$\mathcal{L} = \prod_{i=1}^{n} P(Y_i = y_i | x_i) \\ = \prod_{i=1}^{n}\binom{m_i}{y_i}\theta(x_i)^{y_i}(1-\theta(x_i))^{m_i-y_i}$$</p>
-<p>We take log for the likelihood function to differentiate easier because maximizing likelihood is the same with maximizing log-likelihood. </p>
-<p>The log-likelihood function will be</p>
-<p>$$log(\mathcal{L}) =  \prod_{i=1}^{n}[log(\binom{m_i}{y_i}) + log(\theta(x_i)^{y_i}) + log((1-\theta(x_i))^{m_i - y_i})] \\ = \prod_{i=1}^{n}[y_{i} log(\theta(x_i)) + (m_i - y_i)log(1-\theta(x_i)) + log(\binom{m_i}{y_i})] \\ = \prod_{i=1}^{n}[y_{i} log(\frac{\theta(x_i)}{1-\theta(x_i)}) + m_{i} log(1-\theta(x_i)) + log(\binom{m_i}{y_i})] \\ = \prod_{i=1}{n}[y_{i}(\beta_{0} + \beta_{1}x_{i}) - m_{i}log(1+exp(\beta_{0}+\beta_{1}x_{i})) + log(\binom{m_i}{y_i})]$$</p>
-<p>Here, the $\theta(x_i)$, which is the probability, is defined as</p>
-<p>$$\theta(x_i) = \frac{1}{1+e^{-(\beta_0 + \beta_1 x_i)}}$$</p>
-<p>And, the linear combination of $\beta$ and $x$ will be the log odds as the following,</p>
-<p>$$log(\frac{\theta(x_i)}{1-\theta(x_i)}) = \beta_0 + \beta_1 x_i$$</p>
-<p>Just taking the derivative on the log-likelihood function and setting this as zero is hard to solve the problem, so the parameter $\beta_0$ and $\beta_1$ can be estimated by some other optimization method, such as Newton’s method. </p>
-<h3 id="4-Wald-Test-in-Logistic-Regression"><a href="#4-Wald-Test-in-Logistic-Regression" class="headerlink" title="4. Wald Test in Logistic Regression"></a>4. Wald Test in Logistic Regression</h3><p>Wald Test uses the property of the logistic distribution. </p>
-<p>As mentioned above, the logistic distribution is almost approximately standard normal distribution. </p>
-<p>Hence, the Wald test statistic is used to test </p>
-<p>$$H_0 : \beta_1 = 0$$ </p>
-<p>in Logistic regression. </p>
-<p>The Wald test statistic is defined as</p>
-<p>$$Z = \frac{\hat{\beta_1} - \beta_1}{estimated \qquad se(\hat{\beta_1})}$$</p>
-<p>In the test, $\beta_1 = 0$ as the null hypothesis, and this follows standard normal distribution. </p>
-<p>Hence, </p>
-<p>$$Z = \frac{\hat{\beta_1}}{\hat{se}(\hat{\beta_1})} \sim \mathcal{N}(0,1)$$</p>
-<p>As mentioned above, the logistic distribution is approximately following the normal distribution with variance, $\sigma^2$.<br>Hence, dividing by the standard error for the estimated paramter gives you standard normal distribution, $\mathcal{N}(0,1)$.</p>
-<p>We can determine the coefficient significant with the Wald Test for the Logistic Regression. </p>
-<h3 id="4-Interpretation-for-coefficients-of-Logistic-Regression"><a href="#4-Interpretation-for-coefficients-of-Logistic-Regression" class="headerlink" title="4. Interpretation for coefficients of Logistic Regression."></a>4. Interpretation for coefficients of Logistic Regression.</h3><p>Unlike Linear Regression, the linear combination of coefficients of Logistic regression is logit. </p>
-<p>Hence, we can interpret the coefficient in different way. </p>
-<p>For example, with the single predictor as used above, the logit is</p>
-<p>$$log(\frac{p}{1-p}) = \beta_0 + \beta_1 x_i$$</p>
-<p>If we take exponential both sides, </p>
-<p>$$\frac{p}{1-p} = e^{(\beta_0 + \beta_1 x_i)}$$</p>
-<p>Then, we can say as following,</p>
-<p>“For one-unit in $x_i$ increase, it is expected to see ..% increase in odds of success, $p$”.</p>
-<p>Reference:<br><em>A Modern Approach to Regression With R by Simon J. Sheater, Springer</em><br><a href="https://core.ac.uk/download/pdf/41787448.pdf" target="_blank" rel="noopener">A logistic approximation to the cumulative normal distribution</a><br><a href="https://en.wikipedia.org/wiki/Standard_deviation#targetText=If%20a%20data%20distribution%20is,deviations%20(%CE%BC%20%C2%B1%203%CF%83)." target="_blank" rel="noopener">Standard Deviation</a><br><a href="https://en.wikipedia.org/wiki/Logistic_distribution" target="_blank" rel="noopener">Logistic Distribution</a></p>
+<p>Then, if we find the optimal distribution given by the maximum likelihood or the minimum loss function, we can find the probability of the outcome. </p>
+<h3 id="Likelihood-of-Logistic-Regression"><a href="#Likelihood-of-Logistic-Regression" class="headerlink" title="Likelihood of Logistic Regression"></a>Likelihood of Logistic Regression</h3><p>Let $\theta(X) = \frac{1}{1+e^{-(X\beta)}}$, then the likelihood function is the function of the unkown probability of success $\theta(X)$ given by..</p>
+<p>$$L = \prod_{i=1}^{n} P(Y_i = y_i|X = x_i) \\ = \prod_{i=1}^{n} \binom{m_i}{y_i} \theta(x_i)^{y_i} (1-\theta(x_i))^{m_i - y_i}$$</p>
+<p>To simplify the likelihood, we take the log on the equation, </p>
+<p>$$log(L) = \sum_{i=1}^{n}[log(\binom{m_i}{y_i}) + log(\theta(x_i)^{y_i}) + log((1-\theta(x_i))^{m_i - y_i})] \\ = \sum_{i=1}^{n}[y_ilog(\theta(x_i)) + (m_i-y_i)log(1-\theta(x_i)) + log(\binom{m_i}{y_i})] $$</p>
+<p>Here, the all $m_i$ is equal to 1 for the binary outcome variable. Therefore, </p>
+<p>$$log(L) = \sum_{i=1}^{n}[y_ilog(\theta(x_i)) + (1-y_i)log(1-\theta(x_i))] \tag{Eq 1}$$</p>
+<p>The constant, $log(\binom{m_i}{y_i})$ is excluded here, since it won’t affect in optimization. The equation $(Eq 1)$ is the log likelihood function that we want to maximize. We take the minus sign for the log likelihood, which is the cost function of logistic regression. </p>
+<p>Then, the cost function for Logistic regression is the normalization of the negative log likelihood function, which is the final cost function that we want to minimize. </p>
+<p>$$J = -\frac{1}{n}\sum_{i=1}^{n}[y_ilog(\theta(x_i)) + (1-y_i)log(1-\theta(x_i))] \tag{Eq 2}$$</p>
+<h3 id="Newton-Raphson-Method"><a href="#Newton-Raphson-Method" class="headerlink" title="Newton-Raphson Method"></a>Newton-Raphson Method</h3><p>This optimization method is often called as Newton’s method, and the form is given by, </p>
+<p>$$\theta_{k+1} = \theta_k - H_k^{-1}g_k$$</p>
+<p>where $H_k$ is the Hessian matrix, which is the second partial derivative matrix, and $g_k$, which is the first partial derivative matrix, is the gradient matrix. </p>
+<p>It comes from the Taylor approximation of $f(\theta)$ around $\theta_k$. </p>
+<p>$$f_{quad}(\theta) =  f(\theta_k) + g_k^{T}(\theta - \theta_k) + \frac{1}{2}(\theta - \theta_k)^{T}H_k(\theta - \theta_k)$$ </p>
+<p>Setting the derivative of the function for $\theta$ equal to 0 to find the critical point. </p>
+<p>$$\frac{\partial f_{quad}(\theta)}{\partial \theta} = 0 + g_k + H_k(\theta - \theta_k) = 0 \\ -g_k = H_k(\theta-\theta_k) \\ = H_k\theta - H_k\theta_k \\ H_k\theta = H_k\theta_k - g_k \\ \therefore \theta_{k+1} = \theta_k - H_k^{-1}g_k $$</p>
+<h3 id="Linear-Regression-with-Newton-Raphson-Method"><a href="#Linear-Regression-with-Newton-Raphson-Method" class="headerlink" title="Linear Regression with Newton-Raphson Method"></a>Linear Regression with Newton-Raphson Method</h3><p>In linear regression, the $\hat y$ is given by $X\theta$, and therefore, least squares, which is the cost function, is given by ..</p>
+<p>$$f(\theta) = f(\theta; X, y) = (y-X\theta)^{T}(y-X\theta) \\ = y^Ty - y^TX\theta - \theta^TX^Ty + \theta^TX^TX\theta \\  = y^Ty - 2\theta^TX^Ty + \theta^TX^TX\theta$$</p>
+<p>Then, the gradient is..</p>
+<p>$$g = \partial f(\theta) = -2X^T y + 2X^T X \theta$$</p>
+<p>The Hessian is..</p>
+<p>$$H = \partial^2f(\theta) = 2X^TX $$</p>
+<p>The Newton’s method for Linear Regression is..</p>
+<p>$$\therefore \theta_{k+1} = \theta_k - H_k^{-1}g_k \\ = \theta_k - (2X^TX)^{-1}(-2X^Ty + 2X^TX\theta_k) \\ = \theta_k + (X^TX)^{-1}(X^Ty) - (X^TX)^{-1}X^TX\theta_k \\ \therefore \hat \beta= (X^TX)^{-1}X^Ty  $$</p>
+<h3 id="Logistic-Regression-with-Newton’s-method"><a href="#Logistic-Regression-with-Newton’s-method" class="headerlink" title="Logistic Regression with Newton’s method"></a>Logistic Regression with Newton’s method</h3><p>Recall that the cost function for logistic regression is described as $(Eq 2)$, </p>
+<p>$$J = -\frac{1}{n}\sum_{i=1}^{n}[y_ilog(\theta(x_i)) + (1-y_i)log(1-\theta(x_i))] $$</p>
+<p>Therefore, the gradient of the cost function is given by </p>
+<p>$$g = X^T(\theta(X) - y)$$</p>
+<p>the Hessian is given by </p>
+<p>$$ X^TWX $$</p>
+<p>Then, the $\beta$ is given by the Newton’s method </p>
+<p>$$\theta_{k+1} = \theta_k - H_k^{-1}g_k \\ = \theta_k - (X^TWX)^{-1}(X^T(\theta_k(X) - y)) \\ \therefore \hat \beta = \theta_k - (X^TWX)^{-1}(X^T(\theta_k(X) - y))$$</p>
+<h3 id="Calculation-of-the-results"><a href="#Calculation-of-the-results" class="headerlink" title="Calculation of the results"></a>Calculation of the results</h3><p>The standard error for the coefficients are the square root of the diagonal elements of the Hessian matrix. </p>
+<p>The z value is the </p>
+<p>$$Z = \frac{\hat \beta}{estimated \qquad se(\hat \beta)}$$</p>
+<p>and this statistic is used to test if $\beta = 0$, and it’s called a Wald test statistic. </p>
+<p>As I dealt with the similarity of the logit with the standard normal distribution in the previous post, <a href="https://davidkwon91.github.io/categories/ML/Logistic-Regression/" target="_blank" rel="noopener">Logistic Regression I</a>, we can use this statistic to test for statistical significance. The confidence interval can be calculated by</p>
+<p>$$\hat \beta \pm z_{1-\alpha/2} \hat {se}(\hat \beta)$$</p>
+<h3 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h3><figure class="highlight plain hljs"><figcaption><span>functions&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">#Sigmoid function - make cost function derivative</span><br><span class="line">sigmoid &lt;- function(lo)&#123;</span><br><span class="line">  sig &lt;- 1/(1+exp(-lo))</span><br><span class="line">  return(sig)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#cost function - mean of negative log likelihood function</span><br><span class="line">LL.cost &lt;- function(X,Y,theta)&#123;</span><br><span class="line">  </span><br><span class="line">  J &lt;- (-1/n)*sum(Y*log(sigmoid(X%*%theta)) + (1-Y)*log(1-sigmoid(X%*%theta)))</span><br><span class="line">  </span><br><span class="line">  return(J)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#first derivatives</span><br><span class="line">gradient.func &lt;- function(X,Y,theta)&#123;</span><br><span class="line">  G &lt;- (1/n)*(t(X)%*%(sigmoid(X%*%theta) - Y))</span><br><span class="line">  return(G)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#second derivatives</span><br><span class="line">#not use this function</span><br><span class="line">hessian.func &lt;- function(X,Y,theta)&#123;</span><br><span class="line">  H &lt;- (1/n)*((t(X)*diag(sigmoid(X%*%theta)*(1-sigmoid(X%*%theta))))%*%X)</span><br><span class="line">  return(H)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#Logistic regression with Newton Raphson method</span><br><span class="line">newton.method.logisticReg &lt;- function(X, y, theta, num_iter,tol)&#123;</span><br><span class="line">  </span><br><span class="line">  summar &lt;- data.frame(H.diag = rep(0,p+1), theta = rep(0,p+1), se.theta=rep(0,p+1))</span><br><span class="line">  p &lt;- dim(x)[2]</span><br><span class="line">  #iteration to update the theta until the weight is too small</span><br><span class="line">  for(i in 1:num_iter)&#123;</span><br><span class="line">    grad &lt;- gradient.func(X,y,theta)</span><br><span class="line">    H &lt;- hessian(LL.cost, X = X, Y = y, theta, method = &quot;complex&quot;)</span><br><span class="line">    #&quot;complex&quot; method = calculated as the Jacobian of the gradient</span><br><span class="line">    </span><br><span class="line">    H.diag &lt;- diag(ginv(H))/(n)</span><br><span class="line">    se.theta &lt;- sqrt(abs(H.diag))</span><br><span class="line">    newton.weight &lt;- ginv(H)%*%grad</span><br><span class="line">    theta &lt;- theta - newton.weight</span><br><span class="line">    </span><br><span class="line">    summar$theta &lt;- theta</span><br><span class="line">    </span><br><span class="line">    #new hessian with updated theta</span><br><span class="line">    H.new &lt;- hessian(LL.cost, X = X, Y = y, theta, method = &quot;complex&quot;)</span><br><span class="line">    #&quot;complex&quot; method = calculated as the Jacobian of the gradient</span><br><span class="line">    </span><br><span class="line">    H.diag &lt;- diag(ginv(H.new))/(n)</span><br><span class="line">    #Standard Error for Coefficients are the square root of the diagonal elements of the Hessian divided by n</span><br><span class="line">    se.theta &lt;- sqrt(abs(H.diag))</span><br><span class="line">    </span><br><span class="line">    summar$H.diag &lt;- H.diag</span><br><span class="line">    summar$se.theta &lt;- se.theta</span><br><span class="line">    summar$z.value &lt;- summar$theta/summar$se.theta</span><br><span class="line">    summar$p.value &lt;- pnorm(-abs(summar$theta)/summar$se.theta)*2</span><br><span class="line">    summar$lower.conf &lt;- summar$theta - 1.96 * summar$se.theta</span><br><span class="line">    summar$upper.conf &lt;- summar$theta + 1.96 * summar$se.theta</span><br><span class="line">    summar$loglik &lt;- -LL.cost(X,y,summar$theta)*n</span><br><span class="line">    summar$AIC &lt;- -2*summar$loglik + 2*(p+1)</span><br><span class="line">    </span><br><span class="line">    #stop if weights are less than tolerance</span><br><span class="line">    if(any(abs(newton.weight)&lt;tol))&#123;</span><br><span class="line">      summar$iter &lt;- i</span><br><span class="line">      return(summar)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The following part is the example of implementation the functions. </p>
+<figure class="highlight plain hljs"><figcaption><span>randomData&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">set.seed(11)</span><br><span class="line"></span><br><span class="line">x &lt;- matrix(rnorm(400), ncol = 4) #random predictors</span><br><span class="line">y &lt;- round(runif(100, 0, 1)) # create a binary outcome</span><br><span class="line">n &lt;- length(x)</span><br><span class="line">X &lt;- cbind(rep(1, 100), x)</span><br><span class="line">p &lt;- dim(x)[2] #intercept term (Beta0) - # of predictors</span><br><span class="line">theta&lt;-rep(0, 5)</span><br><span class="line"></span><br><span class="line">data1 &lt;- data.frame(cbind(y,x))</span><br><span class="line"></span><br><span class="line">result1 &lt;- newton.method.logisticReg(X,y,theta, 20,1e-5)</span><br><span class="line">result1</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#fitting by glm syntax built in R</span><br><span class="line">glm1 &lt;- glm(y~x,  family = &quot;binomial&quot;)</span><br><span class="line"></span><br><span class="line">summary(glm1)</span><br><span class="line">logLik(glm1)</span><br><span class="line">AIC(glm1)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>The results by the algorithm are almost the same with the result given by the syntax built in R. </p>
+<p>Below is the another example with titanic dataset. </p>
+<figure class="highlight plain hljs"><figcaption><span>Titanic&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">train&lt;-titanic_train</span><br><span class="line"></span><br><span class="line">train &lt;- train %&gt;%</span><br><span class="line">  select(subset= -c(PassengerId, Pclass, Name, Sex, Ticket, Cabin, Embarked)) %&gt;%</span><br><span class="line">  mutate_all(funs(ifelse(is.na(.), mean(., na.rm=TRUE), .))) %&gt;%</span><br><span class="line">  mutate_if(is.integer, as.numeric)</span><br><span class="line"></span><br><span class="line">train.indx &lt;- createDataPartition(train$Survived, p=0.7, list=FALSE)</span><br><span class="line"></span><br><span class="line">training &lt;- train[train.indx,]</span><br><span class="line">valid &lt;- train[-train.indx,]</span><br><span class="line"></span><br><span class="line">x &lt;- as.matrix(training %&gt;% select(-Survived))</span><br><span class="line">y &lt;- training$Survived %&gt;% as.numeric</span><br><span class="line">n &lt;- nrow(x)</span><br><span class="line">X &lt;- cbind(rep(1, nrow(x)), x)</span><br><span class="line">p &lt;- dim(x)[2]</span><br><span class="line">theta&lt;-rep(0, ncol(X))</span><br><span class="line">data1 &lt;- data.frame(cbind(y,x))</span><br><span class="line"></span><br><span class="line">result1 &lt;- newton.method.logisticReg(X, y, theta,1000, 1e-15)</span><br><span class="line">result1</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">glm1 &lt;- glm(y~x, family = binomial)</span><br><span class="line">summary(glm1)</span><br><span class="line">logLik(glm1)</span><br><span class="line">AIC(glm1)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
 
         </div>
         
@@ -324,7 +342,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        30
+                        31
                     </p>
                 </div>
             </div>
@@ -427,9 +445,9 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/ML/Logistic-Regression/">
+        <a class="level is-marginless" href="/categories/ML/Logistic-Regression-I/">
             <span class="level-start">
-                <span class="level-item">Logistic Regression</span>
+                <span class="level-item">Logistic Regression I</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -534,7 +552,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AUC/" style="font-size: 10px;">AUC</a> <a href="/tags/Bayes-Theorem/" style="font-size: 10px;">Bayes Theorem</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Classification/" style="font-size: 10px;">Classification</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 13.33px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logistic-Regression/" style="font-size: 10px;">Logistic Regression</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 16.67px;">Matrix</a> <a href="/tags/Metric/" style="font-size: 10px;">Metric</a> <a href="/tags/Month-Hall-Problem/" style="font-size: 10px;">Month Hall Problem</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/PCA/" style="font-size: 10px;">PCA</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/ROC/" style="font-size: 10px;">ROC</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 13.33px;">Today</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 10px;">Unsupervised Learning</a>
+        <a href="/tags/AUC/" style="font-size: 10px;">AUC</a> <a href="/tags/Bayes-Theorem/" style="font-size: 10px;">Bayes Theorem</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Classification/" style="font-size: 10px;">Classification</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 13.33px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logistic-Regression-II/" style="font-size: 10px;">Logistic Regression II</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 16.67px;">Matrix</a> <a href="/tags/Metric/" style="font-size: 10px;">Metric</a> <a href="/tags/Month-Hall-Problem/" style="font-size: 10px;">Month Hall Problem</a> <a href="/tags/Newton-s-Method/" style="font-size: 10px;">Newton's Method</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/PCA/" style="font-size: 10px;">PCA</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/ROC/" style="font-size: 10px;">ROC</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 13.33px;">Today</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 10px;">Unsupervised Learning</a>
     </div>
 </div>
 
@@ -550,7 +568,7 @@
             
             <a href="/2020/01/02/logistic/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/logisticRegression.png" alt="Logistic Regression - Newton&#39;s method">
+                    <img class="thumbnail" src="/images/sigmoid.png" alt="Logistic Regression - Newton&#39;s method">
                 </p>
             </a>
             
@@ -802,8 +820,8 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Logistic-Regression/">
-                        <span class="tag">Logistic Regression</span>
+                    <a class="tags has-addons" href="/tags/Logistic-Regression-II/">
+                        <span class="tag">Logistic Regression II</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -839,6 +857,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Month-Hall-Problem/">
                         <span class="tag">Month Hall Problem</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Newton-s-Method/">
+                        <span class="tag">Newton&#39;s Method</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
