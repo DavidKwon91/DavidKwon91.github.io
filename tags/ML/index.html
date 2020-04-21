@@ -1032,7 +1032,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 161 words)
+                    2 minutes read (About 252 words)
                 </span>
                 
                 
@@ -1052,7 +1052,12 @@
 <h3 id="SGD-Stochastic-Gradient-Descent"><a href="#SGD-Stochastic-Gradient-Descent" class="headerlink" title="SGD (Stochastic Gradient Descent)"></a>SGD (Stochastic Gradient Descent)</h3><p>Let’s begin with talking about what the SGD is. </p>
 <p>Regular Gradient Descent is to simply updates the weights by calculating and subtracting the gradient of cost function with regards to the weights. </p>
 <p>Definition: </p>
-<p>$$\theta \leftarrow \theta - \eta\Delta\mathcal{J}(\theta)$$</p>
+<p>$$\theta \leftarrow \theta - \eta\Delta_{\theta}\mathcal{J}(\theta)$$</p>
+<p>The formula in the definition is to update the weights by subtracting or adding the gradients of cost function to take small steps down the slope. </p>
+<p>So SGD does not care about the previous weights or gradients, but it only cares about current weights and gradients. This is where the Momentum optimization is introduced. </p>
+<h3 id="SGD-with-Momentum-optimization"><a href="#SGD-with-Momentum-optimization" class="headerlink" title="SGD with Momentum optimization"></a>SGD with Momentum optimization</h3><p>SGD with Momentum Optimization is simply added some vector in the process of SGD, which is called momentum vector. </p>
+<p>Definition:</p>
+<p>$$\mathcal{m} \leftarrow \beta\mathcal{m} - \eta\Delta_{\theta} \mathcal{J}(\theta)$$</p>
 
         </div>
         
