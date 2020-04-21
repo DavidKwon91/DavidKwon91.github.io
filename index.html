@@ -139,6 +139,55 @@
                 <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
     <div class="card">
     
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-01T05:45:12.000Z">2020-02-01</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Today/">Today</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Today/Feb-2020/">Feb 2020</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 146 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/01/new/">200202</a>
+            
+        </h1>
+        <div class="content">
+            <p>나뭇잎 사이사이를 뚫고 들어오는 햇빛<br>나무그늘을 벗어나면 그 빛을 바라볼 수 없다</p>
+<p>어느 위인은 태양으로 비춰지기도 한다<br>그가 이룬 업적은 누군가 이뤄보기엔 너무나 밝기에</p>
+<p>창문을 넘어 들어오는 은은한 달빛<br>창문을 넘어 바라보면 온 세상을 뒤덮는다</p>
+<p>언젠가 그런 생각을 한 적이 있다</p>
+<p>나는<br>누군가에게는 은은한<br>그 은은함으로 모두를 빛추는 사람이 되고 싶다고</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
     <div class="card-image">
         <a href="/2020/01/02/logistic/" class="image is-7by1">
             <img class="thumbnail" src="/images/sigmoid.png" alt="Logistic Regression - Newton&#39;s method">
@@ -159,7 +208,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 minutes read (About 1489 words)
+                    11 minutes read (About 1631 words)
                 </span>
                 
                 
@@ -235,22 +284,40 @@
 <p>The following part is the example of implementation the functions. </p>
 <figure class="highlight plain hljs"><figcaption><span>randomData&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">set.seed(11)</span><br><span class="line"></span><br><span class="line">x &lt;- matrix(rnorm(400), ncol = 4) #random predictors</span><br><span class="line">y &lt;- round(runif(100, 0, 1)) # create a binary outcome</span><br><span class="line">n &lt;- length(x)</span><br><span class="line">X &lt;- cbind(rep(1, 100), x)</span><br><span class="line">p &lt;- dim(x)[2] #intercept term (Beta0) - # of predictors</span><br><span class="line">theta&lt;-rep(0, 5)</span><br><span class="line"></span><br><span class="line">data1 &lt;- data.frame(cbind(y,x))</span><br><span class="line"></span><br><span class="line">result1 &lt;- newton.method.logisticReg(X,y,theta, 20,1e-5)</span><br><span class="line">result1</span><br></pre></td></tr></table></figure>
 
-
+<img src="/2020/01/02/logistic/LogisticResult1.png" title="[logistic]">
 
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#fitting by glm syntax built in R</span><br><span class="line">glm1 &lt;- glm(y~x,  family = &quot;binomial&quot;)</span><br><span class="line"></span><br><span class="line">summary(glm1)</span><br><span class="line">logLik(glm1)</span><br><span class="line">AIC(glm1)</span><br></pre></td></tr></table></figure>
 
-
+<img src="/2020/01/02/logistic/LogisticResult2-1.png" title="[logistic]">
+<img src="/2020/01/02/logistic/LogisticResult2-2.png" title="[logistic]">
 
 <p>The results by the algorithm are almost the same with the result given by the syntax built in R. </p>
 <p>Below is the another example with titanic dataset. </p>
 <figure class="highlight plain hljs"><figcaption><span>Titanic&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">train&lt;-titanic_train</span><br><span class="line"></span><br><span class="line">train &lt;- train %&gt;%</span><br><span class="line">  select(subset= -c(PassengerId, Pclass, Name, Sex, Ticket, Cabin, Embarked)) %&gt;%</span><br><span class="line">  mutate_all(funs(ifelse(is.na(.), mean(., na.rm=TRUE), .))) %&gt;%</span><br><span class="line">  mutate_if(is.integer, as.numeric)</span><br><span class="line"></span><br><span class="line">train.indx &lt;- createDataPartition(train$Survived, p=0.7, list=FALSE)</span><br><span class="line"></span><br><span class="line">training &lt;- train[train.indx,]</span><br><span class="line">valid &lt;- train[-train.indx,]</span><br><span class="line"></span><br><span class="line">x &lt;- as.matrix(training %&gt;% select(-Survived))</span><br><span class="line">y &lt;- training$Survived %&gt;% as.numeric</span><br><span class="line">n &lt;- nrow(x)</span><br><span class="line">X &lt;- cbind(rep(1, nrow(x)), x)</span><br><span class="line">p &lt;- dim(x)[2]</span><br><span class="line">theta&lt;-rep(0, ncol(X))</span><br><span class="line">data1 &lt;- data.frame(cbind(y,x))</span><br><span class="line"></span><br><span class="line">result1 &lt;- newton.method.logisticReg(X, y, theta,1000, 1e-15)</span><br><span class="line">result1</span><br></pre></td></tr></table></figure>
 
-
+<img src="/2020/01/02/logistic/LogisticResult3.png" title="[logistic]">
 
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">glm1 &lt;- glm(y~x, family = binomial)</span><br><span class="line">summary(glm1)</span><br><span class="line">logLik(glm1)</span><br><span class="line">AIC(glm1)</span><br></pre></td></tr></table></figure>
 
+<img src="/2020/01/02/logistic/LogisticResult4-1.png" title="[logistic]">
+
+<img src="/2020/01/02/logistic/LogisticResult4-2.png" title="[logistic]">
 
 
+
+<h3 id="Prediction-with-the-calculated-beta"><a href="#Prediction-with-the-calculated-beta" class="headerlink" title="Prediction with the calculated $\beta$"></a>Prediction with the calculated $\beta$</h3><p>Fitting for training dataset. </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#fitting</span><br><span class="line">pred &lt;- as.vector(sigmoid(X%*%result1$theta))</span><br><span class="line">pred.hands &lt;- ifelse(pred &gt; .5, 1, 0)</span><br><span class="line"></span><br><span class="line">pred1 &lt;- as.vector(predict(glm1, data1, type=&quot;response&quot;))</span><br><span class="line">pred1.hands &lt;- ifelse(pred1 &gt; .5, 1, 0)</span><br><span class="line"></span><br><span class="line">identical(pred.hands, pred1.hands)</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/01/02/logistic/LogisticResult5.png" title="[logistic]">
+
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#Training Accuracy</span><br><span class="line">mean(pred.hands == y)</span><br><span class="line">mean(pred1.hands == y)</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/01/02/logistic/LogisticResult6.png" title="[logistic]">
+
+<p>For validation dataset, </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#Validation Accuracy</span><br><span class="line">x &lt;- as.matrix(valid %&gt;% select(-Survived))</span><br><span class="line">y &lt;- valid$Survived %&gt;% as.numeric</span><br><span class="line">n &lt;- nrow(x)</span><br><span class="line">X &lt;- cbind(rep(1, nrow(x)), x)</span><br><span class="line">p &lt;- dim(x)[2]</span><br><span class="line"></span><br><span class="line">data1 &lt;- data.frame(cbind(y,x))</span><br><span class="line"></span><br><span class="line">pred &lt;- as.vector(sigmoid(X%*%result1$theta))</span><br><span class="line">pred.hands &lt;- ifelse(pred &gt; .5, 1, 0)</span><br><span class="line"></span><br><span class="line">pred1 &lt;- as.vector(predict(glm1, data1, type=&quot;response&quot;))</span><br><span class="line">pred1.hands &lt;- ifelse(pred1 &gt; .5, 1, 0)</span><br><span class="line"></span><br><span class="line">#Validation Accuracy</span><br><span class="line">mean(pred.hands == y)</span><br><span class="line">mean(pred1.hands == y)</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/01/02/logistic/LogisticResult7.png" title="[logistic]">
 
 
 
@@ -990,6 +1057,58 @@
 
     <div class="card">
     
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-15T09:07:27.000Z">2019-09-15</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/DNN-Optimizers/">DNN-Optimizers</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 161 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/15/DNN-Optimizer/">Optimizers</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Deep-Neural-Networks"><a href="#Deep-Neural-Networks" class="headerlink" title="Deep Neural Networks"></a>Deep Neural Networks</h2><h3 id="Simple-Intro-to-DNN"><a href="#Simple-Intro-to-DNN" class="headerlink" title="Simple Intro to DNN"></a>Simple Intro to DNN</h3><p> DNN(Deep Neural Networks) is a deep structured model of ANN(Artificial Neural Networks), which is a type of machine learning inspired by biological neural networks. </p>
+<p> DNN is used and applied widely in many fields such as computer vision, speech recognition, natural language processing, and bioinformatics. </p>
+<p>However, DNN models have very deep and complex structures. As any other complexity in this world brings about problems, DNN has some problems that has to be solved such as slow computational time, vanishing/exploding gradients problems. </p>
+<p>I am going to disscuss about faster optimizers rather than Stochastic Gradient Descent, which is one of ways to speed up training time for DNN. </p>
+<h3 id="SGD-Stochastic-Gradient-Descent"><a href="#SGD-Stochastic-Gradient-Descent" class="headerlink" title="SGD (Stochastic Gradient Descent)"></a>SGD (Stochastic Gradient Descent)</h3><p>Let’s begin with talking about what the SGD is. </p>
+<p>Regular Gradient Descent is to simply updates the weights by calculating and subtracting the gradient of cost function with regards to the weights. </p>
+<p>Definition: </p>
+<p>$$\theta \equal \theta - \gamma\Delta\mathcal{J}(\theta)$$</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
     <div class="card-image">
         <a href="/2019/09/15/GaussianProcess/" class="image is-7by1">
             <img class="thumbnail" src="/images/GP image.gif" alt="GaussianProcess">
@@ -1210,206 +1329,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/09/09/hist/" class="image is-7by1">
-            <img class="thumbnail" src="/images/Histogram.png" alt="Histogram">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-09T09:49:56.000Z">2019-09-09</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Math/">Math</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Math/Histogram/">Histogram</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 331 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/09/hist/">Histogram</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="Creating-Histogram-function-using-Min-max-transformation"><a href="#Creating-Histogram-function-using-Min-max-transformation" class="headerlink" title="Creating Histogram function using Min-max transformation."></a>Creating Histogram function using Min-max transformation.</h2><p>The histogram plot of a vector or a data feature is to create bins, which is to create a series of interval, for the range of data values, and to count how many data values fall into each bins. </p>
-<p>I create bins as the following;</p>
-<p>Suppose we have $M$ bins, then</p>
-<p>$$B_1 = [0,\frac{1}{M}), B_2 = [\frac{1}{M}, \frac{2}{M}), …, B_{M-1} = [\frac{M-2}{M}, \frac{M-1}{M}), B_{M} = [\frac{M-1}{M}, 1)$$</p>
-<p>To create histogram function with the bins, I wanted to transform the data elements in interval $(0,1)$, so I can put them into each bins. </p>
-<p>That’s why I used Min-max transformation, which makes the data reducing to a scale between 0 and 1. </p>
-<p>Min-max transformation is the following formula;</p>
-<p>$$z = \frac{x-min(x)}{max(x)-min(x)}$$</p>
-<p>The below codes are the implementation of creating histogram plot in R. I used the values from CLT posts. </p>
-<p><a href="https://davidkwon91.github.io/2019/09/09/CLT/" target="_blank" rel="noopener">CLT link</a></p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Hist &lt;- function(vec,bin)&#123;</span><br><span class="line">  vec.minmax &lt;- (vec - min(vec))/(max(vec)-min(vec)) #min-max transformation of the vector or the values</span><br><span class="line">  </span><br><span class="line">  vec.bins &lt;- rep(0,bin)</span><br><span class="line">  for(i in 1:bin)&#123;</span><br><span class="line">  	#find the values that is the closest to the value of each boundary of the bins</span><br><span class="line">    vec.bins[i] &lt;- vec[which(abs(vec.minmax - i/bin) == min(abs(vec.minmax - i/bin)))]</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  dat &lt;- data.frame(x=vec.bins, freq=0)</span><br><span class="line">  for(i in 1:bin)&#123;</span><br><span class="line">  	#put the values into each bins associateed</span><br><span class="line">    dat[i,2] &lt;- length(which(vec.minmax &gt; (i-1)/bin &amp; vec.minmax &lt;= i/bin))</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  #plotting</span><br><span class="line">  p &lt;- dat %&gt;% ggplot(aes(x=x, y=freq)) + geom_bar(stat=&quot;identity&quot;, position=position_dodge(width=0.5)) + theme_bw()</span><br><span class="line"></span><br><span class="line">  return(p)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hist(sampled.1000,15)</span><br></pre></td></tr></table></figure>
-
-<img src="/2019/09/09/hist/histrogram-1.png" title="[hist]">
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hist(sampled.10000,15)</span><br></pre></td></tr></table></figure>
-
-<img src="/2019/09/09/hist/histrogram-2.png" title="[hist]">
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hist(bin.sampled.10000,15)</span><br></pre></td></tr></table></figure>
-
-<img src="/2019/09/09/hist/histrogram-3.png" title="[hist]">
-
-
-
-
-
-
-<p>Reference:<br><a href="http://faculty.washington.edu/yenchic/18W_425/Lec6_hist_KDE.pdf" target="_blank" rel="noopener">Histogram and Kernel Density EStimation</a><br><a href="https://medium.com/@shirleyliu/histograms-from-scratch-482dba2a4e31" target="_blank" rel="noopener">Histogram from Scratch</a></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/09/09/CLT/" class="image is-7by1">
-            <img class="thumbnail" src="/images/CLT.png" alt="CLT">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-09T07:08:11.000Z">2019-09-09</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Math/">Math</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Math/CLT/">CLT</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 591 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/09/CLT/">CLT</a>
-            
-        </h1>
-        <div class="content">
-            <p>This post will discuss Central Limit Theorem.<br>Central Limit Theorem is one of the most important topic in statistics, especially in probability theory. </p>
-<h3 id="large-Definition"><a href="#large-Definition" class="headerlink" title="$\large{Definition}$:"></a>$\large{Definition}$:</h3><p>The sample average of independent and identically distributed random variables drawn from an unknown distribution with mean $\mu$ and variance $\sigma$ is approximately normal distributed when $n$ gets larger. That is, by the law of large numbers, the sample mean converges in probability and almost surely to the expected value $\mu$ as $n \to \infty$.</p>
-<p>Formally, let ${X_1,X_2,…X_n}$ be random samples of size $n$. Then, the sample average is defined as</p>
-<p>$$S_n = \frac{X_1 + X_2 + … + X_n}{n}$$ with mean $\mu$ and variance $\sigma^2$</p>
-<p>Then,<br>$$\sqrt{n}(S_n-\mu) \sim \mathcal{N}(0,\sigma^2)$$</p>
-<p>The normalized random mean variable will be</p>
-<p>$$Z_n = \frac{S_n-\mu}{\frac{\sigma}{\sqrt{n}}} \sim \mathcal{N}(0,1)$$</p>
-<p>The below part will be implementation of CLT in R. </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set.seed(1004)</span><br><span class="line">x1 &lt;- runif(10000, min=0,max=1000) #Generating random variables drawn from unifrom distribution with (0,1000)</span><br><span class="line"></span><br><span class="line">hist(x1) #Histogram</span><br></pre></td></tr></table></figure>
-
-<img src="/2019/09/09/CLT/CLT-1.png" title="[hist]">
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sampled.5 &lt;- rep(0, length(x1))</span><br><span class="line"></span><br><span class="line">for(i in 1:length(x1))&#123;</span><br><span class="line">  sampled.5[i] &lt;- mean(sample(x1, 5, replace=TRUE)) #sample average with size 5</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hist(sampled.5)</span><br></pre></td></tr></table></figure>
-
-<img src="/2019/09/09/CLT/CLT-3.png" title="[hist]">
-
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">plot(density(sampled.5)) #density plot of sample average variables</span><br></pre></td></tr></table></figure>
-
-<img src="/2019/09/09/CLT/CLT-4.png" title="[hist]">
-
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sampled.30 &lt;- rep(0, length(x1))</span><br><span class="line">sampled.1000 &lt;- rep(0,length(x1))</span><br><span class="line">sampled.10000 &lt;- rep(0,length(x1))</span><br><span class="line"></span><br><span class="line">for(i in 1:length(x1))&#123;</span><br><span class="line">  sampled.30[i] &lt;- mean(sample(x1, 30, replace=TRUE)) #sample average of size 30</span><br><span class="line">  sampled.1000[i] &lt;- mean(sample(x1, 1000, replace=TRUE)) #sample average of size 1000</span><br><span class="line">  sampled.10000[i] &lt;- mean(sample(x1,10000,replace=TRUE)) #sample average of size 10000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>$$\sqrt{n}(S_n-\mu) \sim \mathcal{N}(0,\sigma^2)$$</p>
-<p>The following code is the above formula. </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(sampled.30))*(mean(sampled.30)-mean(x1))</span><br><span class="line"></span><br><span class="line">## [1] -39.36105</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(sampled.1000))*(mean(sampled.1000)-mean(x1))</span><br><span class="line"></span><br><span class="line">## [1] 0.1330039</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(sampled.10000))*(mean(sampled.10000)-mean(x1))</span><br><span class="line"></span><br><span class="line">## [1] 0.003917203</span><br></pre></td></tr></table></figure>
-
-<p>It shows the $\sqrt{n}(S_n-\mu)$ tends to go to zero as the size of the sample increases, which means that the expected value of the sample average variables gets closer to the expected value of the random variables when $n$ gets larger. </p>
-<p>Let’s see other example for random sample average drawn from Binomial distribution. </p>
-<p>Suppose we have 10000 random Binomial variables with $p = 0.5$. </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#Binomial</span><br><span class="line">n &lt;- 10000</span><br><span class="line">p &lt;- 1/2</span><br><span class="line">B &lt;- rbinom(n,1,p)</span><br></pre></td></tr></table></figure>
-
-<p>The mean of Binomial distribution is $p$, that is $E(X) = p$.<br>The variance of Binomial distribution is $p(1-p)$, that is $Var(X) = p(1-p)$</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p</span><br><span class="line"></span><br><span class="line">## [1] 0.5</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p*(1-p)</span><br><span class="line"></span><br><span class="line">## [1] 0.25</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mean(B)</span><br><span class="line"></span><br><span class="line">## [1] 0.4991</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var(B)</span><br><span class="line"></span><br><span class="line">## [1] 0.2500242</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#creating random sample average from Binomial random variables</span><br><span class="line">bin.sampled.30 &lt;- rep(0, length(B))</span><br><span class="line">bin.sampled.1000 &lt;- rep(0,length(B))</span><br><span class="line">bin.sampled.10000 &lt;- rep(0,length(B))</span><br><span class="line"></span><br><span class="line">for(i in 1:length(x1))&#123;</span><br><span class="line">  bin.sampled.30[i] &lt;- mean(sample(B, 30, replace=TRUE))</span><br><span class="line">  bin.sampled.1000[i] &lt;- mean(sample(B, 1000, replace=TRUE))</span><br><span class="line">  bin.sampled.10000[i] &lt;- mean(sample(B,10000,replace=TRUE))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(density(bin.sampled.30))</span><br></pre></td></tr></table></figure>
-
-<img src="/2019/09/09/CLT/CLT-14.png" title="[hist]">
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(density(bin.sampled.1000))</span><br></pre></td></tr></table></figure>
-
-<img src="/2019/09/09/CLT/CLT-15.png" title="[hist]">
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(density(bin.sampled.10000))</span><br></pre></td></tr></table></figure>
-
-<img src="/2019/09/09/CLT/CLT-16.png" title="[hist]">
-
-
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(bin.sampled.30))*(mean(bin.sampled.30)-mean(B))</span><br><span class="line"></span><br><span class="line">## [1] 0.009333333</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(bin.sampled.1000))*(mean(bin.sampled.1000)-mean(B))</span><br><span class="line"></span><br><span class="line">## [1] 0.01169</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqrt(length(bin.sampled.10000))*(mean(bin.sampled.10000)-mean(B))</span><br><span class="line"></span><br><span class="line">## [1] -0.000371</span><br></pre></td></tr></table></figure>
-
-<p>These results shows that no matter what the distribution of the population is, the sample average drawn from the distribution will be approximately normal distribution as $n$ gets large with mean $\mu$.</p>
-<p>Reference:<br><a href="https://www.probabilitycourse.com/chapter7/7_1_2_central_limit_theorem.php" target="_blank" rel="noopener">Central Limit Theorem</a><br><a href="https://en.wikipedia.org/wiki/Central_limit_theorem" target="_blank" rel="noopener">Central Limit Theorem (wiki)</a></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -1472,7 +1391,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        19
                     </p>
                 </div>
             </div>
@@ -1482,7 +1401,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        19
+                        21
                     </p>
                 </div>
             </div>
@@ -1492,7 +1411,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        34
                     </p>
                 </div>
             </div>
@@ -1560,12 +1479,20 @@
                 <span class="level-item">ML</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/ML/Classification/">
             <span class="level-start">
                 <span class="level-item">Classification</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/ML/DNN-Optimizers/">
+            <span class="level-start">
+                <span class="level-item">DNN-Optimizers</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -1672,12 +1599,20 @@
                 <span class="level-item">Today</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Today/August/">
             <span class="level-start">
                 <span class="level-item">August</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Today/Feb-2020/">
+            <span class="level-start">
+                <span class="level-item">Feb 2020</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -1702,7 +1637,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AUC/" style="font-size: 10px;">AUC</a> <a href="/tags/Bayes-Theorem/" style="font-size: 10px;">Bayes Theorem</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Classification/" style="font-size: 10px;">Classification</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 13.33px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logistic-Regression-II/" style="font-size: 10px;">Logistic Regression II</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 16.67px;">Matrix</a> <a href="/tags/Metric/" style="font-size: 10px;">Metric</a> <a href="/tags/Month-Hall-Problem/" style="font-size: 10px;">Month Hall Problem</a> <a href="/tags/Newton-s-Method/" style="font-size: 10px;">Newton's Method</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/PCA/" style="font-size: 10px;">PCA</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/ROC/" style="font-size: 10px;">ROC</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 13.33px;">Today</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 10px;">Unsupervised Learning</a>
+        <a href="/tags/AUC/" style="font-size: 10px;">AUC</a> <a href="/tags/Bayes-Theorem/" style="font-size: 10px;">Bayes Theorem</a> <a href="/tags/CentralLimitTheorem/" style="font-size: 10px;">CentralLimitTheorem</a> <a href="/tags/CharlesBukowski/" style="font-size: 10px;">CharlesBukowski</a> <a href="/tags/CholeskyDecomposition/" style="font-size: 10px;">CholeskyDecomposition</a> <a href="/tags/Classification/" style="font-size: 10px;">Classification</a> <a href="/tags/DNN/" style="font-size: 10px;">DNN</a> <a href="/tags/Decision-Tree/" style="font-size: 10px;">Decision Tree</a> <a href="/tags/Diary/" style="font-size: 10px;">Diary</a> <a href="/tags/Entropy/" style="font-size: 10px;">Entropy</a> <a href="/tags/GaussianProcess/" style="font-size: 10px;">GaussianProcess</a> <a href="/tags/Gini-Index/" style="font-size: 10px;">Gini Index</a> <a href="/tags/Histogram/" style="font-size: 10px;">Histogram</a> <a href="/tags/Likelihood/" style="font-size: 13.33px;">Likelihood</a> <a href="/tags/LogLikelihood/" style="font-size: 10px;">LogLikelihood</a> <a href="/tags/Logistic-Regression-II/" style="font-size: 10px;">Logistic Regression II</a> <a href="/tags/Logit/" style="font-size: 10px;">Logit</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/Matrix/" style="font-size: 16.67px;">Matrix</a> <a href="/tags/Metric/" style="font-size: 10px;">Metric</a> <a href="/tags/Month-Hall-Problem/" style="font-size: 10px;">Month Hall Problem</a> <a href="/tags/Newton-s-Method/" style="font-size: 10px;">Newton's Method</a> <a href="/tags/Odds/" style="font-size: 10px;">Odds</a> <a href="/tags/Optimizers/" style="font-size: 10px;">Optimizers</a> <a href="/tags/PCA/" style="font-size: 10px;">PCA</a> <a href="/tags/Poem/" style="font-size: 10px;">Poem</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/ROC/" style="font-size: 10px;">ROC</a> <a href="/tags/SVD/" style="font-size: 10px;">SVD</a> <a href="/tags/SchurComplement/" style="font-size: 10px;">SchurComplement</a> <a href="/tags/Today/" style="font-size: 16.67px;">Today</a> <a href="/tags/Unsupervised-Learning/" style="font-size: 10px;">Unsupervised Learning</a>
     </div>
 </div>
 
@@ -1713,6 +1648,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/02/01/new/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="200202">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-01T05:45:12.000Z">2020-02-01</time></div>
+                    <a href="/2020/02/01/new/" class="title has-link-black-ter is-size-6 has-text-weight-normal">200202</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Today/">Today</a> / <a class="has-link-grey -link" href="/categories/Today/Feb-2020/">Feb 2020</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1790,25 +1744,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/05/Monty-Hall/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/montyhall.png" alt="Monty Hall">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-05T09:53:20.000Z">2019-10-05</time></div>
-                    <a href="/2019/10/05/Monty-Hall/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Monty Hall</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Monty-Hall/">Monty Hall</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1820,6 +1755,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/01/">
@@ -1849,7 +1795,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -1921,8 +1867,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/DNN/">
+                        <span class="tag">DNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Decision-Tree/">
                         <span class="tag">Decision Tree</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Diary/">
+                        <span class="tag">Diary</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1986,7 +1946,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/ML/">
                         <span class="tag">ML</span>
-                        <span class="tag is-grey">13</span>
+                        <span class="tag is-grey">14</span>
                     </a>
                 </div>
                 
@@ -2021,6 +1981,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Odds/">
                         <span class="tag">Odds</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Optimizers/">
+                        <span class="tag">Optimizers</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2084,7 +2051,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Today/">
                         <span class="tag">Today</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
