@@ -1071,7 +1071,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 252 words)
+                    3 minutes read (About 484 words)
                 </span>
                 
                 
@@ -1097,6 +1097,10 @@
 <h3 id="SGD-with-Momentum-optimization"><a href="#SGD-with-Momentum-optimization" class="headerlink" title="SGD with Momentum optimization"></a>SGD with Momentum optimization</h3><p>SGD with Momentum Optimization is simply added some vector in the process of SGD, which is called momentum vector. </p>
 <p>Definition:</p>
 <p>$$\mathcal{m} \leftarrow \beta\mathcal{m} - \eta\Delta_{\theta} \mathcal{J}(\theta)$$</p>
+<p>$$\theta \leftarrow \theta + \mathcal{m}$$</p>
+<p>We update the weight by updating the momenum vector as above. Let’s imagine that we starts with the first initialized weights at the first iteration. The moment vector, $\mathcal{m}$, is started with zero, then the weights, $\theta$, will be just updated by the gradients as Gradient Decsent does. At the second iteration, the momentum vector is the gradients calculated at the first iteration. We are updating the gradients of the first iteration, which is momentum vector, by subtracting or adding the gradients at the current step, and adding the updated the gradients or the momentum vector. At the third iteration, the momentum vector would be the updated momentum vector at the second iteration, which is calculated by the first gradients. We update the wegiths by updating and adding the momentum vector. </p>
+<p>To prevent the momentum vector growing too large or too small, we slightly reduced the value by a hyperparameter, $\beta$, which is called momentum. If the momentum, $\beta = 0$, then it’s the same as SGD. The typical value of momentum is 0.9. </p>
+<h3 id="Nesterov-Accelerated-Gradient"><a href="#Nesterov-Accelerated-Gradient" class="headerlink" title="Nesterov Accelerated Gradient"></a>Nesterov Accelerated Gradient</h3><p>A new Momentum optimization is introduced, which is called Nesterov Accelerated Gradient. In the original Momentum Optimization, we update the momenum vector at the local position of the current weight; however, in NAG optimization, we update the momentum vector with the gradient that is measured at $\theta + \beta\mathcal{m}$. </p>
 
         </div>
         
