@@ -1032,7 +1032,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 848 words)
+                    7 minutes read (About 1065 words)
                 </span>
                 
                 
@@ -1045,13 +1045,13 @@
             
         </h1>
         <div class="content">
-            <h2 id="Deep-Neural-Networks"><a href="#Deep-Neural-Networks" class="headerlink" title="Deep Neural Networks"></a>Deep Neural Networks</h2><h3 id="Simple-Intro-to-DNN"><a href="#Simple-Intro-to-DNN" class="headerlink" title="Simple Intro to DNN"></a>Simple Intro to DNN</h3><p> DNN(Deep Neural Networks) is a deep structured model of ANN(Artificial Neural Networks), which is a type of machine learning inspired by biological neural networks. </p>
-<p> DNN is used and applied widely in many fields such as computer vision, speech recognition, natural language processing, and bioinformatics. </p>
+            <h2 id="Deep-Neural-Networks"><a href="#Deep-Neural-Networks" class="headerlink" title="Deep Neural Networks"></a>Deep Neural Networks</h2><h3 id="Simple-Intro-to-DNN"><a href="#Simple-Intro-to-DNN" class="headerlink" title="Simple Intro to DNN"></a>Simple Intro to DNN</h3><p> DNN(Deep Neural Networks) is a deep structured model of ANN(Artificial Neural Networks), which is a type of machine learning inspired by biological neural networks. DNN is used and applied widely in many fields such as computer vision, speech recognition, natural language processing, and bioinformatics. </p>
 <p> For my understand, ANN is to stack many models with various weights and biases such as logistic regression models, and DNN is a complex body that consist of huge amount of models. Therefore, some DNN model has more than 20 million parameters such as Xception invented from Google. </p>
-<p>However, DNN models have very deep and complex structures. As any other complexity in this world brings about problems, DNN has some problems that has to be solved such as slow computational time, vanishing/exploding gradients problems. </p>
-<p>I am going to disscuss about faster optimizers rather than Stochastic Gradient Descent, which is one of ways to speed up training time for DNN. </p>
+<p>As any other complexity in this world brings about problems, DNN has some problems that has to be solved. DNN suffers slow computational time because it has more than millions parameters to learn. And it also suffers the vanishing/exploding gradients problems. Because it has all the different models, which are neurons, with all the different weights and biases, the gradients of some neurons to update each weights and biases will be too small or too large. In this case, we say that the neurons with too small or too large gradients are dead neurons. </p>
+<p>There are many approches to alleviate those problems such as dropout, initializer, or batch normalization. </p>
+<p>I am going to disscuss about efficient optimizers rather than Stochastic Gradient Descent, which is one of ways for those difficulties. </p>
 <h3 id="SGD-Stochastic-Gradient-Descent"><a href="#SGD-Stochastic-Gradient-Descent" class="headerlink" title="SGD (Stochastic Gradient Descent)"></a>SGD (Stochastic Gradient Descent)</h3><p>Let’s begin with talking about what the SGD is. </p>
-<p>Regular Gradient Descent is to simply updates the weights by calculating and subtracting the gradient of cost function with regards to the weights. </p>
+<p>Regular Gradient Descent is to simply updates the weights by calculating and subtracting the gradient of cost function with regards to the weights to reach the global optimum so that we can minimize our cost function. </p>
 <p>Definition: </p>
 <p>$$\theta \leftarrow \theta - \eta\Delta_{\theta}\mathcal{J}(\theta)$$</p>
 <p>The formula in the definition is to update the weights by subtracting or adding the gradients of cost function to take small steps down the slope. </p>
@@ -1073,7 +1073,17 @@
 <p>$$\theta \leftarrow \theta - \eta\Delta_{\theta}\mathcal{J}(\theta)\oslash\sqrt{s + \epsilon}$$</p>
 <p>In the first step, we update the factor s by adding the element-wise multiplication of the gradient elements, that is the square of the gradients. It will be the same as $s_{i} \leftarrow + (\partial \mathcal{J}(\theta)/\partial \Theta_{i})^2$ for each element $s_{i}$. The vector, s, will accumulate the squares of the partial derivative of the cost function with regards to parameter $\Theta_{i}$. Therefore, if the gradient of the cost function is big, the factor s will get larger and larger at each iteration. </p>
 <p>In the second step, the gradient of the cost function will be divided by the square root of the factor that is updated with the square of the gradients in the first step. The $\epsilon$ is the smoothing term to prevent dividing by zero, if the factor, s, is zero. </p>
-<p>To sum up, if the direction to the global optimum is steep at the $i^{th}$ iteration, then the factor gets larger and so the term, $\eta\Delta_{\theta}\mathcal{J}(\theta)\oslash\sqrt{s + \epsilon}$,  will be smaller. However, because it’s scaling down the gradient quickly the iterations, when it’s reaching to the optimum, the gradient will be too small. </p>
+<p>To sum up, if the direction to the global optimum is steep at the $i^{th}$ iteration, then the factor gets larger and so the term, $\eta\Delta_{\theta}\mathcal{J}(\theta)\oslash\sqrt{s + \epsilon}$,  will be smaller. However, because it’s scaling down the gradient quickly at each iterations, when it’s reaching to the optimum, the gradient will be too small. </p>
+<h3 id="RMSProp"><a href="#RMSProp" class="headerlink" title="RMSProp"></a>RMSProp</h3><p>Since AdaGrad is scaling down the gradients too quickly, a new hyperparameter, $\beta$, is applied into the first formula of AdaGrad to somehow reduce the speed of scaling down. </p>
+<p>Definition:</p>
+<p>$$\mathcal{s} \leftarrow \beta\mathcal{s} + (1-\beta)\Delta_{\theta}\mathcal{J}(\theta)\otimes\Delta_{\theta}\mathcal{J}(\theta)$$</p>
+<p>$$\theta \leftarrow \theta - \eta\Delta_{\theta}\mathcal{J}(\theta)\oslash\sqrt{s + \epsilon}$$</p>
+<p>The hyperparameter, $\beta$, is called decay rate, and the typical value is 0.9. </p>
+<h3 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h3><p>Adam stands for adaptive moment estimation. It is from the ideas of momentum and RMSProp. Adam is a well-performed optimization algorithm in most cases. </p>
+<p>Definition:</p>
+<p>$$1. \mathcal{m} \leftarrow \beta_{1}\mathcal{m} - (1-\beta_{1})\Delta_{\theta}\mathcal{J}(\theta)$$</p>
+<p>$$2. \mathcal{s} \leftarrow \beta_{2}\mathcal{s} + (1-\beta_{2})\Delta_{\theta}\mathcal{J}(\theta) \otimes \Delta_{\theta}\mathcal{J}(\theta)</p>
+<p>$$3. \hat{\mathcal{m}}$$</p>
 
         </div>
         
