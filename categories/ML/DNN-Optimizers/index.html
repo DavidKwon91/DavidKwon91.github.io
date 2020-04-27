@@ -166,7 +166,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1065 words)
+                    7 minutes read (About 1091 words)
                 </span>
                 
                 
@@ -216,8 +216,10 @@
 <h3 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h3><p>Adam stands for adaptive moment estimation. It is from the ideas of momentum and RMSProp. Adam is a well-performed optimization algorithm in most cases. </p>
 <p>Definition:</p>
 <p>$$1. \mathcal{m} \leftarrow \beta_{1}\mathcal{m} - (1-\beta_{1})\Delta_{\theta}\mathcal{J}(\theta)$$</p>
-<p>$$2. \mathcal{s} \leftarrow \beta_{2}\mathcal{s} + (1-\beta_{2})\Delta_{\theta}\mathcal{J}(\theta) \otimes \Delta_{\theta}\mathcal{J}(\theta)</p>
-<p>$$3. \hat{\mathcal{m}}$$</p>
+<p>$$2. \mathcal{s} \leftarrow \beta_{2}\mathcal{s} + (1-\beta_{2})\Delta_{\theta}\mathcal{J}(\theta) \otimes \Delta_{\theta}\mathcal{J}(\theta)$$</p>
+<p>$$3. \hat{\mathcal{m}} \leftarrow \frac{m}{1-\beta_{1}^{t}}$$</p>
+<p>$$4. \hat{\mathcal{s}} \leftarrow \frac{s}{1-beta_{2}^{t}}$$</p>
+<p>$$5. \theta \leftarrow \theta + \eta\hat{\mathcal{m}}\oslash\sqrt{\hat{\mathcal{s}} + \epsilon}$$</p>
 
         </div>
         
