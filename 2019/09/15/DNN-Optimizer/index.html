@@ -19,7 +19,7 @@
 <meta property="og:description" content="Deep Neural NetworksSimple Intro to DNN DNN(Deep Neural Networks) is a deep structured model of ANN(Artificial Neural Networks), which is a type of machine learning inspired by biological neural netwo">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-04-27T03:37:48.212Z">
+<meta property="og:updated_time" content="2020-04-27T04:14:00.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Optimizers">
 <meta name="twitter:description" content="Deep Neural NetworksSimple Intro to DNN DNN(Deep Neural Networks) is a deep structured model of ANN(Artificial Neural Networks), which is a type of machine learning inspired by biological neural netwo">
@@ -157,7 +157,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1091 words)
+                    8 minutes read (About 1225 words)
                 </span>
                 
                 
@@ -206,15 +206,16 @@
 <p>The hyperparameter, $\beta$, is called decay rate, and the typical value is 0.9. </p>
 <h3 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h3><p>Adam stands for adaptive moment estimation. It is from the ideas of momentum and RMSProp. Adam is a well-performed optimization algorithm in most cases. </p>
 <p>Definition:</p>
-<ol>
-<li><p>$$ \mathcal{m} \leftarrow \beta_{1}\mathcal{m} - (1-\beta_{1})\Delta_{\theta}\mathcal{J}(\theta)$$</p>
-</li>
-<li><p>$$ \mathcal{s} \leftarrow \beta_{2}\mathcal{s} + (1-\beta_{2})\Delta_{\theta}\mathcal{J}(\theta) \otimes \Delta_{\theta}\mathcal{J}(\theta)$$</p>
-</li>
-</ol>
+<p>$$1. \mathcal{m} \leftarrow \beta_{1}\mathcal{m} - (1-\beta_{1})\Delta_{\theta}\mathcal{J}(\theta)$$</p>
+<p>$$2. \mathcal{s} \leftarrow \beta_{2}\mathcal{s} + (1-\beta_{2})\Delta_{\theta}\mathcal{J}(\theta) \otimes \Delta_{\theta}\mathcal{J}(\theta)$$</p>
 <p>$$3. \hat{\mathcal{m}} \leftarrow \frac{m}{1-\beta_{1}^{t}}$$</p>
 <p>$$4. \hat{\mathcal{s}} \leftarrow \frac{s}{1-beta_{2}^{t}}$$</p>
 <p>$$5. \theta \leftarrow \theta + \eta\hat{\mathcal{m}}\oslash\sqrt{\hat{\mathcal{s}} + \epsilon}$$</p>
+<p>The step 1 is to update the momentum vector with the idea of RMSProp, which is reducing the the speed of scaling the momentum vector by weighting each terms with the decay rate, $\beta_{1}$</p>
+<p>The step 2 is to update the factor s, which is similar to the factor s in RMSProp. </p>
+<p>The step 3 and 4 is to reweight the momentum vetor and the factor s by each decay rate. Because the momentum vector and the factor s will be initialized at 0, the $\mathcal{m}$ and $\mathcal{s}$ will be boosted from the beginning of training. </p>
+<p>The step 5 is final step to update the weight, $\theta$, with all the parameters of $\mathcal{m}$ and $\mathcal{s}$ from above steps. </p>
+<p>The typlical value of momentum decay rate, $\beta_{1}$, is 0.9, and the scailing decay hyperparameter, $\beta_{2}$, is set to 0.999. </p>
 
         </div>
         
