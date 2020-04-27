@@ -7,17 +7,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Category: Principal Components Analysis - David Kwon</title>
+<title>Optimizers - David Kwon</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="David Kwon">
-<meta property="og:url" content="http://yoursite.com/categories/ML/Principal-Components-Analysis/index.html">
+    <meta name="description" content="Deep Neural NetworksSimple Intro to DNN DNN(Deep Neural Networks) is a deep structured model of ANN(Artificial Neural Networks), which is a type of machine learning inspired by biological neural netwo">
+<meta name="keywords" content="ML,DNN,Optimizers">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optimizers">
+<meta property="og:url" content="http://yoursite.com/2020/04/27/DNN-Optimizer/index.html">
 <meta property="og:site_name" content="David Kwon">
+<meta property="og:description" content="Deep Neural NetworksSimple Intro to DNN DNN(Deep Neural Networks) is a deep structured model of ANN(Artificial Neural Networks), which is a type of machine learning inspired by biological neural netwo">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="og:updated_time" content="2020-04-27T04:19:04.673Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="David Kwon">
+<meta name="twitter:title" content="Optimizers">
+<meta name="twitter:description" content="Deep Neural NetworksSimple Intro to DNN DNN(Deep Neural Networks) is a deep structured model of ANN(Artificial Neural Networks), which is a type of machine learning inspired by biological neural netwo">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -86,7 +91,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="David Kwon" height="28">
+                <img src="/images/logo.svg" alt="Optimizers" height="28">
             
             </a>
         </div>
@@ -137,42 +142,22 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/categories">Categories</a></li>
-            
-            <li><a href="/categories/ML/">ML</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">Principal Components Analysis</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/10/24/PCA/" class="image is-7by1">
-            <img class="thumbnail" src="/images/pca.png" alt="PCA">
-        </a>
-    </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-10-24T06:08:47.000Z">2019-10-24</time>
+                <time class="level-item has-text-grey" datetime="2020-04-26T15:00:00.000Z">2020-04-27</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/Principal-Components-Analysis/">Principal Components Analysis</a>
+                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/DNN-Optimizers/">DNN-Optimizers</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    13 minutes read (About 1897 words)
+                    8 minutes read (About 1225 words)
                 </span>
                 
                 
@@ -181,146 +166,66 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/10/24/PCA/">PCA</a>
+                Optimizers
             
         </h1>
         <div class="content">
-            <h2 id="Introduction-to-Principal-Components-Analysis"><a href="#Introduction-to-Principal-Components-Analysis" class="headerlink" title="Introduction to Principal Components Analysis"></a>Introduction to Principal Components Analysis</h2><p>PCA (Principal Components Analysis) is a popular statistical method to reduce dimensions when the dimension of a dataset is huge, especially, when $n \geq m$ in $m \times n$ matrix or dataset.</p>
-<p>Before digging into PCA, I start with some basic of linear algebra. </p>
-<h3 id="1-Numerator-and-Denominator-Layout-in-Matrix-Differentiation"><a href="#1-Numerator-and-Denominator-Layout-in-Matrix-Differentiation" class="headerlink" title="1. Numerator and Denominator Layout in Matrix Differentiation"></a>1. Numerator and Denominator Layout in Matrix Differentiation</h3><p>In matrix differentiation, there are two notational convention to express the derivative of a vector with respect to a vector, that is $\frac{\partial y}{\partial x}$, which are “Numerator Layout” and “Denominator Layout”.</p>
-<p>It doesn’t matter which way you would like to use, but make sure you stick with a notational convention if you start with a particular convention. </p>
-<p>Let $x$ be a $n \times 1$ vector, $y$ be a $m \times 1$ vector. </p>
-<p>Then, for $\frac{\partial y}{\partial x}$,</p>
-<p>Numerator Layout: $m \times n$ matrix as following; </p>
-<img src="/2019/10/24/PCA/numlay.png" title="[table]">
+            <h2 id="Deep-Neural-Networks"><a href="#Deep-Neural-Networks" class="headerlink" title="Deep Neural Networks"></a>Deep Neural Networks</h2><h3 id="Simple-Intro-to-DNN"><a href="#Simple-Intro-to-DNN" class="headerlink" title="Simple Intro to DNN"></a>Simple Intro to DNN</h3><p> DNN(Deep Neural Networks) is a deep structured model of ANN(Artificial Neural Networks), which is a type of machine learning inspired by biological neural networks. DNN is used and applied widely in many fields such as computer vision, speech recognition, natural language processing, and bioinformatics. </p>
+<p> For my understand, ANN is to stack many models with various weights and biases such as logistic regression models, and DNN is a complex body that consist of huge amount of models. Therefore, some DNN model has more than 20 million parameters such as Xception invented from Google. </p>
+<p>As any other complexity in this world brings about problems, DNN has some problems that has to be solved. DNN suffers slow computational time because it has more than millions parameters to learn. And it also suffers the vanishing/exploding gradients problems. Because it has all the different models, which are neurons, with all the different weights and biases, the gradients of some neurons to update each weights and biases will be too small or too large. In this case, we say that the neurons with too small or too large gradients are dead neurons. </p>
+<p>There are many approches to alleviate those problems such as dropout, initializer, or batch normalization. </p>
+<p>I am going to disscuss about efficient optimizers rather than Stochastic Gradient Descent, which is one of ways for those difficulties. </p>
+<h3 id="SGD-Stochastic-Gradient-Descent"><a href="#SGD-Stochastic-Gradient-Descent" class="headerlink" title="SGD (Stochastic Gradient Descent)"></a>SGD (Stochastic Gradient Descent)</h3><p>Let’s begin with talking about what the SGD is. </p>
+<p>Regular Gradient Descent is to simply updates the weights by calculating and subtracting the gradient of cost function with regards to the weights to reach the global optimum so that we can minimize our cost function. </p>
+<p>Definition: </p>
+<p>$$\theta \leftarrow \theta - \eta\Delta_{\theta}\mathcal{J}(\theta)$$</p>
+<p>The formula in the definition is to update the weights by subtracting or adding the gradients of cost function to take small steps down the slope. </p>
+<p>So SGD does not care about the previous weights or gradients, but it only cares about current weights and gradients. This is where the Momentum optimization is introduced. </p>
+<h3 id="SGD-with-Momentum-optimization"><a href="#SGD-with-Momentum-optimization" class="headerlink" title="SGD with Momentum optimization"></a>SGD with Momentum optimization</h3><p>SGD with Momentum Optimization is simply added some vector in the process of SGD, which is called momentum vector. </p>
+<p>Definition:</p>
+<p>$$\mathcal{m} \leftarrow \beta\mathcal{m} - \eta\Delta_{\theta} \mathcal{J}(\theta)$$</p>
+<p>$$\theta \leftarrow \theta + \mathcal{m}$$</p>
+<p>We update the weight by updating the momenum vector as above. Let’s imagine that we starts with the first initialized weights at the first iteration. The moment vector, $\mathcal{m}$, is started with zero, then the weights, $\theta$, will be just updated by the gradients as Gradient Decsent does. At the second iteration, the momentum vector is the gradients calculated at the first iteration. We are updating the gradients of the first iteration, which is momentum vector, by subtracting or adding the gradients at the current step, and adding the updated the gradients or the momentum vector. At the third iteration, the momentum vector would be the updated momentum vector at the second iteration, which is calculated by the first gradients. We update the wegiths by updating and adding the momentum vector. </p>
+<p>To prevent the momentum vector growing too large or too small, we slightly reduced the value by a hyperparameter, $\beta$, which is called momentum. If the momentum, $\beta = 0$, then it’s the same as SGD. The typical value of momentum is 0.9. </p>
+<h3 id="Nesterov-Accelerated-Gradient"><a href="#Nesterov-Accelerated-Gradient" class="headerlink" title="Nesterov Accelerated Gradient"></a>Nesterov Accelerated Gradient</h3><p>A new Momentum optimization is introduced, which is called Nesterov Accelerated Gradient. In the original Momentum Optimization, we update the momenum vector at the local position of the current weight; however, in NAG optimization, we update the momentum vector with the gradient that is measured at $\theta + \beta\mathcal{m}$. </p>
+<p>Definition:</p>
+<p>$$\mathcal{m} \leftarrow \beta\mathcal{m} - \eta\Delta_{\theta}\mathcal{J}(\theta + \beta\mathcal{m})$$</p>
+<p>$$\theta \leftarrow \theta + \mathcal{m}$$</p>
+<p>Since this gradient has the information of both of the weight and the previous momentum, this will help update the gradient more accurate, improve the directions to the optimum, and eventually converges faster. </p>
+<h3 id="AdaGrad"><a href="#AdaGrad" class="headerlink" title="AdaGrad"></a>AdaGrad</h3><p>AdaGrad is the different version of gradient descent optimization than the momentum based optimization. It’s scaling down the gradient vector by dividing some factors measured along the steepness of the gradient. </p>
+<p>Definition:</p>
+<p>$$s \leftarrow s + \Delta_{\theta}\mathcal{J}(\theta)\otimes\Delta_{\theta}\mathcal{J}(\theta)$$</p>
+<p>$$\theta \leftarrow \theta - \eta\Delta_{\theta}\mathcal{J}(\theta)\oslash\sqrt{s + \epsilon}$$</p>
+<p>In the first step, we update the factor s by adding the element-wise multiplication of the gradient elements, that is the square of the gradients. It will be the same as $s_{i} \leftarrow + (\partial \mathcal{J}(\theta)/\partial \Theta_{i})^2$ for each element $s_{i}$. The vector, s, will accumulate the squares of the partial derivative of the cost function with regards to parameter $\Theta_{i}$. Therefore, if the gradient of the cost function is big, the factor s will get larger and larger at each iteration. </p>
+<p>In the second step, the gradient of the cost function will be divided by the square root of the factor that is updated with the square of the gradients in the first step. The $\epsilon$ is the smoothing term to prevent dividing by zero, if the factor, s, is zero. </p>
+<p>To sum up, if the direction to the global optimum is steep at the $i^{th}$ iteration, then the factor gets larger and so the term, $\eta\Delta_{\theta}\mathcal{J}(\theta)\oslash\sqrt{s + \epsilon}$,  will be smaller. However, because it’s scaling down the gradient quickly at each iterations, when it’s reaching to the optimum, the gradient will be too small. </p>
+<h3 id="RMSProp"><a href="#RMSProp" class="headerlink" title="RMSProp"></a>RMSProp</h3><p>Since AdaGrad is scaling down the gradients too quickly, a new hyperparameter, $\beta$, is applied into the first formula of AdaGrad to somehow reduce the speed of scaling down. </p>
+<p>Definition:</p>
+<p>$$\mathcal{s} \leftarrow \beta\mathcal{s} + (1-\beta)\Delta_{\theta}\mathcal{J}(\theta)\otimes\Delta_{\theta}\mathcal{J}(\theta)$$</p>
+<p>$$\theta \leftarrow \theta - \eta\Delta_{\theta}\mathcal{J}(\theta)\oslash\sqrt{s + \epsilon}$$</p>
+<p>The hyperparameter, $\beta$, is called decay rate, and the typical value is 0.9. </p>
+<h3 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h3><p>Adam stands for adaptive moment estimation. It is from the ideas of momentum and RMSProp. Adam is a well-performed optimization algorithm in most cases. </p>
+<p>Definition:</p>
+<p>$$1. \mathcal{m} \leftarrow \beta_{1}\mathcal{m} - (1-\beta_{1})\Delta_{\theta}\mathcal{J}(\theta)$$</p>
+<p>$$2. \mathcal{s} \leftarrow \beta_{2}\mathcal{s} + (1-\beta_{2})\Delta_{\theta}\mathcal{J}(\theta) \otimes \Delta_{\theta}\mathcal{J}(\theta)$$</p>
+<p>$$3. \hat{\mathcal{m}} \leftarrow \frac{m}{1-\beta_{1}^{t}}$$</p>
+<p>$$4. \hat{\mathcal{s}} \leftarrow \frac{s}{1-beta_{2}^{t}}$$</p>
+<p>$$5. \theta \leftarrow \theta + \eta\hat{\mathcal{m}}\oslash\sqrt{\hat{\mathcal{s}} + \epsilon}$$</p>
+<p>The step 1 is to update the momentum vector with the idea of RMSProp, which is reducing the the speed of scaling the momentum vector by weighting each terms with the decay rate, $\beta_{1}$</p>
+<p>The step 2 is to update the factor s, which is similar to the factor s in RMSProp. </p>
+<p>The step 3 and 4 is to reweight the momentum vetor and the factor s by each decay rate. Because the momentum vector and the factor s will be initialized at 0, the $\mathcal{m}$ and $\mathcal{s}$ will be boosted from the beginning of training. </p>
+<p>The step 5 is final step to update the weight, $\theta$, with all the parameters of $\mathcal{m}$ and $\mathcal{s}$ from above steps. </p>
+<p>The typlical value of momentum decay rate, $\beta_{1}$, is 0.9, and the scailing decay hyperparameter, $\beta_{2}$, is set to 0.999. </p>
 
-<p>Denominator Layout: $n \times m$ matrix as following;</p>
-<img src="/2019/10/24/PCA/denomlay.png" title="[table]">
-
-<p>The different kinds of two notational convention can be found from <a href="https://en.wikipedia.org/wiki/Matrix_calculus#Vector-by-vector_identities" target="_blank" rel="noopener">Wiki</a></p>
-<p>Most of books or papers don’t state which convention they use, but the Denominator Layout is mostly used in many papers or software. This article is going to use Denominator Layout in this article. </p>
-<h3 id="2-Variance-Covariance-Matrix"><a href="#2-Variance-Covariance-Matrix" class="headerlink" title="2. Variance-Covariance Matrix"></a>2. Variance-Covariance Matrix</h3><p>Variance-Covariance Matrix, called just Covariance Matrix, of a matrix $X$ can be expressed in two ways as following;</p>
-<p>$$S = \frac{1}{n-1} XX^T \tag{1}$$</p>
-<p>or</p>
-<p>$$S = \frac{1}{n-1} X^{T}X \tag{2}$$</p>
-<p>where $X$ is the $m \times n$ matrix. </p>
-<p>I will make the data be centered by subtracting the mean of the data for later convenience.  </p>
-<p>The (1) equation will give you the covariance matrix by row vectors as following;</p>
-<p>$$S_{n \times n} = \frac{1}{n-1} X_{n \times 1} X_{1 \times n}^T = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \mu)(x_i - \mu)^T \tag{3}$$</p>
-<p>where $\mu$ is the row mean vector and $S$ will be the $n \times n$ square matrix. </p>
-<p>The (2) equation will give you the covariance matrix by column vectors as following;</p>
-<p>$$S_{m \times m} = \frac{1}{n-1} X_{m \times 1}^{T}X_{1 \times m} = \frac{1}{n-1} \sum_{i=1}^{m} (x_i - \mu)^{T}(x_i - \mu) \tag{4}$$</p>
-<p>where $\mu$ is the column mean vector and $S$ will be the $m \times m$ square matrix.</p>
-<h6 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h6><p>Let $X$ be $2 \times 3$ matrix as the following; </p>
-<p>$$X = \begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \end{bmatrix}$$</p>
-<p>Then, for (1) equation, </p>
-<p>The row vectors will be $3 \times 1$ vector as following;</p>
-<p>$X_1 = \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$ and $X_2 = \begin{bmatrix} 4 \\ 5 \\ 6 \end{bmatrix}$.</p>
-<p>Then, the covariance matrix will be</p>
-<p>$$S_{3 \times 3} = \frac{1}{n-1} X_{3 \times 1} X_{1 \times 3}^{T}$$.</p>
-<p>For (2) equation, </p>
-<p>The column vectors will be $1 \times 2$ vectors as following;</p>
-<p>$X_1 = \begin{bmatrix} 1 &amp; 4 \end{bmatrix}$, $X_2 = \begin{bmatrix} 2 &amp; 5 \end{bmatrix}$, $X_3 = \begin{bmatrix} 3 &amp; 6 \end{bmatrix}$.</p>
-<p>Then, the covariance matrix will be </p>
-<p>$$S_{2 \times 2} = \frac{1}{n-1} X_{2 \times 1}^{T} X_{1 \times 2}$$</p>
-<p>In this paper, we will need the (2) covariance matrix since mostly columns are the predictors, and covariance matrix is calculated by the columns. </p>
-<h3 id="3-Intuition-on-Eigenvalues-and-Eigenvectors"><a href="#3-Intuition-on-Eigenvalues-and-Eigenvectors" class="headerlink" title="3. Intuition on Eigenvalues and Eigenvectors"></a>3. Intuition on Eigenvalues and Eigenvectors</h3><p>Formal Definition of Eigenvalues and Eigenvectors:</p>
-<p>Let A be $n \times n$ a sqaure matrix, then $v$ and $\lambda$ is the Eigenvector and the Eigenvalue of $A$, respectively, if</p>
-<p>$$Av = \lambda v \tag{5}$$</p>
-<p>where $v$ is a non-zero vector and $\lambda$ can be any scalar. </p>
-<p>Geometrical meaning of Eigenvectors and Eigenvalues would be..</p>
-<p>From <a href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors" target="_blank" rel="noopener">Wiki</a>,</p>
-<p>Eigenvectors can be seen the scaled direction vectors in the difrection of the particular vector; therefore, the direction of the vector is preserved, but we are just scaling the lengths.<br>Eigenvalue can be seen the factor by which it is stretched. </p>
-<p>For equation (5), it is equivalent to the following;</p>
-<p>$$(A - \lambda I)v = 0$$</p>
-<p>where $I$ is the $n \times n$ identity matrix, and $0$ is the zero vector. </p>
-<p>Also, if the $(A - \lambda I)$ is invertible, then $v$ can be zero-vector; therefore, in order to have a non-zero vector, $v$, the $(A - \lambda I)$ must be not invertible. It leads the determinant of $(A - \lambda I)$ must be zero as the following; </p>
-<p>$$det(A - \lambda I) = 0$$</p>
-<h3 id="4-Eigendecomposition-or-Spectral-Decomposition"><a href="#4-Eigendecomposition-or-Spectral-Decomposition" class="headerlink" title="4. Eigendecomposition or Spectral Decomposition"></a>4. Eigendecomposition or Spectral Decomposition</h3><p>Let $A$ be $n \times n$ a sqaure matrix with its rank is $n$, $rank(A) = n$, which is equivalent to have the number of linearly independent of columns or rows. </p>
-<p>Then, $A$ can be factorized as</p>
-<p>$$A_{n \times n} = Q_{n \times n} \Lambda_{n \times n} Q_{n \times n}^{-1}$$</p>
-<p>where $Q$ is the $n \times n$ square matrix that the $i$th column is the eigenvector of A, and the $\Lambda$ is the diagonal matrix that the diagonal elements are the eigenvalues of A, $\Lambda_{ii} = \lambda_i$.</p>
-<p>If the $Q$ is orthogonal matrix, then $A$ is equivalent to the following;</p>
-<p>$$A = Q \Lambda Q^{-1} = Q \Lambda Q^T \tag{6}$$</p>
-<h3 id="5-SVD-Singular-Value-Decomposition"><a href="#5-SVD-Singular-Value-Decomposition" class="headerlink" title="5. SVD (Singular Value Decomposition)"></a>5. SVD (Singular Value Decomposition)</h3><p>Let $A$ be $m \times n$ a rectangular matrix, then $A$ can be factorized as,</p>
-<p>$$A_{m \times n} = U_{m \times m} \Sigma_{m \times n} V_{n \times n}^{T}$$</p>
-<p>where $U$ and $V$ is orthonormal square matrix, which means $U^{T}U = V^{T}V = I$, and $\Sigma$ is the diagonal matrix. </p>
-<p>Then, the square matrix, </p>
-<p>$$A_{m \times n}A_{n \times m}^{T} = (U \Sigma V^T) (U \Sigma V^T)^T \\ = (U \Sigma V^T) (V \Sigma^{T} U^{T}) \\ = U(\Sigma \Sigma^{T}) U^{T} \tag{7}$$</p>
-<p>which gives us $U$ is the eigenvector of $AA^T$ by the definition of Eigendecomposition and the fact that we assume that $U$ is the orthonormal matrix, and $U$ is called left-singular vector. </p>
-<p>$$A_{n \times m}^{T}A_{m \times n} = (U \Sigma V^T)^{T} (U \Sigma V^T) \\ = (V \Sigma^{T} U^{T}) (U \Sigma V^T) \\ = V (\Sigma^{T} \Sigma) V^{T} \tag{8}$$</p>
-<p>which gives us $V$ is the eigenvector of $A^{T}A$ by the definition of Eigendecomposition and the fact that we assume that $V$ is the orthonormal matrix, and $V$ is called right-singular vector. </p>
-<p>Also, $\Sigma \Sigma^{T} = \Sigma^{T} \Sigma$ is the diagonal matrix that the diagonal elements are the eigenvalues. </p>
-<h3 id="6-PCA-Principal-Components"><a href="#6-PCA-Principal-Components" class="headerlink" title="6. PCA (Principal Components)"></a>6. PCA (Principal Components)</h3><p>The goal of the PCA is to identify the most meaningful basis to re-express a dataset. </p>
-<p>Let $X$ be $m \times n$ matrix, $Y$ be another $m \times n$ matrix related by a linear transformation $P_{n \times n}$. </p>
-<p>Then,</p>
-<p>$$Y = XP \\ = \begin{bmatrix} x_{11} &amp; \dots &amp; x_{1n}  \\ \vdots &amp; \ddots \\ x_{m1} &amp; \dots &amp; x_{mn} \end{bmatrix}  \begin{bmatrix} p_{11} &amp; \dots &amp; p_{1n}  \\ \vdots &amp; \ddots \\ p_{n1} &amp; \dots &amp; p_{nn} \end{bmatrix}$$</p>
-<p>which gives us the dot product of $X$ and $P$. </p>
-<p>The dot product can be interpreted as a linear transformation or projecting $X$ onto another basis by $P$.</p>
-<p>In this case, let’s see the covariance matrix of $Y$. Notice that the covariance matrix of $Y$ or the covariance matrix of $X$ are centered as stated above (3) or (4). </p>
-<p>$$C_{Y} = \frac{1}{n-1} Y^{T}Y \\ = \frac{1}{n-1} (XP)^{T}(XP) \\ = \frac{1}{n-1}(P^{T}X^{T}XP) \\ = P^{T}C_{X} P$$</p>
-<p>If we prove that the matrix $P$ is orthonormal matrix, then we can see </p>
-<p>$$C_{Y} =  P^{T}C_{X} P =  P^{-1}C_{X} P$$</p>
-<p>by (6)</p>
-<p>and hence, it implies that $P$ is the eigenvector matrix of covariance matrix of $X$. </p>
-<ol>
-<li>First Approach to prove $P$ is orthonormal. </li>
-</ol>
-<p>We know that $C_{Y}$ is the symmetric matrix since it is the covariance matrix of $Y$, </p>
-<p>then, $C_{Y} = C_{Y}^{T}$ is true. </p>
-<p>Let assume that $C_{Y} = P^{-1} C_{X} P$ by definition of Eigendecomposition. </p>
-<p>$$C_{Y}^{T} = (P^{-1} C_{X} P)^{T} = (C_{X})^{T} (P^{-1})^{T} \\ = C_{Y} $$</p>
-<p>Therefore, </p>
-<p>$$P^{T} (C_{X})^{T} (P^{-1})^{T} =  P^{T}C_{X} P$$</p>
-<p>We know that $C_X = C_{X}^{T}$ since the covariance matrix of $X$ is symmetric matrix.</p>
-<p>Finally, </p>
-<p>$$P^{T} C_{X} (P^{-1})^{T} =  P^{T}C_{X} P \\ (P^{-1})^{T} = P$$</p>
-<p>Now, we can see the $P$ is orthonormal matrix. </p>
-<p>This proof implies that we can get the $P$ from SVD by calculating $V$. </p>
-<p>The covariance matrix of $X$ is.. </p>
-<p>$$C_X = \frac{1}{n-1} X^{T}X$$ </p>
-<p>By (8) in SVD, $X^{T}X$ is.. </p>
-<p>$$X^{T}X = V (\Sigma_{X}^{T} \Sigma_{X}) V^{T}$$</p>
-<p>Therefore, </p>
-<p>$$V^{T} = P$$ </p>
-<ol start="2">
-<li>Second Approach to prove $P$ is orthonormal (this proof was provided by a member of my study group)</li>
-</ol>
-<p>We have </p>
-<p>$$Y = XP$$</p>
-<p>where $Y$ is the projected values for $X$ by linear tranformation of $P$. </p>
-<p>Suppose we have $U$ as the following;</p>
-<p>$$YU = X_{recovered}$$ </p>
-<p>where $X_{recovered}$ is the re-proejcted values onto original values from the basis where the dataset are projected onto. </p>
-<p>Then, </p>
-<p>$$XPU = X_{recovered}$$</p>
-<p>Therefore, </p>
-<p>$$PU = I \tag{9}$$</p>
-<p>Let $x$ is column vectors from $X$, and $\hat{x}$ is column vectors from $Y$.</p>
-<p>$$x_{n \times 1} \in X_{m \times n}, \hat{x_{n \times 1}} \in Y_{m \times n}$$</p>
-<p>The loss function of PCA is</p>
-<p>$$\arg\min_{\hat{x}} ||x_{n \times 1} - U_{n \times n}\hat{x_{n \times 1}}||$$</p>
-<p>To optimize, we differentiate the equation with respect to $\hat{x}$. </p>
-<p>$$\frac{\partial}{\partial \hat{x}} ||x - U\hat{x}|| \\ = \frac{\partial}{\partial \hat{x}} (x-U\hat{x})^{T}(x-U\hat{x}) \\ = \frac{\partial}{\partial \hat{x}} (x^T - \hat{x}^{T}U^{T})(x-U\hat{x}) \\ = \frac{\partial}{\partial \hat{x}} (x^{T}x - \hat{x}^{T}U^{T}x - x^{T}U\hat{x} + \hat{x}^{T}\hat{x}) $$</p>
-<p>Here, $\hat{x}^{T}U^{T}x = x^{T}U\hat{x}$ since they are scalar value. </p>
-<p>$$= \frac{\partial}{\partial \hat{x}} (x^{T}x - 2x^{T}U\hat{x} + \hat{x}^{T}\hat{x}) \\ = 0 - 2U^{T}x + 2\hat{x} \tag{10}$$</p>
-<p>By denominator layout as explained above, </p>
-<p>$$\frac{\partial}{\partial \hat{x}} \hat{x}^{T}\hat{x} = 2\hat{x}$$ </p>
-<p>$$\frac{\partial}{\partial \hat{x}} x^{T}U\hat{x} = (x^{T}U)^{T} = U^{T}x$$</p>
-<p>Set the (10) equation as zero, </p>
-<p>$$  - 2U^{T}x + 2\hat{x} = 0 \\ \hat{x} = U^{T}x$$</p>
-<p>Therefore, $\hat{x} = Px$ from the first assumption, and $P = U^{T}$.</p>
-<p>From (9) equation, </p>
-<p>$$PU = PP^T = I \\ P^{-1} = P^T$$</p>
-<p>We proved that $P$ is the orthonormal matrix. </p>
-<p>As a result, </p>
-<ol>
-<li>$P$ is the Principal Components that allows us to get the most meaningful basis to re-express our dataset by linear transforming our dataset. </li>
-<li>$P$ is the eigenvector matrix of the covariance matrix of our dataset for the column vectors (predictors)</li>
-<li>$P$ is the transpose of right-singular vector, which is the $V^T$ in $U \Sigma V^T$, from Singular Value Decomposition. </li>
-</ol>
-<p>Reference:<br><a href="https://arxiv.org/pdf/1404.1100.pdf" target="_blank" rel="noopener">A Tutorial on Principal Component Analysis</a><br><a href="https://www2.imm.dtu.dk/pubdb/views/edoc_download.php/4000/pdf/imm4000" target="_blank" rel="noopener">Singular Value Decomposition and Principal Component Analysis</a><br><a href="https://intoli.com/blog/pca-and-svd/" target="_blank" rel="noopener">HOW ARE PRINCIPAL COMPONENT ANALYSIS AND SINGULAR VALUE DECOMPOSITION RELATED?</a><br><a href="https://www.comp.nus.edu.sg/~cs5240/lecture/matrix-differentiation.pdf" target="_blank" rel="noopener">Matrix Differentiation</a><br><a href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors" target="_blank" rel="noopener">Eigenvalues and eigenvectors</a><br><a href="https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix" target="_blank" rel="noopener">Eigendecompositoin of a matrix</a><br><a href="https://en.wikipedia.org/wiki/Matrix_calculus" target="_blank" rel="noopener">Matrix Calculus</a><br><a href="https://medium.com/bluekiri/understanding-principal-component-analysis-once-and-for-all-9f75e7b33635" target="_blank" rel="noopener">Understanding Principal Component Analysis Once And For All</a></p>
-
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/DNN/">DNN</a>, <a class="has-link-grey -link" href="/tags/ML/">ML</a>, <a class="has-link-grey -link" href="/tags/Optimizers/">Optimizers</a>
+                </div>
+            </div>
         </div>
         
         
@@ -332,10 +237,23 @@
 
 
 
-
-
-
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/01/02/logistic/">
+                <span class="level-item">Logistic Regression - Newton&#39;s method</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
 </div>
+
+
+
+{% include mathjax.html %}</div>
                 
 
 
@@ -1056,7 +974,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="David Kwon" height="28">
+                    <img src="/images/logo.svg" alt="Optimizers" height="28">
                 
                 </a>
                 <p class="is-size-7">

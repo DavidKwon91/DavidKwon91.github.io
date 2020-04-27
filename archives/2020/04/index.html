@@ -7,22 +7,17 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Optimizers - David Kwon</title>
+<title>Archives: 2020/4 - David Kwon</title>
 
 
-    <meta name="description" content="Deep Neural NetworksSimple Intro to DNN DNN(Deep Neural Networks) is a deep structured model of ANN(Artificial Neural Networks), which is a type of machine learning inspired by biological neural netwo">
-<meta name="keywords" content="ML,DNN,Optimizers">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Optimizers">
-<meta property="og:url" content="http://yoursite.com/2019/09/15/DNN-Optimizer/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="David Kwon">
+<meta property="og:url" content="http://yoursite.com/archives/2020/04/index.html">
 <meta property="og:site_name" content="David Kwon">
-<meta property="og:description" content="Deep Neural NetworksSimple Intro to DNN DNN(Deep Neural Networks) is a deep structured model of ANN(Artificial Neural Networks), which is a type of machine learning inspired by biological neural netwo">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
-<meta property="og:updated_time" content="2020-04-27T04:14:00.145Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Optimizers">
-<meta name="twitter:description" content="Deep Neural NetworksSimple Intro to DNN DNN(Deep Neural Networks) is a deep structured model of ANN(Artificial Neural Networks), which is a type of machine learning inspired by biological neural netwo">
+<meta name="twitter:title" content="David Kwon">
 <meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
 
 
@@ -91,7 +86,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Optimizers" height="28">
+                <img src="/images/logo.svg" alt="David Kwon" height="28">
             
             </a>
         </div>
@@ -141,126 +136,40 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main"><div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-15T09:07:27.000Z">2019-09-15</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/ML/">ML</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/ML/DNN-Optimizers/">DNN-Optimizers</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    8 minutes read (About 1225 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                Optimizers
-            
-        </h1>
-        <div class="content">
-            <h2 id="Deep-Neural-Networks"><a href="#Deep-Neural-Networks" class="headerlink" title="Deep Neural Networks"></a>Deep Neural Networks</h2><h3 id="Simple-Intro-to-DNN"><a href="#Simple-Intro-to-DNN" class="headerlink" title="Simple Intro to DNN"></a>Simple Intro to DNN</h3><p> DNN(Deep Neural Networks) is a deep structured model of ANN(Artificial Neural Networks), which is a type of machine learning inspired by biological neural networks. DNN is used and applied widely in many fields such as computer vision, speech recognition, natural language processing, and bioinformatics. </p>
-<p> For my understand, ANN is to stack many models with various weights and biases such as logistic regression models, and DNN is a complex body that consist of huge amount of models. Therefore, some DNN model has more than 20 million parameters such as Xception invented from Google. </p>
-<p>As any other complexity in this world brings about problems, DNN has some problems that has to be solved. DNN suffers slow computational time because it has more than millions parameters to learn. And it also suffers the vanishing/exploding gradients problems. Because it has all the different models, which are neurons, with all the different weights and biases, the gradients of some neurons to update each weights and biases will be too small or too large. In this case, we say that the neurons with too small or too large gradients are dead neurons. </p>
-<p>There are many approches to alleviate those problems such as dropout, initializer, or batch normalization. </p>
-<p>I am going to disscuss about efficient optimizers rather than Stochastic Gradient Descent, which is one of ways for those difficulties. </p>
-<h3 id="SGD-Stochastic-Gradient-Descent"><a href="#SGD-Stochastic-Gradient-Descent" class="headerlink" title="SGD (Stochastic Gradient Descent)"></a>SGD (Stochastic Gradient Descent)</h3><p>Let’s begin with talking about what the SGD is. </p>
-<p>Regular Gradient Descent is to simply updates the weights by calculating and subtracting the gradient of cost function with regards to the weights to reach the global optimum so that we can minimize our cost function. </p>
-<p>Definition: </p>
-<p>$$\theta \leftarrow \theta - \eta\Delta_{\theta}\mathcal{J}(\theta)$$</p>
-<p>The formula in the definition is to update the weights by subtracting or adding the gradients of cost function to take small steps down the slope. </p>
-<p>So SGD does not care about the previous weights or gradients, but it only cares about current weights and gradients. This is where the Momentum optimization is introduced. </p>
-<h3 id="SGD-with-Momentum-optimization"><a href="#SGD-with-Momentum-optimization" class="headerlink" title="SGD with Momentum optimization"></a>SGD with Momentum optimization</h3><p>SGD with Momentum Optimization is simply added some vector in the process of SGD, which is called momentum vector. </p>
-<p>Definition:</p>
-<p>$$\mathcal{m} \leftarrow \beta\mathcal{m} - \eta\Delta_{\theta} \mathcal{J}(\theta)$$</p>
-<p>$$\theta \leftarrow \theta + \mathcal{m}$$</p>
-<p>We update the weight by updating the momenum vector as above. Let’s imagine that we starts with the first initialized weights at the first iteration. The moment vector, $\mathcal{m}$, is started with zero, then the weights, $\theta$, will be just updated by the gradients as Gradient Decsent does. At the second iteration, the momentum vector is the gradients calculated at the first iteration. We are updating the gradients of the first iteration, which is momentum vector, by subtracting or adding the gradients at the current step, and adding the updated the gradients or the momentum vector. At the third iteration, the momentum vector would be the updated momentum vector at the second iteration, which is calculated by the first gradients. We update the wegiths by updating and adding the momentum vector. </p>
-<p>To prevent the momentum vector growing too large or too small, we slightly reduced the value by a hyperparameter, $\beta$, which is called momentum. If the momentum, $\beta = 0$, then it’s the same as SGD. The typical value of momentum is 0.9. </p>
-<h3 id="Nesterov-Accelerated-Gradient"><a href="#Nesterov-Accelerated-Gradient" class="headerlink" title="Nesterov Accelerated Gradient"></a>Nesterov Accelerated Gradient</h3><p>A new Momentum optimization is introduced, which is called Nesterov Accelerated Gradient. In the original Momentum Optimization, we update the momenum vector at the local position of the current weight; however, in NAG optimization, we update the momentum vector with the gradient that is measured at $\theta + \beta\mathcal{m}$. </p>
-<p>Definition:</p>
-<p>$$\mathcal{m} \leftarrow \beta\mathcal{m} - \eta\Delta_{\theta}\mathcal{J}(\theta + \beta\mathcal{m})$$</p>
-<p>$$\theta \leftarrow \theta + \mathcal{m}$$</p>
-<p>Since this gradient has the information of both of the weight and the previous momentum, this will help update the gradient more accurate, improve the directions to the optimum, and eventually converges faster. </p>
-<h3 id="AdaGrad"><a href="#AdaGrad" class="headerlink" title="AdaGrad"></a>AdaGrad</h3><p>AdaGrad is the different version of gradient descent optimization than the momentum based optimization. It’s scaling down the gradient vector by dividing some factors measured along the steepness of the gradient. </p>
-<p>Definition:</p>
-<p>$$s \leftarrow s + \Delta_{\theta}\mathcal{J}(\theta)\otimes\Delta_{\theta}\mathcal{J}(\theta)$$</p>
-<p>$$\theta \leftarrow \theta - \eta\Delta_{\theta}\mathcal{J}(\theta)\oslash\sqrt{s + \epsilon}$$</p>
-<p>In the first step, we update the factor s by adding the element-wise multiplication of the gradient elements, that is the square of the gradients. It will be the same as $s_{i} \leftarrow + (\partial \mathcal{J}(\theta)/\partial \Theta_{i})^2$ for each element $s_{i}$. The vector, s, will accumulate the squares of the partial derivative of the cost function with regards to parameter $\Theta_{i}$. Therefore, if the gradient of the cost function is big, the factor s will get larger and larger at each iteration. </p>
-<p>In the second step, the gradient of the cost function will be divided by the square root of the factor that is updated with the square of the gradients in the first step. The $\epsilon$ is the smoothing term to prevent dividing by zero, if the factor, s, is zero. </p>
-<p>To sum up, if the direction to the global optimum is steep at the $i^{th}$ iteration, then the factor gets larger and so the term, $\eta\Delta_{\theta}\mathcal{J}(\theta)\oslash\sqrt{s + \epsilon}$,  will be smaller. However, because it’s scaling down the gradient quickly at each iterations, when it’s reaching to the optimum, the gradient will be too small. </p>
-<h3 id="RMSProp"><a href="#RMSProp" class="headerlink" title="RMSProp"></a>RMSProp</h3><p>Since AdaGrad is scaling down the gradients too quickly, a new hyperparameter, $\beta$, is applied into the first formula of AdaGrad to somehow reduce the speed of scaling down. </p>
-<p>Definition:</p>
-<p>$$\mathcal{s} \leftarrow \beta\mathcal{s} + (1-\beta)\Delta_{\theta}\mathcal{J}(\theta)\otimes\Delta_{\theta}\mathcal{J}(\theta)$$</p>
-<p>$$\theta \leftarrow \theta - \eta\Delta_{\theta}\mathcal{J}(\theta)\oslash\sqrt{s + \epsilon}$$</p>
-<p>The hyperparameter, $\beta$, is called decay rate, and the typical value is 0.9. </p>
-<h3 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h3><p>Adam stands for adaptive moment estimation. It is from the ideas of momentum and RMSProp. Adam is a well-performed optimization algorithm in most cases. </p>
-<p>Definition:</p>
-<p>$$1. \mathcal{m} \leftarrow \beta_{1}\mathcal{m} - (1-\beta_{1})\Delta_{\theta}\mathcal{J}(\theta)$$</p>
-<p>$$2. \mathcal{s} \leftarrow \beta_{2}\mathcal{s} + (1-\beta_{2})\Delta_{\theta}\mathcal{J}(\theta) \otimes \Delta_{\theta}\mathcal{J}(\theta)$$</p>
-<p>$$3. \hat{\mathcal{m}} \leftarrow \frac{m}{1-\beta_{1}^{t}}$$</p>
-<p>$$4. \hat{\mathcal{s}} \leftarrow \frac{s}{1-beta_{2}^{t}}$$</p>
-<p>$$5. \theta \leftarrow \theta + \eta\hat{\mathcal{m}}\oslash\sqrt{\hat{\mathcal{s}} + \epsilon}$$</p>
-<p>The step 1 is to update the momentum vector with the idea of RMSProp, which is reducing the the speed of scaling the momentum vector by weighting each terms with the decay rate, $\beta_{1}$</p>
-<p>The step 2 is to update the factor s, which is similar to the factor s in RMSProp. </p>
-<p>The step 3 and 4 is to reweight the momentum vetor and the factor s by each decay rate. Because the momentum vector and the factor s will be initialized at 0, the $\mathcal{m}$ and $\mathcal{s}$ will be boosted from the beginning of training. </p>
-<p>The step 5 is final step to update the weight, $\theta$, with all the parameters of $\mathcal{m}$ and $\mathcal{s}$ from above steps. </p>
-<p>The typlical value of momentum decay rate, $\beta_{1}$, is 0.9, and the scailing decay hyperparameter, $\beta_{2}$, is set to 0.999. </p>
+                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
 
-        </div>
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="tag is-link">
+        April 2020
+        </h3>
+        <div class="timeline">
         
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/DNN/">DNN</a>, <a class="has-link-grey -link" href="/tags/ML/">ML</a>, <a class="has-link-grey -link" href="/tags/Optimizers/">Optimizers</a>
+            <article class="media">
+                
+                <div class="media-content">
+                    <div class="content">
+                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2020-04-26T15:00:00.000Z">2020-04-27</time>
+                        <a href="/2020/04/27/DNN-Optimizer/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Optimizers</a>
+                        <div class="level article-meta is-mobile">
+                            <div class="level-left">
+                                
+                                <div class="level-item is-size-7 is-uppercase">
+                                <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/DNN-Optimizers/">DNN-Optimizers</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </article>
+        
         </div>
-        
-        
-        
     </div>
 </div>
 
 
-
-
-
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/09/19/DecisionTree/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">DecisionTree</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/15/GaussianProcess/">
-                <span class="level-item">GaussianProcess</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
 </div>
-
-
-
-{% include mathjax.html %}</div>
                 
 
 
@@ -555,6 +464,25 @@
         
         <article class="media">
             
+            <a href="/2020/04/27/DNN-Optimizer/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Optimizers">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-26T15:00:00.000Z">2020-04-27</time></div>
+                    <a href="/2020/04/27/DNN-Optimizer/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Optimizers</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/DNN-Optimizers/">DNN-Optimizers</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/01/02/logistic/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/sigmoid.png" alt="Logistic Regression - Newton&#39;s method">
@@ -629,25 +557,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/05/Monty-Hall/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/montyhall.png" alt="Monty Hall">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-05T09:53:20.000Z">2019-10-05</time></div>
-                    <a href="/2019/10/05/Monty-Hall/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Monty Hall</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/ML/">ML</a> / <a class="has-link-grey -link" href="/categories/ML/Monty-Hall/">Monty Hall</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -659,6 +568,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/01/">
@@ -688,7 +608,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -970,7 +890,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Optimizers" height="28">
+                    <img src="/images/logo.svg" alt="David Kwon" height="28">
                 
                 </a>
                 <p class="is-size-7">
