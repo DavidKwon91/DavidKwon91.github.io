@@ -166,7 +166,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 599 words)
+                    5 minutes read (About 801 words)
                 </span>
                 
                 
@@ -204,6 +204,9 @@
 <p>Definition:</p>
 <p>$$s \leftarrow s + \Delta_{\theta}\mathcal{J}(\theta)\otimes\Delta_{\theta}\mathcal{J}(\theta)$$</p>
 <p>$$\theta \leftarrow \theta - \eta\Delta_{\theta}\mathcal{J}(\theta)\oslash\sqrt{s + \epsilon}$$</p>
+<p>In the first step, we update the factor s by adding the element-wise multiplication of the gradient elements, that is the square of the gradients. It will be the same as $s_{i} \leftarrow + (\partial \mathcal{J}(\theta)/\partial \Theta_{i})^2$ for each element $s_{i}$. The vector, s, will accumulate the squares of the partial derivative of the cost function with regards to parameter $\Theta_{i}$. Therefore, if the gradient of the cost function is big, the factor s will get larger and larger at each iteration. </p>
+<p>In the second step, the gradient of the cost function will be divided by the square root of the factor that is updated with the square of the gradients in the first step. The $\epsilon$ is the smoothing term to prevent dividing by zero, if the factor, s, is zero. </p>
+<p>To sum up, if the direction to the global optimum is steep at the $i^{th}$ iteration, then the factor gets larger and so the term, $\eta\Delta_{\theta}\mathcal{J}(\theta)\oslash\sqrt{s + \epsilon}$,  will be smaller. However, because it’s scaling down the gradient quickly the iterations, when it’s reaching to the optimum, the gradient will be too small. </p>
 
         </div>
         
